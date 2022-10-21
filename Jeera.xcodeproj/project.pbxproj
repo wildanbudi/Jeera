@@ -1,0 +1,783 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		425AD0D029022D4700754114 /* UIColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425AD0CF29022D4700754114 /* UIColorScheme.swift */; };
+		425AD0D8290243FE00754114 /* Baloo2-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 425AD0D2290243FD00754114 /* Baloo2-SemiBold.ttf */; };
+		425AD0D9290243FE00754114 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 425AD0D3290243FD00754114 /* OFL.txt */; };
+		425AD0DA290243FE00754114 /* Baloo2-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 425AD0D4290243FD00754114 /* Baloo2-Medium.ttf */; };
+		425AD0DB290243FE00754114 /* Baloo2-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 425AD0D5290243FE00754114 /* Baloo2-Bold.ttf */; };
+		425AD0DC290243FE00754114 /* Baloo2-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 425AD0D6290243FE00754114 /* Baloo2-ExtraBold.ttf */; };
+		425AD0DD290243FE00754114 /* Baloo2-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 425AD0D7290243FE00754114 /* Baloo2-Regular.ttf */; };
+		42D12D8029010F6C00857042 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D12D7F29010F6C00857042 /* AppDelegate.swift */; };
+		42D12D8229010F6C00857042 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D12D8129010F6C00857042 /* SceneDelegate.swift */; };
+		42D12D8429010F6C00857042 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D12D8329010F6C00857042 /* ViewController.swift */; };
+		42D12D8729010F6C00857042 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42D12D8529010F6C00857042 /* Main.storyboard */; };
+		42D12D8A29010F6C00857042 /* Jeera.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 42D12D8829010F6C00857042 /* Jeera.xcdatamodeld */; };
+		42D12D8C29010F6D00857042 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42D12D8B29010F6D00857042 /* Assets.xcassets */; };
+		42D12D8F29010F6D00857042 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42D12D8D29010F6D00857042 /* LaunchScreen.storyboard */; };
+		42D12D9A29010F6D00857042 /* JeeraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D12D9929010F6D00857042 /* JeeraTests.swift */; };
+		42D12DA429010F6E00857042 /* JeeraUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D12DA329010F6E00857042 /* JeeraUITests.swift */; };
+		42D12DA629010F6E00857042 /* JeeraUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D12DA529010F6E00857042 /* JeeraUITestsLaunchTests.swift */; };
+		42D12DB42901AD5600857042 /* MapboxCoreNavigation in Frameworks */ = {isa = PBXBuildFile; productRef = 42D12DB32901AD5600857042 /* MapboxCoreNavigation */; };
+		42D12DB62901AD5600857042 /* MapboxNavigation in Frameworks */ = {isa = PBXBuildFile; productRef = 42D12DB52901AD5600857042 /* MapboxNavigation */; };
+		42D12DBF2901B16300857042 /* Animals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D12DBE2901B16300857042 /* Animals.swift */; };
+		42D12DC72901B8DF00857042 /* CustomDayStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D12DC62901B8DF00857042 /* CustomDayStyle.swift */; };
+		42D12DC92901B93400857042 /* CustomNightStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D12DC82901B93400857042 /* CustomNightStyle.swift */; };
+		42D12DCB2901B9FB00857042 /* NavigateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D12DCA2901B9FB00857042 /* NavigateViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		42D12D9629010F6D00857042 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 42D12D7429010F6C00857042 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42D12D7B29010F6C00857042;
+			remoteInfo = Jeera;
+		};
+		42D12DA029010F6E00857042 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 42D12D7429010F6C00857042 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42D12D7B29010F6C00857042;
+			remoteInfo = Jeera;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		425AD0CF29022D4700754114 /* UIColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorScheme.swift; sourceTree = "<group>"; };
+		425AD0D2290243FD00754114 /* Baloo2-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Baloo2-SemiBold.ttf"; path = "../../../../../../Downloads/Baloo2-SemiBold.ttf"; sourceTree = "<group>"; };
+		425AD0D3290243FD00754114 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = OFL.txt; path = ../../../../../../Downloads/OFL.txt; sourceTree = "<group>"; };
+		425AD0D4290243FD00754114 /* Baloo2-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Baloo2-Medium.ttf"; path = "../../../../../../Downloads/Baloo2-Medium.ttf"; sourceTree = "<group>"; };
+		425AD0D5290243FE00754114 /* Baloo2-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Baloo2-Bold.ttf"; path = "../../../../../../Downloads/Baloo2-Bold.ttf"; sourceTree = "<group>"; };
+		425AD0D6290243FE00754114 /* Baloo2-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Baloo2-ExtraBold.ttf"; path = "../../../../../../Downloads/Baloo2-ExtraBold.ttf"; sourceTree = "<group>"; };
+		425AD0D7290243FE00754114 /* Baloo2-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Baloo2-Regular.ttf"; path = "../../../../../../Downloads/Baloo2-Regular.ttf"; sourceTree = "<group>"; };
+		42D12D7C29010F6C00857042 /* Jeera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jeera.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		42D12D7F29010F6C00857042 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		42D12D8129010F6C00857042 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		42D12D8329010F6C00857042 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		42D12D8629010F6C00857042 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		42D12D8929010F6C00857042 /* Jeera.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jeera.xcdatamodel; sourceTree = "<group>"; };
+		42D12D8B29010F6D00857042 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		42D12D8E29010F6D00857042 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		42D12D9029010F6D00857042 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		42D12D9529010F6D00857042 /* JeeraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JeeraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		42D12D9929010F6D00857042 /* JeeraTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JeeraTests.swift; sourceTree = "<group>"; };
+		42D12D9F29010F6E00857042 /* JeeraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JeeraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		42D12DA329010F6E00857042 /* JeeraUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JeeraUITests.swift; sourceTree = "<group>"; };
+		42D12DA529010F6E00857042 /* JeeraUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JeeraUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		42D12DBE2901B16300857042 /* Animals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animals.swift; sourceTree = "<group>"; };
+		42D12DC62901B8DF00857042 /* CustomDayStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDayStyle.swift; sourceTree = "<group>"; };
+		42D12DC82901B93400857042 /* CustomNightStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNightStyle.swift; sourceTree = "<group>"; };
+		42D12DCA2901B9FB00857042 /* NavigateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigateViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		42D12D7929010F6C00857042 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42D12DB42901AD5600857042 /* MapboxCoreNavigation in Frameworks */,
+				42D12DB62901AD5600857042 /* MapboxNavigation in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42D12D9229010F6D00857042 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42D12D9C29010F6E00857042 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		425AD0CE29022C9400754114 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				425AD0D129022F8D00754114 /* Fonts */,
+				425AD0CF29022D4700754114 /* UIColorScheme.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		425AD0D129022F8D00754114 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				425AD0D5290243FE00754114 /* Baloo2-Bold.ttf */,
+				425AD0D6290243FE00754114 /* Baloo2-ExtraBold.ttf */,
+				425AD0D4290243FD00754114 /* Baloo2-Medium.ttf */,
+				425AD0D7290243FE00754114 /* Baloo2-Regular.ttf */,
+				425AD0D2290243FD00754114 /* Baloo2-SemiBold.ttf */,
+				425AD0D3290243FD00754114 /* OFL.txt */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		42D12D7329010F6C00857042 = {
+			isa = PBXGroup;
+			children = (
+				42D12D7E29010F6C00857042 /* Jeera */,
+				42D12D9829010F6D00857042 /* JeeraTests */,
+				42D12DA229010F6E00857042 /* JeeraUITests */,
+				42D12D7D29010F6C00857042 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		42D12D7D29010F6C00857042 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				42D12D7C29010F6C00857042 /* Jeera.app */,
+				42D12D9529010F6D00857042 /* JeeraTests.xctest */,
+				42D12D9F29010F6E00857042 /* JeeraUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		42D12D7E29010F6C00857042 /* Jeera */ = {
+			isa = PBXGroup;
+			children = (
+				425AD0CE29022C9400754114 /* Resources */,
+				42D12DB72901B0BC00857042 /* Services */,
+				42D12DB82901B0C400857042 /* Models */,
+				42D12DB92901B0CB00857042 /* Views */,
+				42D12DBA2901B0DC00857042 /* ViewModels */,
+				42D12D7F29010F6C00857042 /* AppDelegate.swift */,
+				42D12D8129010F6C00857042 /* SceneDelegate.swift */,
+				42D12D8329010F6C00857042 /* ViewController.swift */,
+				42D12D8529010F6C00857042 /* Main.storyboard */,
+				42D12D8B29010F6D00857042 /* Assets.xcassets */,
+				42D12D8D29010F6D00857042 /* LaunchScreen.storyboard */,
+				42D12D9029010F6D00857042 /* Info.plist */,
+				42D12D8829010F6C00857042 /* Jeera.xcdatamodeld */,
+			);
+			path = Jeera;
+			sourceTree = "<group>";
+		};
+		42D12D9829010F6D00857042 /* JeeraTests */ = {
+			isa = PBXGroup;
+			children = (
+				42D12D9929010F6D00857042 /* JeeraTests.swift */,
+			);
+			path = JeeraTests;
+			sourceTree = "<group>";
+		};
+		42D12DA229010F6E00857042 /* JeeraUITests */ = {
+			isa = PBXGroup;
+			children = (
+				42D12DA329010F6E00857042 /* JeeraUITests.swift */,
+				42D12DA529010F6E00857042 /* JeeraUITestsLaunchTests.swift */,
+			);
+			path = JeeraUITests;
+			sourceTree = "<group>";
+		};
+		42D12DB72901B0BC00857042 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		42D12DB82901B0C400857042 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				42D12DBE2901B16300857042 /* Animals.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		42D12DB92901B0CB00857042 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				42D12DBB2901B10500857042 /* Components */,
+				42D12DBC2901B10E00857042 /* Views */,
+				42D12DBD2901B11A00857042 /* Controllers */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		42D12DBA2901B0DC00857042 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		42D12DBB2901B10500857042 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		42D12DBC2901B10E00857042 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				42D12DCC2901BA7100857042 /* Navigate */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		42D12DBD2901B11A00857042 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				42D12DCA2901B9FB00857042 /* NavigateViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		42D12DCC2901BA7100857042 /* Navigate */ = {
+			isa = PBXGroup;
+			children = (
+				42D12DC62901B8DF00857042 /* CustomDayStyle.swift */,
+				42D12DC82901B93400857042 /* CustomNightStyle.swift */,
+			);
+			path = Navigate;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		42D12D7B29010F6C00857042 /* Jeera */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42D12DA929010F6E00857042 /* Build configuration list for PBXNativeTarget "Jeera" */;
+			buildPhases = (
+				42D12D7829010F6C00857042 /* Sources */,
+				42D12D7929010F6C00857042 /* Frameworks */,
+				42D12D7A29010F6C00857042 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Jeera;
+			packageProductDependencies = (
+				42D12DB32901AD5600857042 /* MapboxCoreNavigation */,
+				42D12DB52901AD5600857042 /* MapboxNavigation */,
+			);
+			productName = Jeera;
+			productReference = 42D12D7C29010F6C00857042 /* Jeera.app */;
+			productType = "com.apple.product-type.application";
+		};
+		42D12D9429010F6D00857042 /* JeeraTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42D12DAC29010F6E00857042 /* Build configuration list for PBXNativeTarget "JeeraTests" */;
+			buildPhases = (
+				42D12D9129010F6D00857042 /* Sources */,
+				42D12D9229010F6D00857042 /* Frameworks */,
+				42D12D9329010F6D00857042 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				42D12D9729010F6D00857042 /* PBXTargetDependency */,
+			);
+			name = JeeraTests;
+			productName = JeeraTests;
+			productReference = 42D12D9529010F6D00857042 /* JeeraTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		42D12D9E29010F6E00857042 /* JeeraUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42D12DAF29010F6E00857042 /* Build configuration list for PBXNativeTarget "JeeraUITests" */;
+			buildPhases = (
+				42D12D9B29010F6E00857042 /* Sources */,
+				42D12D9C29010F6E00857042 /* Frameworks */,
+				42D12D9D29010F6E00857042 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				42D12DA129010F6E00857042 /* PBXTargetDependency */,
+			);
+			name = JeeraUITests;
+			productName = JeeraUITests;
+			productReference = 42D12D9F29010F6E00857042 /* JeeraUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		42D12D7429010F6C00857042 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1400;
+				LastUpgradeCheck = 1400;
+				TargetAttributes = {
+					42D12D7B29010F6C00857042 = {
+						CreatedOnToolsVersion = 14.0.1;
+					};
+					42D12D9429010F6D00857042 = {
+						CreatedOnToolsVersion = 14.0.1;
+						TestTargetID = 42D12D7B29010F6C00857042;
+					};
+					42D12D9E29010F6E00857042 = {
+						CreatedOnToolsVersion = 14.0.1;
+						TestTargetID = 42D12D7B29010F6C00857042;
+					};
+				};
+			};
+			buildConfigurationList = 42D12D7729010F6C00857042 /* Build configuration list for PBXProject "Jeera" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 42D12D7329010F6C00857042;
+			packageReferences = (
+				42D12DB22901AD5600857042 /* XCRemoteSwiftPackageReference "mapbox-navigation-ios" */,
+			);
+			productRefGroup = 42D12D7D29010F6C00857042 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				42D12D7B29010F6C00857042 /* Jeera */,
+				42D12D9429010F6D00857042 /* JeeraTests */,
+				42D12D9E29010F6E00857042 /* JeeraUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		42D12D7A29010F6C00857042 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				425AD0DD290243FE00754114 /* Baloo2-Regular.ttf in Resources */,
+				425AD0D9290243FE00754114 /* OFL.txt in Resources */,
+				425AD0DC290243FE00754114 /* Baloo2-ExtraBold.ttf in Resources */,
+				42D12D8F29010F6D00857042 /* LaunchScreen.storyboard in Resources */,
+				425AD0DA290243FE00754114 /* Baloo2-Medium.ttf in Resources */,
+				425AD0DB290243FE00754114 /* Baloo2-Bold.ttf in Resources */,
+				42D12D8C29010F6D00857042 /* Assets.xcassets in Resources */,
+				425AD0D8290243FE00754114 /* Baloo2-SemiBold.ttf in Resources */,
+				42D12D8729010F6C00857042 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42D12D9329010F6D00857042 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42D12D9D29010F6E00857042 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		42D12D7829010F6C00857042 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42D12DC72901B8DF00857042 /* CustomDayStyle.swift in Sources */,
+				42D12DBF2901B16300857042 /* Animals.swift in Sources */,
+				42D12D8429010F6C00857042 /* ViewController.swift in Sources */,
+				42D12D8A29010F6C00857042 /* Jeera.xcdatamodeld in Sources */,
+				42D12D8029010F6C00857042 /* AppDelegate.swift in Sources */,
+				42D12DCB2901B9FB00857042 /* NavigateViewController.swift in Sources */,
+				42D12D8229010F6C00857042 /* SceneDelegate.swift in Sources */,
+				425AD0D029022D4700754114 /* UIColorScheme.swift in Sources */,
+				42D12DC92901B93400857042 /* CustomNightStyle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42D12D9129010F6D00857042 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42D12D9A29010F6D00857042 /* JeeraTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42D12D9B29010F6E00857042 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42D12DA629010F6E00857042 /* JeeraUITestsLaunchTests.swift in Sources */,
+				42D12DA429010F6E00857042 /* JeeraUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		42D12D9729010F6D00857042 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 42D12D7B29010F6C00857042 /* Jeera */;
+			targetProxy = 42D12D9629010F6D00857042 /* PBXContainerItemProxy */;
+		};
+		42D12DA129010F6E00857042 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 42D12D7B29010F6C00857042 /* Jeera */;
+			targetProxy = 42D12DA029010F6E00857042 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		42D12D8529010F6C00857042 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				42D12D8629010F6C00857042 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		42D12D8D29010F6D00857042 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				42D12D8E29010F6D00857042 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		42D12DA729010F6E00857042 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		42D12DA829010F6E00857042 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		42D12DAA29010F6E00857042 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KJUW4SG84H;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Jeera/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wildanbudi.Jeera;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		42D12DAB29010F6E00857042 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KJUW4SG84H;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Jeera/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wildanbudi.Jeera;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		42D12DAD29010F6E00857042 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KJUW4SG84H;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wildanbudi.JeeraTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Jeera.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Jeera";
+			};
+			name = Debug;
+		};
+		42D12DAE29010F6E00857042 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KJUW4SG84H;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wildanbudi.JeeraTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Jeera.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Jeera";
+			};
+			name = Release;
+		};
+		42D12DB029010F6E00857042 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KJUW4SG84H;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wildanbudi.JeeraUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Jeera;
+			};
+			name = Debug;
+		};
+		42D12DB129010F6E00857042 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KJUW4SG84H;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wildanbudi.JeeraUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Jeera;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		42D12D7729010F6C00857042 /* Build configuration list for PBXProject "Jeera" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42D12DA729010F6E00857042 /* Debug */,
+				42D12DA829010F6E00857042 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		42D12DA929010F6E00857042 /* Build configuration list for PBXNativeTarget "Jeera" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42D12DAA29010F6E00857042 /* Debug */,
+				42D12DAB29010F6E00857042 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		42D12DAC29010F6E00857042 /* Build configuration list for PBXNativeTarget "JeeraTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42D12DAD29010F6E00857042 /* Debug */,
+				42D12DAE29010F6E00857042 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		42D12DAF29010F6E00857042 /* Build configuration list for PBXNativeTarget "JeeraUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42D12DB029010F6E00857042 /* Debug */,
+				42D12DB129010F6E00857042 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		42D12DB22901AD5600857042 /* XCRemoteSwiftPackageReference "mapbox-navigation-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mapbox/mapbox-navigation-ios.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		42D12DB32901AD5600857042 /* MapboxCoreNavigation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 42D12DB22901AD5600857042 /* XCRemoteSwiftPackageReference "mapbox-navigation-ios" */;
+			productName = MapboxCoreNavigation;
+		};
+		42D12DB52901AD5600857042 /* MapboxNavigation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 42D12DB22901AD5600857042 /* XCRemoteSwiftPackageReference "mapbox-navigation-ios" */;
+			productName = MapboxNavigation;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		42D12D8829010F6C00857042 /* Jeera.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				42D12D8929010F6C00857042 /* Jeera.xcdatamodel */,
+			);
+			currentVersion = 42D12D8929010F6C00857042 /* Jeera.xcdatamodel */;
+			path = Jeera.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 42D12D7429010F6C00857042 /* Project object */;
+}
