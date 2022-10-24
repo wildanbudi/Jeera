@@ -34,22 +34,45 @@ class NavigateViewController: UIViewController {
                             return
                         }
                 // Pass the first generated route to the the NavigationViewController
+                let bottomBanner = BottomBannerViewController()
                 let navigationService = MapboxNavigationService(routeResponse: response,
                                                                 routeIndex: 0,
                                                                 routeOptions: routeOptions,
                                                                 customRoutingProvider: NavigationSettings.shared.directions,
                                                                 credentials: NavigationSettings.shared.directions.credentials)
-                let navigationOptions = NavigationOptions(styles: [CustomDayStyle(), CustomNightStyle()],
-                                                          navigationService: navigationService)
+                let navigationOptions = NavigationOptions(styles: [CustomDayStyle()], navigationService: navigationService, bottomBanner: bottomBanner)
                 let navigationViewController = NavigationViewController(for: response,
                                                                            routeIndex: 0,
                                                                            routeOptions: routeOptions,
                                                                            navigationOptions: navigationOptions)
-                navigationViewController.modalPresentationStyle = .fullScreen
-                // Render part of the route that has been traversed with full transparency, to give the illusion of a disappearing route.
+//                        bottomBanner.navigationViewController = navigationViewController
+                         
+                        let parentSafeArea = navigationViewController.view.safeAreaLayoutGuide
+                        let bannerHeight: CGFloat = 150.0
+//                        let verticalOffset: CGFloat = 0.0
+//                        let horizontalOffset: CGFloat = 0.0
+                         
+                        // To change top and bottom banner size and position change layout constraints directly.
+//                        topBanner.view.topAnchor.constraint(equalTo: parentSafeArea.topAnchor).isActive = true
+                         
+                        bottomBanner.view.heightAnchor.constraint(equalToConstant: bannerHeight).isActive = true
+                        bottomBanner.view.anchor(
+                            bottom: parentSafeArea.bottomAnchor,
+                            left: parentSafeArea.leftAnchor,
+                            right: parentSafeArea.rightAnchor,
+                            paddingBottom: 0,
+                            paddingLeft: 0,
+                            paddingRight: 0)
+                         
+                        navigationViewController.modalPresentationStyle = .fullScreen
+                         
+                        strongSelf.present(navigationViewController, animated: true, completion: nil)
+//                        navigationViewController.floatingButtons = []
+                        navigationViewController.showsSpeedLimits = false
+                        bottomBanner.modalPresentationStyle = .popover
                 navigationViewController.routeLineTracksTraversal = true
-
-                strongSelf.present(navigationViewController, animated: true, completion: nil)
+//
+//                strongSelf.present(navigationViewController, animated: true, completion: nil)
             }
         }
     }
