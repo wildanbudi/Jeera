@@ -41,7 +41,7 @@ class CustomDayStyle: DayStyle {
         DistanceRemainingLabel.appearance(for: traitCollection).textColor = lightGrayColor
         DismissButton.appearance(for: traitCollection).textColor = darkGrayColor
         FloatingButton.appearance(for: traitCollection).backgroundColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
-        FloatingButton.appearance(for: traitCollection).tintColor = blueColor
+        FloatingButton.appearance(for: traitCollection).tintColor = UIColor.PrimaryGreen
         TopBannerView.appearance(for: traitCollection).backgroundColor = backgroundColor
         InstructionsBannerView.appearance(for: traitCollection).backgroundColor = backgroundColor
         LanesView.appearance(for: traitCollection).backgroundColor = darkBackgroundColor

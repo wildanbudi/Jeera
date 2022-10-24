@@ -30,6 +30,10 @@
 		42D12DC72901B8DF00857042 /* CustomDayStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D12DC62901B8DF00857042 /* CustomDayStyle.swift */; };
 		42D12DC92901B93400857042 /* CustomNightStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D12DC82901B93400857042 /* CustomNightStyle.swift */; };
 		42D12DCB2901B9FB00857042 /* NavigateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D12DCA2901B9FB00857042 /* NavigateViewController.swift */; };
+		42D2B3F029042AE7002818A9 /* CustomBottomBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D2B3EF29042AE7002818A9 /* CustomBottomBannerView.swift */; };
+		42D2B3F229046ACD002818A9 /* BottomBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D2B3F129046ACD002818A9 /* BottomBanner.swift */; };
+		42D2B3F429047A5A002818A9 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D2B3F329047A5A002818A9 /* UIViewExtension.swift */; };
+		42D2B3F6290595ED002818A9 /* BottomBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D2B3F5290595ED002818A9 /* BottomBannerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +79,10 @@
 		42D12DC62901B8DF00857042 /* CustomDayStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDayStyle.swift; sourceTree = "<group>"; };
 		42D12DC82901B93400857042 /* CustomNightStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNightStyle.swift; sourceTree = "<group>"; };
 		42D12DCA2901B9FB00857042 /* NavigateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigateViewController.swift; sourceTree = "<group>"; };
+		42D2B3EF29042AE7002818A9 /* CustomBottomBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBottomBannerView.swift; sourceTree = "<group>"; };
+		42D2B3F129046ACD002818A9 /* BottomBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBanner.swift; sourceTree = "<group>"; };
+		42D2B3F329047A5A002818A9 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		42D2B3F5290595ED002818A9 /* BottomBannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBannerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +116,6 @@
 			isa = PBXGroup;
 			children = (
 				425AD0D129022F8D00754114 /* Fonts */,
-				425AD0CF29022D4700754114 /* UIColorScheme.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -186,6 +193,7 @@
 		42D12DB72901B0BC00857042 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				42D2B3F72905A263002818A9 /* Extension */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -218,6 +226,7 @@
 		42D12DBB2901B10500857042 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				42D2B3F129046ACD002818A9 /* BottomBanner.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -234,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				42D12DCA2901B9FB00857042 /* NavigateViewController.swift */,
+				42D2B3F5290595ED002818A9 /* BottomBannerViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -243,8 +253,18 @@
 			children = (
 				42D12DC62901B8DF00857042 /* CustomDayStyle.swift */,
 				42D12DC82901B93400857042 /* CustomNightStyle.swift */,
+				42D2B3EF29042AE7002818A9 /* CustomBottomBannerView.swift */,
 			);
 			path = Navigate;
+			sourceTree = "<group>";
+		};
+		42D2B3F72905A263002818A9 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				42D2B3F329047A5A002818A9 /* UIViewExtension.swift */,
+				425AD0CF29022D4700754114 /* UIColorScheme.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -391,12 +411,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42D2B3F029042AE7002818A9 /* CustomBottomBannerView.swift in Sources */,
 				42D12DC72901B8DF00857042 /* CustomDayStyle.swift in Sources */,
 				42D12DBF2901B16300857042 /* Animals.swift in Sources */,
 				42D12D8429010F6C00857042 /* ViewController.swift in Sources */,
+				42D2B3F229046ACD002818A9 /* BottomBanner.swift in Sources */,
 				42D12D8A29010F6C00857042 /* Jeera.xcdatamodeld in Sources */,
+				42D2B3F429047A5A002818A9 /* UIViewExtension.swift in Sources */,
 				42D12D8029010F6C00857042 /* AppDelegate.swift in Sources */,
 				42D12DCB2901B9FB00857042 /* NavigateViewController.swift in Sources */,
+				42D2B3F6290595ED002818A9 /* BottomBannerViewController.swift in Sources */,
 				42D12D8229010F6C00857042 /* SceneDelegate.swift in Sources */,
 				425AD0D029022D4700754114 /* UIColorScheme.swift in Sources */,
 				42D12DC92901B93400857042 /* CustomNightStyle.swift in Sources */,
