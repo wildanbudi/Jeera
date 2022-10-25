@@ -32,6 +32,10 @@
 		42D2B3F229046ACD002818A9 /* BottomBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D2B3F129046ACD002818A9 /* BottomBanner.swift */; };
 		42D2B3F429047A5A002818A9 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D2B3F329047A5A002818A9 /* UIViewExtension.swift */; };
 		42D2B3F6290595ED002818A9 /* BottomBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D2B3F5290595ED002818A9 /* BottomBannerViewController.swift */; };
+		4333D3F12906F37A0031EFDF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4333D3F02906F37A0031EFDF /* MainViewController.swift */; };
+		4333D3F42906F4900031EFDF /* MapsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4333D3F32906F4900031EFDF /* MapsHelper.swift */; };
+		4333D3F72906F5C20031EFDF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4333D3F62906F5C20031EFDF /* Constants.swift */; };
+		4333D3F92906F86F0031EFDF /* AnimalPreviewCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4333D3F82906F86F0031EFDF /* AnimalPreviewCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +83,10 @@
 		42D2B3F129046ACD002818A9 /* BottomBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBanner.swift; sourceTree = "<group>"; };
 		42D2B3F329047A5A002818A9 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		42D2B3F5290595ED002818A9 /* BottomBannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBannerViewController.swift; sourceTree = "<group>"; };
+		4333D3F02906F37A0031EFDF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		4333D3F32906F4900031EFDF /* MapsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsHelper.swift; sourceTree = "<group>"; };
+		4333D3F62906F5C20031EFDF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4333D3F82906F86F0031EFDF /* AnimalPreviewCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalPreviewCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +144,7 @@
 				42D12D9829010F6D00857042 /* JeeraTests */,
 				42D12DA229010F6E00857042 /* JeeraUITests */,
 				42D12D7D29010F6C00857042 /* Products */,
+				438FB5A62907984E00435B2D /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -152,6 +161,7 @@
 		42D12D7E29010F6C00857042 /* Jeera */ = {
 			isa = PBXGroup;
 			children = (
+				4333D3F22906F4710031EFDF /* Helpers */,
 				429C798D2907896800DF942A /* Assets */,
 				42D12DB72901B0BC00857042 /* Services */,
 				42D12DB82901B0C400857042 /* Models */,
@@ -213,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				42D2B3F129046ACD002818A9 /* BottomBanner.swift */,
+				4333D3F82906F86F0031EFDF /* AnimalPreviewCardView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -229,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				42D12DCA2901B9FB00857042 /* NavigateViewController.swift */,
+				4333D3F02906F37A0031EFDF /* MainViewController.swift */,
 				42D2B3F5290595ED002818A9 /* BottomBannerViewController.swift */,
 			);
 			path = Controllers;
@@ -251,6 +263,25 @@
 				425AD0CF29022D4700754114 /* UIColorScheme.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		4333D3F22906F4710031EFDF /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4333D3F32906F4900031EFDF /* MapsHelper.swift */,
+				4333D3F62906F5C20031EFDF /* Constants.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		438FB5A62907984E00435B2D /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				429C799229078D1700DF942A /* Baloo2-Regular.ttf */,
+				429C799129078D1700DF942A /* Baloo2-SemiBold.ttf */,
+				429C799029078D1700DF942A /* Baloo2-Bold.ttf */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -401,7 +432,11 @@
 				42D12D8429010F6C00857042 /* ViewController.swift in Sources */,
 				42D2B3F229046ACD002818A9 /* BottomBanner.swift in Sources */,
 				42D12D8A29010F6C00857042 /* Jeera.xcdatamodeld in Sources */,
+				4333D3F72906F5C20031EFDF /* Constants.swift in Sources */,
 				42D2B3F429047A5A002818A9 /* UIViewExtension.swift in Sources */,
+				4333D3F42906F4900031EFDF /* MapsHelper.swift in Sources */,
+				4333D3F12906F37A0031EFDF /* MainViewController.swift in Sources */,
+				4333D3F92906F86F0031EFDF /* AnimalPreviewCardView.swift in Sources */,
 				42D12D8029010F6C00857042 /* AppDelegate.swift in Sources */,
 				42D12DCB2901B9FB00857042 /* NavigateViewController.swift in Sources */,
 				42D2B3F6290595ED002818A9 /* BottomBannerViewController.swift in Sources */,
@@ -565,7 +600,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KJUW4SG84H;
+				DEVELOPMENT_TEAM = 7PHRUAQA32;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Jeera/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
@@ -593,7 +628,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KJUW4SG84H;
+				DEVELOPMENT_TEAM = 7PHRUAQA32;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Jeera/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
