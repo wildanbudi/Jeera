@@ -8,13 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		425AD0D029022D4700754114 /* UIColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425AD0CF29022D4700754114 /* UIColorScheme.swift */; };
+		429C799529078D1700DF942A /* Baloo2-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 429C798F29078D1700DF942A /* Baloo2-ExtraBold.ttf */; };
+		429C799629078D1700DF942A /* Baloo2-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 429C799029078D1700DF942A /* Baloo2-Bold.ttf */; };
+		429C799729078D1700DF942A /* Baloo2-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 429C799129078D1700DF942A /* Baloo2-SemiBold.ttf */; };
+		429C799829078D1700DF942A /* Baloo2-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 429C799229078D1700DF942A /* Baloo2-Regular.ttf */; };
+		429C799929078D1700DF942A /* Baloo2-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 429C799329078D1700DF942A /* Baloo2-Medium.ttf */; };
+		429C799A29078D1700DF942A /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 429C799429078D1700DF942A /* OFL.txt */; };
 		42D12D8029010F6C00857042 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D12D7F29010F6C00857042 /* AppDelegate.swift */; };
 		42D12D8229010F6C00857042 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D12D8129010F6C00857042 /* SceneDelegate.swift */; };
 		42D12D8429010F6C00857042 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D12D8329010F6C00857042 /* ViewController.swift */; };
-		42D12D8729010F6C00857042 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42D12D8529010F6C00857042 /* Main.storyboard */; };
 		42D12D8A29010F6C00857042 /* Jeera.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 42D12D8829010F6C00857042 /* Jeera.xcdatamodeld */; };
 		42D12D8C29010F6D00857042 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42D12D8B29010F6D00857042 /* Assets.xcassets */; };
-		42D12D8F29010F6D00857042 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42D12D8D29010F6D00857042 /* LaunchScreen.storyboard */; };
 		42D12D9A29010F6D00857042 /* JeeraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D12D9929010F6D00857042 /* JeeraTests.swift */; };
 		42D12DA429010F6E00857042 /* JeeraUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D12DA329010F6E00857042 /* JeeraUITests.swift */; };
 		42D12DA629010F6E00857042 /* JeeraUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D12DA529010F6E00857042 /* JeeraUITestsLaunchTests.swift */; };
@@ -53,17 +57,18 @@
 
 /* Begin PBXFileReference section */
 		425AD0CF29022D4700754114 /* UIColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorScheme.swift; sourceTree = "<group>"; };
+		429C798F29078D1700DF942A /* Baloo2-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Baloo2-ExtraBold.ttf"; sourceTree = "<group>"; };
 		429C799029078D1700DF942A /* Baloo2-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Baloo2-Bold.ttf"; sourceTree = "<group>"; };
 		429C799129078D1700DF942A /* Baloo2-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Baloo2-SemiBold.ttf"; sourceTree = "<group>"; };
 		429C799229078D1700DF942A /* Baloo2-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Baloo2-Regular.ttf"; sourceTree = "<group>"; };
+		429C799329078D1700DF942A /* Baloo2-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Baloo2-Medium.ttf"; sourceTree = "<group>"; };
+		429C799429078D1700DF942A /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
 		42D12D7C29010F6C00857042 /* Jeera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jeera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42D12D7F29010F6C00857042 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42D12D8129010F6C00857042 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		42D12D8329010F6C00857042 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		42D12D8629010F6C00857042 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		42D12D8929010F6C00857042 /* Jeera.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jeera.xcdatamodel; sourceTree = "<group>"; };
 		42D12D8B29010F6D00857042 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		42D12D8E29010F6D00857042 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		42D12D9029010F6D00857042 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42D12D9529010F6D00857042 /* JeeraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JeeraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		42D12D9929010F6D00857042 /* JeeraTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JeeraTests.swift; sourceTree = "<group>"; };
@@ -111,6 +116,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		429C798D2907896800DF942A /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				429C798E29078A2A00DF942A /* Fonts */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		429C798E29078A2A00DF942A /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				429C799029078D1700DF942A /* Baloo2-Bold.ttf */,
+				429C798F29078D1700DF942A /* Baloo2-ExtraBold.ttf */,
+				429C799329078D1700DF942A /* Baloo2-Medium.ttf */,
+				429C799229078D1700DF942A /* Baloo2-Regular.ttf */,
+				429C799129078D1700DF942A /* Baloo2-SemiBold.ttf */,
+				429C799429078D1700DF942A /* OFL.txt */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		42D12D7329010F6C00857042 = {
 			isa = PBXGroup;
 			children = (
@@ -136,15 +162,14 @@
 			isa = PBXGroup;
 			children = (
 				4333D3F22906F4710031EFDF /* Helpers */,
+				429C798D2907896800DF942A /* Assets */,
 				42D12DB72901B0BC00857042 /* Services */,
 				42D12DB82901B0C400857042 /* Models */,
 				42D12DB92901B0CB00857042 /* Views */,
 				42D12D7F29010F6C00857042 /* AppDelegate.swift */,
 				42D12D8129010F6C00857042 /* SceneDelegate.swift */,
 				42D12D8329010F6C00857042 /* ViewController.swift */,
-				42D12D8529010F6C00857042 /* Main.storyboard */,
 				42D12D8B29010F6D00857042 /* Assets.xcassets */,
-				42D12D8D29010F6D00857042 /* LaunchScreen.storyboard */,
 				42D12D9029010F6D00857042 /* Info.plist */,
 				42D12D8829010F6C00857042 /* Jeera.xcdatamodeld */,
 			);
@@ -370,9 +395,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42D12D8F29010F6D00857042 /* LaunchScreen.storyboard in Resources */,
+				429C799529078D1700DF942A /* Baloo2-ExtraBold.ttf in Resources */,
+				429C799929078D1700DF942A /* Baloo2-Medium.ttf in Resources */,
+				429C799A29078D1700DF942A /* OFL.txt in Resources */,
 				42D12D8C29010F6D00857042 /* Assets.xcassets in Resources */,
-				42D12D8729010F6C00857042 /* Main.storyboard in Resources */,
+				429C799829078D1700DF942A /* Baloo2-Regular.ttf in Resources */,
+				429C799729078D1700DF942A /* Baloo2-SemiBold.ttf in Resources */,
+				429C799629078D1700DF942A /* Baloo2-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,25 +477,6 @@
 			targetProxy = 42D12DA029010F6E00857042 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		42D12D8529010F6C00857042 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				42D12D8629010F6C00857042 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		42D12D8D29010F6D00857042 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				42D12D8E29010F6D00857042 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		42D12DA729010F6E00857042 /* Debug */ = {
@@ -596,7 +606,6 @@
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -625,7 +634,6 @@
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
