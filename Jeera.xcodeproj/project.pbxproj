@@ -28,7 +28,11 @@
 		42D2B3F229046ACD002818A9 /* BottomBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D2B3F129046ACD002818A9 /* BottomBanner.swift */; };
 		42D2B3F429047A5A002818A9 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D2B3F329047A5A002818A9 /* UIViewExtension.swift */; };
 		42D2B3F6290595ED002818A9 /* BottomBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D2B3F5290595ED002818A9 /* BottomBannerViewController.swift */; };
-		42D2B3F929065B00002818A9 /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = 42D2B3F829065B00002818A9 /* Resources */; };
+		4333D3F12906F37A0031EFDF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4333D3F02906F37A0031EFDF /* MainViewController.swift */; };
+		4333D3F42906F4900031EFDF /* MapsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4333D3F32906F4900031EFDF /* MapsHelper.swift */; };
+		4333D3F72906F5C20031EFDF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4333D3F62906F5C20031EFDF /* Constants.swift */; };
+		4333D3F92906F86F0031EFDF /* AnimalPreviewCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4333D3F82906F86F0031EFDF /* AnimalPreviewCardView.swift */; };
+		438FB5A82907997E00435B2D /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 438FB5A72907997E00435B2D /* Assets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +54,9 @@
 
 /* Begin PBXFileReference section */
 		425AD0CF29022D4700754114 /* UIColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorScheme.swift; sourceTree = "<group>"; };
+		429C799029078D1700DF942A /* Baloo2-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Baloo2-Bold.ttf"; sourceTree = "<group>"; };
+		429C799129078D1700DF942A /* Baloo2-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Baloo2-SemiBold.ttf"; sourceTree = "<group>"; };
+		429C799229078D1700DF942A /* Baloo2-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Baloo2-Regular.ttf"; sourceTree = "<group>"; };
 		42D12D7C29010F6C00857042 /* Jeera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jeera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42D12D7F29010F6C00857042 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42D12D8129010F6C00857042 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,7 +79,11 @@
 		42D2B3F129046ACD002818A9 /* BottomBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBanner.swift; sourceTree = "<group>"; };
 		42D2B3F329047A5A002818A9 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		42D2B3F5290595ED002818A9 /* BottomBannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBannerViewController.swift; sourceTree = "<group>"; };
-		42D2B3F829065B00002818A9 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = "<group>"; };
+		4333D3F02906F37A0031EFDF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		4333D3F32906F4900031EFDF /* MapsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsHelper.swift; sourceTree = "<group>"; };
+		4333D3F62906F5C20031EFDF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4333D3F82906F86F0031EFDF /* AnimalPreviewCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalPreviewCardView.swift; sourceTree = "<group>"; };
+		438FB5A72907997E00435B2D /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +120,7 @@
 				42D12D9829010F6D00857042 /* JeeraTests */,
 				42D12DA229010F6E00857042 /* JeeraUITests */,
 				42D12D7D29010F6C00857042 /* Products */,
+				438FB5A62907984E00435B2D /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,11 +137,11 @@
 		42D12D7E29010F6C00857042 /* Jeera */ = {
 			isa = PBXGroup;
 			children = (
-				42D2B3F829065B00002818A9 /* Resources */,
+				438FB5A72907997E00435B2D /* Assets */,
+				4333D3F22906F4710031EFDF /* Helpers */,
 				42D12DB72901B0BC00857042 /* Services */,
 				42D12DB82901B0C400857042 /* Models */,
 				42D12DB92901B0CB00857042 /* Views */,
-				42D12DBA2901B0DC00857042 /* ViewModels */,
 				42D12D7F29010F6C00857042 /* AppDelegate.swift */,
 				42D12D8129010F6C00857042 /* SceneDelegate.swift */,
 				42D12D8329010F6C00857042 /* ViewController.swift */,
@@ -185,17 +197,11 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		42D12DBA2901B0DC00857042 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
 		42D12DBB2901B10500857042 /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				42D2B3F129046ACD002818A9 /* BottomBanner.swift */,
+				4333D3F82906F86F0031EFDF /* AnimalPreviewCardView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -212,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				42D12DCA2901B9FB00857042 /* NavigateViewController.swift */,
+				4333D3F02906F37A0031EFDF /* MainViewController.swift */,
 				42D2B3F5290595ED002818A9 /* BottomBannerViewController.swift */,
 			);
 			path = Controllers;
@@ -234,6 +241,25 @@
 				425AD0CF29022D4700754114 /* UIColorScheme.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		4333D3F22906F4710031EFDF /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4333D3F32906F4900031EFDF /* MapsHelper.swift */,
+				4333D3F62906F5C20031EFDF /* Constants.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		438FB5A62907984E00435B2D /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				429C799229078D1700DF942A /* Baloo2-Regular.ttf */,
+				429C799129078D1700DF942A /* Baloo2-SemiBold.ttf */,
+				429C799029078D1700DF942A /* Baloo2-Bold.ttf */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,9 +374,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				42D12D8F29010F6D00857042 /* LaunchScreen.storyboard in Resources */,
-				42D2B3F929065B00002818A9 /* Resources in Resources */,
 				42D12D8C29010F6D00857042 /* Assets.xcassets in Resources */,
 				42D12D8729010F6C00857042 /* Main.storyboard in Resources */,
+				438FB5A82907997E00435B2D /* Assets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,7 +407,11 @@
 				42D12D8429010F6C00857042 /* ViewController.swift in Sources */,
 				42D2B3F229046ACD002818A9 /* BottomBanner.swift in Sources */,
 				42D12D8A29010F6C00857042 /* Jeera.xcdatamodeld in Sources */,
+				4333D3F72906F5C20031EFDF /* Constants.swift in Sources */,
 				42D2B3F429047A5A002818A9 /* UIViewExtension.swift in Sources */,
+				4333D3F42906F4900031EFDF /* MapsHelper.swift in Sources */,
+				4333D3F12906F37A0031EFDF /* MainViewController.swift in Sources */,
+				4333D3F92906F86F0031EFDF /* AnimalPreviewCardView.swift in Sources */,
 				42D12D8029010F6C00857042 /* AppDelegate.swift in Sources */,
 				42D12DCB2901B9FB00857042 /* NavigateViewController.swift in Sources */,
 				42D2B3F6290595ED002818A9 /* BottomBannerViewController.swift in Sources */,
@@ -564,9 +594,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KJUW4SG84H;
+				DEVELOPMENT_TEAM = 7PHRUAQA32;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Jeera/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -592,9 +623,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KJUW4SG84H;
+				DEVELOPMENT_TEAM = 7PHRUAQA32;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Jeera/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
