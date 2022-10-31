@@ -99,7 +99,7 @@ class AnimalDetailViewController: UIViewController {
     }()
     
     lazy var overviewMapView: MapView = {
-        let options = MapInitOptions(cameraOptions: CameraOptions(center: targetCoordinate, zoom: 16.5), styleURI: StyleURI(rawValue: inactiveStyleURI))
+        let options = MapInitOptions(cameraOptions: CameraOptions(center: targetCoordinate, zoom: 16.5), styleURI: StyleURI(rawValue: mapAllDisableStyleURI))
         let mapView = MapView(frame: .zero, mapInitOptions: options)
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.layer.cornerRadius = 20
