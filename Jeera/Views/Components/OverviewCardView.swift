@@ -27,6 +27,7 @@ class OverviewCardView: UIView {
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .PrimaryText
         
         return label
     }()

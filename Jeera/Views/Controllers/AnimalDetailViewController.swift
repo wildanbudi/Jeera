@@ -7,10 +7,13 @@
 
 import UIKit
 import MapboxMaps
+import MapboxDirections
 
 class AnimalDetailViewController: UIViewController {
     var animalData: Dictionary<String, JSONValue>!
     var targetCoordinate: CLLocationCoordinate2D!
+    var distance: Int!
+    var travelTime: Int!
     
     lazy var backButton: UIButton = {
         let button = UIButton(type: .custom)
@@ -38,17 +41,18 @@ class AnimalDetailViewController: UIViewController {
         label.font = UIFont(name: "Baloo2-Bold", size: 30)
         label.numberOfLines = 2
         label.text = animalData["idName"]!.rawValue as? String
+        label.textColor = .PrimaryText
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()
     
     lazy var distanceLabel: UILabel = {
-        return labelWithIcon(imageName: "Distance", labelText: "2 meter", iconColor: .PrimaryGreen)
+        return labelWithIcon(imageName: "Distance", labelText: "\(distance ?? 0) meter", iconColor: .PrimaryGreen)
     }()
     
     lazy var etaLabel: UILabel = {
-        return labelWithIcon(imageName: "Time", labelText: "5 menit", iconColor: .PrimaryGreen)
+        return labelWithIcon(imageName: "Time", labelText: "\(travelTime ?? 0) menit", iconColor: .PrimaryGreen)
     }()
     
     lazy var cageLabel: UILabel = {
@@ -125,14 +129,14 @@ class AnimalDetailViewController: UIViewController {
         completeText.append(textAfterIcon)
         label.textAlignment = .center
         label.attributedText = completeText
+        label.textColor = .PrimaryText
             
         return label
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
-        
+        getRouteInformation()
     }
     
     @objc func backButton(_ sender: UIButton) {
@@ -205,6 +209,48 @@ class AnimalDetailViewController: UIViewController {
             width: view.bounds.height * (332 / 844),
             height: view.bounds.height * (48 / 844)
         )
+    }
+    
+    func getRouteInformation() {
+        let directions = Directions.shared
+        let waypoints = [
+            Waypoint(coordinate: centerCoordinate, name: "origin"),
+            Waypoint(coordinate: targetCoordinate, name: "destination"),
+        ]
+        let options = RouteOptions(waypoints: waypoints, profileIdentifier: .walking)
+        let task = directions.calculate(options) { (session, result) in
+            switch result {
+            case .failure(let error):
+                print("Error calculating directions: \(error)")
+            case .success(let response):
+                guard let route = response.routes?.first, let _ = route.legs.first else {
+                    return
+                }
+                
+                self.distance = Int(route.distance)
+                self.travelTime = Int(route.expectedTravelTime/60) + 1
+                
+                self.setupView()
+//
+//                print("Route via \(leg):")
+//
+//                let distanceFormatter = LengthFormatter()
+//                let formattedDistance = distanceFormatter.string(fromMeters: route.distance)
+//
+//                let travelTimeFormatter = DateComponentsFormatter()
+//                travelTimeFormatter.unitsStyle = .short
+//                let formattedTravelTime = travelTimeFormatter.string(from: route.expectedTravelTime)
+//
+                print("Distance: \(route.distance); ETA: \(route.expectedTravelTime)")
+//                print(Int(route.expectedTravelTime/60))
+//
+//                for step in leg.steps {
+//                    print("\(step.instructions)")
+//                    let formattedDistance = distanceFormatter.string(fromMeters: step.distance)
+//                    print("— \(formattedDistance) —")
+//                }
+            }
+        }
     }
     
 
