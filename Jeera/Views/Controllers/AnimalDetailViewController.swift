@@ -12,6 +12,17 @@ class AnimalDetailViewController: UIViewController {
     var animalData: Dictionary<String, JSONValue>!
     var targetCoordinate: CLLocationCoordinate2D!
     
+    lazy var backButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(systemName: "arrow.left.circle")?
+            .resizeImageTo(size: CGSize(width: 30, height: 30))?
+            .imageWithColor(newColor: .PrimaryGreen), for: .normal)
+
+        button.addTarget(self, action: #selector(self.backButton(_:)), for: .touchUpInside)
+        
+        return button
+    }()
+    
     lazy var animalImage: UIImageView = {
         let type = animalData["type"]!.rawValue as? String
         let imageName = animalData[(type == "Kandang" ? "idName" : "clusterName")]!.rawValue as? String
@@ -124,12 +135,17 @@ class AnimalDetailViewController: UIViewController {
         
     }
     
+    @objc func backButton(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     func setupView() {
         let gradient = CAGradientLayer()
         gradient.frame = view.bounds
         gradient.colors = [UIColor.UpperGradient.cgColor, UIColor.LowerGradient.cgColor]
         view.layer.insertSublayer(gradient, at: 0)
-        [animalImage, animalNameLabel, startJourneyButton, overviewMapView, informationView].forEach {
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+        [backButton, animalImage, animalNameLabel, startJourneyButton, overviewMapView, informationView].forEach {
             view.addSubview($0)
         }
         setupConstraint()
@@ -137,6 +153,16 @@ class AnimalDetailViewController: UIViewController {
     
     func setupConstraint() {
         let safeArea = view.layoutMarginsGuide
+        
+        backButton.anchor(
+            top: view.topAnchor,
+            left: view.leftAnchor,
+            paddingTop: 47,
+            paddingLeft: 16,
+            width: view.bounds.height * (30 / 844),
+            height: view.bounds.height * (30 / 844)
+        )
+        
         animalImage.anchor(
             top: view.topAnchor,
             left: view.leftAnchor,
