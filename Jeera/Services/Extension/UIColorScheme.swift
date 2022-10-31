@@ -15,4 +15,6 @@ extension UIColor {
     static var SecondaryBrown: UIColor { #colorLiteral(red: 0.7254901961, green: 0.5607843137, blue: 0.3764705882, alpha: 1) }
     static var PrimaryText: UIColor { #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1) }
     static var SecondaryText: UIColor { #colorLiteral(red: 0.4352941176, green: 0.4352941176, blue: 0.4392156863, alpha: 1) }
+    static var UpperGradient: UIColor { #colorLiteral(red: 0.9835454822, green: 0.9193370342, blue: 0.7321653962, alpha: 1) }
+    static var LowerGradient: UIColor { #colorLiteral(red: 0.9098039269, green: 0.9098039269, blue: 0.9098039269, alpha: 1) }
 }

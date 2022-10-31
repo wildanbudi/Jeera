@@ -32,8 +32,9 @@
 		42D2B3F229046ACD002818A9 /* BottomBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D2B3F129046ACD002818A9 /* BottomBanner.swift */; };
 		42D2B3F429047A5A002818A9 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D2B3F329047A5A002818A9 /* UIViewExtension.swift */; };
 		42D2B3F6290595ED002818A9 /* BottomBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D2B3F5290595ED002818A9 /* BottomBannerViewController.swift */; };
+		4312457B290ABEF6003F7AB9 /* AnimalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4312457A290ABEF6003F7AB9 /* AnimalDetailViewController.swift */; };
 		437D008A2907A623005EB501 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437D00892907A623005EB501 /* MainViewController.swift */; };
-		437D008C2907A66A005EB501 /* AnimalPreviewCardViiew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437D008B2907A66A005EB501 /* AnimalPreviewCardViiew.swift */; };
+		437D008C2907A66A005EB501 /* OverviewCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437D008B2907A66A005EB501 /* OverviewCardView.swift */; };
 		437D008F2907A69A005EB501 /* MapsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437D008E2907A69A005EB501 /* MapsHelper.swift */; };
 		437D00912907A6B7005EB501 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437D00902907A6B7005EB501 /* Constants.swift */; };
 /* End PBXBuildFile section */
@@ -83,8 +84,9 @@
 		42D2B3F129046ACD002818A9 /* BottomBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBanner.swift; sourceTree = "<group>"; };
 		42D2B3F329047A5A002818A9 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		42D2B3F5290595ED002818A9 /* BottomBannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBannerViewController.swift; sourceTree = "<group>"; };
+		4312457A290ABEF6003F7AB9 /* AnimalDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalDetailViewController.swift; sourceTree = "<group>"; };
 		437D00892907A623005EB501 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		437D008B2907A66A005EB501 /* AnimalPreviewCardViiew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalPreviewCardViiew.swift; sourceTree = "<group>"; };
+		437D008B2907A66A005EB501 /* OverviewCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewCardView.swift; sourceTree = "<group>"; };
 		437D008E2907A69A005EB501 /* MapsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsHelper.swift; sourceTree = "<group>"; };
 		437D00902907A6B7005EB501 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -222,7 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				42D2B3F129046ACD002818A9 /* BottomBanner.swift */,
-				437D008B2907A66A005EB501 /* AnimalPreviewCardViiew.swift */,
+				437D008B2907A66A005EB501 /* OverviewCardView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -241,6 +243,7 @@
 				42D12DCA2901B9FB00857042 /* NavigateViewController.swift */,
 				42D2B3F5290595ED002818A9 /* BottomBannerViewController.swift */,
 				437D00892907A623005EB501 /* MainViewController.swift */,
+				4312457A290ABEF6003F7AB9 /* AnimalDetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -415,7 +418,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				437D008C2907A66A005EB501 /* AnimalPreviewCardViiew.swift in Sources */,
+				437D008C2907A66A005EB501 /* OverviewCardView.swift in Sources */,
 				437D00912907A6B7005EB501 /* Constants.swift in Sources */,
 				42D2B3F029042AE7002818A9 /* CustomBottomBannerView.swift in Sources */,
 				42D12DC72901B8DF00857042 /* CustomDayStyle.swift in Sources */,
@@ -423,6 +426,7 @@
 				42D12D8429010F6C00857042 /* ViewController.swift in Sources */,
 				42D2B3F229046ACD002818A9 /* BottomBanner.swift in Sources */,
 				42D12D8A29010F6C00857042 /* Jeera.xcdatamodeld in Sources */,
+				4312457B290ABEF6003F7AB9 /* AnimalDetailViewController.swift in Sources */,
 				42D2B3F429047A5A002818A9 /* UIViewExtension.swift in Sources */,
 				437D008A2907A623005EB501 /* MainViewController.swift in Sources */,
 				42D12D8029010F6C00857042 /* AppDelegate.swift in Sources */,

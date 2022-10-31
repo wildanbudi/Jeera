@@ -10,6 +10,9 @@ import MapboxMaps
 class MainViewController: UIViewController {
     internal var mapView: MapView!
     internal var cameraLocationConsumer: CameraLocationConsumer!
+    internal var pointAnnotationManager: PointAnnotationManager!
+    internal var targetCoordinate: CLLocationCoordinate2D!
+    internal var animalData: Dictionary<String, JSONValue>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,23 +51,29 @@ class MainViewController: UIViewController {
             switch result {
             case .success(let features):
                 if let feature = features.first?.feature {
-                    let markerCoordinates: CLLocationCoordinate2D
-                    if let geometry = feature.geometry, case let Geometry.point(point) = geometry {
-                        markerCoordinates = point.coordinates
-                        var customPointAnnotation = PointAnnotation(coordinate: markerCoordinates)
-                        let pointAnnotationManager = self!.mapView.annotations.makePointAnnotationManager()
-                        
-                        customPointAnnotation.image = .init(image: UIImage(named: "red_pin")!, name: "red_pin")
-                        
-                        pointAnnotationManager.annotations = [customPointAnnotation]
-                        
-                    }
-                    
                     let dict = feature.properties!.reduce(into: [:]) { $0[$1.0] = $1.1 }
-                    self!.showAnimalPreview(dict: dict)
-                    self!.mapView.mapboxMap.style.uri = StyleURI(rawValue: inactiveStyleURI)
+                    self!.animalData = dict
+                    if let geometry = feature.geometry, case let Geometry.point(point) = geometry {
+                        self!.targetCoordinate = point.coordinates
+                        var customPointAnnotation = PointAnnotation(coordinate: self!.targetCoordinate)
+                        if (self!.pointAnnotationManager != nil) {
+                            self!.pointAnnotationManager.annotations = []
+                        }
+                        self!.pointAnnotationManager = self!.mapView.annotations.makePointAnnotationManager()
+                        let uuid = NSUUID().uuidString
+                        customPointAnnotation.image = .init(image: UIImage(named: "\(dict["clusterName"]!.rawValue) Active")!, name: "\(dict["clusterName"]!.rawValue) Active-\(uuid)")
+                        self!.pointAnnotationManager.annotations = [customPointAnnotation]
+                        
+                        self!.removeSubview()
+                        self!.showOverview()
+                        self!.mapView.mapboxMap.style.uri = StyleURI(rawValue: inactiveStyleURI)
+                    }
                 } else {
-                    self?.removeSubview()
+                    if (self!.pointAnnotationManager != nil) {
+                        self!.pointAnnotationManager.annotations = []
+                        self!.removeSubview()
+                        self!.mapView.mapboxMap.style.uri = StyleURI(rawValue: activeStyleURI)
+                    }
                 }
             case .failure(let error):
                 print(error.localizedDescription)
@@ -72,24 +81,64 @@ class MainViewController: UIViewController {
         })
     }
     
-    func showAnimalPreview(dict: Dictionary<String, JSONValue>) {
-        print(dict)
-        let animalPreviewCardView = AnimalPreviewCardView(frame: CGRect(x: (view.frame.width/2) - 145, y: view.frame.height - 180, width: 290, height: 132))
-        animalPreviewCardView.tag = 1
-        animalPreviewCardView.title = dict["idName"]!.rawValue as? String
-        animalPreviewCardView.layer.cornerRadius = 20
+    func showOverview() {
+//        print(targetCoordinate)
         
-        let imageView = UIImageView(image: UIImage(named: "Assets (Overview Hewan)"))
-        imageView.frame = CGRect(x: 140, y: -50, width: 250, height: 230)
-        animalPreviewCardView.addSubview(imageView)
+        lazy var overviewCardView: OverviewCardView = {
+            let oVview = OverviewCardView()
+            oVview.translatesAutoresizingMaskIntoConstraints = false
+            oVview.tag = 1
+            let type = animalData["type"]!.rawValue as? String
+            let idName = animalData["idName"]!.rawValue as? String
+            let clusterName = animalData["clusterName"]!.rawValue as? String
+            oVview.title = idName
+            oVview.targetCoordinate = targetCoordinate
+            
+            let imageView = UIImageView(image: UIImage(named: (type == "Kandang" ? idName : clusterName)!))
+            imageView.frame = .zero
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            oVview.addSubview(imageView)
+            
+            imageView.anchor(
+                bottom: oVview.bottomAnchor,
+                left: oVview.rightAnchor,
+                paddingBottom: -(type == "Kandang" ? 54 : 10),
+                paddingLeft: -(view.bounds.height * ((type == "Kandang" ? 132 : 85) / 844)),
+                width: view.bounds.height * ((type == "Kandang" ? 260 : 180) / 844),
+                height: view.bounds.height * ((type == "Kandang" ? 260 : 180) / 844)
+            )
+            
+            return oVview
+        }()
         
-        view.addSubview(animalPreviewCardView)
+        overviewCardView.overviewButton.addTarget(self, action: #selector(onOverviewClick), for: .touchUpInside)
+        
+        view.addSubview(overviewCardView)
+        let safeArea = view.layoutMarginsGuide
+        
+        overviewCardView.anchor(
+            bottom: safeArea.bottomAnchor,
+            left: view.leftAnchor,
+            right: view.rightAnchor,
+            paddingBottom: 20,
+            paddingLeft: 16,
+            paddingRight: 84,
+            height: view.bounds.height * (132 / 844)
+        )
     }
     
     func removeSubview(){
         if let viewWithTag = self.view.viewWithTag(1) {
             viewWithTag.removeFromSuperview()
         }
+    }
+    
+    @objc private func onOverviewClick(_ sender: UIButton) {
+        let animalDetailViewController = AnimalDetailViewController()
+        animalDetailViewController.modalPresentationStyle = .fullScreen
+        animalDetailViewController.animalData = animalData
+        animalDetailViewController.targetCoordinate = targetCoordinate
+        self.present(animalDetailViewController, animated: true, completion: nil)
     }
     
 
@@ -110,4 +159,31 @@ extension MainViewController: LocationPermissionsDelegate {
             // Perform an action in response to the new change in accuracy
         }
     }
+}
+
+
+import SwiftUI
+
+struct MainViewControllerPreviews: PreviewProvider {
+    static var previews: some View {
+        UIMainViewControllerPreview {
+            return MainViewController()
+        }
+        .previewDevice("iPhone 13")
+    }
+}
+
+@available(iOS 13, *)
+struct UIMainViewControllerPreview<ViewController: UIViewController>: UIViewControllerRepresentable {
+    let viewController: ViewController
+
+    init(_ builder: @escaping () -> ViewController) {
+        viewController = builder()
+    }
+
+    func makeUIViewController(context: Context) -> ViewController { viewController }
+
+    func updateUIViewController(_ uiViewController: ViewController, context: Context) {}
+    
+    
 }

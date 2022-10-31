@@ -2,6 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Baloo2-Bold.ttf</string>
+		<string>Baloo2-ExtraBold.ttf</string>
+		<string>Baloo2-Medium.ttf</string>
+		<string>Baloo2-Regular.ttf</string>
+		<string>Baloo22-SemiBold.ttf</string>
+	</array>
 	<key>MBXAccessToken</key>
 	<string>pk.eyJ1IjoiYW5nZ2lkYXN0IiwiYSI6ImNsOGI1cHhtNjA0M3ozcHF6ODQ0eWVuaXIifQ.68T0sSmjwvSXRkuj4bIaHw</string>
 	<key>UIApplicationSceneManifest</key>
