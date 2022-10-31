@@ -20,6 +20,10 @@ class MainViewController: UIViewController {
     lazy var segmentedButtons = [UIButton]() // The Array of Segmented Control Buttons
     var segmentedSelector: UIView! // The Selector Button View
     lazy var selectedSegmentIndex = 0 // The Initial Selected Segment Index
+    let buttonLocationOFF = UIButton(type: .custom) // The Initial of the Animated Location Off Button
+    
+    // Initiate The Core Location Manager
+    let locationManager = CLLocationManager()
     
     // Set the iPhone Status Bar to Dark
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -33,20 +37,29 @@ class MainViewController: UIViewController {
         view.safeAreaLayoutGuide.owningView?.backgroundColor = .white
         
         setupMapView()
-        setupUserLocation()
+//        setupUserLocation()
         
         // Stack the White Background UIView On Top of the Jeera Map View
         segmentedBackground()
         
+        // Stack The Animated Monkey (LocationOFF Button) On Top of the White Background UIView
+        locationOffButton()
+        
         // Stack The Segmented Control On Top of the Segmented Control
         customSegmentedControl()
+        
+        // Check the User's Core Location Status Through the CLLocationDelegate Function
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.startUpdatingLocation()
+        }
     }
     
     func setupMapView() {
         let options = MapInitOptions(cameraOptions: CameraOptions(center: centerCoordinate, zoom: 16), styleURI: StyleURI(rawValue: mapAllDefaultStyleURI))
         mapView = MapView(frame: view.bounds, mapInitOptions: options)
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        mapView.location.delegate = self
+//        mapView.location.delegate = self
         mapView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onMapClick)))
         view.addSubview(mapView)
         
@@ -67,7 +80,7 @@ class MainViewController: UIViewController {
         mapView.mapboxMap.onNext(event: .mapLoaded) { _ in
             // Register the location consumer with the map
             // Note that the location manager holds weak references to consumers, which should be retained
-//            self.mapView.location.addLocationConsumer(newConsumer: self.cameraLocationConsumer)
+            self.mapView.location.addLocationConsumer(newConsumer: self.cameraLocationConsumer)
 
 //            self.finish() // Needed for internal testing purposes.
         }
@@ -294,16 +307,68 @@ class MainViewController: UIViewController {
             }
         }
     }
+    
+    // MARK: - ANIMATED MONKEY (LOCATION OFF BUTTON FUNCTION)
+    func locationOffButton() {
+        // Showing the Monkey Image that says the Location is still OFF
+        let imageLocationOFF = UIImage(named: "Lokasi Mati Button")
+        
+        // Create a Button with an Image
+        buttonLocationOFF.frame = CGRectMake(0, whiteBackground.frame.maxY, 205, 227)
+        buttonLocationOFF.setImage(imageLocationOFF, for: .normal)
+        buttonLocationOFF.addTarget(self, action: #selector(buttonLocationOFFAction(_:)), for:.touchUpInside)
+        view.addSubview(buttonLocationOFF)
+        
+        // Animate the Monkey (Call the Rotate Reusable Component)
+        buttonLocationOFF.rotate()
+    }
+    
+    // MARK: - Show the Location Permission After The User Tapped the Monkey Button by Representing the CLLocationManagerDelegate
+    @objc func buttonLocationOFFAction(_ button: UIButton) {
+        // Give some conditions where the Monkey can be pressed and it will show the location permission
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
+    }
 
 }
 
-extension MainViewController: LocationPermissionsDelegate {
-    func locationManager(_ locationManager: LocationManager, didChangeAccuracyAuthorization accuracyAuthorization: CLAccuracyAuthorization) {
-        if accuracyAuthorization == .reducedAccuracy {
-            // Perform an action in response to the new change in accuracy
+// MARK: - Button Animation Extension
+extension UIButton{
+    func rotate() {
+        let rotation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        rotation.toValue = NSNumber(value: -0.25) // The bigger the number, the further it rotate
+        rotation.duration = 3 // The bigger the number, the slower it rotate
+        rotation.isCumulative = false // False: The rotation wont continue
+        rotation.autoreverses = true // True: The image will go back where it belongs
+        rotation.repeatCount = Float.greatestFiniteMagnitude // Never ending animation (until the user turn on the location permission)
+        self.layer.add(rotation, forKey: "rotationAnimation")
+    }
+}
+
+// MARK: - CLLocationManagerDelegate Extension
+extension MainViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedAlways {
+            if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
+                if CLLocationManager.isRangingAvailable() {
+                    print("THE LOCATION IS ON")
+                }
+            }
+        } else if status == .denied || status == .restricted || status == .authorizedWhenInUse {
+            buttonLocationOFF.removeFromSuperview()
+        } else if status == .notDetermined {
+            print("User Has Not Determined The Location Permission")
         }
     }
 }
+
+//extension MainViewController: LocationPermissionsDelegate {
+//    func locationManager(_ locationManager: LocationManager, didChangeAccuracyAuthorization accuracyAuthorization: CLAccuracyAuthorization) {
+//        if accuracyAuthorization == .reducedAccuracy {
+//            // Perform an action in response to the new change in accuracy
+//        }
+//    }
+//}
 
 
 import SwiftUI
