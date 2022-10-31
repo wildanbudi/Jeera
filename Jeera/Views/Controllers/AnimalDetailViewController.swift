@@ -12,6 +12,7 @@ import MapboxDirections
 class AnimalDetailViewController: UIViewController {
     var animalData: Dictionary<String, JSONValue>!
     var targetCoordinate: CLLocationCoordinate2D!
+    var userLocation: CLLocationCoordinate2D!
     var distance: Int!
     var travelTime: Int!
     
@@ -214,11 +215,11 @@ class AnimalDetailViewController: UIViewController {
     func getRouteInformation() {
         let directions = Directions.shared
         let waypoints = [
-            Waypoint(coordinate: centerCoordinate, name: "origin"),
+            Waypoint(coordinate: userLocation, name: "origin"),
             Waypoint(coordinate: targetCoordinate, name: "destination"),
         ]
         let options = RouteOptions(waypoints: waypoints, profileIdentifier: .walking)
-        let task = directions.calculate(options) { (session, result) in
+        let _ = directions.calculate(options) { (session, result) in
             switch result {
             case .failure(let error):
                 print("Error calculating directions: \(error)")

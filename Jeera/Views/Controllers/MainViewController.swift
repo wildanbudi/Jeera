@@ -13,6 +13,7 @@ class MainViewController: UIViewController {
     internal var pointAnnotationManager: PointAnnotationManager!
     internal var targetCoordinate: CLLocationCoordinate2D!
     internal var animalData: Dictionary<String, JSONValue>!
+    internal var userLocation: CLLocationCoordinate2D!
     
     // Variable Initiation
     let whiteBackground = UIView() // The Segmented Control White Background
@@ -109,13 +110,27 @@ class MainViewController: UIViewController {
                         
                         self!.removeSubview()
                         self!.showOverview()
-                        self!.mapView.mapboxMap.style.uri = StyleURI(rawValue: mapAllDisableStyleURI)
+                        switch self!.selectedSegmentIndex {
+                        case 1:
+                            self!.mapView.mapboxMap.style.uri = StyleURI(rawValue: mapKandangDisableStyleURI)
+                        case 2:
+                            self!.mapView.mapboxMap.style.uri = StyleURI(rawValue: mapFasilitasStyleURI)
+                        default:
+                            self!.mapView.mapboxMap.style.uri = StyleURI(rawValue: mapAllDisableStyleURI)
+                        }
                     }
                 } else {
                     if (self!.pointAnnotationManager != nil) {
                         self!.pointAnnotationManager.annotations = []
                         self!.removeSubview()
-                        self!.mapView.mapboxMap.style.uri = StyleURI(rawValue: mapAllDefaultStyleURI)
+                        switch self!.selectedSegmentIndex {
+                        case 1:
+                            self!.mapView.mapboxMap.style.uri = StyleURI(rawValue: mapKandangDefaultStyleURI)
+                        case 2:
+                            self!.mapView.mapboxMap.style.uri = StyleURI(rawValue: mapFasilitasStyleURI)
+                        default:
+                            self!.mapView.mapboxMap.style.uri = StyleURI(rawValue: mapAllDefaultStyleURI)
+                        }
                     }
                 }
             case .failure(let error):
@@ -125,8 +140,6 @@ class MainViewController: UIViewController {
     }
     
     func showOverview() {
-//        print(targetCoordinate)
-        
         lazy var overviewCardView: OverviewCardView = {
             let oVview = OverviewCardView()
             oVview.translatesAutoresizingMaskIntoConstraints = false
@@ -181,6 +194,7 @@ class MainViewController: UIViewController {
         animalDetailViewController.modalPresentationStyle = .fullScreen
         animalDetailViewController.animalData = animalData
         animalDetailViewController.targetCoordinate = targetCoordinate
+        animalDetailViewController.userLocation = userLocation
         self.present(animalDetailViewController, animated: true, completion: nil)
     }
     
@@ -284,7 +298,8 @@ class MainViewController: UIViewController {
                 // Change the Selected Text Color to White & Bold
                 btn.setTitleColor(.white, for: .normal)
                 btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
-                
+                self.removeSubview()
+                self.pointAnnotationManager.annotations = []
                 // Change the MapView for Each Segmented Control Options
                 switch selectedSegmentIndex {
                 // Case 0: If the user select the First Segmented Control Option "Semua" -> See All of the Map Anotations
@@ -348,6 +363,10 @@ extension UIButton{
 // MARK: - CLLocationManagerDelegate Extension
 extension MainViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if ((manager.location?.coordinate) != nil) {
+            setupUserLocation()
+            userLocation = manager.location?.coordinate
+        }
         if status == .authorizedAlways {
             if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
                 if CLLocationManager.isRangingAvailable() {
