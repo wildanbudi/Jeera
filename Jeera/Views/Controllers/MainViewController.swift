@@ -21,6 +21,14 @@ class MainViewController: UIViewController {
     lazy var segmentedSelector = UIView()
     lazy var selectedSegmentIndex = 0
     lazy var buttonLocationOFF = UIButton(type: .custom)
+    lazy var searchButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(imageName: "SearchBtn"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(searchButtonClick(_:)), for: .touchUpInside)
+        
+        return button
+    }()
     
     // Initiate The Core Location Manager
     let locationManager = CLLocationManager()
@@ -36,8 +44,8 @@ class MainViewController: UIViewController {
         segmentedBackground()
         locationOffButton()
         customSegmentedControl()
-        
-        print("test")
+        view.addSubview(searchButton)
+        setupConstraint()
         
         // Check the User's Core Location Status Through the CLLocationDelegate Function
         if CLLocationManager.locationServicesEnabled() {
@@ -52,7 +60,7 @@ class MainViewController: UIViewController {
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 //        mapView.location.delegate = self
         mapView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onMapClick)))
-        mapView.layer.cornerRadius = 20
+        mapView.layer.cornerRadius = 35
         mapView.clipsToBounds = true
         view.addSubview(mapView)
         
@@ -121,6 +129,10 @@ class MainViewController: UIViewController {
                 print(error.localizedDescription)
             }
         })
+    }
+    
+    @objc private func searchButtonClick(_ sender: UIButton) {
+        print("search button click")
     }
     
     func showOverview() {
@@ -201,7 +213,6 @@ class MainViewController: UIViewController {
 
         segmentedBase = SegmentedControl.segmentedBase
         view.addSubview(segmentedBase)
-        setupConstraintSegmentendControl()
         segmentedButtons = SegmentedControl.segmentedButtons
         let segmentedStackView = SegmentedControl.segmentedStackView
         for button in segmentedButtons {
@@ -220,7 +231,7 @@ class MainViewController: UIViewController {
         ])
     }
     
-    func setupConstraintSegmentendControl() {
+    func setupConstraint() {
         NSLayoutConstraint.activate([
             whiteBackground.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             whiteBackground.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
@@ -233,7 +244,11 @@ class MainViewController: UIViewController {
             mapView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             mapView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             mapView.topAnchor.constraint(equalTo: whiteBackground.bottomAnchor),
-            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            searchButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 11),
+            searchButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
+            searchButton.widthAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
+            searchButton.heightAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
         ])
     }
     
