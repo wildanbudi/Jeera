@@ -10,7 +10,6 @@ import CoreLocation
 
 class OverviewCardView: UIView {
     
-    
     var title: String? {
         get { anotationLabel.text }
         set {

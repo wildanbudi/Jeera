@@ -15,4 +15,4 @@ let mapKandangDefaultStyleURI = "mapbox://styles/anggidast/cl9oh0p3z007b14o23ru8
 let mapKandangDisableStyleURI = "mapbox://styles/anggidast/cl9oh1ahd000014n206h9imvs"
 let mapFasilitasStyleURI = "mapbox://styles/anggidast/cl9oh1tww000815ob6du3p0y0"
 let layerStyleIds = ["ragunanzoocages", "ragunanzoofacilities"]
-
+let segmentedTitles = ["Semua", "Kandang", "Fasilitas"]

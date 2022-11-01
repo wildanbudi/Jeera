@@ -15,12 +15,11 @@ class MainViewController: UIViewController {
     internal var animalData: Dictionary<String, JSONValue>!
     internal var userLocation: CLLocationCoordinate2D!
     
-    // Variable Initiation
-    let whiteBackground = UIView() // The Segmented Control White Background
-    let segmentedBase = UIView() // The Base for the Segmented Control View
-    lazy var segmentedButtons = [UIButton]() // The Array of Segmented Control Buttons
-    var segmentedSelector: UIView! // The Selector Button View
-    lazy var selectedSegmentIndex = 0 // The Initial Selected Segment Index
+    lazy var whiteBackground = UIView()
+    lazy var segmentedBase = UIView()
+    lazy var segmentedButtons = [UIButton]()
+    lazy var segmentedSelector = UIView()
+    lazy var selectedSegmentIndex = 0
     let buttonLocationOFF = UIButton(type: .custom) // The Initial of the Animated Location Off Button
     
     // Initiate The Core Location Manager
@@ -33,21 +32,12 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Set the Status Bar Background Color to White
-        view.safeAreaLayoutGuide.owningView?.backgroundColor = .white
-        
         setupMapView()
-//        setupUserLocation()
-        
-        // Stack the White Background UIView On Top of the Jeera Map View
         segmentedBackground()
-        
-        // Stack The Animated Monkey (LocationOFF Button) On Top of the White Background UIView
         locationOffButton()
-        
-        // Stack The Segmented Control On Top of the Segmented Control
         customSegmentedControl()
+        
+        print("test")
         
         // Check the User's Core Location Status Through the CLLocationDelegate Function
         if CLLocationManager.locationServicesEnabled() {
@@ -62,16 +52,11 @@ class MainViewController: UIViewController {
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 //        mapView.location.delegate = self
         mapView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onMapClick)))
+        mapView.layer.cornerRadius = 20
+        mapView.clipsToBounds = true
         view.addSubview(mapView)
         
-        // Set the Constraints of the for the Jeera Map Programmatically (With an Array of NSLayoutConstraint)
-        mapView.translatesAutoresizingMaskIntoConstraints = false // Activate Custom Auto Layout for Map View
-        NSLayoutConstraint.activate([
-            mapView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            mapView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+        mapView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     func setupUserLocation() {
@@ -107,7 +92,6 @@ class MainViewController: UIViewController {
                         let uuid = NSUUID().uuidString
                         customPointAnnotation.image = .init(image: UIImage(named: "\(dict["clusterName"]!.rawValue) Active")!, name: "\(dict["clusterName"]!.rawValue) Active-\(uuid)")
                         self!.pointAnnotationManager.annotations = [customPointAnnotation]
-                        
                         self!.removeSubview()
                         self!.showOverview()
                         switch self!.selectedSegmentIndex {
@@ -198,13 +182,9 @@ class MainViewController: UIViewController {
         self.present(animalDetailViewController, animated: true, completion: nil)
     }
     
-
-    // MARK: - SEGMENTED CONTROL WHITE BACKGROUND FUNCTION
-    public func segmentedBackground() {
-        // Create the White Background for the Segmented Control using UIView
-        whiteBackground.layer.backgroundColor = CGColor(red: 1.00, green: 1.00, blue: 1.00, alpha: 1.00) // White
-        whiteBackground.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height*0.06) // CGRectMake(x, y, width, height) -> Constant & Use Safe Area
-        whiteBackground.translatesAutoresizingMaskIntoConstraints = false // Disable the Auto Resizing to Auto Layout
+    func segmentedBackground() {
+        view.safeAreaLayoutGuide.owningView?.backgroundColor = .white
+        whiteBackground = SegmentedControl.whiteBackground
         view.addSubview(whiteBackground)
         
         // Set the Constraints of the for the Segmented Background Programmatically (With an Array of NSLayoutConstraint)
@@ -214,66 +194,46 @@ class MainViewController: UIViewController {
             whiteBackground.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             whiteBackground.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(view.frame.size.height*0.88))
         ])
-        
     }
     
     // MARK: - CUSTOM SEGMENTED CONTROL FUNCTION
     func customSegmentedControl() {
-        // Reusable UI Component: Segmented Control for Map Filter (Need to Figure out the Center Anchor)
-        segmentedBase.frame = CGRectMake(10, 80, 355, 32) // CGRectMake(x, y, width, height)
-        segmentedBase.layer.cornerRadius = segmentedBase.frame.height/2
-        segmentedBase.translatesAutoresizingMaskIntoConstraints = false // Disable the Auto Resizing to Auto Layout
+
+        segmentedBase = SegmentedControl.segmentedBase
         view.addSubview(segmentedBase)
-        
-        // Set the Constraints of the segmentedBackground Programmatically (With an Array of NSLayoutConstraint)
-        NSLayoutConstraint.activate([
-            segmentedBase.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: view.frame.size.width*0.04),
-            segmentedBase.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -(view.frame.size.width*0.04)),
-            segmentedBase.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: whiteBackground.frame.size.height*0.225), // 12.5/57 = 0.21
-            segmentedBase.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(view.frame.size.height*0.88))
-        ])
-        
-        // Reusable UI: Custom Selector UI for the Segmented Map Filter
-        // Cleaning the Array
-        segmentedButtons.removeAll()
-        
-        // Set the Filter Options
-        let segmentedTitles = ["Semua", "Kandang", "Fasilitas"]
-        
-        // Loop to Append the Text String to the Button
-        for segmentedTitle in segmentedTitles {
-            let button = UIButton(type: .system)
-            button.setTitle(segmentedTitle, for: .normal)
-            button.setTitleColor(UIColor.SecondaryText, for: .normal)
+        setupConstraintSegmentendControl()
+        segmentedButtons = SegmentedControl.segmentedButtons
+        let segmentedStackView = SegmentedControl.segmentedStackView
+        for button in segmentedButtons {
             button.addTarget(self, action: #selector(segmentedButtonTapped(_:)), for: .touchUpInside)
-            button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
-            segmentedButtons.append(button)
+            segmentedStackView.addArrangedSubview(button)
         }
-        
-        // Set the Selected Filter Text Color & Bold Mode on the First Segmented Control Option
-        segmentedButtons[0].setTitleColor(.white, for: .normal)
-        segmentedButtons[0].titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
-        
-        // Creating the selector UI by referencing the segmentedBackground
-        let selectorWidth = segmentedBase.frame.width / CGFloat(segmentedTitles.count)
-        segmentedSelector = UIView(frame: CGRect(x: 0, y: 0, width: selectorWidth, height: segmentedBase.frame.height))
-        segmentedSelector.layer.cornerRadius = segmentedSelector.frame.height / 2
-        segmentedSelector.backgroundColor = UIColor.PrimaryGreen
+        segmentedSelector = SegmentedControl.segmentedSelector
         segmentedBase.addSubview(segmentedSelector)
-        
-        // Create a Horizontal StackView where we can have the Buttons side-by-side
-        let segmentedStackView = UIStackView(arrangedSubviews: segmentedButtons)
-        segmentedStackView.axis = .horizontal
-        segmentedStackView.alignment = .fill
-        segmentedStackView.distribution = .fillEqually
         segmentedBase.addSubview(segmentedStackView)
         
-        // Give Constraints for the Horizontal StackView
         segmentedStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             segmentedStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: view.frame.size.width*0.04),
             segmentedStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -(view.frame.size.width*0.04)),
-            segmentedStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: whiteBackground.frame.size.height*0.225) // 12.5/57 = 0.21
+            segmentedStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 56) // 12.5/57 = 0.21
+        ])
+    }
+    
+    func setupConstraintSegmentendControl() {
+        NSLayoutConstraint.activate([
+            whiteBackground.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            whiteBackground.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            whiteBackground.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            whiteBackground.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(view.frame.size.height*0.88)),
+            segmentedBase.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: view.frame.size.width*0.04),
+            segmentedBase.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -(view.frame.size.width*0.04)),
+            segmentedBase.topAnchor.constraint(equalTo: view.topAnchor, constant: 56), // 12.5/57 = 0.21
+            segmentedBase.heightAnchor.constraint(equalToConstant: 32),
+            mapView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            mapView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            mapView.topAnchor.constraint(equalTo: whiteBackground.bottomAnchor),
+            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
     
@@ -298,8 +258,10 @@ class MainViewController: UIViewController {
                 // Change the Selected Text Color to White & Bold
                 btn.setTitleColor(.white, for: .normal)
                 btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
-                self.removeSubview()
-                self.pointAnnotationManager.annotations = []
+                if (self.pointAnnotationManager != nil) {
+                    self.removeSubview()
+                    self.pointAnnotationManager.annotations = []
+                }
                 // Change the MapView for Each Segmented Control Options
                 switch selectedSegmentIndex {
                 // Case 0: If the user select the First Segmented Control Option "Semua" -> See All of the Map Anotations
@@ -327,9 +289,9 @@ class MainViewController: UIViewController {
     func locationOffButton() {
         // Showing the Monkey Image that says the Location is still OFF
         let imageLocationOFF = UIImage(named: "Lokasi Mati Button")
-        
+//        print(whiteBackground.frame.maxY)
         // Create a Button with an Image
-        buttonLocationOFF.frame = CGRectMake(0, whiteBackground.frame.maxY, 205, 227)
+        buttonLocationOFF.frame = CGRectMake(0, whiteBackground.frame.maxY + 50, 205, 227)
         buttonLocationOFF.setImage(imageLocationOFF, for: .normal)
         buttonLocationOFF.addTarget(self, action: #selector(buttonLocationOFFAction(_:)), for:.touchUpInside)
         view.addSubview(buttonLocationOFF)
@@ -345,19 +307,6 @@ class MainViewController: UIViewController {
         locationManager.requestAlwaysAuthorization()
     }
 
-}
-
-// MARK: - Button Animation Extension
-extension UIButton{
-    func rotate() {
-        let rotation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
-        rotation.toValue = NSNumber(value: -0.25) // The bigger the number, the further it rotate
-        rotation.duration = 3 // The bigger the number, the slower it rotate
-        rotation.isCumulative = false // False: The rotation wont continue
-        rotation.autoreverses = true // True: The image will go back where it belongs
-        rotation.repeatCount = Float.greatestFiniteMagnitude // Never ending animation (until the user turn on the location permission)
-        self.layer.add(rotation, forKey: "rotationAnimation")
-    }
 }
 
 // MARK: - CLLocationManagerDelegate Extension
@@ -380,14 +329,6 @@ extension MainViewController: CLLocationManagerDelegate {
         }
     }
 }
-
-//extension MainViewController: LocationPermissionsDelegate {
-//    func locationManager(_ locationManager: LocationManager, didChangeAccuracyAuthorization accuracyAuthorization: CLAccuracyAuthorization) {
-//        if accuracyAuthorization == .reducedAccuracy {
-//            // Perform an action in response to the new change in accuracy
-//        }
-//    }
-//}
 
 
 import SwiftUI
