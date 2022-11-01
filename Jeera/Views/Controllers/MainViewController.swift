@@ -20,7 +20,7 @@ class MainViewController: UIViewController {
     lazy var segmentedButtons = [UIButton]()
     lazy var segmentedSelector = UIView()
     lazy var selectedSegmentIndex = 0
-    let buttonLocationOFF = UIButton(type: .custom) // The Initial of the Animated Location Off Button
+    lazy var buttonLocationOFF = UIButton(type: .custom)
     
     // Initiate The Core Location Manager
     let locationManager = CLLocationManager()
@@ -228,7 +228,7 @@ class MainViewController: UIViewController {
             whiteBackground.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(view.frame.size.height*0.88)),
             segmentedBase.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: view.frame.size.width*0.04),
             segmentedBase.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -(view.frame.size.width*0.04)),
-            segmentedBase.topAnchor.constraint(equalTo: view.topAnchor, constant: 56), // 12.5/57 = 0.21
+            segmentedBase.topAnchor.constraint(equalTo: view.topAnchor, constant: 56),
             segmentedBase.heightAnchor.constraint(equalToConstant: 32),
             mapView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             mapView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
@@ -287,17 +287,16 @@ class MainViewController: UIViewController {
     
     // MARK: - ANIMATED MONKEY (LOCATION OFF BUTTON FUNCTION)
     func locationOffButton() {
-        // Showing the Monkey Image that says the Location is still OFF
-        let imageLocationOFF = UIImage(named: "Lokasi Mati Button")
-//        print(whiteBackground.frame.maxY)
-        // Create a Button with an Image
-        buttonLocationOFF.frame = CGRectMake(0, whiteBackground.frame.maxY + 50, 205, 227)
-        buttonLocationOFF.setImage(imageLocationOFF, for: .normal)
+        buttonLocationOFF = MonkeyLocationButton()
         buttonLocationOFF.addTarget(self, action: #selector(buttonLocationOFFAction(_:)), for:.touchUpInside)
         view.addSubview(buttonLocationOFF)
         
-        // Animate the Monkey (Call the Rotate Reusable Component)
-        buttonLocationOFF.rotate()
+        buttonLocationOFF.anchor(
+            top: view.safeAreaLayoutGuide.topAnchor,
+            left: view.leftAnchor,
+            width: 205,
+            height: 227
+        )
     }
     
     // MARK: - Show the Location Permission After The User Tapped the Monkey Button by Representing the CLLocationManagerDelegate

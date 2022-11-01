@@ -69,7 +69,8 @@ class AnimalDetailViewController: UIViewController {
 
         stackView.addArrangedSubview(distanceLabel)
         stackView.addArrangedSubview(etaLabel)
-        if animalData["type"]!.rawValue as? String != "Kandang" {
+        let type = animalData["type"]!.rawValue as? String
+        if !["Kandang", "Piknik", "Toilet", "Kantin", "Masjid"].contains(type) {
             stackView.addArrangedSubview(cageLabel)
         }
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -137,7 +138,12 @@ class AnimalDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        getRouteInformation()
+        if (userLocation != nil) {
+            getRouteInformation()
+        } else {
+            setupView()
+        }
+        
     }
     
     @objc func backButton(_ sender: UIButton) {
