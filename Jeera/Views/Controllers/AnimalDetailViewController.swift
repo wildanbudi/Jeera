@@ -7,10 +7,25 @@
 
 import UIKit
 import MapboxMaps
+import MapboxDirections
 
 class AnimalDetailViewController: UIViewController {
     var animalData: Dictionary<String, JSONValue>!
     var targetCoordinate: CLLocationCoordinate2D!
+    var userLocation: CLLocationCoordinate2D!
+    var distance: Int!
+    var travelTime: Int!
+    
+    lazy var backButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(systemName: "arrow.left.circle")?
+            .resizeImageTo(size: CGSize(width: 30, height: 30))?
+            .imageWithColor(newColor: .PrimaryGreen), for: .normal)
+
+        button.addTarget(self, action: #selector(self.backButton(_:)), for: .touchUpInside)
+        
+        return button
+    }()
     
     lazy var animalImage: UIImageView = {
         let type = animalData["type"]!.rawValue as? String
@@ -27,17 +42,18 @@ class AnimalDetailViewController: UIViewController {
         label.font = UIFont(name: "Baloo2-Bold", size: 30)
         label.numberOfLines = 2
         label.text = animalData["idName"]!.rawValue as? String
+        label.textColor = .PrimaryText
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()
     
     lazy var distanceLabel: UILabel = {
-        return labelWithIcon(imageName: "Distance", labelText: "2 meter", iconColor: .PrimaryGreen)
+        return labelWithIcon(imageName: "Distance", labelText: "\(distance ?? 0) meter", iconColor: .PrimaryGreen)
     }()
     
     lazy var etaLabel: UILabel = {
-        return labelWithIcon(imageName: "Time", labelText: "5 menit", iconColor: .PrimaryGreen)
+        return labelWithIcon(imageName: "Time", labelText: "\(travelTime ?? 0) menit", iconColor: .PrimaryGreen)
     }()
     
     lazy var cageLabel: UILabel = {
@@ -53,7 +69,8 @@ class AnimalDetailViewController: UIViewController {
 
         stackView.addArrangedSubview(distanceLabel)
         stackView.addArrangedSubview(etaLabel)
-        if animalData["type"]!.rawValue as? String != "Kandang" {
+        let type = animalData["type"]!.rawValue as? String
+        if !["Kandang", "Piknik", "Toilet", "Kantin", "Masjid"].contains(type) {
             stackView.addArrangedSubview(cageLabel)
         }
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -114,14 +131,23 @@ class AnimalDetailViewController: UIViewController {
         completeText.append(textAfterIcon)
         label.textAlignment = .center
         label.attributedText = completeText
+        label.textColor = .PrimaryText
             
         return label
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
+        if (userLocation != nil) {
+            getRouteInformation()
+        } else {
+            setupView()
+        }
         
+    }
+    
+    @objc func backButton(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func setupView() {
@@ -129,7 +155,8 @@ class AnimalDetailViewController: UIViewController {
         gradient.frame = view.bounds
         gradient.colors = [UIColor.UpperGradient.cgColor, UIColor.LowerGradient.cgColor]
         view.layer.insertSublayer(gradient, at: 0)
-        [animalImage, animalNameLabel, startJourneyButton, overviewMapView, informationView].forEach {
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+        [backButton, animalImage, animalNameLabel, startJourneyButton, overviewMapView, informationView].forEach {
             view.addSubview($0)
         }
         setupConstraint()
@@ -137,6 +164,16 @@ class AnimalDetailViewController: UIViewController {
     
     func setupConstraint() {
         let safeArea = view.layoutMarginsGuide
+        
+        backButton.anchor(
+            top: view.topAnchor,
+            left: view.leftAnchor,
+            paddingTop: 47,
+            paddingLeft: 16,
+            width: view.bounds.height * (30 / 844),
+            height: view.bounds.height * (30 / 844)
+        )
+        
         animalImage.anchor(
             top: view.topAnchor,
             left: view.leftAnchor,
@@ -179,6 +216,48 @@ class AnimalDetailViewController: UIViewController {
             width: view.bounds.height * (332 / 844),
             height: view.bounds.height * (48 / 844)
         )
+    }
+    
+    func getRouteInformation() {
+        let directions = Directions.shared
+        let waypoints = [
+            Waypoint(coordinate: userLocation, name: "origin"),
+            Waypoint(coordinate: targetCoordinate, name: "destination"),
+        ]
+        let options = RouteOptions(waypoints: waypoints, profileIdentifier: .walking)
+        let _ = directions.calculate(options) { (session, result) in
+            switch result {
+            case .failure(let error):
+                print("Error calculating directions: \(error)")
+            case .success(let response):
+                guard let route = response.routes?.first, let _ = route.legs.first else {
+                    return
+                }
+                
+                self.distance = Int(route.distance)
+                self.travelTime = Int(route.expectedTravelTime/60) + 1
+                
+                self.setupView()
+//
+//                print("Route via \(leg):")
+//
+//                let distanceFormatter = LengthFormatter()
+//                let formattedDistance = distanceFormatter.string(fromMeters: route.distance)
+//
+//                let travelTimeFormatter = DateComponentsFormatter()
+//                travelTimeFormatter.unitsStyle = .short
+//                let formattedTravelTime = travelTimeFormatter.string(from: route.expectedTravelTime)
+//
+                print("Distance: \(route.distance); ETA: \(route.expectedTravelTime)")
+//                print(Int(route.expectedTravelTime/60))
+//
+//                for step in leg.steps {
+//                    print("\(step.instructions)")
+//                    let formattedDistance = distanceFormatter.string(fromMeters: step.distance)
+//                    print("— \(formattedDistance) —")
+//                }
+            }
+        }
     }
     
 
