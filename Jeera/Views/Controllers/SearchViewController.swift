@@ -9,6 +9,10 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
+    var animalsData: [Animals]!
+    var cagesData: [Cages]!
+    var facilitiesData: [Facilities]!
+    
     lazy var searchBar: UISearchBar = {
         let sb = UISearchBar()
         sb.translatesAutoresizingMaskIntoConstraints = false
@@ -35,6 +39,7 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         view.addSubview(searchBar)
+        print(animalsData.count, cagesData.count, facilitiesData.count)
         
         searchBar.anchor(
             top: view.safeAreaLayoutGuide.topAnchor,

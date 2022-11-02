@@ -150,7 +150,6 @@ class MainViewController: UIViewController {
         mapView2.mapboxMap.queryRenderedFeatures(with: mapView.safeAreaLayoutGuide.layoutFrame, options: queryOptions, completion: { [weak self] result in
             switch result {
             case .success(let queriedFeatures):
-                print(queriedFeatures.count)
                 if queriedFeatures.count > 0 {
                     for data in queriedFeatures {
                         let parsedFeature = data.feature.properties!.reduce(into: [:]) { $0[$1.0] = $1.1 }
@@ -204,6 +203,12 @@ class MainViewController: UIViewController {
             case .failure(let error):
                 print(error.localizedDescription)
             }
+            let searchViewController = SearchViewController()
+            searchViewController.modalPresentationStyle = .formSheet
+            searchViewController.animalsData = self!.animalsData
+            searchViewController.cagesData = self!.cagesData
+            searchViewController.facilitiesData = self!.facilitiesData
+            self!.present(searchViewController, animated: true, completion: nil)
         })
     }
     
