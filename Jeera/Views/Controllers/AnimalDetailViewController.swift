@@ -106,6 +106,13 @@ class AnimalDetailViewController: UIViewController {
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.layer.cornerRadius = 20
         mapView.clipsToBounds = true
+        mapView.gestures.options.panEnabled = false
+        mapView.gestures.options.pinchEnabled = false
+        mapView.gestures.options.pinchPanEnabled = false
+        mapView.gestures.options.pinchZoomEnabled = false
+        mapView.gestures.options.doubleTapToZoomInEnabled = false
+        mapView.gestures.options.doubleTouchToZoomOutEnabled = false
+        mapView.gestures.options.pitchEnabled = false
         
         let clusterName = animalData["clusterName"]!.rawValue as? String
         let pointAnnotationManager = mapView.annotations.makePointAnnotationManager()

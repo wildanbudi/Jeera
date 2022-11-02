@@ -21,14 +21,7 @@ class MainViewController: UIViewController {
     lazy var segmentedSelector = UIView()
     lazy var selectedSegmentIndex = 0
     lazy var buttonLocationOFF = UIButton(type: .custom)
-    lazy var searchButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setImage(UIImage(imageName: "SearchBtn"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(searchButtonClick(_:)), for: .touchUpInside)
-        
-        return button
-    }()
+    lazy var searchButton = SearchButton()
     
     // Initiate The Core Location Manager
     let locationManager = CLLocationManager()
@@ -44,7 +37,7 @@ class MainViewController: UIViewController {
         segmentedBackground()
         locationOffButton()
         customSegmentedControl()
-        view.addSubview(searchButton)
+        setupSearchBtn()
         setupConstraint()
         
         // Check the User's Core Location Status Through the CLLocationDelegate Function
@@ -78,6 +71,11 @@ class MainViewController: UIViewController {
 
 //            self.finish() // Needed for internal testing purposes.
         }
+    }
+    
+    func setupSearchBtn() {
+        searchButton.addTarget(self, action: #selector(searchButtonClick(_:)), for: .touchUpInside)
+        view.addSubview(searchButton)
     }
     
     @objc private func onMapClick(_ sender: UITapGestureRecognizer) {
@@ -210,7 +208,6 @@ class MainViewController: UIViewController {
     
     // MARK: - CUSTOM SEGMENTED CONTROL FUNCTION
     func customSegmentedControl() {
-
         segmentedBase = SegmentedControl.segmentedBase
         view.addSubview(segmentedBase)
         segmentedButtons = SegmentedControl.segmentedButtons
