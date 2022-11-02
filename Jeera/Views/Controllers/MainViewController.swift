@@ -9,11 +9,15 @@ import MapboxMaps
 
 class MainViewController: UIViewController {
     internal var mapView: MapView!
+    internal var mapView2: MapView!
     internal var cameraLocationConsumer: CameraLocationConsumer!
     internal var pointAnnotationManager: PointAnnotationManager!
     internal var targetCoordinate: CLLocationCoordinate2D!
     internal var animalData: Dictionary<String, JSONValue>!
     internal var userLocation: CLLocationCoordinate2D!
+    internal var animalsData: [Animals] = []
+    internal var facilitiesData: [Facilities] = []
+    internal var cagesData: [Cages] = []
     
     lazy var whiteBackground = UIView()
     lazy var segmentedBase = UIView()
@@ -48,6 +52,18 @@ class MainViewController: UIViewController {
     }
     
     func setupMapView() {
+        let options2 = MapInitOptions(cameraOptions: CameraOptions(center: centerCoordinate, zoom: 10), styleURI: StyleURI(rawValue: mapAllIconOverlap))
+        mapView2 = MapView(frame: view.bounds, mapInitOptions: options2)
+        mapView2.gestures.options.panEnabled = false
+        mapView2.gestures.options.pinchEnabled = false
+        mapView2.gestures.options.pinchPanEnabled = false
+        mapView2.gestures.options.pinchZoomEnabled = false
+        mapView2.gestures.options.doubleTapToZoomInEnabled = false
+        mapView2.gestures.options.doubleTouchToZoomOutEnabled = false
+        mapView2.gestures.options.pitchEnabled = false
+        mapView2.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(mapView2)
+        
         let options = MapInitOptions(cameraOptions: CameraOptions(center: centerCoordinate, zoom: 16), styleURI: StyleURI(rawValue: mapAllDefaultStyleURI))
         mapView = MapView(frame: view.bounds, mapInitOptions: options)
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -130,7 +146,65 @@ class MainViewController: UIViewController {
     }
     
     @objc private func searchButtonClick(_ sender: UIButton) {
-        print("search button click")
+        let queryOptions = RenderedQueryOptions(layerIds: layerStyleOverlapIds, filter: nil)
+        mapView2.mapboxMap.queryRenderedFeatures(with: mapView.safeAreaLayoutGuide.layoutFrame, options: queryOptions, completion: { [weak self] result in
+            switch result {
+            case .success(let queriedFeatures):
+                print(queriedFeatures.count)
+                if queriedFeatures.count > 0 {
+                    for data in queriedFeatures {
+                        let parsedFeature = data.feature.properties!.reduce(into: [:]) { $0[$1.0] = $1.1 }
+                        let type = parsedFeature["type"]!.rawValue as! String
+                        if type == "Hewan" {
+                            if let geometry = data.feature.geometry, case let Geometry.point(point) = geometry {
+                                let coordinate = point.coordinates
+                                self!.animalsData.append(
+                                    Animals(
+                                        cage: parsedFeature["cage"]!.rawValue as! String,
+                                        idName: parsedFeature["idName"]!.rawValue as! String,
+                                        enName: parsedFeature["enName"]!.rawValue as! String,
+                                        latinName: parsedFeature["latinName"]!.rawValue as! String,
+                                        type: parsedFeature["type"]!.rawValue as! String,
+                                        lat: coordinate.latitude,
+                                        long: coordinate.longitude
+                                    )
+                                )
+                            }
+                        } else if type == "Kandang" {
+                            if let geometry = data.feature.geometry, case let Geometry.point(point) = geometry {
+                                let coordinate = point.coordinates
+                                self!.cagesData.append(
+                                    Cages(
+                                        idName: parsedFeature["idName"]!.rawValue as! String,
+                                        enName: parsedFeature["enName"]!.rawValue as! String,
+                                        type: parsedFeature["type"]!.rawValue as! String,
+                                        clusterName: parsedFeature["clusterName"]!.rawValue as! String,
+                                        lat: coordinate.latitude,
+                                        long: coordinate.longitude
+                                    )
+                                )
+                            }
+                        } else {
+                            if let geometry = data.feature.geometry, case let Geometry.point(point) = geometry {
+                                let coordinate = point.coordinates
+                                self!.facilitiesData.append(
+                                    Facilities(
+                                        idName: parsedFeature["idName"]!.rawValue as! String,
+                                        enName: parsedFeature["enName"]!.rawValue as! String,
+                                        type: parsedFeature["type"]!.rawValue as! String,
+                                        clusterName: parsedFeature["clusterName"]!.rawValue as! String,
+                                        lat: coordinate.latitude,
+                                        long: coordinate.longitude
+                                    )
+                                )
+                            }
+                        }
+                    }
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        })
     }
     
     func showOverview() {
@@ -238,6 +312,10 @@ class MainViewController: UIViewController {
             segmentedBase.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -(view.frame.size.width*0.04)),
             segmentedBase.topAnchor.constraint(equalTo: view.topAnchor, constant: 56),
             segmentedBase.heightAnchor.constraint(equalToConstant: 32),
+            mapView2.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            mapView2.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            mapView2.widthAnchor.constraint(equalToConstant: 50),
+            mapView2.heightAnchor.constraint(equalToConstant: 50),
             mapView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             mapView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             mapView.topAnchor.constraint(equalTo: whiteBackground.bottomAnchor),

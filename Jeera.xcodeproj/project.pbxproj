@@ -39,6 +39,8 @@
 		4373E8EC291142390016F810 /* MonkeyLocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373E8EB291142390016F810 /* MonkeyLocationButton.swift */; };
 		4373E8EE2911534D0016F810 /* SearchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373E8ED2911534D0016F810 /* SearchButton.swift */; };
 		4373E8F2291175C40016F810 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373E8F1291175C40016F810 /* SearchViewController.swift */; };
+		4373E8F42912C3430016F810 /* Facilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373E8F32912C3430016F810 /* Facilities.swift */; };
+		4373E8F62912C4A60016F810 /* Cages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373E8F52912C4A60016F810 /* Cages.swift */; };
 		437D008A2907A623005EB501 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437D00892907A623005EB501 /* MainViewController.swift */; };
 		437D008C2907A66A005EB501 /* OverviewCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437D008B2907A66A005EB501 /* OverviewCardView.swift */; };
 		437D008F2907A69A005EB501 /* MapsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437D008E2907A69A005EB501 /* MapsHelper.swift */; };
@@ -98,6 +100,8 @@
 		4373E8EB291142390016F810 /* MonkeyLocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonkeyLocationButton.swift; sourceTree = "<group>"; };
 		4373E8ED2911534D0016F810 /* SearchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchButton.swift; sourceTree = "<group>"; };
 		4373E8F1291175C40016F810 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		4373E8F32912C3430016F810 /* Facilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Facilities.swift; sourceTree = "<group>"; };
+		4373E8F52912C4A60016F810 /* Cages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cages.swift; sourceTree = "<group>"; };
 		437D00892907A623005EB501 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		437D008B2907A66A005EB501 /* OverviewCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewCardView.swift; sourceTree = "<group>"; };
 		437D008E2907A69A005EB501 /* MapsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsHelper.swift; sourceTree = "<group>"; };
@@ -221,6 +225,8 @@
 			isa = PBXGroup;
 			children = (
 				42D12DBE2901B16300857042 /* Animals.swift */,
+				4373E8F32912C3430016F810 /* Facilities.swift */,
+				4373E8F52912C4A60016F810 /* Cages.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -454,10 +460,12 @@
 				42D2B3F429047A5A002818A9 /* UIViewExtension.swift in Sources */,
 				437D008A2907A623005EB501 /* MainViewController.swift in Sources */,
 				42D12D8029010F6C00857042 /* AppDelegate.swift in Sources */,
+				4373E8F42912C3430016F810 /* Facilities.swift in Sources */,
 				4373E8F2291175C40016F810 /* SearchViewController.swift in Sources */,
 				42D12DCB2901B9FB00857042 /* NavigateViewController.swift in Sources */,
 				4373E8E4291016000016F810 /* UIImageExtension.swift in Sources */,
 				42D2B3F6290595ED002818A9 /* BottomBannerViewController.swift in Sources */,
+				4373E8F62912C4A60016F810 /* Cages.swift in Sources */,
 				4373E8E82910CD7F0016F810 /* SegmentedControl.swift in Sources */,
 				437D008F2907A69A005EB501 /* MapsHelper.swift in Sources */,
 				42D12D8229010F6C00857042 /* SceneDelegate.swift in Sources */,
