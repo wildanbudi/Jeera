@@ -12,10 +12,14 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //        <#code#>
 //    }
     
-    var animalsData: [Animals]!
-    var cagesData: [Cages]!
-    var facilitiesData: [Facilities]!
-    var searchResults: [Any] = []
+    var animalsData: [AllData]!
+    var cagesData: [AllData]!
+    var facilitiesData: [AllData]!
+    var searchResults: [AllData] = []
+    var nonDuplicateNames: [String] = []
+//    var animalsResults: [Animals] = []
+//    var cagesResults: [Cages] = []
+//    var facilitiesResults: [Facilities] = []
     let tableView = UITableView()
     
     lazy var searchBar: UISearchBar = {
@@ -114,16 +118,20 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
      }
      */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if facilitiesData.count > 0 {
-            return facilitiesData.count
-        } else {
-            return animalsData.count + cagesData.count
-        }
+        return searchResults.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = animalsData[indexPath.row].idName
+//        if indexPath.row == 0 {
+//            nonDuplicateNames.removeAll()
+//        }
+        let name = searchResults[indexPath.row].idName
+//        if !nonDuplicateNames.contains(name) {
+//            print(searchResults[indexPath.row])
+//            nonDuplicateNames.append(name)
+            cell.textLabel?.text = name
+//        }
         
         return cell
     }
@@ -140,6 +148,33 @@ extension SearchViewController: UISearchBarDelegate {
         } else {
             searchBar.searchTextField.font = UIFont(name: "Baloo2-Regular", size: 17)
         }
-//        searchResults = 
+        if searchText.count > 2 {
+            let animalsResults = animalsData.filter({ (animal: AllData) -> Bool in
+                let idNameMatch = animal.idName.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+                let enNameMatch = animal.enName.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+                let cageMatch = animal.cage.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+                return idNameMatch != nil || enNameMatch != nil || cageMatch != nil
+            })
+            let cagesResults = cagesData.filter({ (cage: AllData) -> Bool in
+                let idNameMatch = cage.idName.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+                let enNameMatch = cage.enName.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+                return idNameMatch != nil || enNameMatch != nil
+            })
+            let facilitiesResults = facilitiesData.filter({ (facilities: AllData) -> Bool in
+                let idNameMatch = facilities.idName.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+                let enNameMatch = facilities.enName.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+                return idNameMatch != nil || enNameMatch != nil
+            })
+            let results = animalsResults + cagesResults + facilitiesResults
+            nonDuplicateNames.removeAll()
+            searchResults.removeAll()
+            for el in results {
+                if !nonDuplicateNames.contains(el.idName) {
+                    nonDuplicateNames.append(el.idName)
+                    searchResults.append(el)
+                }
+            }
+            tableView.reloadData()
+        }
     }
 }

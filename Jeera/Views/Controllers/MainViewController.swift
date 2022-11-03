@@ -15,9 +15,9 @@ class MainViewController: UIViewController {
     internal var targetCoordinate: CLLocationCoordinate2D!
     internal var animalData: Dictionary<String, JSONValue>!
     internal var userLocation: CLLocationCoordinate2D!
-    internal var animalsData: [Animals] = []
-    internal var facilitiesData: [Facilities] = []
-    internal var cagesData: [Cages] = []
+    internal var animalsData: [AllData] = []
+    internal var facilitiesData: [AllData] = []
+    internal var cagesData: [AllData] = []
     
     lazy var whiteBackground = UIView()
     lazy var segmentedBase = UIView()
@@ -146,12 +146,13 @@ class MainViewController: UIViewController {
                             if let geometry = data.feature.geometry, case let Geometry.point(point) = geometry {
                                 let coordinate = point.coordinates
                                 self!.animalsData.append(
-                                    Animals(
+                                    AllData(
                                         cage: parsedFeature["cage"]!.rawValue as! String,
                                         idName: parsedFeature["idName"]!.rawValue as! String,
                                         enName: parsedFeature["enName"]!.rawValue as! String,
                                         latinName: parsedFeature["latinName"]!.rawValue as! String,
                                         type: parsedFeature["type"]!.rawValue as! String,
+                                        clusterName: "",
                                         lat: coordinate.latitude,
                                         long: coordinate.longitude
                                     )
@@ -161,9 +162,11 @@ class MainViewController: UIViewController {
                             if let geometry = data.feature.geometry, case let Geometry.point(point) = geometry {
                                 let coordinate = point.coordinates
                                 self!.cagesData.append(
-                                    Cages(
+                                    AllData(
+                                        cage: "",
                                         idName: parsedFeature["idName"]!.rawValue as! String,
                                         enName: parsedFeature["enName"]!.rawValue as! String,
+                                        latinName: "",
                                         type: parsedFeature["type"]!.rawValue as! String,
                                         clusterName: parsedFeature["clusterName"]!.rawValue as! String,
                                         lat: coordinate.latitude,
@@ -175,9 +178,11 @@ class MainViewController: UIViewController {
                             if let geometry = data.feature.geometry, case let Geometry.point(point) = geometry {
                                 let coordinate = point.coordinates
                                 self!.facilitiesData.append(
-                                    Facilities(
+                                    AllData(
+                                        cage: "",
                                         idName: parsedFeature["idName"]!.rawValue as! String,
                                         enName: parsedFeature["enName"]!.rawValue as! String,
+                                        latinName: "",
                                         type: parsedFeature["type"]!.rawValue as! String,
                                         clusterName: parsedFeature["clusterName"]!.rawValue as! String,
                                         lat: coordinate.latitude,
