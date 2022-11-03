@@ -9,7 +9,7 @@ import MapboxMaps
 
 class MainViewController: UIViewController {
     internal var mapView: MapView!
-    internal var mapView2: MapView!
+    internal var mapViewRetrieveData: MapView!
     internal var cameraLocationConsumer: CameraLocationConsumer!
     internal var pointAnnotationManager: PointAnnotationManager!
     internal var targetCoordinate: CLLocationCoordinate2D!
@@ -52,28 +52,16 @@ class MainViewController: UIViewController {
     }
     
     func setupMapView() {
-        let options2 = MapInitOptions(cameraOptions: CameraOptions(center: centerCoordinate, zoom: 10), styleURI: StyleURI(rawValue: mapAllIconOverlap))
-        mapView2 = MapView(frame: view.bounds, mapInitOptions: options2)
-        mapView2.gestures.options.panEnabled = false
-        mapView2.gestures.options.pinchEnabled = false
-        mapView2.gestures.options.pinchPanEnabled = false
-        mapView2.gestures.options.pinchZoomEnabled = false
-        mapView2.gestures.options.doubleTapToZoomInEnabled = false
-        mapView2.gestures.options.doubleTouchToZoomOutEnabled = false
-        mapView2.gestures.options.pitchEnabled = false
-        mapView2.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(mapView2)
+        let mapRetrieveInstance = Map()
+        mapRetrieveInstance.zoomLevel = 10
+        mapViewRetrieveData = mapRetrieveInstance.getMapView()
+        view.addSubview(mapViewRetrieveData)
         
-        let options = MapInitOptions(cameraOptions: CameraOptions(center: centerCoordinate, zoom: 16), styleURI: StyleURI(rawValue: mapAllDefaultStyleURI))
-        mapView = MapView(frame: view.bounds, mapInitOptions: options)
-        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//        mapView.location.delegate = self
+        let mapInstance = Map()
+        mapInstance.zoomLevel = 16
+        mapView = mapInstance.getMapView()
         mapView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onMapClick)))
-        mapView.layer.cornerRadius = 35
-        mapView.clipsToBounds = true
         view.addSubview(mapView)
-        
-        mapView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     func setupUserLocation() {
@@ -147,7 +135,7 @@ class MainViewController: UIViewController {
     
     @objc private func searchButtonClick(_ sender: UIButton) {
         let queryOptions = RenderedQueryOptions(layerIds: layerStyleOverlapIds, filter: nil)
-        mapView2.mapboxMap.queryRenderedFeatures(with: mapView.safeAreaLayoutGuide.layoutFrame, options: queryOptions, completion: { [weak self] result in
+        mapViewRetrieveData.mapboxMap.queryRenderedFeatures(with: mapView.safeAreaLayoutGuide.layoutFrame, options: queryOptions, completion: { [weak self] result in
             switch result {
             case .success(let queriedFeatures):
                 if queriedFeatures.count > 0 {
@@ -317,10 +305,10 @@ class MainViewController: UIViewController {
             segmentedBase.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -(view.frame.size.width*0.04)),
             segmentedBase.topAnchor.constraint(equalTo: view.topAnchor, constant: 56),
             segmentedBase.heightAnchor.constraint(equalToConstant: 32),
-            mapView2.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            mapView2.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            mapView2.widthAnchor.constraint(equalToConstant: 50),
-            mapView2.heightAnchor.constraint(equalToConstant: 50),
+            mapViewRetrieveData.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            mapViewRetrieveData.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            mapViewRetrieveData.widthAnchor.constraint(equalToConstant: 50),
+            mapViewRetrieveData.heightAnchor.constraint(equalToConstant: 50),
             mapView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             mapView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             mapView.topAnchor.constraint(equalTo: whiteBackground.bottomAnchor),

@@ -101,26 +101,16 @@ class AnimalDetailViewController: UIViewController {
     }()
     
     lazy var overviewMapView: MapView = {
-        let options = MapInitOptions(cameraOptions: CameraOptions(center: targetCoordinate, zoom: 16.5), styleURI: StyleURI(rawValue: mapAllDisableStyleURI))
-        let mapView = MapView(frame: .zero, mapInitOptions: options)
-        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        mapView.layer.cornerRadius = 20
-        mapView.clipsToBounds = true
-        mapView.gestures.options.panEnabled = false
-        mapView.gestures.options.pinchEnabled = false
-        mapView.gestures.options.pinchPanEnabled = false
-        mapView.gestures.options.pinchZoomEnabled = false
-        mapView.gestures.options.doubleTapToZoomInEnabled = false
-        mapView.gestures.options.doubleTouchToZoomOutEnabled = false
-        mapView.gestures.options.pitchEnabled = false
+        let mapInstance = Map()
+        mapInstance.zoomLevel = 16.5
+        mapInstance.targetCoordinate = targetCoordinate
+        let mapView = mapInstance.getMapView()
         
         let clusterName = animalData["clusterName"]!.rawValue as? String
         let pointAnnotationManager = mapView.annotations.makePointAnnotationManager()
         var customPointAnnotation = PointAnnotation(coordinate: targetCoordinate)
         customPointAnnotation.image = .init(image: UIImage(named: "\(clusterName!) Active")!, name: "\(clusterName!) Active")
         pointAnnotationManager.annotations = [customPointAnnotation]
-        
-        mapView.translatesAutoresizingMaskIntoConstraints = false
         
         return mapView
     }()
