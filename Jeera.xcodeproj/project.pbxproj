@@ -39,6 +39,11 @@
 		42D2B3F429047A5A002818A9 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D2B3F329047A5A002818A9 /* UIViewExtension.swift */; };
 		42D2B3F6290595ED002818A9 /* BottomBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D2B3F5290595ED002818A9 /* BottomBannerViewController.swift */; };
 		4312457B290ABEF6003F7AB9 /* AnimalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4312457A290ABEF6003F7AB9 /* AnimalDetailViewController.swift */; };
+		4373E8E4291016000016F810 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373E8E3291016000016F810 /* UIImageExtension.swift */; };
+		4373E8E62910C4BB0016F810 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373E8E52910C4BB0016F810 /* UIButtonExtension.swift */; };
+		4373E8E82910CD7F0016F810 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373E8E72910CD7F0016F810 /* SegmentedControl.swift */; };
+		4373E8EC291142390016F810 /* MonkeyLocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373E8EB291142390016F810 /* MonkeyLocationButton.swift */; };
+		4373E8EE2911534D0016F810 /* SearchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373E8ED2911534D0016F810 /* SearchButton.swift */; };
 		437D008A2907A623005EB501 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437D00892907A623005EB501 /* MainViewController.swift */; };
 		437D008C2907A66A005EB501 /* OverviewCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437D008B2907A66A005EB501 /* OverviewCardView.swift */; };
 		437D008F2907A69A005EB501 /* MapsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437D008E2907A69A005EB501 /* MapsHelper.swift */; };
@@ -98,6 +103,11 @@
 		42D2B3F329047A5A002818A9 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		42D2B3F5290595ED002818A9 /* BottomBannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBannerViewController.swift; sourceTree = "<group>"; };
 		4312457A290ABEF6003F7AB9 /* AnimalDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalDetailViewController.swift; sourceTree = "<group>"; };
+		4373E8E3291016000016F810 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		4373E8E52910C4BB0016F810 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
+		4373E8E72910CD7F0016F810 /* SegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
+		4373E8EB291142390016F810 /* MonkeyLocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonkeyLocationButton.swift; sourceTree = "<group>"; };
+		4373E8ED2911534D0016F810 /* SearchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchButton.swift; sourceTree = "<group>"; };
 		437D00892907A623005EB501 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		437D008B2907A66A005EB501 /* OverviewCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewCardView.swift; sourceTree = "<group>"; };
 		437D008E2907A69A005EB501 /* MapsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsHelper.swift; sourceTree = "<group>"; };
@@ -242,6 +252,9 @@
 				42836AE629116E7B00301DE5 /* PrimaryButton.swift */,
 				42836AEE29117D1900301DE5 /* HeadingLabel.swift */,
 				42836AF029117D3A00301DE5 /* CaptionLabel.swift */,
+				4373E8E72910CD7F0016F810 /* SegmentedControl.swift */,
+				4373E8EB291142390016F810 /* MonkeyLocationButton.swift */,
+				4373E8ED2911534D0016F810 /* SearchButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -284,6 +297,8 @@
 				42D2B3F329047A5A002818A9 /* UIViewExtension.swift */,
 				42836AE829116EDC00301DE5 /* UIViewControllerExtension.swift */,
 				425AD0CF29022D4700754114 /* UIColorScheme.swift */,
+				4373E8E3291016000016F810 /* UIImageExtension.swift */,
+				4373E8E52910C4BB0016F810 /* UIButtonExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -441,9 +456,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				437D008C2907A66A005EB501 /* OverviewCardView.swift in Sources */,
+				4373E8E62910C4BB0016F810 /* UIButtonExtension.swift in Sources */,
 				437D00912907A6B7005EB501 /* Constants.swift in Sources */,
 				42D12DC72901B8DF00857042 /* CustomDayStyle.swift in Sources */,
 				4246460A2913E095005EB12A /* Navigation.swift in Sources */,
+				4373E8EE2911534D0016F810 /* SearchButton.swift in Sources */,
 				42D12DBF2901B16300857042 /* Animals.swift in Sources */,
 				42D12D8429010F6C00857042 /* ViewController.swift in Sources */,
 				42D12D8A29010F6C00857042 /* Jeera.xcdatamodeld in Sources */,
@@ -455,11 +472,14 @@
 				42836AED29117C1900301DE5 /* BottomBarView.swift in Sources */,
 				42836AE929116EDC00301DE5 /* UIViewControllerExtension.swift in Sources */,
 				42D12DCB2901B9FB00857042 /* NavigateViewController.swift in Sources */,
+				4373E8E4291016000016F810 /* UIImageExtension.swift in Sources */,
 				42D2B3F6290595ED002818A9 /* BottomBannerViewController.swift in Sources */,
+				4373E8E82910CD7F0016F810 /* SegmentedControl.swift in Sources */,
 				437D008F2907A69A005EB501 /* MapsHelper.swift in Sources */,
 				42D12D8229010F6C00857042 /* SceneDelegate.swift in Sources */,
 				42836AE729116E7B00301DE5 /* PrimaryButton.swift in Sources */,
 				42836AEF29117D1900301DE5 /* HeadingLabel.swift in Sources */,
+				4373E8EC291142390016F810 /* MonkeyLocationButton.swift in Sources */,
 				425AD0D029022D4700754114 /* UIColorScheme.swift in Sources */,
 				42D12DC92901B93400857042 /* CustomNightStyle.swift in Sources */,
 				42836AF529118B2200301DE5 /* TopBannerViewController.swift in Sources */,
