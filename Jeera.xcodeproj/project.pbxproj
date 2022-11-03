@@ -7,7 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4246460A2913E095005EB12A /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424646092913E095005EB12A /* Navigation.swift */; };
 		425AD0D029022D4700754114 /* UIColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425AD0CF29022D4700754114 /* UIColorScheme.swift */; };
+		42836AE729116E7B00301DE5 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42836AE629116E7B00301DE5 /* PrimaryButton.swift */; };
+		42836AE929116EDC00301DE5 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42836AE829116EDC00301DE5 /* UIViewControllerExtension.swift */; };
+		42836AED29117C1900301DE5 /* BottomBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42836AEC29117C1900301DE5 /* BottomBarView.swift */; };
+		42836AEF29117D1900301DE5 /* HeadingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42836AEE29117D1900301DE5 /* HeadingLabel.swift */; };
+		42836AF129117D3A00301DE5 /* CaptionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42836AF029117D3A00301DE5 /* CaptionLabel.swift */; };
+		42836AF329118AF000301DE5 /* TopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42836AF229118AF000301DE5 /* TopBarView.swift */; };
+		42836AF529118B2200301DE5 /* TopBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42836AF429118B2200301DE5 /* TopBannerViewController.swift */; };
 		429C799529078D1700DF942A /* Baloo2-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 429C798F29078D1700DF942A /* Baloo2-ExtraBold.ttf */; };
 		429C799629078D1700DF942A /* Baloo2-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 429C799029078D1700DF942A /* Baloo2-Bold.ttf */; };
 		429C799729078D1700DF942A /* Baloo2-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 429C799129078D1700DF942A /* Baloo2-SemiBold.ttf */; };
@@ -28,8 +36,6 @@
 		42D12DC72901B8DF00857042 /* CustomDayStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D12DC62901B8DF00857042 /* CustomDayStyle.swift */; };
 		42D12DC92901B93400857042 /* CustomNightStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D12DC82901B93400857042 /* CustomNightStyle.swift */; };
 		42D12DCB2901B9FB00857042 /* NavigateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D12DCA2901B9FB00857042 /* NavigateViewController.swift */; };
-		42D2B3F029042AE7002818A9 /* CustomBottomBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D2B3EF29042AE7002818A9 /* CustomBottomBannerView.swift */; };
-		42D2B3F229046ACD002818A9 /* BottomBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D2B3F129046ACD002818A9 /* BottomBanner.swift */; };
 		42D2B3F429047A5A002818A9 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D2B3F329047A5A002818A9 /* UIViewExtension.swift */; };
 		42D2B3F6290595ED002818A9 /* BottomBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D2B3F5290595ED002818A9 /* BottomBannerViewController.swift */; };
 		4312457B290ABEF6003F7AB9 /* AnimalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4312457A290ABEF6003F7AB9 /* AnimalDetailViewController.swift */; };
@@ -58,7 +64,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		424646092913E095005EB12A /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		425AD0CF29022D4700754114 /* UIColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorScheme.swift; sourceTree = "<group>"; };
+		42836AE629116E7B00301DE5 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		42836AE829116EDC00301DE5 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		42836AEC29117C1900301DE5 /* BottomBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBarView.swift; sourceTree = "<group>"; };
+		42836AEE29117D1900301DE5 /* HeadingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingLabel.swift; sourceTree = "<group>"; };
+		42836AF029117D3A00301DE5 /* CaptionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionLabel.swift; sourceTree = "<group>"; };
+		42836AF229118AF000301DE5 /* TopBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarView.swift; sourceTree = "<group>"; };
+		42836AF429118B2200301DE5 /* TopBannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBannerViewController.swift; sourceTree = "<group>"; };
 		429C798F29078D1700DF942A /* Baloo2-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Baloo2-ExtraBold.ttf"; sourceTree = "<group>"; };
 		429C799029078D1700DF942A /* Baloo2-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Baloo2-Bold.ttf"; sourceTree = "<group>"; };
 		429C799129078D1700DF942A /* Baloo2-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Baloo2-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -81,8 +95,6 @@
 		42D12DC62901B8DF00857042 /* CustomDayStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDayStyle.swift; sourceTree = "<group>"; };
 		42D12DC82901B93400857042 /* CustomNightStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNightStyle.swift; sourceTree = "<group>"; };
 		42D12DCA2901B9FB00857042 /* NavigateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigateViewController.swift; sourceTree = "<group>"; };
-		42D2B3EF29042AE7002818A9 /* CustomBottomBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBottomBannerView.swift; sourceTree = "<group>"; };
-		42D2B3F129046ACD002818A9 /* BottomBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBanner.swift; sourceTree = "<group>"; };
 		42D2B3F329047A5A002818A9 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		42D2B3F5290595ED002818A9 /* BottomBannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBannerViewController.swift; sourceTree = "<group>"; };
 		4312457A290ABEF6003F7AB9 /* AnimalDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalDetailViewController.swift; sourceTree = "<group>"; };
@@ -226,8 +238,10 @@
 		42D12DBB2901B10500857042 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				42D2B3F129046ACD002818A9 /* BottomBanner.swift */,
 				437D008B2907A66A005EB501 /* OverviewCardView.swift */,
+				42836AE629116E7B00301DE5 /* PrimaryButton.swift */,
+				42836AEE29117D1900301DE5 /* HeadingLabel.swift */,
+				42836AF029117D3A00301DE5 /* CaptionLabel.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -247,6 +261,8 @@
 				42D2B3F5290595ED002818A9 /* BottomBannerViewController.swift */,
 				437D00892907A623005EB501 /* MainViewController.swift */,
 				4312457A290ABEF6003F7AB9 /* AnimalDetailViewController.swift */,
+				42836AF429118B2200301DE5 /* TopBannerViewController.swift */,
+				424646092913E095005EB12A /* Navigation.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -256,7 +272,8 @@
 			children = (
 				42D12DC62901B8DF00857042 /* CustomDayStyle.swift */,
 				42D12DC82901B93400857042 /* CustomNightStyle.swift */,
-				42D2B3EF29042AE7002818A9 /* CustomBottomBannerView.swift */,
+				42836AEC29117C1900301DE5 /* BottomBarView.swift */,
+				42836AF229118AF000301DE5 /* TopBarView.swift */,
 			);
 			path = Navigate;
 			sourceTree = "<group>";
@@ -265,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				42D2B3F329047A5A002818A9 /* UIViewExtension.swift */,
+				42836AE829116EDC00301DE5 /* UIViewControllerExtension.swift */,
 				425AD0CF29022D4700754114 /* UIColorScheme.swift */,
 			);
 			path = Extension;
@@ -424,22 +442,28 @@
 			files = (
 				437D008C2907A66A005EB501 /* OverviewCardView.swift in Sources */,
 				437D00912907A6B7005EB501 /* Constants.swift in Sources */,
-				42D2B3F029042AE7002818A9 /* CustomBottomBannerView.swift in Sources */,
 				42D12DC72901B8DF00857042 /* CustomDayStyle.swift in Sources */,
+				4246460A2913E095005EB12A /* Navigation.swift in Sources */,
 				42D12DBF2901B16300857042 /* Animals.swift in Sources */,
 				42D12D8429010F6C00857042 /* ViewController.swift in Sources */,
-				42D2B3F229046ACD002818A9 /* BottomBanner.swift in Sources */,
 				42D12D8A29010F6C00857042 /* Jeera.xcdatamodeld in Sources */,
 				4312457B290ABEF6003F7AB9 /* AnimalDetailViewController.swift in Sources */,
 				42D2B3F429047A5A002818A9 /* UIViewExtension.swift in Sources */,
+				42836AF329118AF000301DE5 /* TopBarView.swift in Sources */,
 				437D008A2907A623005EB501 /* MainViewController.swift in Sources */,
 				42D12D8029010F6C00857042 /* AppDelegate.swift in Sources */,
+				42836AED29117C1900301DE5 /* BottomBarView.swift in Sources */,
+				42836AE929116EDC00301DE5 /* UIViewControllerExtension.swift in Sources */,
 				42D12DCB2901B9FB00857042 /* NavigateViewController.swift in Sources */,
 				42D2B3F6290595ED002818A9 /* BottomBannerViewController.swift in Sources */,
 				437D008F2907A69A005EB501 /* MapsHelper.swift in Sources */,
 				42D12D8229010F6C00857042 /* SceneDelegate.swift in Sources */,
+				42836AE729116E7B00301DE5 /* PrimaryButton.swift in Sources */,
+				42836AEF29117D1900301DE5 /* HeadingLabel.swift in Sources */,
 				425AD0D029022D4700754114 /* UIColorScheme.swift in Sources */,
 				42D12DC92901B93400857042 /* CustomNightStyle.swift in Sources */,
+				42836AF529118B2200301DE5 /* TopBannerViewController.swift in Sources */,
+				42836AF129117D3A00301DE5 /* CaptionLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
