@@ -6,6 +6,7 @@
 //
 import UIKit
 import MapboxMaps
+import MapboxDirections
 
 class MainViewController: UIViewController {
     internal var mapView: MapView!
@@ -34,7 +35,7 @@ class MainViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .darkContent
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupMapView()
@@ -67,13 +68,13 @@ class MainViewController: UIViewController {
     func setupUserLocation() {
         cameraLocationConsumer = CameraLocationConsumer(mapView: mapView)
         mapView.location.options.puckType = .puck2D()
-
+        
         mapView.mapboxMap.onNext(event: .mapLoaded) { _ in
             // Register the location consumer with the map
             // Note that the location manager holds weak references to consumers, which should be retained
             self.mapView.location.addLocationConsumer(newConsumer: self.cameraLocationConsumer)
-
-//            self.finish() // Needed for internal testing purposes.
+            
+            //            self.finish() // Needed for internal testing purposes.
         }
     }
     
@@ -139,56 +140,63 @@ class MainViewController: UIViewController {
             switch result {
             case .success(let queriedFeatures):
                 if queriedFeatures.count > 0 {
-                    for data in queriedFeatures {
+                    for (i, data) in queriedFeatures.enumerated() {
                         let parsedFeature = data.feature.properties!.reduce(into: [:]) { $0[$1.0] = $1.1 }
-                        let type = parsedFeature["type"]!.rawValue as! String
-                        if type == "Hewan" {
+                        let typeFeature = parsedFeature["type"]!.rawValue as! String
+                        let isLastIndex = i+1 == queriedFeatures.count ? true : false
+                        if typeFeature == "Hewan" {
                             if let geometry = data.feature.geometry, case let Geometry.point(point) = geometry {
                                 let coordinate = point.coordinates
-                                self!.animalsData.append(
-                                    AllData(
-                                        cage: parsedFeature["cage"]!.rawValue as! String,
-                                        idName: parsedFeature["idName"]!.rawValue as! String,
-                                        enName: parsedFeature["enName"]!.rawValue as! String,
-                                        latinName: parsedFeature["latinName"]!.rawValue as! String,
-                                        type: parsedFeature["type"]!.rawValue as! String,
-                                        clusterName: "",
-                                        lat: coordinate.latitude,
-                                        long: coordinate.longitude
-                                    )
-                                )
+                                self!.getDistance(locationCoordinate: coordinate, parsedFeature: parsedFeature, typeFeature: typeFeature, isLastIndex: isLastIndex)
+//                                self!.animalsData.append(
+//                                    AllData(
+//                                        cage: parsedFeature["cage"]!.rawValue as! String,
+//                                        idName: parsedFeature["idName"]!.rawValue as! String,
+//                                        enName: parsedFeature["enName"]!.rawValue as! String,
+//                                        latinName: parsedFeature["latinName"]!.rawValue as! String,
+//                                        type: parsedFeature["type"]!.rawValue as! String,
+//                                        clusterName: "",
+//                                        lat: coordinate.latitude,
+//                                        long: coordinate.longitude,
+//                                        distance: 0
+//                                    )
+//                                )
                             }
-                        } else if type == "Kandang" {
+                        } else if typeFeature == "Kandang" {
                             if let geometry = data.feature.geometry, case let Geometry.point(point) = geometry {
                                 let coordinate = point.coordinates
-                                self!.cagesData.append(
-                                    AllData(
-                                        cage: "",
-                                        idName: parsedFeature["idName"]!.rawValue as! String,
-                                        enName: parsedFeature["enName"]!.rawValue as! String,
-                                        latinName: "",
-                                        type: parsedFeature["type"]!.rawValue as! String,
-                                        clusterName: parsedFeature["clusterName"]!.rawValue as! String,
-                                        lat: coordinate.latitude,
-                                        long: coordinate.longitude
-                                    )
-                                )
+                                self!.getDistance(locationCoordinate: coordinate, parsedFeature: parsedFeature, typeFeature: typeFeature, isLastIndex: isLastIndex)
+//                                self!.cagesData.append(
+//                                    AllData(
+//                                        cage: "",
+//                                        idName: parsedFeature["idName"]!.rawValue as! String,
+//                                        enName: parsedFeature["enName"]!.rawValue as! String,
+//                                        latinName: "",
+//                                        type: parsedFeature["type"]!.rawValue as! String,
+//                                        clusterName: parsedFeature["clusterName"]!.rawValue as! String,
+//                                        lat: coordinate.latitude,
+//                                        long: coordinate.longitude,
+//                                        distance: 0
+//                                    )
+//                                )
                             }
                         } else {
                             if let geometry = data.feature.geometry, case let Geometry.point(point) = geometry {
                                 let coordinate = point.coordinates
-                                self!.facilitiesData.append(
-                                    AllData(
-                                        cage: "",
-                                        idName: parsedFeature["idName"]!.rawValue as! String,
-                                        enName: parsedFeature["enName"]!.rawValue as! String,
-                                        latinName: "",
-                                        type: parsedFeature["type"]!.rawValue as! String,
-                                        clusterName: parsedFeature["clusterName"]!.rawValue as! String,
-                                        lat: coordinate.latitude,
-                                        long: coordinate.longitude
-                                    )
-                                )
+                                self!.getDistance(locationCoordinate: coordinate, parsedFeature: parsedFeature, typeFeature: typeFeature, isLastIndex: isLastIndex)
+//                                self!.facilitiesData.append(
+//                                    AllData(
+//                                        cage: "",
+//                                        idName: parsedFeature["idName"]!.rawValue as! String,
+//                                        enName: parsedFeature["enName"]!.rawValue as! String,
+//                                        latinName: "",
+//                                        type: parsedFeature["type"]!.rawValue as! String,
+//                                        clusterName: parsedFeature["clusterName"]!.rawValue as! String,
+//                                        lat: coordinate.latitude,
+//                                        long: coordinate.longitude,
+//                                        distance: 0
+//                                    )
+//                                )
                             }
                         }
                     }
@@ -196,13 +204,85 @@ class MainViewController: UIViewController {
             case .failure(let error):
                 print(error.localizedDescription)
             }
-            let searchViewController = SearchViewController()
-            searchViewController.modalPresentationStyle = .formSheet
-            searchViewController.animalsData = self!.animalsData
-            searchViewController.cagesData = self!.cagesData
-            searchViewController.facilitiesData = self!.facilitiesData
-            self!.present(searchViewController, animated: true, completion: nil)
+//            let searchViewController = SearchViewController()
+//            searchViewController.modalPresentationStyle = .formSheet
+//            searchViewController.animalsData = self!.animalsData
+//            searchViewController.cagesData = self!.cagesData
+//            searchViewController.facilitiesData = self!.facilitiesData
+//            self!.present(searchViewController, animated: true, completion: nil)
         })
+    }
+    
+    func getDistance(locationCoordinate: CLLocationCoordinate2D, parsedFeature: Dictionary<String, JSONValue>, typeFeature: String, isLastIndex: Bool) {
+        let directions = Directions.shared
+        let waypoints = [
+            Waypoint(coordinate: userLocation, name: "origin"),
+            Waypoint(coordinate: locationCoordinate, name: "destination"),
+        ]
+        let options = RouteOptions(waypoints: waypoints, profileIdentifier: .walking)
+        let _ = directions.calculate(options) { (session, result) in
+            switch result {
+            case .failure(let error):
+                print("Error calculating directions: \(error)")
+                return
+            case .success(let response):
+                guard let route = response.routes?.first, let _ = route.legs.first else {
+                    return
+                }
+                
+                if typeFeature == "Hewan" {
+                    self.animalsData.append(
+                        AllData(
+                            cage: parsedFeature["cage"]!.rawValue as! String,
+                            idName: parsedFeature["idName"]!.rawValue as! String,
+                            enName: parsedFeature["enName"]!.rawValue as! String,
+                            latinName: parsedFeature["latinName"]!.rawValue as! String,
+                            type: parsedFeature["type"]!.rawValue as! String,
+                            clusterName: "",
+                            lat: locationCoordinate.latitude,
+                            long: locationCoordinate.longitude,
+                            distance: Int(route.distance)
+                        )
+                    )
+                } else if typeFeature == "Kandang" {
+                    self.cagesData.append(
+                        AllData(
+                            cage: "",
+                            idName: parsedFeature["idName"]!.rawValue as! String,
+                            enName: parsedFeature["enName"]!.rawValue as! String,
+                            latinName: "",
+                            type: parsedFeature["type"]!.rawValue as! String,
+                            clusterName: parsedFeature["clusterName"]!.rawValue as! String,
+                            lat: locationCoordinate.latitude,
+                            long: locationCoordinate.longitude,
+                            distance: Int(route.distance)
+                        )
+                    )
+                } else {
+                    self.facilitiesData.append(
+                        AllData(
+                            cage: "",
+                            idName: parsedFeature["idName"]!.rawValue as! String,
+                            enName: parsedFeature["enName"]!.rawValue as! String,
+                            latinName: "",
+                            type: parsedFeature["type"]!.rawValue as! String,
+                            clusterName: parsedFeature["clusterName"]!.rawValue as! String,
+                            lat: locationCoordinate.latitude,
+                            long: locationCoordinate.longitude,
+                            distance: Int(route.distance)
+                        )
+                    )
+                }
+            }
+            if isLastIndex {
+                let searchViewController = SearchViewController()
+                searchViewController.modalPresentationStyle = .formSheet
+                searchViewController.animalsData = self.animalsData
+                searchViewController.cagesData = self.cagesData
+                searchViewController.facilitiesData = self.facilitiesData
+                self.present(searchViewController, animated: true, completion: nil)
+            }
+        }
     }
     
     func showOverview() {
@@ -352,23 +432,23 @@ class MainViewController: UIViewController {
                 }
                 // Change the MapView for Each Segmented Control Options
                 switch selectedSegmentIndex {
-                // Case 0: If the user select the First Segmented Control Option "Semua" -> See All of the Map Anotations
+                    // Case 0: If the user select the First Segmented Control Option "Semua" -> See All of the Map Anotations
                 case 0:
                     self.mapView.mapboxMap.style.uri = StyleURI(rawValue: mapAllDefaultStyleURI)
-                
-                // Case 1: If the user select the First Segmented Control Option "Kandang" -> See the Cages Only Map Anotations
+                    
+                    // Case 1: If the user select the First Segmented Control Option "Kandang" -> See the Cages Only Map Anotations
                 case 1:
                     self.mapView.mapboxMap.style.uri = StyleURI(rawValue: mapKandangDefaultStyleURI)
                     
-                // Case 2: If the user select the First Segmented Control Option "Fasilitas" -> See the Facility Only Map Anotations
+                    // Case 2: If the user select the First Segmented Control Option "Fasilitas" -> See the Facility Only Map Anotations
                 case 2:
                     self.mapView.mapboxMap.style.uri = StyleURI(rawValue: mapFasilitasStyleURI)
                     
-                // default: The Default Map -> See All of the Map Anotations
+                    // default: The Default Map -> See All of the Map Anotations
                 default:
                     self.mapView.mapboxMap.style.uri = StyleURI(rawValue: mapAllDefaultStyleURI)
                 }
-
+                
             }
         }
     }
@@ -393,7 +473,7 @@ class MainViewController: UIViewController {
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestAlwaysAuthorization()
     }
-
+    
 }
 
 // MARK: - CLLocationManagerDelegate Extension
@@ -432,13 +512,13 @@ struct MainViewControllerPreviews: PreviewProvider {
 @available(iOS 13, *)
 struct UIMainViewControllerPreview<ViewController: UIViewController>: UIViewControllerRepresentable {
     let viewController: ViewController
-
+    
     init(_ builder: @escaping () -> ViewController) {
         viewController = builder()
     }
-
+    
     func makeUIViewController(context: Context) -> ViewController { viewController }
-
+    
     func updateUIViewController(_ uiViewController: ViewController, context: Context) {}
     
     

@@ -22,6 +22,7 @@ struct AllData: Equatable, Hashable, Encodable, Decodable {
     var clusterName: String
     var lat: Double
     var long: Double
+    var distance: Int
     
 //    init(cage: String? = "", idName: String, enName: String, latinName: String? = "", type: String, clusterName: String? = "", lat: Double, long: Double) {
 //        self.cage = cage

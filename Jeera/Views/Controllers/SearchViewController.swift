@@ -126,6 +126,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //        if indexPath.row == 0 {
 //            nonDuplicateNames.removeAll()
 //        }
+        print(searchResults[indexPath.row].distance)
         let name = searchResults[indexPath.row].idName
 //        if !nonDuplicateNames.contains(name) {
 //            print(searchResults[indexPath.row])
