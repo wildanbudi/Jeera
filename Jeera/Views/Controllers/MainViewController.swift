@@ -15,7 +15,7 @@ class MainViewController: UIViewController {
     internal var pointAnnotationManager: PointAnnotationManager!
     internal var targetCoordinate: CLLocationCoordinate2D!
     internal var animalData: Dictionary<String, JSONValue>!
-    internal var userLocation: CLLocationCoordinate2D!
+    internal var userLocation: CLLocationCoordinate2D = centerCoordinate
     internal var animalsData: [AllData] = []
     internal var facilitiesData: [AllData] = []
     internal var cagesData: [AllData] = []
@@ -27,6 +27,8 @@ class MainViewController: UIViewController {
     lazy var selectedSegmentIndex = 0
     lazy var buttonLocationOFF = UIButton(type: .custom)
     lazy var searchButton = SearchButton()
+    
+    var timer = Timer()
     
     // Initiate The Core Location Manager
     let locationManager = CLLocationManager()
@@ -44,6 +46,9 @@ class MainViewController: UIViewController {
         customSegmentedControl()
         setupSearchBtn()
         setupConstraint()
+        if self.animalsData.count == 0 {
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(retrieveAnnotationData), userInfo: nil, repeats: true)
+        }
         
         // Check the User's Core Location Status Through the CLLocationDelegate Function
         if CLLocationManager.locationServicesEnabled() {
@@ -51,6 +56,7 @@ class MainViewController: UIViewController {
             locationManager.startUpdatingLocation()
         }
     }
+    
     
     func setupMapView() {
         let mapRetrieveInstance = Map()
@@ -61,93 +67,29 @@ class MainViewController: UIViewController {
         let mapInstance = Map()
         mapInstance.zoomLevel = 16
         mapView = mapInstance.getMapView()
+        mapView.ornaments.options.scaleBar.visibility = .hidden
+        mapView.ornaments.options.compass.visibility = .hidden
         mapView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onMapClick)))
         view.addSubview(mapView)
     }
     
-    func setupUserLocation() {
-        cameraLocationConsumer = CameraLocationConsumer(mapView: mapView)
-        mapView.location.options.puckType = .puck2D()
-        
-        mapView.mapboxMap.onNext(event: .mapLoaded) { _ in
-            // Register the location consumer with the map
-            // Note that the location manager holds weak references to consumers, which should be retained
-            self.mapView.location.addLocationConsumer(newConsumer: self.cameraLocationConsumer)
-            
-            //            self.finish() // Needed for internal testing purposes.
-        }
-    }
-    
-    func setupSearchBtn() {
-        searchButton.addTarget(self, action: #selector(searchButtonClick(_:)), for: .touchUpInside)
-        view.addSubview(searchButton)
-    }
-    
-    @objc private func onMapClick(_ sender: UITapGestureRecognizer) {
-        guard sender.state == .ended else { return }
-        let screenPoint = sender.location(in: mapView)
-        let queryOptions = RenderedQueryOptions(layerIds: layerStyleIds, filter: nil)
-        mapView.mapboxMap.queryRenderedFeatures(with: screenPoint, options: queryOptions, completion: { [weak self] result in
-            switch result {
-            case .success(let features):
-                if let feature = features.first?.feature {
-                    let dict = feature.properties!.reduce(into: [:]) { $0[$1.0] = $1.1 }
-                    self!.animalData = dict
-                    if let geometry = feature.geometry, case let Geometry.point(point) = geometry {
-                        self!.targetCoordinate = point.coordinates
-                        var customPointAnnotation = PointAnnotation(coordinate: self!.targetCoordinate)
-                        if (self!.pointAnnotationManager != nil) {
-                            self!.pointAnnotationManager.annotations = []
-                        }
-                        self!.pointAnnotationManager = self!.mapView.annotations.makePointAnnotationManager()
-                        let uuid = NSUUID().uuidString
-                        customPointAnnotation.image = .init(image: UIImage(named: "\(dict["clusterName"]!.rawValue) Active")!, name: "\(dict["clusterName"]!.rawValue) Active-\(uuid)")
-                        self!.pointAnnotationManager.annotations = [customPointAnnotation]
-                        self!.removeSubview()
-                        self!.showOverview()
-                        switch self!.selectedSegmentIndex {
-                        case 1:
-                            self!.mapView.mapboxMap.style.uri = StyleURI(rawValue: mapKandangDisableStyleURI)
-                        case 2:
-                            self!.mapView.mapboxMap.style.uri = StyleURI(rawValue: mapFasilitasStyleURI)
-                        default:
-                            self!.mapView.mapboxMap.style.uri = StyleURI(rawValue: mapAllDisableStyleURI)
-                        }
-                    }
-                } else {
-                    if (self!.pointAnnotationManager != nil) {
-                        self!.pointAnnotationManager.annotations = []
-                        self!.removeSubview()
-                        switch self!.selectedSegmentIndex {
-                        case 1:
-                            self!.mapView.mapboxMap.style.uri = StyleURI(rawValue: mapKandangDefaultStyleURI)
-                        case 2:
-                            self!.mapView.mapboxMap.style.uri = StyleURI(rawValue: mapFasilitasStyleURI)
-                        default:
-                            self!.mapView.mapboxMap.style.uri = StyleURI(rawValue: mapAllDefaultStyleURI)
-                        }
-                    }
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        })
-    }
-    
-    @objc private func searchButtonClick(_ sender: UIButton) {
+    @objc func retrieveAnnotationData() {
+        timer.invalidate()
         let queryOptions = RenderedQueryOptions(layerIds: layerStyleOverlapIds, filter: nil)
         mapViewRetrieveData.mapboxMap.queryRenderedFeatures(with: mapView.safeAreaLayoutGuide.layoutFrame, options: queryOptions, completion: { [weak self] result in
             switch result {
             case .success(let queriedFeatures):
+                print(queriedFeatures.count, "queriedFeatures")
                 if queriedFeatures.count > 0 {
                     for (i, data) in queriedFeatures.enumerated() {
                         let parsedFeature = data.feature.properties!.reduce(into: [:]) { $0[$1.0] = $1.1 }
                         let typeFeature = parsedFeature["type"]!.rawValue as! String
                         let isLastIndex = i+1 == queriedFeatures.count ? true : false
                         if typeFeature == "Hewan" {
+//                            self!.animalsData.removeAll()
                             if let geometry = data.feature.geometry, case let Geometry.point(point) = geometry {
                                 let coordinate = point.coordinates
-                                self!.getDistance(locationCoordinate: coordinate, parsedFeature: parsedFeature, typeFeature: typeFeature, isLastIndex: isLastIndex)
+                                self!.mappingAnnotationData(locationCoordinate: coordinate, parsedFeature: parsedFeature, typeFeature: typeFeature, isLastIndex: isLastIndex)
 //                                self!.animalsData.append(
 //                                    AllData(
 //                                        cage: parsedFeature["cage"]!.rawValue as! String,
@@ -163,9 +105,10 @@ class MainViewController: UIViewController {
 //                                )
                             }
                         } else if typeFeature == "Kandang" {
+//                            self!.cagesData.removeAll()
                             if let geometry = data.feature.geometry, case let Geometry.point(point) = geometry {
                                 let coordinate = point.coordinates
-                                self!.getDistance(locationCoordinate: coordinate, parsedFeature: parsedFeature, typeFeature: typeFeature, isLastIndex: isLastIndex)
+                                self!.mappingAnnotationData(locationCoordinate: coordinate, parsedFeature: parsedFeature, typeFeature: typeFeature, isLastIndex: isLastIndex)
 //                                self!.cagesData.append(
 //                                    AllData(
 //                                        cage: "",
@@ -181,9 +124,10 @@ class MainViewController: UIViewController {
 //                                )
                             }
                         } else {
+//                            self!.facilitiesData.removeAll()
                             if let geometry = data.feature.geometry, case let Geometry.point(point) = geometry {
                                 let coordinate = point.coordinates
-                                self!.getDistance(locationCoordinate: coordinate, parsedFeature: parsedFeature, typeFeature: typeFeature, isLastIndex: isLastIndex)
+                                self!.mappingAnnotationData(locationCoordinate: coordinate, parsedFeature: parsedFeature, typeFeature: typeFeature, isLastIndex: isLastIndex)
 //                                self!.facilitiesData.append(
 //                                    AllData(
 //                                        cage: "",
@@ -204,16 +148,38 @@ class MainViewController: UIViewController {
             case .failure(let error):
                 print(error.localizedDescription)
             }
-//            let searchViewController = SearchViewController()
-//            searchViewController.modalPresentationStyle = .formSheet
-//            searchViewController.animalsData = self!.animalsData
-//            searchViewController.cagesData = self!.cagesData
-//            searchViewController.facilitiesData = self!.facilitiesData
-//            self!.present(searchViewController, animated: true, completion: nil)
         })
     }
     
-    func getDistance(locationCoordinate: CLLocationCoordinate2D, parsedFeature: Dictionary<String, JSONValue>, typeFeature: String, isLastIndex: Bool) {
+    func setupUserLocation() {
+        cameraLocationConsumer = CameraLocationConsumer(mapView: mapView)
+        mapView.location.options.puckType = .puck2D()
+        
+        mapView.mapboxMap.onNext(event: .mapLoaded) { _ in
+            // Register the location consumer with the map
+            // Note that the location manager holds weak references to consumers, which should be retained
+            self.mapView.location.addLocationConsumer(newConsumer: self.cameraLocationConsumer)
+            
+            //            self.finish() // Needed for internal testing purposes.
+        }
+    }
+    
+    func setupSearchBtn() {
+        searchButton.addTarget(self, action: #selector(searchButtonClick(_:)), for: .touchUpInside)
+        view.addSubview(searchButton)
+    }
+    
+    @objc private func searchButtonClick(_ sender: UIButton) {
+        let searchViewController = SearchViewController()
+        searchViewController.modalPresentationStyle = .formSheet
+        searchViewController.animalsData = self.animalsData
+        searchViewController.cagesData = self.cagesData
+        searchViewController.facilitiesData = self.facilitiesData
+        self.present(searchViewController, animated: true, completion: nil)
+        
+    }
+    
+    func mappingAnnotationData(locationCoordinate: CLLocationCoordinate2D, parsedFeature: Dictionary<String, JSONValue>, typeFeature: String, isLastIndex: Bool) {
         let directions = Directions.shared
         let waypoints = [
             Waypoint(coordinate: userLocation, name: "origin"),
@@ -274,15 +240,67 @@ class MainViewController: UIViewController {
                     )
                 }
             }
-            if isLastIndex {
-                let searchViewController = SearchViewController()
-                searchViewController.modalPresentationStyle = .formSheet
-                searchViewController.animalsData = self.animalsData
-                searchViewController.cagesData = self.cagesData
-                searchViewController.facilitiesData = self.facilitiesData
-                self.present(searchViewController, animated: true, completion: nil)
-            }
         }
+    }
+    
+    @objc private func onMapClick(_ sender: UITapGestureRecognizer) {
+        guard sender.state == .ended else { return }
+        let screenPoint = sender.location(in: mapView)
+        let queryOptions = RenderedQueryOptions(layerIds: layerStyleIds, filter: nil)
+        mapView.mapboxMap.queryRenderedFeatures(with: screenPoint, options: queryOptions, completion: { [weak self] result in
+            switch result {
+            case .success(let features):
+                if let feature = features.first?.feature {
+                    let dict = feature.properties!.reduce(into: [:]) { $0[$1.0] = $1.1 }
+                    self!.animalData = dict
+                    if let geometry = feature.geometry, case let Geometry.point(point) = geometry {
+                        self!.targetCoordinate = point.coordinates
+                        var customPointAnnotation = PointAnnotation(coordinate: self!.targetCoordinate)
+                        if (self!.pointAnnotationManager != nil) {
+                            self!.pointAnnotationManager.annotations = []
+                        }
+                        self!.pointAnnotationManager = self!.mapView.annotations.makePointAnnotationManager()
+                        let uuid = NSUUID().uuidString
+                        customPointAnnotation.image = .init(image: UIImage(named: "\(dict["clusterName"]!.rawValue) Active")!, name: "\(dict["clusterName"]!.rawValue) Active-\(uuid)")
+                        self!.pointAnnotationManager.annotations = [customPointAnnotation]
+                        self!.removeSubview()
+                        self!.showOverview()
+                        switch self!.selectedSegmentIndex {
+                        case 1:
+                            self!.mapView.mapboxMap.style.uri = StyleURI(rawValue: mapKandangDisableStyleURI)
+                        case 2:
+                            self!.mapView.mapboxMap.style.uri = StyleURI(rawValue: mapFasilitasStyleURI)
+                        default:
+                            self!.mapView.mapboxMap.style.uri = StyleURI(rawValue: mapAllDisableStyleURI)
+                        }
+                    }
+                } else {
+                    if (self!.pointAnnotationManager != nil) {
+                        self!.pointAnnotationManager.annotations = []
+                        self!.removeSubview()
+                        switch self!.selectedSegmentIndex {
+                        case 1:
+                            self!.mapView.mapboxMap.style.uri = StyleURI(rawValue: mapKandangDefaultStyleURI)
+                        case 2:
+                            self!.mapView.mapboxMap.style.uri = StyleURI(rawValue: mapFasilitasStyleURI)
+                        default:
+                            self!.mapView.mapboxMap.style.uri = StyleURI(rawValue: mapAllDefaultStyleURI)
+                        }
+                    }
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        })
+    }
+    
+    @objc private func onOverviewClick(_ sender: UIButton) {
+        let animalDetailViewController = AnimalDetailViewController()
+        animalDetailViewController.modalPresentationStyle = .fullScreen
+        animalDetailViewController.animalData = animalData
+        animalDetailViewController.targetCoordinate = targetCoordinate
+        animalDetailViewController.userLocation = userLocation
+        self.present(animalDetailViewController, animated: true, completion: nil)
     }
     
     func showOverview() {
@@ -335,15 +353,6 @@ class MainViewController: UIViewController {
         }
     }
     
-    @objc private func onOverviewClick(_ sender: UIButton) {
-        let animalDetailViewController = AnimalDetailViewController()
-        animalDetailViewController.modalPresentationStyle = .fullScreen
-        animalDetailViewController.animalData = animalData
-        animalDetailViewController.targetCoordinate = targetCoordinate
-        animalDetailViewController.userLocation = userLocation
-        self.present(animalDetailViewController, animated: true, completion: nil)
-    }
-    
     func segmentedBackground() {
         view.safeAreaLayoutGuide.owningView?.backgroundColor = .white
         whiteBackground = SegmentedControl.whiteBackground
@@ -392,8 +401,8 @@ class MainViewController: UIViewController {
             segmentedBase.heightAnchor.constraint(equalToConstant: 32),
             mapViewRetrieveData.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             mapViewRetrieveData.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            mapViewRetrieveData.widthAnchor.constraint(equalToConstant: 50),
-            mapViewRetrieveData.heightAnchor.constraint(equalToConstant: 50),
+            mapViewRetrieveData.widthAnchor.constraint(equalToConstant: 200),
+            mapViewRetrieveData.heightAnchor.constraint(equalToConstant: 200),
             mapView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             mapView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             mapView.topAnchor.constraint(equalTo: whiteBackground.bottomAnchor),
@@ -403,6 +412,7 @@ class MainViewController: UIViewController {
             searchButton.widthAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
             searchButton.heightAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
         ])
+        print("constraint")
     }
     
     // Objective-C Function for the segmentedSelector action
@@ -481,7 +491,7 @@ extension MainViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if ((manager.location?.coordinate) != nil) {
             setupUserLocation()
-            userLocation = manager.location?.coordinate
+            userLocation = manager.location!.coordinate
         }
         if status == .authorizedAlways {
             if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
