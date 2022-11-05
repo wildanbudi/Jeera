@@ -46,9 +46,6 @@ class MainViewController: UIViewController {
         customSegmentedControl()
         setupSearchBtn()
         setupConstraint()
-        if self.animalsData.count == 0 {
-            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(retrieveAnnotationData), userInfo: nil, repeats: true)
-        }
         
         // Check the User's Core Location Status Through the CLLocationDelegate Function
         if CLLocationManager.locationServicesEnabled() {
@@ -57,6 +54,12 @@ class MainViewController: UIViewController {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if self.animalsData.count == 0 {
+            timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(retrieveAnnotationData), userInfo: nil, repeats: true)
+        }
+    }
     
     func setupMapView() {
         let mapRetrieveInstance = Map()
@@ -79,17 +82,14 @@ class MainViewController: UIViewController {
         mapViewRetrieveData.mapboxMap.queryRenderedFeatures(with: mapView.safeAreaLayoutGuide.layoutFrame, options: queryOptions, completion: { [weak self] result in
             switch result {
             case .success(let queriedFeatures):
-                print(queriedFeatures.count, "queriedFeatures")
                 if queriedFeatures.count > 0 {
-                    for (i, data) in queriedFeatures.enumerated() {
+                    for data in queriedFeatures {
                         let parsedFeature = data.feature.properties!.reduce(into: [:]) { $0[$1.0] = $1.1 }
                         let typeFeature = parsedFeature["type"]!.rawValue as! String
-                        let isLastIndex = i+1 == queriedFeatures.count ? true : false
                         if typeFeature == "Hewan" {
-//                            self!.animalsData.removeAll()
                             if let geometry = data.feature.geometry, case let Geometry.point(point) = geometry {
                                 let coordinate = point.coordinates
-                                self!.mappingAnnotationData(locationCoordinate: coordinate, parsedFeature: parsedFeature, typeFeature: typeFeature, isLastIndex: isLastIndex)
+                                self!.mappingAnnotationData(locationCoordinate: coordinate, parsedFeature: parsedFeature, typeFeature: typeFeature)
 //                                self!.animalsData.append(
 //                                    AllData(
 //                                        cage: parsedFeature["cage"]!.rawValue as! String,
@@ -105,10 +105,9 @@ class MainViewController: UIViewController {
 //                                )
                             }
                         } else if typeFeature == "Kandang" {
-//                            self!.cagesData.removeAll()
                             if let geometry = data.feature.geometry, case let Geometry.point(point) = geometry {
                                 let coordinate = point.coordinates
-                                self!.mappingAnnotationData(locationCoordinate: coordinate, parsedFeature: parsedFeature, typeFeature: typeFeature, isLastIndex: isLastIndex)
+                                self!.mappingAnnotationData(locationCoordinate: coordinate, parsedFeature: parsedFeature, typeFeature: typeFeature)
 //                                self!.cagesData.append(
 //                                    AllData(
 //                                        cage: "",
@@ -124,10 +123,9 @@ class MainViewController: UIViewController {
 //                                )
                             }
                         } else {
-//                            self!.facilitiesData.removeAll()
                             if let geometry = data.feature.geometry, case let Geometry.point(point) = geometry {
                                 let coordinate = point.coordinates
-                                self!.mappingAnnotationData(locationCoordinate: coordinate, parsedFeature: parsedFeature, typeFeature: typeFeature, isLastIndex: isLastIndex)
+                                self!.mappingAnnotationData(locationCoordinate: coordinate, parsedFeature: parsedFeature, typeFeature: typeFeature)
 //                                self!.facilitiesData.append(
 //                                    AllData(
 //                                        cage: "",
@@ -179,7 +177,7 @@ class MainViewController: UIViewController {
         
     }
     
-    func mappingAnnotationData(locationCoordinate: CLLocationCoordinate2D, parsedFeature: Dictionary<String, JSONValue>, typeFeature: String, isLastIndex: Bool) {
+    func mappingAnnotationData(locationCoordinate: CLLocationCoordinate2D, parsedFeature: Dictionary<String, JSONValue>, typeFeature: String) {
         let directions = Directions.shared
         let waypoints = [
             Waypoint(coordinate: userLocation, name: "origin"),

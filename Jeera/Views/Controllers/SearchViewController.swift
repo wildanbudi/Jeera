@@ -13,28 +13,16 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var facilitiesData: [AllData]!
     var searchResults: [AllData] = []
     var nonDuplicateNames: [String] = []
+//    var animalsResults: [Animals] = []
+//    var cagesResults: [Cages] = []
+//    var facilitiesResults: [Facilities] = []
     let tableView = UITableView()
     
     lazy var searchBar: UISearchBar = {
-        let sb = UISearchBar()
-        sb.translatesAutoresizingMaskIntoConstraints = false
-        sb.showsCancelButton = true
-        sb.tintColor = .PrimaryGreen
-        sb.setImage(UIImage(systemName: "magnifyingglass")?.imageWithColor(newColor: .PrimaryGreen), for: .search, state: .normal)
-        sb.placeholder = "Cari Hewan..."
-        sb.becomeFirstResponder()
-        sb.searchTextField.textColor = UIColor(red: 0.235, green: 0.235, blue: 0.263, alpha: 1)
-        sb.searchTextField.font = UIFont(name: "Baloo2-Regular", size: 17)
-        sb.searchTextField.layer.cornerRadius = 18
-        sb.searchTextField.clipsToBounds = true
-        sb.searchTextField.backgroundColor = .white
-        sb.searchTextField.layer.borderColor = UIColor.PrimaryGreen.cgColor
-        sb.searchTextField.layer.borderWidth = 1
-        sb.backgroundImage = UIImage()
+        let searchBar = SearchBar()
+        searchBar.delegate = self
         
-        sb.delegate = self
-        
-        return sb
+        return searchBar
     }()
     
     override func viewDidLoad() {
@@ -45,7 +33,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.delegate = self
         tableView.dataSource = self
-        print(animalsData.count + cagesData.count + facilitiesData.count, "<<< in search")
         
         searchBar.anchor(
             top: view.safeAreaLayoutGuide.topAnchor,
@@ -93,14 +80,14 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        print("cancel")
+        self.dismiss(animated: true, completion: nil)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchResults.removeAll()
         if searchText != "" {
             searchBar.searchTextField.font = UIFont(name: "Baloo2-SemiBold", size: 17)
         } else {
+            searchResults.removeAll()
             searchBar.searchTextField.font = UIFont(name: "Baloo2-Regular", size: 17)
         }
         if searchText.count > 2 {
@@ -122,10 +109,13 @@ extension SearchViewController: UISearchBarDelegate {
             })
             let results = animalsResults + cagesResults + facilitiesResults
             nonDuplicateNames.removeAll()
-            for el in results {
-                if !nonDuplicateNames.contains(el.idName) {
-                    nonDuplicateNames.append(el.idName)
-                    searchResults.append(el)
+            if results.count > 0 {
+                searchResults.removeAll()
+                for el in results {
+                    if !nonDuplicateNames.contains(el.idName) {
+                        nonDuplicateNames.append(el.idName)
+                        searchResults.append(el)
+                    }
                 }
             }
         }
