@@ -30,7 +30,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         view.backgroundColor = .white
         view.addSubview(searchBar)
         view.addSubview(tableView)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(SearchResultTableViewCell.self, forCellReuseIdentifier: SearchResultTableViewCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -68,13 +68,14 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-//        print(searchResults[indexPath.row].distance)
-        let name = searchResults[indexPath.row].idName
-            cell.textLabel?.text = name
-//        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultTableViewCell.identifier, for: indexPath) as! SearchResultTableViewCell
+        cell.cellName = searchResults[indexPath.row].idName
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return view.bounds.height * (112/844)
     }
 }
 
