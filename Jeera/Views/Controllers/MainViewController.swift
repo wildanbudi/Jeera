@@ -84,6 +84,9 @@ class MainViewController: UIViewController {
             case .success(let queriedFeatures):
                 print(queriedFeatures.count)
                 if queriedFeatures.count > 0 {
+                    self!.animalsData.removeAll()
+                    self!.cagesData.removeAll()
+                    self!.facilitiesData.removeAll()
                     for data in queriedFeatures {
                         let parsedFeature = data.feature.properties!.reduce(into: [:]) { $0[$1.0] = $1.1 }
                         let typeFeature = parsedFeature["type"]!.rawValue as! String

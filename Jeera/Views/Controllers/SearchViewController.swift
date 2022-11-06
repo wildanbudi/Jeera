@@ -108,8 +108,8 @@ extension SearchViewController: UISearchBarDelegate {
                 let enNameMatch = facilities.enName.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
                 return idNameMatch != nil || enNameMatch != nil
             })
-            let results = animalsResults + cagesResults + facilitiesResults
-            if results.count > 0 {
+            if animalsResults.count > 0 || cagesResults.count > 0 || facilitiesResults.count > 0 {
+                let results = animalsResults.sorted { $0.distance < $1.distance } + cagesResults.sorted { $0.distance < $1.distance } + facilitiesResults.sorted { $0.distance < $1.distance }
                 nonDuplicateNames.removeAll()
                 searchResults.removeAll()
                 for el in results {
