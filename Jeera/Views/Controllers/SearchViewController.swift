@@ -10,14 +10,11 @@ import CoreLocation
 
 class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var animalsData: [AllData]!
-    var cagesData: [AllData]!
+//    var cagesData: [AllData]!
     var facilitiesData: [AllData]!
     var searchResults: [AllData] = []
     var nonDuplicateNames: [String] = []
     var userLocation: CLLocationCoordinate2D!
-//    var animalsResults: [Animals] = []
-//    var cagesResults: [Cages] = []
-//    var facilitiesResults: [Facilities] = []
     let tableView = UITableView()
     
     lazy var searchBar: UISearchBar = {
@@ -72,7 +69,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultTableViewCell.identifier, for: indexPath) as! SearchResultTableViewCell
-        cell.cellName = searchResults[indexPath.row].idName
+//        cell.cellName = searchResults[indexPath.row].idName
         
         return cell
     }
@@ -112,18 +109,18 @@ extension SearchViewController: UISearchBarDelegate {
                 let cageMatch = animal.cage.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
                 return idNameMatch != nil || enNameMatch != nil || cageMatch != nil
             })
-            let cagesResults = cagesData.filter({ (cage: AllData) -> Bool in
-                let idNameMatch = cage.idName.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
-                let enNameMatch = cage.enName.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
-                return idNameMatch != nil || enNameMatch != nil
-            })
+//            let cagesResults = cagesData.filter({ (cage: AllData) -> Bool in
+//                let idNameMatch = cage.idName.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+//                let enNameMatch = cage.enName.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+//                return idNameMatch != nil || enNameMatch != nil
+//            })
             let facilitiesResults = facilitiesData.filter({ (facilities: AllData) -> Bool in
                 let idNameMatch = facilities.idName.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
                 let enNameMatch = facilities.enName.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
                 return idNameMatch != nil || enNameMatch != nil
             })
-            if animalsResults.count > 0 || cagesResults.count > 0 || facilitiesResults.count > 0 {
-                let results = animalsResults.sorted { $0.distance < $1.distance } + cagesResults.sorted { $0.distance < $1.distance } + facilitiesResults.sorted { $0.distance < $1.distance }
+            if animalsResults.count > 0 || facilitiesResults.count > 0 {
+                let results = animalsResults.sorted { $0.distance < $1.distance } + facilitiesResults.sorted { $0.distance < $1.distance }
                 nonDuplicateNames.removeAll()
                 searchResults.removeAll()
                 for el in results {

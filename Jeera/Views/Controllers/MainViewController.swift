@@ -57,7 +57,7 @@ class MainViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if self.animalsData.count == 0 {
-            timer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(retrieveAnnotationData), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(retrieveAnnotationData), userInfo: nil, repeats: true)
         }
     }
     
@@ -92,62 +92,6 @@ class MainViewController: UIViewController {
                             let coordinate = point.coordinates
                             self!.mappingAnnotationData(locationCoordinate: coordinate, parsedFeature: parsedFeature, typeFeature: typeFeature)
                         }
-                        
-//                        if typeFeature == "Hewan" {
-//                            if let geometry = data.feature.geometry, case let Geometry.point(point) = geometry {
-//                                let coordinate = point.coordinates
-//                                self!.mappingAnnotationData(locationCoordinate: coordinate, parsedFeature: parsedFeature, typeFeature: typeFeature)
-//                                self!.animalsData.append(
-//                                    AllData(
-//                                        cage: parsedFeature["cage"]!.rawValue as! String,
-//                                        idName: parsedFeature["idName"]!.rawValue as! String,
-//                                        enName: parsedFeature["enName"]!.rawValue as! String,
-//                                        latinName: parsedFeature["latinName"]!.rawValue as! String,
-//                                        type: parsedFeature["type"]!.rawValue as! String,
-//                                        clusterName: "",
-//                                        lat: coordinate.latitude,
-//                                        long: coordinate.longitude,
-//                                        distance: 0
-//                                    )
-//                                )
-//                            }
-//                        } else if typeFeature == "Kandang" {
-//                            if let geometry = data.feature.geometry, case let Geometry.point(point) = geometry {
-//                                let coordinate = point.coordinates
-//                                self!.mappingAnnotationData(locationCoordinate: coordinate, parsedFeature: parsedFeature, typeFeature: typeFeature)
-//                                self!.cagesData.append(
-//                                    AllData(
-//                                        cage: "",
-//                                        idName: parsedFeature["idName"]!.rawValue as! String,
-//                                        enName: parsedFeature["enName"]!.rawValue as! String,
-//                                        latinName: "",
-//                                        type: parsedFeature["type"]!.rawValue as! String,
-//                                        clusterName: parsedFeature["clusterName"]!.rawValue as! String,
-//                                        lat: coordinate.latitude,
-//                                        long: coordinate.longitude,
-//                                        distance: 0
-//                                    )
-//                                )
-//                            }
-//                        } else {
-//                            if let geometry = data.feature.geometry, case let Geometry.point(point) = geometry {
-//                                let coordinate = point.coordinates
-//                                self!.mappingAnnotationData(locationCoordinate: coordinate, parsedFeature: parsedFeature, typeFeature: typeFeature)
-//                                self!.facilitiesData.append(
-//                                    AllData(
-//                                        cage: "",
-//                                        idName: parsedFeature["idName"]!.rawValue as! String,
-//                                        enName: parsedFeature["enName"]!.rawValue as! String,
-//                                        latinName: "",
-//                                        type: parsedFeature["type"]!.rawValue as! String,
-//                                        clusterName: parsedFeature["clusterName"]!.rawValue as! String,
-//                                        lat: coordinate.latitude,
-//                                        long: coordinate.longitude,
-//                                        distance: 0
-//                                    )
-//                                )
-//                            }
-//                        }
                     }
                 }
             case .failure(let error):
@@ -178,7 +122,7 @@ class MainViewController: UIViewController {
         let searchViewController = SearchViewController()
         searchViewController.modalPresentationStyle = .formSheet
         searchViewController.animalsData = self.animalsData
-        searchViewController.cagesData = self.cagesData
+//        searchViewController.cagesData = self.cagesData
         searchViewController.facilitiesData = self.facilitiesData
         searchViewController.userLocation = self.userLocation
         self.present(searchViewController, animated: true, completion: nil)
@@ -230,22 +174,22 @@ class MainViewController: UIViewController {
                     dict: dict
                 )
             )
-        } else if typeFeature == "Kandang" {
-            self.cagesData.append(
-                AllData(
-                    cage: "",
-                    idName: parsedFeature["idName"]!.rawValue as! String,
-                    enName: parsedFeature["enName"]!.rawValue as! String,
-                    latinName: "",
-                    type: parsedFeature["type"]!.rawValue as! String,
-                    clusterName: parsedFeature["clusterName"]!.rawValue as! String,
-                    lat: locationCoordinate.latitude,
-                    long: locationCoordinate.longitude,
-                    distance: Int(distance),
-                    travelTime: Int(travelTime),
-                    dict: parsedFeature
-                )
-            )
+//        } else if typeFeature == "Kandang" {
+//            self.cagesData.append(
+//                AllData(
+//                    cage: "",
+//                    idName: parsedFeature["idName"]!.rawValue as! String,
+//                    enName: parsedFeature["enName"]!.rawValue as! String,
+//                    latinName: "",
+//                    type: parsedFeature["type"]!.rawValue as! String,
+//                    clusterName: parsedFeature["clusterName"]!.rawValue as! String,
+//                    lat: locationCoordinate.latitude,
+//                    long: locationCoordinate.longitude,
+//                    distance: Int(distance),
+//                    travelTime: Int(travelTime),
+//                    dict: parsedFeature
+//                )
+//            )
         } else {
             self.facilitiesData.append(
                 AllData(

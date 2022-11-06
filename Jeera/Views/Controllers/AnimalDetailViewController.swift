@@ -189,24 +189,6 @@ class AnimalDetailViewController: UIViewController {
                 self.travelTime = Int(route.expectedTravelTime/60) + 1
                 
                 self.setupView()
-//
-//                print("Route via \(leg):")
-//
-//                let distanceFormatter = LengthFormatter()
-//                let formattedDistance = distanceFormatter.string(fromMeters: route.distance)
-//
-//                let travelTimeFormatter = DateComponentsFormatter()
-//                travelTimeFormatter.unitsStyle = .short
-//                let formattedTravelTime = travelTimeFormatter.string(from: route.expectedTravelTime)
-//
-//                print("Distance: \(route.distance); ETA: \(route.expectedTravelTime)")
-//                print(Int(route.expectedTravelTime/60))
-//
-//                for step in leg.steps {
-//                    print("\(step.instructions)")
-//                    let formattedDistance = distanceFormatter.string(fromMeters: step.distance)
-//                    print("— \(formattedDistance) —")
-//                }
             }
         }
     }
