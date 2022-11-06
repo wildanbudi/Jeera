@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Turf
 
 //protocol AllData {}
 //
@@ -23,6 +24,7 @@ struct AllData: Equatable, Hashable, Encodable, Decodable {
     var lat: Double
     var long: Double
     var distance: Int
+    var dict: Dictionary<String, JSONValue>
     
 //    init(cage: String? = "", idName: String, enName: String, latinName: String? = "", type: String, clusterName: String? = "", lat: Double, long: Double) {
 //        self.cage = cage

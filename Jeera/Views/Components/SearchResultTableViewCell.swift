@@ -17,6 +17,21 @@ class SearchResultTableViewCell: UITableViewCell {
         }
     }
     
+    lazy var containerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 20
+        view.layer.shadowOpacity = 1
+        view.layer.shadowRadius = 5
+        view.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor
+        view.layer.shadowOffset = CGSize(width: 0, height: 0.1)
+        view.addSubview(profileLabel)
+        view.addSubview(profileImageView)
+        view.addSubview(arrowImageView)
+        
+        return view
+    }()
+    
     lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
         
@@ -39,41 +54,41 @@ class SearchResultTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupCellView()
+        contentView.addSubview(containerView)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        containerView.anchor(
+            width: contentView.bounds.width * (358/390),
+            height: contentView.bounds.height * (92/112)
+        )
+        containerView.center(inView: contentView)
+        
         profileImageView.anchor(
-            left: contentView.leftAnchor,
+            left: containerView.leftAnchor,
             paddingLeft: 16,
             width: contentView.bounds.height * (60/112),
             height: contentView.bounds.height * (60/112)
         )
-        profileImageView.centerY(inView: contentView)
-        
+        profileImageView.centerY(inView: containerView)
+
         profileLabel.anchor(
             left: profileImageView.rightAnchor,
             paddingLeft: 20,
             width: contentView.bounds.height * (200/112),
             height: contentView.bounds.height * (60/112)
         )
-        profileLabel.centerY(inView: contentView)
-        
+        profileLabel.centerY(inView: containerView)
+
         arrowImageView.anchor(
-            right: contentView.rightAnchor,
+            right: containerView.rightAnchor,
             paddingRight: 16,
             width: contentView.bounds.height * (20/112),
             height: contentView.bounds.height * (20/112)
         )
-        arrowImageView.centerY(inView: contentView)
-    }
-    
-    func setupCellView() {
-        contentView.addSubview(profileLabel)
-        contentView.addSubview(profileImageView)
-        contentView.addSubview(arrowImageView)
+        arrowImageView.centerY(inView: containerView)
     }
     
     required init?(coder: NSCoder) {

@@ -29,7 +29,7 @@ class AnimalDetailViewController: UIViewController {
     
     lazy var animalImage: UIImageView = {
         let type = animalData["type"]!.rawValue as? String
-        let imageName = animalData[(type == "Kandang" ? "idName" : "clusterName")]!.rawValue as? String
+        let imageName = animalData[(type == "Kandang" || type == "Hewan" ? "idName" : "clusterName")]!.rawValue as? String
         let imageView = UIImageView(image: UIImage(named: imageName!))
         imageView.frame = .zero
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -106,10 +106,11 @@ class AnimalDetailViewController: UIViewController {
         mapInstance.targetCoordinate = targetCoordinate
         let mapView = mapInstance.getMapView()
         
-        let clusterName = animalData["clusterName"]!.rawValue as? String
+        let type = animalData["type"]!.rawValue as? String
+        let clusterName = animalData[(type == "Hewan" ? "cage" : "clusterName")]!.rawValue as? String
         let pointAnnotationManager = mapView.annotations.makePointAnnotationManager()
         var customPointAnnotation = PointAnnotation(coordinate: targetCoordinate)
-        customPointAnnotation.image = .init(image: UIImage(named: "\(clusterName!) Active")!, name: "\(clusterName!) Active")
+        customPointAnnotation.image = .init(image: (UIImage(named: "\(clusterName!) Active") ?? UIImage(named: "Primata Active"))!, name: "\(clusterName!) Active")
         pointAnnotationManager.annotations = [customPointAnnotation]
         
         return mapView

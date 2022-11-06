@@ -182,6 +182,7 @@ class MainViewController: UIViewController {
         searchViewController.animalsData = self.animalsData
         searchViewController.cagesData = self.cagesData
         searchViewController.facilitiesData = self.facilitiesData
+        searchViewController.userLocation = self.userLocation
         self.present(searchViewController, animated: true, completion: nil)
         
     }
@@ -223,7 +224,8 @@ class MainViewController: UIViewController {
                     clusterName: "",
                     lat: locationCoordinate.latitude,
                     long: locationCoordinate.longitude,
-                    distance: Int(distance)
+                    distance: Int(distance),
+                    dict: parsedFeature
                 )
             )
         } else if typeFeature == "Kandang" {
@@ -237,7 +239,8 @@ class MainViewController: UIViewController {
                     clusterName: parsedFeature["clusterName"]!.rawValue as! String,
                     lat: locationCoordinate.latitude,
                     long: locationCoordinate.longitude,
-                    distance: Int(distance)
+                    distance: Int(distance),
+                    dict: parsedFeature
                 )
             )
         } else {
@@ -251,7 +254,8 @@ class MainViewController: UIViewController {
                     clusterName: parsedFeature["clusterName"]!.rawValue as! String,
                     lat: locationCoordinate.latitude,
                     long: locationCoordinate.longitude,
-                    distance: Int(distance)
+                    distance: Int(distance),
+                    dict: parsedFeature
                 )
             )
         }

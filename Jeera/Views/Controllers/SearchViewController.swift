@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var animalsData: [AllData]!
@@ -13,6 +14,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var facilitiesData: [AllData]!
     var searchResults: [AllData] = []
     var nonDuplicateNames: [String] = []
+    var userLocation: CLLocationCoordinate2D!
 //    var animalsResults: [Animals] = []
 //    var cagesResults: [Cages] = []
 //    var facilitiesResults: [Facilities] = []
@@ -33,7 +35,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.register(SearchResultTableViewCell.self, forCellReuseIdentifier: SearchResultTableViewCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
-//        print(animalsData!)
+        tableView.separatorStyle = .none
         searchBar.anchor(
             top: view.safeAreaLayoutGuide.topAnchor,
             left: view.leftAnchor,
@@ -76,6 +78,15 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return view.bounds.height * (112/844)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let animalDetailViewController = AnimalDetailViewController()
+        animalDetailViewController.modalPresentationStyle = .fullScreen
+        animalDetailViewController.animalData = searchResults[indexPath.row].dict
+        animalDetailViewController.targetCoordinate = CLLocationCoordinate2D(latitude: searchResults[indexPath.row].lat, longitude: searchResults[indexPath.row].long)
+        animalDetailViewController.userLocation = userLocation
+        self.present(animalDetailViewController, animated: true, completion: nil)
     }
 }
 
