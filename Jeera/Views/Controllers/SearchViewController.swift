@@ -48,6 +48,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         tableView.anchor(
             top: searchBar.bottomAnchor,
+            bottom: view.safeAreaLayoutGuide.bottomAnchor,
             left: view.leftAnchor,
             right: view.rightAnchor,
             paddingTop: 10,
@@ -86,6 +87,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         animalDetailViewController.animalData = searchResults[indexPath.row].dict
         animalDetailViewController.targetCoordinate = CLLocationCoordinate2D(latitude: searchResults[indexPath.row].lat, longitude: searchResults[indexPath.row].long)
         animalDetailViewController.userLocation = userLocation
+        animalDetailViewController.distance = searchResults[indexPath.row].distance
+        animalDetailViewController.travelTime = searchResults[indexPath.row].travelTime
         self.present(animalDetailViewController, animated: true, completion: nil)
     }
 }

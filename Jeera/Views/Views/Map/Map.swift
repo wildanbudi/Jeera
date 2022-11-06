@@ -23,6 +23,8 @@ class Map {
         view.layer.cornerRadius = 35
         view.clipsToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.ornaments.options.scaleBar.visibility = .hidden
+        view.ornaments.options.compass.visibility = .hidden
         
         return view
     }()

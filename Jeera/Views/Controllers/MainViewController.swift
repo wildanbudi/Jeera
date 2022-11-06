@@ -70,8 +70,6 @@ class MainViewController: UIViewController {
         let mapInstance = Map()
         mapInstance.zoomLevel = 16
         mapView = mapInstance.getMapView()
-        mapView.ornaments.options.scaleBar.visibility = .hidden
-        mapView.ornaments.options.compass.visibility = .hidden
         mapView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onMapClick)))
         view.addSubview(mapView)
     }
@@ -204,7 +202,7 @@ class MainViewController: UIViewController {
                     guard let route = response.routes?.first, let _ = route.legs.first else {
                         return
                     }
-                    self.appendAnnotationData(typeFeature: typeFeature, parsedFeature: parsedFeature, locationCoordinate: locationCoordinate, distance: route.distance)
+                    self.appendAnnotationData(typeFeature: typeFeature, parsedFeature: parsedFeature, locationCoordinate: locationCoordinate, distance: route.distance, travelTime: (route.expectedTravelTime/60) + 1)
                 }
             }
         } else {
@@ -212,8 +210,11 @@ class MainViewController: UIViewController {
         }
     }
     
-    func appendAnnotationData(typeFeature: String, parsedFeature: Dictionary<String, JSONValue>, locationCoordinate: CLLocationCoordinate2D, distance: Double = 0.0) {
+    func appendAnnotationData(typeFeature: String, parsedFeature: Dictionary<String, JSONValue>, locationCoordinate: CLLocationCoordinate2D, distance: Double = 0.0, travelTime: Double = 0.0) {
         if typeFeature == "Hewan" {
+            var dict = parsedFeature
+            let clusterName = getClusterName(idName: parsedFeature["cage"]!.rawValue as! String)
+            dict["clusterName"] = JSONValue(clusterName)
             self.animalsData.append(
                 AllData(
                     cage: parsedFeature["cage"]!.rawValue as! String,
@@ -221,11 +222,12 @@ class MainViewController: UIViewController {
                     enName: parsedFeature["enName"]!.rawValue as! String,
                     latinName: parsedFeature["latinName"]!.rawValue as! String,
                     type: parsedFeature["type"]!.rawValue as! String,
-                    clusterName: "",
+                    clusterName: clusterName,
                     lat: locationCoordinate.latitude,
                     long: locationCoordinate.longitude,
                     distance: Int(distance),
-                    dict: parsedFeature
+                    travelTime: Int(travelTime),
+                    dict: dict
                 )
             )
         } else if typeFeature == "Kandang" {
@@ -240,6 +242,7 @@ class MainViewController: UIViewController {
                     lat: locationCoordinate.latitude,
                     long: locationCoordinate.longitude,
                     distance: Int(distance),
+                    travelTime: Int(travelTime),
                     dict: parsedFeature
                 )
             )
@@ -255,6 +258,7 @@ class MainViewController: UIViewController {
                     lat: locationCoordinate.latitude,
                     long: locationCoordinate.longitude,
                     distance: Int(distance),
+                    travelTime: Int(travelTime),
                     dict: parsedFeature
                 )
             )
@@ -430,7 +434,6 @@ class MainViewController: UIViewController {
             searchButton.widthAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
             searchButton.heightAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
         ])
-        print("constraint")
     }
     
     // Objective-C Function for the segmentedSelector action

@@ -17,11 +17,7 @@ class AnimalDetailViewController: UIViewController {
     var travelTime: Int!
     
     lazy var backButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setImage(UIImage(systemName: "arrow.left.circle")?
-            .resizeImageTo(size: CGSize(width: 30, height: 30))?
-            .imageWithColor(newColor: .PrimaryGreen), for: .normal)
-
+        let button = BackButton()
         button.addTarget(self, action: #selector(self.backButton(_:)), for: .touchUpInside)
         
         return button
@@ -31,19 +27,13 @@ class AnimalDetailViewController: UIViewController {
         let type = animalData["type"]!.rawValue as? String
         let imageName = animalData[(type == "Kandang" || type == "Hewan" ? "idName" : "clusterName")]!.rawValue as? String
         let imageView = UIImageView(image: UIImage(named: imageName!))
-        imageView.frame = .zero
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         
         return imageView
     }()
     
-    lazy var animalNameLabel: UILabel = {
-        let label = UILabel(frame: .zero)
-        label.font = UIFont(name: "Baloo2-Bold", size: 30)
-        label.numberOfLines = 2
+    lazy var detailNameLabel: UILabel = {
+        let label = DetailLabel()
         label.text = animalData["idName"]!.rawValue as? String
-        label.textColor = .PrimaryText
-        label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()
@@ -57,46 +47,28 @@ class AnimalDetailViewController: UIViewController {
     }()
     
     lazy var cageLabel: UILabel = {
-        return labelWithIcon(imageName: "Location", labelText: "Primata 1", iconColor: .PrimaryGreen)
+        return labelWithIcon(imageName: "Location", labelText: (animalData["cage"]!.rawValue as? String)!, iconColor: .PrimaryGreen)
     }()
     
     lazy var informationView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = NSLayoutConstraint.Axis.horizontal
-        stackView.distribution = UIStackView.Distribution.equalSpacing
-        stackView.alignment = UIStackView.Alignment.fill
-        stackView.spacing = 20.0
-
+        let stackView = DetailInformationStackView()
         stackView.addArrangedSubview(distanceLabel)
         stackView.addArrangedSubview(etaLabel)
         let type = animalData["type"]!.rawValue as? String
-        if !["Kandang", "Piknik", "Toilet", "Kantin", "Masjid"].contains(type) {
-            stackView.addArrangedSubview(cageLabel)
+        if type == "Hewan" {
+            let idName = animalData["idName"]!.rawValue as? String
+            let cage = animalData["cage"]!.rawValue as? String
+            if idName != cage {
+                stackView.addArrangedSubview(cageLabel)
+            }
         }
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         
         return stackView
     }()
     
     lazy var startJourneyButton: UIButton = {
-        let button = UIButton(type: .system)
-        var config = UIButton.Configuration.filled()
-        config.title = "Mulai Perjalanan"
-        config.baseBackgroundColor = .PrimaryGreen
-        config.baseForegroundColor = .white
-        config.titleTextAttributesTransformer =
-          UIConfigurationTextAttributesTransformer { incoming in
-            var outgoing = incoming
-            outgoing.font = UIFont.systemFont(ofSize: 17, weight: .bold)
-            return outgoing
-          }
-        
-        button.configuration = config
-        button.layer.masksToBounds = true
-        button.layer.cornerRadius = 20
-        
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
+        let button = StartJourneyButton()
+
         return button
     }()
     
@@ -106,37 +78,18 @@ class AnimalDetailViewController: UIViewController {
         mapInstance.targetCoordinate = targetCoordinate
         let mapView = mapInstance.getMapView()
         
-        let type = animalData["type"]!.rawValue as? String
-        let clusterName = animalData[(type == "Hewan" ? "cage" : "clusterName")]!.rawValue as? String
+        let clusterName = animalData["clusterName"]!.rawValue as? String
         let pointAnnotationManager = mapView.annotations.makePointAnnotationManager()
         var customPointAnnotation = PointAnnotation(coordinate: targetCoordinate)
-        customPointAnnotation.image = .init(image: (UIImage(named: "\(clusterName!) Active") ?? UIImage(named: "Primata Active"))!, name: "\(clusterName!) Active")
+        customPointAnnotation.image = .init(image: UIImage(named: "\(clusterName!) Active")!, name: "\(clusterName!) Active")
         pointAnnotationManager.annotations = [customPointAnnotation]
         
         return mapView
     }()
     
-    func labelWithIcon(imageName: String, labelText: String, iconColor: UIColor?) -> UILabel {
-        let label = UILabel(frame: .zero)
-        let iconLabel = NSTextAttachment()
-        iconLabel.image = UIImage(named: imageName)
-        let imageOffsetY: CGFloat = -1.0
-        iconLabel.bounds = CGRect(x: 0, y: imageOffsetY, width: iconLabel.image!.size.width, height: iconLabel.image!.size.height)
-        let attachmentString = NSAttributedString(attachment: iconLabel)
-        let completeText = NSMutableAttributedString(string: "")
-        completeText.append(attachmentString)
-        let textAfterIcon = NSAttributedString(string: "  \(labelText)")
-        completeText.append(textAfterIcon)
-        label.textAlignment = .center
-        label.attributedText = completeText
-        label.textColor = .PrimaryText
-            
-        return label
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        if (userLocation != nil) {
+        if (userLocation != nil) && (distance == nil) {
             getRouteInformation()
         } else {
             setupView()
@@ -154,7 +107,7 @@ class AnimalDetailViewController: UIViewController {
         gradient.colors = [UIColor.UpperGradient.cgColor, UIColor.LowerGradient.cgColor]
         view.layer.insertSublayer(gradient, at: 0)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-        [backButton, animalImage, animalNameLabel, startJourneyButton, overviewMapView, informationView].forEach {
+        [backButton, animalImage, detailNameLabel, startJourneyButton, overviewMapView, informationView].forEach {
             view.addSubview($0)
         }
         setupConstraint()
@@ -206,7 +159,7 @@ class AnimalDetailViewController: UIViewController {
             paddingLeft: 16
         )
         
-        animalNameLabel.anchor(
+        detailNameLabel.anchor(
             bottom: informationView.topAnchor,
             left: view.leftAnchor,
             paddingBottom: 5,
@@ -246,7 +199,7 @@ class AnimalDetailViewController: UIViewController {
 //                travelTimeFormatter.unitsStyle = .short
 //                let formattedTravelTime = travelTimeFormatter.string(from: route.expectedTravelTime)
 //
-                print("Distance: \(route.distance); ETA: \(route.expectedTravelTime)")
+//                print("Distance: \(route.distance); ETA: \(route.expectedTravelTime)")
 //                print(Int(route.expectedTravelTime/60))
 //
 //                for step in leg.steps {
