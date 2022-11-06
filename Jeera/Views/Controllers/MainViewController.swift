@@ -15,7 +15,7 @@ class MainViewController: UIViewController {
     internal var pointAnnotationManager: PointAnnotationManager!
     internal var targetCoordinate: CLLocationCoordinate2D!
     internal var animalData: Dictionary<String, JSONValue>!
-    internal var userLocation: CLLocationCoordinate2D = centerCoordinate
+    internal var userLocation: CLLocationCoordinate2D?
     internal var animalsData: [AllData] = []
     internal var facilitiesData: [AllData] = []
     internal var cagesData: [AllData] = []
@@ -57,7 +57,7 @@ class MainViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if self.animalsData.count == 0 {
-            timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(retrieveAnnotationData), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(retrieveAnnotationData), userInfo: nil, repeats: true)
         }
     }
     
@@ -82,14 +82,20 @@ class MainViewController: UIViewController {
         mapViewRetrieveData.mapboxMap.queryRenderedFeatures(with: mapView.safeAreaLayoutGuide.layoutFrame, options: queryOptions, completion: { [weak self] result in
             switch result {
             case .success(let queriedFeatures):
+                print(queriedFeatures.count)
                 if queriedFeatures.count > 0 {
                     for data in queriedFeatures {
                         let parsedFeature = data.feature.properties!.reduce(into: [:]) { $0[$1.0] = $1.1 }
                         let typeFeature = parsedFeature["type"]!.rawValue as! String
-                        if typeFeature == "Hewan" {
-                            if let geometry = data.feature.geometry, case let Geometry.point(point) = geometry {
-                                let coordinate = point.coordinates
-                                self!.mappingAnnotationData(locationCoordinate: coordinate, parsedFeature: parsedFeature, typeFeature: typeFeature)
+                        if let geometry = data.feature.geometry, case let Geometry.point(point) = geometry {
+                            let coordinate = point.coordinates
+                            self!.mappingAnnotationData(locationCoordinate: coordinate, parsedFeature: parsedFeature, typeFeature: typeFeature)
+                        }
+                        
+//                        if typeFeature == "Hewan" {
+//                            if let geometry = data.feature.geometry, case let Geometry.point(point) = geometry {
+//                                let coordinate = point.coordinates
+//                                self!.mappingAnnotationData(locationCoordinate: coordinate, parsedFeature: parsedFeature, typeFeature: typeFeature)
 //                                self!.animalsData.append(
 //                                    AllData(
 //                                        cage: parsedFeature["cage"]!.rawValue as! String,
@@ -103,11 +109,11 @@ class MainViewController: UIViewController {
 //                                        distance: 0
 //                                    )
 //                                )
-                            }
-                        } else if typeFeature == "Kandang" {
-                            if let geometry = data.feature.geometry, case let Geometry.point(point) = geometry {
-                                let coordinate = point.coordinates
-                                self!.mappingAnnotationData(locationCoordinate: coordinate, parsedFeature: parsedFeature, typeFeature: typeFeature)
+//                            }
+//                        } else if typeFeature == "Kandang" {
+//                            if let geometry = data.feature.geometry, case let Geometry.point(point) = geometry {
+//                                let coordinate = point.coordinates
+//                                self!.mappingAnnotationData(locationCoordinate: coordinate, parsedFeature: parsedFeature, typeFeature: typeFeature)
 //                                self!.cagesData.append(
 //                                    AllData(
 //                                        cage: "",
@@ -121,11 +127,11 @@ class MainViewController: UIViewController {
 //                                        distance: 0
 //                                    )
 //                                )
-                            }
-                        } else {
-                            if let geometry = data.feature.geometry, case let Geometry.point(point) = geometry {
-                                let coordinate = point.coordinates
-                                self!.mappingAnnotationData(locationCoordinate: coordinate, parsedFeature: parsedFeature, typeFeature: typeFeature)
+//                            }
+//                        } else {
+//                            if let geometry = data.feature.geometry, case let Geometry.point(point) = geometry {
+//                                let coordinate = point.coordinates
+//                                self!.mappingAnnotationData(locationCoordinate: coordinate, parsedFeature: parsedFeature, typeFeature: typeFeature)
 //                                self!.facilitiesData.append(
 //                                    AllData(
 //                                        cage: "",
@@ -139,8 +145,8 @@ class MainViewController: UIViewController {
 //                                        distance: 0
 //                                    )
 //                                )
-                            }
-                        }
+//                            }
+//                        }
                     }
                 }
             case .failure(let error):
@@ -178,66 +184,73 @@ class MainViewController: UIViewController {
     }
     
     func mappingAnnotationData(locationCoordinate: CLLocationCoordinate2D, parsedFeature: Dictionary<String, JSONValue>, typeFeature: String) {
-        let directions = Directions.shared
-        let waypoints = [
-            Waypoint(coordinate: userLocation, name: "origin"),
-            Waypoint(coordinate: locationCoordinate, name: "destination"),
-        ]
-        let options = RouteOptions(waypoints: waypoints, profileIdentifier: .walking)
-        let _ = directions.calculate(options) { (session, result) in
-            switch result {
-            case .failure(let error):
-                print("Error calculating directions: \(error)")
-                return
-            case .success(let response):
-                guard let route = response.routes?.first, let _ = route.legs.first else {
+        if userLocation != nil {
+            let directions = Directions.shared
+            let waypoints = [
+                Waypoint(coordinate: userLocation!, name: "origin"),
+                Waypoint(coordinate: locationCoordinate, name: "destination"),
+            ]
+            let options = RouteOptions(waypoints: waypoints, profileIdentifier: .walking)
+            let _ = directions.calculate(options) { (session, result) in
+                switch result {
+                case .failure(let error):
+                    print("Error calculating directions: \(error)")
                     return
-                }
-                
-                if typeFeature == "Hewan" {
-                    self.animalsData.append(
-                        AllData(
-                            cage: parsedFeature["cage"]!.rawValue as! String,
-                            idName: parsedFeature["idName"]!.rawValue as! String,
-                            enName: parsedFeature["enName"]!.rawValue as! String,
-                            latinName: parsedFeature["latinName"]!.rawValue as! String,
-                            type: parsedFeature["type"]!.rawValue as! String,
-                            clusterName: "",
-                            lat: locationCoordinate.latitude,
-                            long: locationCoordinate.longitude,
-                            distance: Int(route.distance)
-                        )
-                    )
-                } else if typeFeature == "Kandang" {
-                    self.cagesData.append(
-                        AllData(
-                            cage: "",
-                            idName: parsedFeature["idName"]!.rawValue as! String,
-                            enName: parsedFeature["enName"]!.rawValue as! String,
-                            latinName: "",
-                            type: parsedFeature["type"]!.rawValue as! String,
-                            clusterName: parsedFeature["clusterName"]!.rawValue as! String,
-                            lat: locationCoordinate.latitude,
-                            long: locationCoordinate.longitude,
-                            distance: Int(route.distance)
-                        )
-                    )
-                } else {
-                    self.facilitiesData.append(
-                        AllData(
-                            cage: "",
-                            idName: parsedFeature["idName"]!.rawValue as! String,
-                            enName: parsedFeature["enName"]!.rawValue as! String,
-                            latinName: "",
-                            type: parsedFeature["type"]!.rawValue as! String,
-                            clusterName: parsedFeature["clusterName"]!.rawValue as! String,
-                            lat: locationCoordinate.latitude,
-                            long: locationCoordinate.longitude,
-                            distance: Int(route.distance)
-                        )
-                    )
+                case .success(let response):
+                    guard let route = response.routes?.first, let _ = route.legs.first else {
+                        return
+                    }
+                    self.appendAnnotationData(typeFeature: typeFeature, parsedFeature: parsedFeature, locationCoordinate: locationCoordinate, distance: route.distance)
                 }
             }
+        } else {
+            appendAnnotationData(typeFeature: typeFeature, parsedFeature: parsedFeature, locationCoordinate: locationCoordinate)
+        }
+    }
+    
+    func appendAnnotationData(typeFeature: String, parsedFeature: Dictionary<String, JSONValue>, locationCoordinate: CLLocationCoordinate2D, distance: Double = 0.0) {
+        if typeFeature == "Hewan" {
+            self.animalsData.append(
+                AllData(
+                    cage: parsedFeature["cage"]!.rawValue as! String,
+                    idName: parsedFeature["idName"]!.rawValue as! String,
+                    enName: parsedFeature["enName"]!.rawValue as! String,
+                    latinName: parsedFeature["latinName"]!.rawValue as! String,
+                    type: parsedFeature["type"]!.rawValue as! String,
+                    clusterName: "",
+                    lat: locationCoordinate.latitude,
+                    long: locationCoordinate.longitude,
+                    distance: Int(distance)
+                )
+            )
+        } else if typeFeature == "Kandang" {
+            self.cagesData.append(
+                AllData(
+                    cage: "",
+                    idName: parsedFeature["idName"]!.rawValue as! String,
+                    enName: parsedFeature["enName"]!.rawValue as! String,
+                    latinName: "",
+                    type: parsedFeature["type"]!.rawValue as! String,
+                    clusterName: parsedFeature["clusterName"]!.rawValue as! String,
+                    lat: locationCoordinate.latitude,
+                    long: locationCoordinate.longitude,
+                    distance: Int(distance)
+                )
+            )
+        } else {
+            self.facilitiesData.append(
+                AllData(
+                    cage: "",
+                    idName: parsedFeature["idName"]!.rawValue as! String,
+                    enName: parsedFeature["enName"]!.rawValue as! String,
+                    latinName: "",
+                    type: parsedFeature["type"]!.rawValue as! String,
+                    clusterName: parsedFeature["clusterName"]!.rawValue as! String,
+                    lat: locationCoordinate.latitude,
+                    long: locationCoordinate.longitude,
+                    distance: Int(distance)
+                )
+            )
         }
     }
     
@@ -490,6 +503,9 @@ extension MainViewController: CLLocationManagerDelegate {
         if ((manager.location?.coordinate) != nil) {
             setupUserLocation()
             userLocation = manager.location!.coordinate
+            if self.animalsData.count == 0 || (self.animalsData.count != 0 && self.animalsData.first?.distance == 0) {
+                retrieveAnnotationData()
+            }
         }
         if status == .authorizedAlways {
             if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {

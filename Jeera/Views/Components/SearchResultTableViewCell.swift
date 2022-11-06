@@ -56,7 +56,7 @@ class SearchResultTableViewCell: UITableViewCell {
         profileLabel.anchor(
             left: profileImageView.rightAnchor,
             paddingLeft: 20,
-            width: contentView.bounds.height * (170/112),
+            width: contentView.bounds.height * (200/112),
             height: contentView.bounds.height * (60/112)
         )
         profileLabel.centerY(inView: contentView)

@@ -33,7 +33,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.register(SearchResultTableViewCell.self, forCellReuseIdentifier: SearchResultTableViewCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
-        
+//        print(animalsData!)
         searchBar.anchor(
             top: view.safeAreaLayoutGuide.topAnchor,
             left: view.leftAnchor,
@@ -109,8 +109,8 @@ extension SearchViewController: UISearchBarDelegate {
                 return idNameMatch != nil || enNameMatch != nil
             })
             let results = animalsResults + cagesResults + facilitiesResults
-            nonDuplicateNames.removeAll()
             if results.count > 0 {
+                nonDuplicateNames.removeAll()
                 searchResults.removeAll()
                 for el in results {
                     if !nonDuplicateNames.contains(el.idName) {
