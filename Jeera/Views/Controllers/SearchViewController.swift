@@ -69,7 +69,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultTableViewCell.identifier, for: indexPath) as! SearchResultTableViewCell
-//        cell.cellName = searchResults[indexPath.row].idName
+        cell.cellName = searchResults[indexPath.row].idName
         
         return cell
     }
