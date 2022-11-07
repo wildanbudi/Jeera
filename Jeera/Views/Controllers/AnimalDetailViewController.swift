@@ -68,7 +68,8 @@ class AnimalDetailViewController: UIViewController {
     
     lazy var startJourneyButton: UIButton = {
         let button = StartJourneyButton()
-
+        button.addTarget(self, action: #selector(onJourneyClick), for: .touchUpInside)
+        
         return button
     }()
     
@@ -99,6 +100,10 @@ class AnimalDetailViewController: UIViewController {
     
     @objc func backButton(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func onJourneyClick(_ sender: UIButton) {
+        startNavigation(animalName: animalData["idName"]!.rawValue as? String, targetCoordinate: targetCoordinate)
     }
     
     func setupView() {
