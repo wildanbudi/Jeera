@@ -10,7 +10,7 @@ import UIKit
 class SearchButton: UIButton {
     init() {
         super.init(frame: .zero)
-        self.setImage(UIImage(imageName: "Search Button"), for: .normal)
+        self.setImage(UIImage(imageName: "SearchBtn"), for: .normal)
         self.translatesAutoresizingMaskIntoConstraints = false
     }
     

@@ -44,10 +44,23 @@
 		4373E8E82910CD7F0016F810 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373E8E72910CD7F0016F810 /* SegmentedControl.swift */; };
 		4373E8EC291142390016F810 /* MonkeyLocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373E8EB291142390016F810 /* MonkeyLocationButton.swift */; };
 		4373E8EE2911534D0016F810 /* SearchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373E8ED2911534D0016F810 /* SearchButton.swift */; };
+		4373E8F2291175C40016F810 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373E8F1291175C40016F810 /* SearchViewController.swift */; };
+		4373E8F42912C3430016F810 /* Facilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373E8F32912C3430016F810 /* Facilities.swift */; };
+		4373E8F62912C4A60016F810 /* Cages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373E8F52912C4A60016F810 /* Cages.swift */; };
+		4373E8F9291363E40016F810 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373E8F8291363E40016F810 /* Map.swift */; };
+		4373E8FB29141DFA0016F810 /* AllDataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373E8FA29141DFA0016F810 /* AllDataTypes.swift */; };
 		437D008A2907A623005EB501 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437D00892907A623005EB501 /* MainViewController.swift */; };
 		437D008C2907A66A005EB501 /* OverviewCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437D008B2907A66A005EB501 /* OverviewCardView.swift */; };
 		437D008F2907A69A005EB501 /* MapsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437D008E2907A69A005EB501 /* MapsHelper.swift */; };
 		437D00912907A6B7005EB501 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437D00902907A6B7005EB501 /* Constants.swift */; };
+		43FDF1742916C3A200DAD0DA /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF1732916C3A200DAD0DA /* SearchBar.swift */; };
+		43FDF1762916C56600DAD0DA /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF1752916C56600DAD0DA /* SearchResultTableViewCell.swift */; };
+		43FDF17A2917FE6E00DAD0DA /* ClusterName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF1792917FE6E00DAD0DA /* ClusterName.swift */; };
+		43FDF17F291800BA00DAD0DA /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF17E291800BA00DAD0DA /* BackButton.swift */; };
+		43FDF181291801E500DAD0DA /* DetailLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF180291801E500DAD0DA /* DetailLabel.swift */; };
+		43FDF1832918031B00DAD0DA /* DetailInformationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF1822918031B00DAD0DA /* DetailInformationStackView.swift */; };
+		43FDF185291803DD00DAD0DA /* StartJourneyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF184291803DD00DAD0DA /* StartJourneyButton.swift */; };
+		43FDF187291804B700DAD0DA /* DetailInformationLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF186291804B700DAD0DA /* DetailInformationLabel.swift */; };
 		5712371F291027B900FB4F9E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5712371E291027B900FB4F9E /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
@@ -108,10 +121,23 @@
 		4373E8E72910CD7F0016F810 /* SegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
 		4373E8EB291142390016F810 /* MonkeyLocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonkeyLocationButton.swift; sourceTree = "<group>"; };
 		4373E8ED2911534D0016F810 /* SearchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchButton.swift; sourceTree = "<group>"; };
+		4373E8F1291175C40016F810 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		4373E8F32912C3430016F810 /* Facilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Facilities.swift; sourceTree = "<group>"; };
+		4373E8F52912C4A60016F810 /* Cages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cages.swift; sourceTree = "<group>"; };
+		4373E8F8291363E40016F810 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
+		4373E8FA29141DFA0016F810 /* AllDataTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllDataTypes.swift; sourceTree = "<group>"; };
 		437D00892907A623005EB501 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		437D008B2907A66A005EB501 /* OverviewCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewCardView.swift; sourceTree = "<group>"; };
 		437D008E2907A69A005EB501 /* MapsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsHelper.swift; sourceTree = "<group>"; };
 		437D00902907A6B7005EB501 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		43FDF1732916C3A200DAD0DA /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		43FDF1752916C56600DAD0DA /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
+		43FDF1792917FE6E00DAD0DA /* ClusterName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterName.swift; sourceTree = "<group>"; };
+		43FDF17E291800BA00DAD0DA /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
+		43FDF180291801E500DAD0DA /* DetailLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLabel.swift; sourceTree = "<group>"; };
+		43FDF1822918031B00DAD0DA /* DetailInformationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInformationStackView.swift; sourceTree = "<group>"; };
+		43FDF184291803DD00DAD0DA /* StartJourneyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartJourneyButton.swift; sourceTree = "<group>"; };
+		43FDF186291804B700DAD0DA /* DetailInformationLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInformationLabel.swift; sourceTree = "<group>"; };
 		5712371E291027B900FB4F9E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -231,6 +257,9 @@
 			isa = PBXGroup;
 			children = (
 				42D12DBE2901B16300857042 /* Animals.swift */,
+				4373E8F32912C3430016F810 /* Facilities.swift */,
+				4373E8F52912C4A60016F810 /* Cages.swift */,
+				4373E8FA29141DFA0016F810 /* AllDataTypes.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -248,13 +277,12 @@
 		42D12DBB2901B10500857042 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				437D008B2907A66A005EB501 /* OverviewCardView.swift */,
+				43FDF17D2918002700DAD0DA /* AnimalDetailView */,
+				43FDF17C2918000200DAD0DA /* SearchModal */,
+				43FDF17B2917FFD700DAD0DA /* MainView */,
 				42836AE629116E7B00301DE5 /* PrimaryButton.swift */,
 				42836AEE29117D1900301DE5 /* HeadingLabel.swift */,
 				42836AF029117D3A00301DE5 /* CaptionLabel.swift */,
-				4373E8E72910CD7F0016F810 /* SegmentedControl.swift */,
-				4373E8EB291142390016F810 /* MonkeyLocationButton.swift */,
-				4373E8ED2911534D0016F810 /* SearchButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -262,6 +290,7 @@
 		42D12DBC2901B10E00857042 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4373E8F72913639F0016F810 /* Map */,
 				42D12DCC2901BA7100857042 /* Navigate */,
 			);
 			path = Views;
@@ -274,6 +303,7 @@
 				42D2B3F5290595ED002818A9 /* BottomBannerViewController.swift */,
 				437D00892907A623005EB501 /* MainViewController.swift */,
 				4312457A290ABEF6003F7AB9 /* AnimalDetailViewController.swift */,
+				4373E8F1291175C40016F810 /* SearchViewController.swift */,
 				42836AF429118B2200301DE5 /* TopBannerViewController.swift */,
 				424646092913E095005EB12A /* Navigation.swift */,
 			);
@@ -303,13 +333,54 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		4373E8F72913639F0016F810 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				4373E8F8291363E40016F810 /* Map.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
 		437D008D2907A681005EB501 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				437D008E2907A69A005EB501 /* MapsHelper.swift */,
 				437D00902907A6B7005EB501 /* Constants.swift */,
+				43FDF1792917FE6E00DAD0DA /* ClusterName.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		43FDF17B2917FFD700DAD0DA /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				4373E8ED2911534D0016F810 /* SearchButton.swift */,
+				437D008B2907A66A005EB501 /* OverviewCardView.swift */,
+				4373E8E72910CD7F0016F810 /* SegmentedControl.swift */,
+				4373E8EB291142390016F810 /* MonkeyLocationButton.swift */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		43FDF17C2918000200DAD0DA /* SearchModal */ = {
+			isa = PBXGroup;
+			children = (
+				43FDF1752916C56600DAD0DA /* SearchResultTableViewCell.swift */,
+				43FDF1732916C3A200DAD0DA /* SearchBar.swift */,
+			);
+			path = SearchModal;
+			sourceTree = "<group>";
+		};
+		43FDF17D2918002700DAD0DA /* AnimalDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				43FDF17E291800BA00DAD0DA /* BackButton.swift */,
+				43FDF180291801E500DAD0DA /* DetailLabel.swift */,
+				43FDF1822918031B00DAD0DA /* DetailInformationStackView.swift */,
+				43FDF184291803DD00DAD0DA /* StartJourneyButton.swift */,
+				43FDF186291804B700DAD0DA /* DetailInformationLabel.swift */,
+			);
+			path = AnimalDetailView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -458,14 +529,24 @@
 				437D008C2907A66A005EB501 /* OverviewCardView.swift in Sources */,
 				4373E8E62910C4BB0016F810 /* UIButtonExtension.swift in Sources */,
 				437D00912907A6B7005EB501 /* Constants.swift in Sources */,
+				43FDF1832918031B00DAD0DA /* DetailInformationStackView.swift in Sources */,
 				42D12DC72901B8DF00857042 /* CustomDayStyle.swift in Sources */,
 				4246460A2913E095005EB12A /* Navigation.swift in Sources */,
 				4373E8EE2911534D0016F810 /* SearchButton.swift in Sources */,
 				42D12DBF2901B16300857042 /* Animals.swift in Sources */,
+				4373E8F9291363E40016F810 /* Map.swift in Sources */,
 				42D12D8429010F6C00857042 /* ViewController.swift in Sources */,
 				42D12D8A29010F6C00857042 /* Jeera.xcdatamodeld in Sources */,
 				4312457B290ABEF6003F7AB9 /* AnimalDetailViewController.swift in Sources */,
 				42D2B3F429047A5A002818A9 /* UIViewExtension.swift in Sources */,
+				4373E8FB29141DFA0016F810 /* AllDataTypes.swift in Sources */,
+				437D008A2907A623005EB501 /* MainViewController.swift in Sources */,
+				42D12D8029010F6C00857042 /* AppDelegate.swift in Sources */,
+				43FDF17A2917FE6E00DAD0DA /* ClusterName.swift in Sources */,
+				4373E8F42912C3430016F810 /* Facilities.swift in Sources */,
+				4373E8F2291175C40016F810 /* SearchViewController.swift in Sources */,
+				43FDF185291803DD00DAD0DA /* StartJourneyButton.swift in Sources */,
+				43FDF1742916C3A200DAD0DA /* SearchBar.swift in Sources */,
 				42836AF329118AF000301DE5 /* TopBarView.swift in Sources */,
 				437D008A2907A623005EB501 /* MainViewController.swift in Sources */,
 				42D12D8029010F6C00857042 /* AppDelegate.swift in Sources */,
@@ -474,13 +555,18 @@
 				42D12DCB2901B9FB00857042 /* NavigateViewController.swift in Sources */,
 				4373E8E4291016000016F810 /* UIImageExtension.swift in Sources */,
 				42D2B3F6290595ED002818A9 /* BottomBannerViewController.swift in Sources */,
+				4373E8F62912C4A60016F810 /* Cages.swift in Sources */,
+				43FDF17F291800BA00DAD0DA /* BackButton.swift in Sources */,
 				4373E8E82910CD7F0016F810 /* SegmentedControl.swift in Sources */,
+				43FDF187291804B700DAD0DA /* DetailInformationLabel.swift in Sources */,
 				437D008F2907A69A005EB501 /* MapsHelper.swift in Sources */,
 				42D12D8229010F6C00857042 /* SceneDelegate.swift in Sources */,
+				43FDF1762916C56600DAD0DA /* SearchResultTableViewCell.swift in Sources */,
 				42836AE729116E7B00301DE5 /* PrimaryButton.swift in Sources */,
 				42836AEF29117D1900301DE5 /* HeadingLabel.swift in Sources */,
 				4373E8EC291142390016F810 /* MonkeyLocationButton.swift in Sources */,
 				425AD0D029022D4700754114 /* UIColorScheme.swift in Sources */,
+				43FDF181291801E500DAD0DA /* DetailLabel.swift in Sources */,
 				42D12DC92901B93400857042 /* CustomNightStyle.swift in Sources */,
 				42836AF529118B2200301DE5 /* TopBannerViewController.swift in Sources */,
 				42836AF129117D3A00301DE5 /* CaptionLabel.swift in Sources */,

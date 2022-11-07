@@ -58,7 +58,7 @@ class OverviewCardView: UIView {
     }()
     
     init() {
-        super.init(frame: .zero)
+        super.init(frame: .zero)    
         self.backgroundColor = .white
         self.layer.cornerRadius = 20
         self.addSubview(anotationLabel)
