@@ -280,21 +280,9 @@
 				43FDF17D2918002700DAD0DA /* AnimalDetailView */,
 				43FDF17C2918000200DAD0DA /* SearchModal */,
 				43FDF17B2917FFD700DAD0DA /* MainView */,
-				42D2B3F129046ACD002818A9 /* BottomBanner.swift */,
-				4373E8ED2911534D0016F810 /* SearchButton.swift */,
-				437D008B2907A66A005EB501 /* OverviewCardView.swift */,
 				42836AE629116E7B00301DE5 /* PrimaryButton.swift */,
 				42836AEE29117D1900301DE5 /* HeadingLabel.swift */,
 				42836AF029117D3A00301DE5 /* CaptionLabel.swift */,
-				4373E8E72910CD7F0016F810 /* SegmentedControl.swift */,
-				4373E8EB291142390016F810 /* MonkeyLocationButton.swift */,
-				43FDF17E291800BA00DAD0DA /* BackButton.swift */,
-				43FDF180291801E500DAD0DA /* DetailLabel.swift */,
-				43FDF1822918031B00DAD0DA /* DetailInformationStackView.swift */,
-				43FDF184291803DD00DAD0DA /* StartJourneyButton.swift */,
-				43FDF186291804B700DAD0DA /* DetailInformationLabel.swift */,
-				43FDF1752916C56600DAD0DA /* SearchResultTableViewCell.swift */,
-				43FDF1732916C3A200DAD0DA /* SearchBar.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -366,6 +354,10 @@
 		43FDF17B2917FFD700DAD0DA /* MainView */ = {
 			isa = PBXGroup;
 			children = (
+				4373E8ED2911534D0016F810 /* SearchButton.swift */,
+				437D008B2907A66A005EB501 /* OverviewCardView.swift */,
+				4373E8E72910CD7F0016F810 /* SegmentedControl.swift */,
+				4373E8EB291142390016F810 /* MonkeyLocationButton.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -373,6 +365,8 @@
 		43FDF17C2918000200DAD0DA /* SearchModal */ = {
 			isa = PBXGroup;
 			children = (
+				43FDF1752916C56600DAD0DA /* SearchResultTableViewCell.swift */,
+				43FDF1732916C3A200DAD0DA /* SearchBar.swift */,
 			);
 			path = SearchModal;
 			sourceTree = "<group>";
@@ -380,6 +374,11 @@
 		43FDF17D2918002700DAD0DA /* AnimalDetailView */ = {
 			isa = PBXGroup;
 			children = (
+				43FDF17E291800BA00DAD0DA /* BackButton.swift */,
+				43FDF180291801E500DAD0DA /* DetailLabel.swift */,
+				43FDF1822918031B00DAD0DA /* DetailInformationStackView.swift */,
+				43FDF184291803DD00DAD0DA /* StartJourneyButton.swift */,
+				43FDF186291804B700DAD0DA /* DetailInformationLabel.swift */,
 			);
 			path = AnimalDetailView;
 			sourceTree = "<group>";
@@ -530,7 +529,6 @@
 				437D008C2907A66A005EB501 /* OverviewCardView.swift in Sources */,
 				4373E8E62910C4BB0016F810 /* UIButtonExtension.swift in Sources */,
 				437D00912907A6B7005EB501 /* Constants.swift in Sources */,
-				42D2B3F029042AE7002818A9 /* CustomBottomBannerView.swift in Sources */,
 				43FDF1832918031B00DAD0DA /* DetailInformationStackView.swift in Sources */,
 				42D12DC72901B8DF00857042 /* CustomDayStyle.swift in Sources */,
 				4246460A2913E095005EB12A /* Navigation.swift in Sources */,
