@@ -548,8 +548,6 @@
 				43FDF185291803DD00DAD0DA /* StartJourneyButton.swift in Sources */,
 				43FDF1742916C3A200DAD0DA /* SearchBar.swift in Sources */,
 				42836AF329118AF000301DE5 /* TopBarView.swift in Sources */,
-				437D008A2907A623005EB501 /* MainViewController.swift in Sources */,
-				42D12D8029010F6C00857042 /* AppDelegate.swift in Sources */,
 				42836AED29117C1900301DE5 /* BottomBarView.swift in Sources */,
 				42836AE929116EDC00301DE5 /* UIViewControllerExtension.swift in Sources */,
 				42D12DCB2901B9FB00857042 /* NavigateViewController.swift in Sources */,

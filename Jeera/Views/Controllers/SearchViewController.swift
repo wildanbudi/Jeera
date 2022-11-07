@@ -10,7 +10,6 @@ import CoreLocation
 
 class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var animalsData: [AllData]!
-//    var cagesData: [AllData]!
     var facilitiesData: [AllData]!
     var searchResults: [AllData] = []
     var nonDuplicateNames: [String] = []
@@ -24,15 +23,41 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return searchBar
     }()
     
+    lazy var searchResultLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .PrimaryText
+        label.font = UIFont(name: "Baloo2-SemiBold", size: 17)
+        label.text = "Hewan apa yang kamu cari?"
+        
+        return label
+    }()
+    
+    lazy var horizontalLine: UIView = {
+        let line = UIView()
+        line.backgroundColor = .Line
+        
+        return line
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         view.addSubview(searchBar)
+        view.addSubview(horizontalLine)
+        view.addSubview(searchResultLabel)
         view.addSubview(tableView)
+        setupTableView()
+    }
+    
+    func setupTableView() {
         tableView.register(SearchResultTableViewCell.self, forCellReuseIdentifier: SearchResultTableViewCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         searchBar.anchor(
             top: view.safeAreaLayoutGuide.topAnchor,
             left: view.leftAnchor,
@@ -43,8 +68,27 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             height: 36
         )
         
-        tableView.anchor(
+        searchResultLabel.anchor(
             top: searchBar.bottomAnchor,
+            left: view.leftAnchor,
+            paddingTop: 20,
+            paddingLeft: 24,
+            height: view.bounds.height * (22/844)
+        )
+        
+        horizontalLine.anchor(
+            top: searchResultLabel.bottomAnchor,
+            left: view.leftAnchor,
+            right: view.rightAnchor,
+            paddingTop: 5,
+            paddingLeft: 16,
+            paddingRight: 16,
+            height: 1
+        )
+        horizontalLine.centerX(inView: view)
+        
+        tableView.anchor(
+            top: horizontalLine.bottomAnchor,
             bottom: view.safeAreaLayoutGuide.bottomAnchor,
             left: view.leftAnchor,
             right: view.rightAnchor,
@@ -105,19 +149,12 @@ extension SearchViewController: UISearchBarDelegate {
         if searchText.count > 2 {
             let animalsResults = animalsData.filter({ (animal: AllData) -> Bool in
                 let idNameMatch = animal.idName.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
-                let enNameMatch = animal.enName.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
                 let cageMatch = animal.cage.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
-                return idNameMatch != nil || enNameMatch != nil || cageMatch != nil
+                return idNameMatch != nil || cageMatch != nil
             })
-//            let cagesResults = cagesData.filter({ (cage: AllData) -> Bool in
-//                let idNameMatch = cage.idName.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
-//                let enNameMatch = cage.enName.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
-//                return idNameMatch != nil || enNameMatch != nil
-//            })
             let facilitiesResults = facilitiesData.filter({ (facilities: AllData) -> Bool in
                 let idNameMatch = facilities.idName.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
-                let enNameMatch = facilities.enName.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
-                return idNameMatch != nil || enNameMatch != nil
+                return idNameMatch != nil
             })
             if animalsResults.count > 0 || facilitiesResults.count > 0 {
                 let results = animalsResults.sorted { $0.distance < $1.distance } + facilitiesResults.sorted { $0.distance < $1.distance }
