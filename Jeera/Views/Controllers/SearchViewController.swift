@@ -14,7 +14,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var searchResults: [AllData] = []
     var nonDuplicateNames: [String] = []
     var userLocation: CLLocationCoordinate2D!
-    let tableView = UITableView()
+    let searchResultTableView = UITableView()
+    let recommendationsTableView = UITableView()
+    let facilitiesTableView = UITableView()
+    let animalsRecommendations: [String] = ["Kapibara", "Singa Afrika", "Siamang"]
+    let facilities: [String] = ["Toilet", "Kantin", "Masjid", "Piknik"]
     
     lazy var searchBar: UISearchBar = {
         let searchBar = SearchBar()
@@ -23,37 +27,49 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return searchBar
     }()
     
-    lazy var searchResultLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .PrimaryText
-        label.font = UIFont(name: "Baloo2-SemiBold", size: 17)
-        label.text = "Hewan apa yang kamu cari?"
+    lazy var upperLabel: UILabel = {
+        let label = SearchModalLabel()
+        label.text = "Rekomendasi Hewan"
         
         return label
     }()
     
-    lazy var horizontalLine: UIView = {
-        let line = UIView()
-        line.backgroundColor = .Line
+    lazy var upperHorizontalLine = HorizontalLineView()
+    
+    lazy var lowerLabel: UILabel = {
+        let label = SearchModalLabel()
+        label.text = "Facilitas Umum"
         
-        return line
+        return label
     }()
+    
+    lazy var lowerHorizontalLine = HorizontalLineView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        view.addSubview(searchBar)
-        view.addSubview(horizontalLine)
-        view.addSubview(searchResultLabel)
-        view.addSubview(tableView)
+        [searchBar, upperLabel, upperHorizontalLine, recommendationsTableView, lowerLabel, lowerHorizontalLine, facilitiesTableView].forEach {
+            view.addSubview($0)
+        }
         setupTableView()
     }
     
     func setupTableView() {
-        tableView.register(SearchResultTableViewCell.self, forCellReuseIdentifier: SearchResultTableViewCell.identifier)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.separatorStyle = .none
+        recommendationsTableView.register(RecommendationsTableViewCell.self, forCellReuseIdentifier: RecommendationsTableViewCell.identifier)
+        recommendationsTableView.delegate = self
+        recommendationsTableView.dataSource = self
+        recommendationsTableView.separatorStyle = .none
+        
+        facilitiesTableView.register(FacilitiesTableViewCell.self, forCellReuseIdentifier: FacilitiesTableViewCell.identifier)
+        facilitiesTableView.delegate = self
+        facilitiesTableView.dataSource = self
+        facilitiesTableView.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        
+        searchResultTableView.register(SearchResultTableViewCell.self, forCellReuseIdentifier: SearchResultTableViewCell.identifier)
+        searchResultTableView.delegate = self
+        searchResultTableView.dataSource = self
+        searchResultTableView.separatorStyle = .none
+        searchResultTableView.tag = 2
     }
     
     override func viewDidLayoutSubviews() {
@@ -68,7 +84,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             height: 36
         )
         
-        searchResultLabel.anchor(
+        upperLabel.anchor(
             top: searchBar.bottomAnchor,
             left: view.leftAnchor,
             paddingTop: 20,
@@ -76,8 +92,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             height: view.bounds.height * (22/844)
         )
         
-        horizontalLine.anchor(
-            top: searchResultLabel.bottomAnchor,
+        upperHorizontalLine.anchor(
+            top: upperLabel.bottomAnchor,
             left: view.leftAnchor,
             right: view.rightAnchor,
             paddingTop: 5,
@@ -85,15 +101,40 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             paddingRight: 16,
             height: 1
         )
-        horizontalLine.centerX(inView: view)
+        upperHorizontalLine.centerX(inView: view)
         
-        tableView.anchor(
-            top: horizontalLine.bottomAnchor,
-            bottom: view.safeAreaLayoutGuide.bottomAnchor,
+        recommendationsTableView.anchor(
+            top: upperHorizontalLine.bottomAnchor,
             left: view.leftAnchor,
             right: view.rightAnchor,
             paddingTop: 10,
-            height: view.bounds.height
+            height: 255
+        )
+        
+        lowerLabel.anchor(
+            top: recommendationsTableView.bottomAnchor,
+            left: view.leftAnchor,
+            paddingTop: 50,
+            paddingLeft: 24,
+            height: view.bounds.height * (22/844)
+        )
+
+        lowerHorizontalLine.anchor(
+            top: lowerLabel.bottomAnchor,
+            left: view.leftAnchor,
+            right: view.rightAnchor,
+            paddingTop: 5,
+            paddingLeft: 16,
+            paddingRight: 16,
+            height: 1
+        )
+        lowerHorizontalLine.centerX(inView: view)
+
+        facilitiesTableView.anchor(
+            top: lowerHorizontalLine.bottomAnchor,
+            left: view.leftAnchor,
+            right: view.rightAnchor,
+            height: 235
         )
     }
     
@@ -108,10 +149,29 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
      }
      */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tableView == recommendationsTableView {
+            return animalsRecommendations.count
+        } else if tableView == facilitiesTableView {
+            return facilities.count
+        }
         return searchResults.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if tableView == recommendationsTableView {
+            let cell = tableView.dequeueReusableCell(withIdentifier: RecommendationsTableViewCell.identifier, for: indexPath) as! RecommendationsTableViewCell
+            cell.cellName = animalsRecommendations[indexPath.row]
+            
+            return cell
+        } else if tableView == facilitiesTableView {
+            let cell = tableView.dequeueReusableCell(withIdentifier: FacilitiesTableViewCell.identifier, for: indexPath) as! FacilitiesTableViewCell
+            cell.cellName = facilities[indexPath.row]
+            if indexPath.row == facilities.count - 1 {
+                cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: CGFloat.greatestFiniteMagnitude / 2.0)
+            }
+            
+            return cell
+        }
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultTableViewCell.identifier, for: indexPath) as! SearchResultTableViewCell
         cell.cellName = searchResults[indexPath.row].idName
         
@@ -119,7 +179,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if tableView == recommendationsTableView {
+            return view.bounds.height * (85/844)
+        } else if tableView == facilitiesTableView {
+            return view.bounds.height * (58/844)
+        }
         return view.bounds.height * (112/844)
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -139,12 +205,29 @@ extension SearchViewController: UISearchBarDelegate {
         self.dismiss(animated: true, completion: nil)
     }
     
+    func showSearchResult() {
+        upperLabel.text = "Hewan apa yang kamu cari?"
+        view.addSubview(searchResultTableView)
+        searchResultTableView.anchor(
+            top: upperHorizontalLine.bottomAnchor,
+            bottom: view.safeAreaLayoutGuide.bottomAnchor,
+            left: view.leftAnchor,
+            right: view.rightAnchor,
+            paddingTop: 10
+        )
+    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText != "" {
             searchBar.searchTextField.font = UIFont(name: "Baloo2-SemiBold", size: 17)
+            showSearchResult()
         } else {
-            searchResults.removeAll()
             searchBar.searchTextField.font = UIFont(name: "Baloo2-Regular", size: 17)
+            searchResults.removeAll()
+            upperLabel.text = "Rekomendasi Hewan"
+            if let viewWithTag = self.view.viewWithTag(2) {
+                viewWithTag.removeFromSuperview()
+            }
         }
         if searchText.count > 2 {
             let animalsResults = animalsData.filter({ (animal: AllData) -> Bool in
@@ -168,6 +251,6 @@ extension SearchViewController: UISearchBarDelegate {
                 }
             }
         }
-        tableView.reloadData()
+        searchResultTableView.reloadData()
     }
 }

@@ -122,7 +122,6 @@ class MainViewController: UIViewController {
         let searchViewController = SearchViewController()
         searchViewController.modalPresentationStyle = .formSheet
         searchViewController.animalsData = self.animalsData
-//        searchViewController.cagesData = self.cagesData
         searchViewController.facilitiesData = self.facilitiesData
         searchViewController.userLocation = self.userLocation
         self.present(searchViewController, animated: true, completion: nil)
@@ -174,22 +173,6 @@ class MainViewController: UIViewController {
                     dict: dict
                 )
             )
-//        } else if typeFeature == "Kandang" {
-//            self.cagesData.append(
-//                AllData(
-//                    cage: "",
-//                    idName: parsedFeature["idName"]!.rawValue as! String,
-//                    enName: parsedFeature["enName"]!.rawValue as! String,
-//                    latinName: "",
-//                    type: parsedFeature["type"]!.rawValue as! String,
-//                    clusterName: parsedFeature["clusterName"]!.rawValue as! String,
-//                    lat: locationCoordinate.latitude,
-//                    long: locationCoordinate.longitude,
-//                    distance: Int(distance),
-//                    travelTime: Int(travelTime),
-//                    dict: parsedFeature
-//                )
-//            )
         } else {
             self.facilitiesData.append(
                 AllData(
