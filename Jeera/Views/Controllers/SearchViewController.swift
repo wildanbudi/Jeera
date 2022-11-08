@@ -23,6 +23,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     lazy var searchBar: UISearchBar = {
         let searchBar = SearchBar()
         searchBar.delegate = self
+        searchBar.resignFirstResponder()
         
         return searchBar
     }()
@@ -51,9 +52,21 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         [searchBar, upperLabel, upperHorizontalLine, recommendationsTableView, lowerLabel, lowerHorizontalLine, facilitiesTableView].forEach {
             view.addSubview($0)
         }
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
         setupTableView()
         mappingAnimalsRecommedation()
         mappingPublicFacilities()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        view.endEditing(true)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     func setupTableView() {
@@ -88,18 +101,14 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func mappingPublicFacilities() {
-        var nonDuplicateTypes: [String] = []
+        publicFacilities.removeAll()
         let facilitiesSorted = facilitiesData.sorted { $0.distance < $1.distance }
         for facility in ["Toilet", "Kantin", "Masjid", "Piknik"] {
             let facilitiesResult = facilitiesSorted.filter({ (facilities: AllData) -> Bool in
-                let idNameMatch = facilities.idName.range(of: facility, options: NSString.CompareOptions.caseInsensitive)
-                return idNameMatch != nil
+                let typeMatch = facilities.type.range(of: facility, options: NSString.CompareOptions.caseInsensitive)
+                return typeMatch != nil
             })
-            let facilityType = facilitiesResult.first!.type
-            if !nonDuplicateTypes.contains(facilityType) {
-                nonDuplicateTypes.append(facilityType)
-                publicFacilities.append(facilitiesResult.first!)
-            }
+            publicFacilities.append(facilitiesResult.first!)
         }
     }
     
@@ -196,8 +205,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return cell
         } else if tableView == facilitiesTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: FacilitiesTableViewCell.identifier, for: indexPath) as! FacilitiesTableViewCell
-            cell.cellName = publicFacilities[indexPath.row].idName
-            cell.typeName = publicFacilities[indexPath.row].type
+            cell.cellName = publicFacilities[indexPath.row].type
             if indexPath.row == publicFacilities.count - 1 {
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: CGFloat.greatestFiniteMagnitude / 2.0)
             }
@@ -284,10 +292,10 @@ extension SearchViewController: UISearchBarDelegate {
             let idNameMatch = facilities.idName.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
             return idNameMatch != nil
         })
+        searchResults.removeAll()
         if animalsResults.count > 0 || facilitiesResults.count > 0 {
             let results = animalsResults.sorted { $0.distance < $1.distance } + facilitiesResults.sorted { $0.distance < $1.distance }
             nonDuplicateNames.removeAll()
-            searchResults.removeAll()
             for el in results {
                 if !nonDuplicateNames.contains(el.idName) {
                     nonDuplicateNames.append(el.idName)
