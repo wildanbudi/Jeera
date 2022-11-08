@@ -25,15 +25,14 @@ class TopBannerViewController: ContainerViewController {
     }()
     
     // You can Include one of the existing Views to display route-specific info
-    lazy var
-instructionsBannerView: InstructionsBannerView = {
-    let banner = InstructionsBannerView()
-    banner.translatesAutoresizingMaskIntoConstraints = false
-    banner.heightAnchor.constraint(equalToConstant: 100.0).isActive = true
-    banner.layer.cornerRadius = 50
-    banner.separatorView.isHidden = true
-    return banner
-}()
+    lazy var instructionsBannerView: InstructionsBannerView = {
+        let banner = InstructionsBannerView()
+        banner.translatesAutoresizingMaskIntoConstraints = false
+        banner.heightAnchor.constraint(equalToConstant: 100.0).isActive = true
+        banner.layer.cornerRadius = 50
+        banner.separatorView.isHidden = true
+        return banner
+    }()
     
     override func viewDidLoad() {
         //        super.viewDidLoad()

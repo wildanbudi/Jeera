@@ -317,8 +317,31 @@ class MainViewController: UIViewController {
     // MARK: - Show the Location Permission After The User Tapped the Monkey Button by Representing the CLLocationManagerDelegate
     @objc func buttonLocationOFFAction(_ button: UIButton) {
         // Give some conditions where the Monkey can be pressed and it will show the location permission
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.requestAlwaysAuthorization()
+        let alertController = UIAlertController(title: "Izinkan Jeera untuk mengakses lokasi kamu?", message: "Nyalakan lokasimu untuk mendapat petunjuk jalan", preferredStyle: .alert)
+
+            let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                    return
+                }
+                if UIApplication.shared.canOpenURL(settingsUrl) {
+                    UIApplication.shared.open(settingsUrl, completionHandler: { (success) in })
+                 }
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+
+            alertController.addAction(cancelAction)
+            alertController.addAction(settingsAction)
+        
+        switch locationManager.authorizationStatus {
+            case .notDetermined:
+                locationManager.requestWhenInUseAuthorization()
+                locationManager.requestAlwaysAuthorization()
+            case .restricted, .denied:
+                self.present(alertController, animated: true, completion: nil)
+            default :
+                locationManager.requestWhenInUseAuthorization()
+                locationManager.requestAlwaysAuthorization()
+        }
     }
 
 }
@@ -333,13 +356,13 @@ extension MainViewController: CLLocationManagerDelegate {
         if status == .authorizedAlways {
             if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
                 if CLLocationManager.isRangingAvailable() {
-                    print("THE LOCATION IS ON")
+                    buttonLocationOFF.removeFromSuperview()
                 }
             }
-        } else if status == .denied || status == .restricted || status == .authorizedWhenInUse {
+        } else if status == .denied || status == .restricted || status == .notDetermined{
+            view.addSubview(buttonLocationOFF)
+        } else if status == .authorizedWhenInUse {
             buttonLocationOFF.removeFromSuperview()
-        } else if status == .notDetermined {
-            print("User Has Not Determined The Location Permission")
         }
     }
 }

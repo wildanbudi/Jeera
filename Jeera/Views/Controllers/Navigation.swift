@@ -12,9 +12,9 @@ import MapboxNavigation
 import CoreLocation
 
 extension AnimalDetailViewController {
-    func startNavigation(userLocation: CLLocationCoordinate2D?, animalName: String?, targetCoordinate: CLLocationCoordinate2D?) {
-        let origin = Waypoint(coordinate: userLocation!, name: "Mapbox")
-        let destination = Waypoint(coordinate: targetCoordinate!, name: animalName!)
+    func startNavigation() {
+        let origin = Waypoint(coordinate: userLocation, name: "Mapbox")
+        let destination = Waypoint(coordinate: targetCoordinate, name: animalData["idName"]!.rawValue as? String)
         
         // Set options
         let routeOptions = NavigationRouteOptions(waypoints: [origin, destination], profileIdentifier: ProfileIdentifier(rawValue: "mapbox/walking"))
