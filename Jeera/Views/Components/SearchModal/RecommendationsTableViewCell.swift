@@ -75,16 +75,16 @@ class RecommendationsTableViewCell: UITableViewCell {
         profileLabel.anchor(
             left: profileImageView.rightAnchor,
             paddingLeft: 28,
-            width: contentView.bounds.height * (160/112),
-            height: contentView.bounds.height * (30/112)
+            width: contentView.bounds.height * (165/85),
+            height: contentView.bounds.height * (30/85)
         )
         profileLabel.centerY(inView: containerView)
 
         arrowImageView.anchor(
             right: containerView.rightAnchor,
             paddingRight: 28,
-            width: contentView.bounds.height * (20/112),
-            height: contentView.bounds.height * (20/112)
+            width: contentView.bounds.height * (20/85),
+            height: contentView.bounds.height * (20/85)
         )
         arrowImageView.centerY(inView: containerView)
     }
