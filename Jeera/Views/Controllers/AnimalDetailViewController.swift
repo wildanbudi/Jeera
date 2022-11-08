@@ -151,7 +151,7 @@ class AnimalDetailViewController: UIViewController {
     }
     
     @objc func onJourneyClick(_ sender: UIButton) {
-        startNavigation(animalName: animalData["idName"]!.rawValue as? String, targetCoordinate: targetCoordinate)
+        startNavigation(userLocation: userLocation, animalName: animalData["idName"]!.rawValue as? String, targetCoordinate: targetCoordinate)
     }
     
     func setupView() {
