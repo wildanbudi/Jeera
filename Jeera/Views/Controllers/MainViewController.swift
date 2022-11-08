@@ -30,6 +30,8 @@ class MainViewController: UIViewController {
     
     var timer = Timer()
     
+    private(set) static var instance: MainViewController!
+    
     // Initiate The Core Location Manager
     let locationManager = CLLocationManager()
     
@@ -46,6 +48,7 @@ class MainViewController: UIViewController {
         customSegmentedControl()
         setupSearchBtn()
         setupConstraint()
+        MainViewController.instance = self
         
         // Check the User's Core Location Status Through the CLLocationDelegate Function
         if CLLocationManager.locationServicesEnabled() {
@@ -60,6 +63,7 @@ class MainViewController: UIViewController {
             timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(retrieveAnnotationData), userInfo: nil, repeats: true)
         }
     }
+    
     
     func setupMapView() {
         let mapRetrieveInstance = Map()
@@ -193,9 +197,32 @@ class MainViewController: UIViewController {
         }
     }
     
+    func clickFacility() {
+        var customPointAnnotation = PointAnnotation(coordinate: self.targetCoordinate)
+        if (self.pointAnnotationManager != nil) {
+            self.pointAnnotationManager.annotations = []
+        }
+        self.pointAnnotationManager = self.mapView.annotations.makePointAnnotationManager()
+        let uuid = NSUUID().uuidString
+        customPointAnnotation.image = .init(image: UIImage(named: "\(annotationData["clusterName"]!.rawValue) Active")!, name: "\(annotationData["clusterName"]!.rawValue) Active-\(uuid)")
+        self.pointAnnotationManager.annotations = [customPointAnnotation]
+        self.removeSubview()
+        self.showOverview()
+//        self.selectedSegmentIndex = 2
+//        switch self.selectedSegmentIndex {
+//        case 1:
+//            self.mapView.mapboxMap.style.uri = StyleURI(rawValue: mapKandangDisableStyleURI)
+//        case 2:
+//            self.mapView.mapboxMap.style.uri = StyleURI(rawValue: mapFasilitasStyleURI)
+//        default:
+            self.mapView.mapboxMap.style.uri = StyleURI(rawValue: mapAllDisableStyleURI)
+//        }
+    }
+    
     @objc private func onMapClick(_ sender: UITapGestureRecognizer) {
         guard sender.state == .ended else { return }
         let screenPoint = sender.location(in: mapView)
+        print(screenPoint, "<<<")
         let queryOptions = RenderedQueryOptions(layerIds: layerStyleIds, filter: nil)
         mapView.mapboxMap.queryRenderedFeatures(with: screenPoint, options: queryOptions, completion: { [weak self] result in
             switch result {
@@ -360,8 +387,8 @@ class MainViewController: UIViewController {
             segmentedBase.heightAnchor.constraint(equalToConstant: 32),
             mapViewRetrieveData.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             mapViewRetrieveData.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            mapViewRetrieveData.widthAnchor.constraint(equalToConstant: 200),
-            mapViewRetrieveData.heightAnchor.constraint(equalToConstant: 200),
+            mapViewRetrieveData.widthAnchor.constraint(equalToConstant: 100),
+            mapViewRetrieveData.heightAnchor.constraint(equalToConstant: 100),
             mapView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             mapView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             mapView.topAnchor.constraint(equalTo: whiteBackground.bottomAnchor),
@@ -453,8 +480,6 @@ extension MainViewController: CLLocationManagerDelegate {
             if self.animalsData.count == 0 || (self.animalsData.count != 0 && self.animalsData.first?.distance == 0) {
                 retrieveAnnotationData()
             }
-        } else {
-            setupUserLocation()
         }
         if status == .authorizedAlways {
             if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {

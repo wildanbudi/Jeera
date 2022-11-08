@@ -229,28 +229,30 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let animalDetailViewController = AnimalDetailViewController()
-        animalDetailViewController.modalPresentationStyle = .fullScreen
         if tableView == recommendationsTableView {
+            let animalDetailViewController = AnimalDetailViewController()
+            animalDetailViewController.modalPresentationStyle = .fullScreen
             animalDetailViewController.animalData = animalsRecommendation[indexPath.row].dict
             animalDetailViewController.targetCoordinate = CLLocationCoordinate2D(latitude: animalsRecommendation[indexPath.row].lat, longitude: animalsRecommendation[indexPath.row].long)
             animalDetailViewController.userLocation = userLocation
             animalDetailViewController.distance = animalsRecommendation[indexPath.row].distance
             animalDetailViewController.travelTime = animalsRecommendation[indexPath.row].travelTime
+            self.present(animalDetailViewController, animated: true, completion: nil)
         } else if tableView == facilitiesTableView {
-            animalDetailViewController.animalData = publicFacilities[indexPath.row].dict
-            animalDetailViewController.targetCoordinate = CLLocationCoordinate2D(latitude: publicFacilities[indexPath.row].lat, longitude: publicFacilities[indexPath.row].long)
-            animalDetailViewController.userLocation = userLocation
-            animalDetailViewController.distance = publicFacilities[indexPath.row].distance
-            animalDetailViewController.travelTime = publicFacilities[indexPath.row].travelTime
+            MainViewController.instance.annotationData = publicFacilities[indexPath.row].dict
+            MainViewController.instance.targetCoordinate = CLLocationCoordinate2D(latitude: publicFacilities[indexPath.row].lat, longitude: publicFacilities[indexPath.row].long)
+            MainViewController.instance.clickFacility()
+            self.dismiss(animated: true, completion: nil)
         } else {
+            let animalDetailViewController = AnimalDetailViewController()
+            animalDetailViewController.modalPresentationStyle = .fullScreen
             animalDetailViewController.animalData = searchResults[indexPath.row].dict
             animalDetailViewController.targetCoordinate = CLLocationCoordinate2D(latitude: searchResults[indexPath.row].lat, longitude: searchResults[indexPath.row].long)
             animalDetailViewController.userLocation = userLocation
             animalDetailViewController.distance = searchResults[indexPath.row].distance
             animalDetailViewController.travelTime = searchResults[indexPath.row].travelTime
+            self.present(animalDetailViewController, animated: true, completion: nil)
         }
-        self.present(animalDetailViewController, animated: true, completion: nil)
     }
 }
 
