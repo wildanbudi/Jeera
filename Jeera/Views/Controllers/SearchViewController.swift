@@ -75,12 +75,14 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         recommendationsTableView.dataSource = self
         recommendationsTableView.separatorStyle = .none
         recommendationsTableView.backgroundColor = .white
+        recommendationsTableView.alwaysBounceVertical = false
         
         facilitiesTableView.register(FacilitiesTableViewCell.self, forCellReuseIdentifier: FacilitiesTableViewCell.identifier)
         facilitiesTableView.delegate = self
         facilitiesTableView.dataSource = self
         facilitiesTableView.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         facilitiesTableView.backgroundColor = .white
+        facilitiesTableView.alwaysBounceVertical = false
         
         searchResultTableView.register(SearchResultTableViewCell.self, forCellReuseIdentifier: SearchResultTableViewCell.identifier)
         searchResultTableView.delegate = self
