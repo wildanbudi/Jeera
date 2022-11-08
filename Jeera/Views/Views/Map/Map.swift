@@ -20,7 +20,7 @@ class Map {
         var options = MapInitOptions(cameraOptions: CameraOptions(center: targetCoordinate, zoom: zoomLevel), styleURI: StyleURI(rawValue: styleURI))
         let view = MapView(frame: .zero, mapInitOptions: options)
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.layer.cornerRadius = 35
+        view.layer.cornerRadius = 20
         view.clipsToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
         view.ornaments.options.scaleBar.visibility = .hidden

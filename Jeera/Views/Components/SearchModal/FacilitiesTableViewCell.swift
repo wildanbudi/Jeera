@@ -12,8 +12,12 @@ class FacilitiesTableViewCell: UITableViewCell {
     var cellName: String? {
         get { profileLabel.text }
         set {
-            iconImageView.image = UIImage(named: newValue!)
             profileLabel.text = newValue
+        }
+    }
+    var typeName: String? {
+        didSet {
+            iconImageView.image = UIImage(named: typeName!)
         }
     }
     

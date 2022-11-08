@@ -17,8 +17,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     let searchResultTableView = UITableView()
     let recommendationsTableView = UITableView()
     let facilitiesTableView = UITableView()
-    let animalsRecommendations: [String] = ["Kapibara", "Singa Afrika", "Siamang"]
-    let facilities: [String] = ["Toilet", "Kantin", "Masjid", "Piknik"]
+    var animalsRecommendation: [AllData] = []
+    var publicFacilities: [AllData] = []
     
     lazy var searchBar: UISearchBar = {
         let searchBar = SearchBar()
@@ -52,6 +52,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             view.addSubview($0)
         }
         setupTableView()
+        mappingAnimalsRecommedation()
+        mappingPublicFacilities()
     }
     
     func setupTableView() {
@@ -73,6 +75,32 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchResultTableView.separatorStyle = .none
         searchResultTableView.tag = 2
         searchResultTableView.backgroundColor = .white
+    }
+    
+    func mappingAnimalsRecommedation() {
+        for animalRecoms in ["Flamingo Eropa", "Sendok Raja", "Beruang Madu"] {
+            let animalsResult = animalsData.filter({ (animal: AllData) -> Bool in
+                let idNameMatch = animal.idName.range(of: animalRecoms, options: NSString.CompareOptions.caseInsensitive)
+                return idNameMatch != nil
+            })
+                animalsRecommendation.append(animalsResult.first!)
+        }
+    }
+    
+    func mappingPublicFacilities() {
+        var nonDuplicateTypes: [String] = []
+        let facilitiesSorted = facilitiesData.sorted { $0.distance < $1.distance }
+        for facility in ["Toilet", "Kantin", "Masjid", "Piknik"] {
+            let facilitiesResult = facilitiesSorted.filter({ (facilities: AllData) -> Bool in
+                let idNameMatch = facilities.idName.range(of: facility, options: NSString.CompareOptions.caseInsensitive)
+                return idNameMatch != nil
+            })
+            let facilityType = facilitiesResult.first!.type
+            if !nonDuplicateTypes.contains(facilityType) {
+                nonDuplicateTypes.append(facilityType)
+                publicFacilities.append(facilitiesResult.first!)
+            }
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -153,9 +181,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
      */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == recommendationsTableView {
-            return animalsRecommendations.count
+            return animalsRecommendation.count
         } else if tableView == facilitiesTableView {
-            return facilities.count
+            return publicFacilities.count
         }
         return searchResults.count
     }
@@ -163,13 +191,14 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == recommendationsTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: RecommendationsTableViewCell.identifier, for: indexPath) as! RecommendationsTableViewCell
-            cell.cellName = animalsRecommendations[indexPath.row]
+            cell.cellName = animalsRecommendation[indexPath.row].idName
             
             return cell
         } else if tableView == facilitiesTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: FacilitiesTableViewCell.identifier, for: indexPath) as! FacilitiesTableViewCell
-            cell.cellName = facilities[indexPath.row]
-            if indexPath.row == facilities.count - 1 {
+            cell.cellName = publicFacilities[indexPath.row].idName
+            cell.typeName = publicFacilities[indexPath.row].type
+            if indexPath.row == publicFacilities.count - 1 {
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: CGFloat.greatestFiniteMagnitude / 2.0)
             }
             
@@ -194,11 +223,25 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let animalDetailViewController = AnimalDetailViewController()
         animalDetailViewController.modalPresentationStyle = .fullScreen
-        animalDetailViewController.animalData = searchResults[indexPath.row].dict
-        animalDetailViewController.targetCoordinate = CLLocationCoordinate2D(latitude: searchResults[indexPath.row].lat, longitude: searchResults[indexPath.row].long)
-        animalDetailViewController.userLocation = userLocation
-        animalDetailViewController.distance = searchResults[indexPath.row].distance
-        animalDetailViewController.travelTime = searchResults[indexPath.row].travelTime
+        if tableView == recommendationsTableView {
+            animalDetailViewController.animalData = animalsRecommendation[indexPath.row].dict
+            animalDetailViewController.targetCoordinate = CLLocationCoordinate2D(latitude: animalsRecommendation[indexPath.row].lat, longitude: animalsRecommendation[indexPath.row].long)
+            animalDetailViewController.userLocation = userLocation
+            animalDetailViewController.distance = animalsRecommendation[indexPath.row].distance
+            animalDetailViewController.travelTime = animalsRecommendation[indexPath.row].travelTime
+        } else if tableView == facilitiesTableView {
+            animalDetailViewController.animalData = publicFacilities[indexPath.row].dict
+            animalDetailViewController.targetCoordinate = CLLocationCoordinate2D(latitude: publicFacilities[indexPath.row].lat, longitude: publicFacilities[indexPath.row].long)
+            animalDetailViewController.userLocation = userLocation
+            animalDetailViewController.distance = publicFacilities[indexPath.row].distance
+            animalDetailViewController.travelTime = publicFacilities[indexPath.row].travelTime
+        } else {
+            animalDetailViewController.animalData = searchResults[indexPath.row].dict
+            animalDetailViewController.targetCoordinate = CLLocationCoordinate2D(latitude: searchResults[indexPath.row].lat, longitude: searchResults[indexPath.row].long)
+            animalDetailViewController.userLocation = userLocation
+            animalDetailViewController.distance = searchResults[indexPath.row].distance
+            animalDetailViewController.travelTime = searchResults[indexPath.row].travelTime
+        }
         self.present(animalDetailViewController, animated: true, completion: nil)
     }
 }

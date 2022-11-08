@@ -10,10 +10,8 @@ import UIKit
 class RecommendationsTableViewCell: UITableViewCell {
     static let identifier = "RecommendationsTableViewCell"
     var cellName: String? {
-        get { profileLabel.text }
-        set {
-            profileImageView.image = UIImage(named: newValue!)
-            profileLabel.text = newValue
+        didSet {
+            profileImageView.image = UIImage(named: "\(cellName!) Rekomendasi")
         }
     }
     
@@ -23,28 +21,10 @@ class RecommendationsTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    lazy var profileLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont(name: "Baloo2-SemiBold", size: 22)
-        label.textColor = .PrimaryText
-        
-        return label
-    }()
-    
-    lazy var arrowImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "arrow.up.left")?.imageWithColor(newColor: .ArrowProfile)
-        
-        return imageView
-    }()
-    
     lazy var containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .PrimaryGreen
         view.layer.cornerRadius = 20
         view.addSubview(profileImageView)
-        view.addSubview(profileLabel)
-        view.addSubview(arrowImageView)
         
         return view
     }()
@@ -64,29 +44,7 @@ class RecommendationsTableViewCell: UITableViewCell {
         )
         containerView.center(inView: contentView)
         
-        profileImageView.anchor(
-            left: containerView.leftAnchor,
-            paddingLeft: 16,
-            width: contentView.bounds.height * (65/85),
-            height: contentView.bounds.height * (65/85)
-        )
-        profileImageView.centerY(inView: containerView)
-
-        profileLabel.anchor(
-            left: profileImageView.rightAnchor,
-            paddingLeft: 28,
-            width: contentView.bounds.height * (165/85),
-            height: contentView.bounds.height * (30/85)
-        )
-        profileLabel.centerY(inView: containerView)
-
-        arrowImageView.anchor(
-            right: containerView.rightAnchor,
-            paddingRight: 28,
-            width: contentView.bounds.height * (20/85),
-            height: contentView.bounds.height * (20/85)
-        )
-        arrowImageView.centerY(inView: containerView)
+        profileImageView.anchor()
     }
     
     required init?(coder: NSCoder) {

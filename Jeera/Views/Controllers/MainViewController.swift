@@ -173,7 +173,7 @@ class MainViewController: UIViewController {
                     dict: dict
                 )
             )
-        } else {
+        } else if typeFeature != "Kandang" && typeFeature != "Hewan" {
             self.facilitiesData.append(
                 AllData(
                     cage: "",
