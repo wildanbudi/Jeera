@@ -19,7 +19,6 @@ class BottomBarView: UIView {
     lazy var endButton = PrimaryButton()
     
     weak var delegate: BottomBarViewDelegate?
-    weak var navigateViewController: NavigateViewController?
         
     var eta: String? {
         get {
