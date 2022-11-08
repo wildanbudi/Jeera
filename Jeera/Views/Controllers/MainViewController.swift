@@ -14,8 +14,8 @@ class MainViewController: UIViewController {
     internal var cameraLocationConsumer: CameraLocationConsumer!
     internal var pointAnnotationManager: PointAnnotationManager!
     internal var targetCoordinate: CLLocationCoordinate2D!
-    internal var animalData: Dictionary<String, JSONValue>!
-    internal var userLocation: CLLocationCoordinate2D?
+    internal var annotationData: Dictionary<String, JSONValue>!
+    internal var userLocation: CLLocationCoordinate2D? = centerCoordinate
     internal var animalsData: [AllData] = []
     internal var facilitiesData: [AllData] = []
     internal var cagesData: [AllData] = []
@@ -202,7 +202,7 @@ class MainViewController: UIViewController {
             case .success(let features):
                 if let feature = features.first?.feature {
                     let dict = feature.properties!.reduce(into: [:]) { $0[$1.0] = $1.1 }
-                    self!.animalData = dict
+                    self!.annotationData = dict
                     if let geometry = feature.geometry, case let Geometry.point(point) = geometry {
                         self!.targetCoordinate = point.coordinates
                         var customPointAnnotation = PointAnnotation(coordinate: self!.targetCoordinate)
@@ -244,24 +244,16 @@ class MainViewController: UIViewController {
         })
     }
     
-    @objc private func onOverviewClick(_ sender: UIButton) {
-        let animalDetailViewController = AnimalDetailViewController()
-        animalDetailViewController.modalPresentationStyle = .fullScreen
-        animalDetailViewController.animalData = animalData
-        animalDetailViewController.targetCoordinate = targetCoordinate
-        animalDetailViewController.userLocation = userLocation
-        self.present(animalDetailViewController, animated: true, completion: nil)
-    }
-    
     func showOverview() {
+        let type = annotationData["type"]!.rawValue as? String
         lazy var overviewCardView: OverviewCardView = {
             let oVview = OverviewCardView()
             oVview.translatesAutoresizingMaskIntoConstraints = false
             oVview.tag = 1
-            let type = animalData["type"]!.rawValue as? String
-            let idName = animalData["idName"]!.rawValue as? String
-            let clusterName = animalData["clusterName"]!.rawValue as? String
+            let idName = annotationData["idName"]!.rawValue as? String
+            let clusterName = annotationData["clusterName"]!.rawValue as? String
             oVview.title = idName
+            oVview.type = type
             oVview.targetCoordinate = targetCoordinate
             
             let imageView = UIImageView(image: UIImage(named: (type == "Kandang" ? idName : clusterName)!))
@@ -281,7 +273,11 @@ class MainViewController: UIViewController {
             return oVview
         }()
         
-        overviewCardView.overviewButton.addTarget(self, action: #selector(onOverviewClick), for: .touchUpInside)
+        if type == "Kandang" {
+            overviewCardView.overviewButton.addTarget(self, action: #selector(onOverviewClick), for: .touchUpInside)
+        } else {
+            overviewCardView.startJourneyButton.addTarget(self, action: #selector(onJourneyClick), for: .touchUpInside)
+        }
         
         view.addSubview(overviewCardView)
         let safeArea = view.layoutMarginsGuide
@@ -295,6 +291,19 @@ class MainViewController: UIViewController {
             paddingRight: 84,
             height: view.bounds.height * (132 / 844)
         )
+    }
+    
+    @objc private func onOverviewClick(_ sender: UIButton) {
+        let animalDetailViewController = AnimalDetailViewController()
+        animalDetailViewController.modalPresentationStyle = .fullScreen
+        animalDetailViewController.animalData = annotationData
+        animalDetailViewController.targetCoordinate = targetCoordinate
+        animalDetailViewController.userLocation = userLocation
+        self.present(animalDetailViewController, animated: true, completion: nil)
+    }
+    
+    @objc private func onJourneyClick(_ sender: UIButton) {
+        startNavigation(targetName: annotationData["idName"]!.rawValue as? String, targetCoordinate: targetCoordinate, userLocation: userLocation)
     }
     
     func removeSubview(){
@@ -444,6 +453,8 @@ extension MainViewController: CLLocationManagerDelegate {
             if self.animalsData.count == 0 || (self.animalsData.count != 0 && self.animalsData.first?.distance == 0) {
                 retrieveAnnotationData()
             }
+        } else {
+            setupUserLocation()
         }
         if status == .authorizedAlways {
             if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {

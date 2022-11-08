@@ -19,6 +19,27 @@ class OverviewCardView: UIView {
         }
     }
     var targetCoordinate: CLLocationCoordinate2D?
+    var type: String? {
+        didSet {
+            if type == "Kandang" {
+                self.addSubview(overviewButton)
+                NSLayoutConstraint.activate([
+                    overviewButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
+                    overviewButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16),
+                    overviewButton.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: (39 / 132)),
+                    overviewButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: (190 / 290))
+                ])
+            } else {
+                self.addSubview(startJourneyButton)
+                NSLayoutConstraint.activate([
+                    startJourneyButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
+                    startJourneyButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16),
+                    startJourneyButton.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: (39 / 132)),
+                    startJourneyButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: (190 / 290))
+                ])
+            }
+        }
+    }
     
     lazy var anotationLabel: UILabel = {
         let label = UILabel(frame: .zero)
@@ -57,21 +78,37 @@ class OverviewCardView: UIView {
         return button
     }()
     
+    lazy var startJourneyButton: UIButton = {
+        let button = UIButton(type: .system)
+        var config = UIButton.Configuration.plain()
+        config.title = "Mulai Perjalanan"
+        config.baseForegroundColor = .PrimaryGreen
+        config.titleTextAttributesTransformer =
+          UIConfigurationTextAttributesTransformer { incoming in
+            var outgoing = incoming
+            outgoing.font = UIFont.systemFont(ofSize: 17, weight: .bold)
+            return outgoing
+          }
+        button.configuration = config
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 20
+        button.layer.borderWidth = 1
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
     init() {
         super.init(frame: .zero)    
         self.backgroundColor = .white
         self.layer.cornerRadius = 20
         self.addSubview(anotationLabel)
-        self.addSubview(overviewButton)
         
         NSLayoutConstraint.activate([
             anotationLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
             anotationLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -85),
-            anotationLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-            overviewButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
-            overviewButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16),
-            overviewButton.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: (39 / 132)),
-            overviewButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: (190 / 290))
+            anotationLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16)
         ])
     }
     
