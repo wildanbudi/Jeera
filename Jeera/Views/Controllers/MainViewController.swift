@@ -57,7 +57,7 @@ class MainViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if self.animalsData.count == 0 {
-            timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(retrieveAnnotationData), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(retrieveAnnotationData), userInfo: nil, repeats: true)
         }
     }
     
@@ -80,7 +80,7 @@ class MainViewController: UIViewController {
         mapViewRetrieveData.mapboxMap.queryRenderedFeatures(with: mapView.safeAreaLayoutGuide.layoutFrame, options: queryOptions, completion: { [weak self] result in
             switch result {
             case .success(let queriedFeatures):
-                print(queriedFeatures.count)
+//                print(queriedFeatures.count)
                 if queriedFeatures.count > 0 {
                     self!.animalsData.removeAll()
                     self!.cagesData.removeAll()
@@ -447,13 +447,13 @@ extension MainViewController: CLLocationManagerDelegate {
         if status == .authorizedAlways {
             if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
                 if CLLocationManager.isRangingAvailable() {
-                    print("THE LOCATION IS ON")
+//                    print("THE LOCATION IS ON")
                 }
             }
         } else if status == .denied || status == .restricted || status == .authorizedWhenInUse {
             buttonLocationOFF.removeFromSuperview()
         } else if status == .notDetermined {
-            print("User Has Not Determined The Location Permission")
+//            print("User Has Not Determined The Location Permission")
         }
     }
 }

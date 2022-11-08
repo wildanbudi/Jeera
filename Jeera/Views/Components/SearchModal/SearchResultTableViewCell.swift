@@ -41,6 +41,7 @@ class SearchResultTableViewCell: UITableViewCell {
     lazy var profileLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Baloo2-Regular", size: 17)
+        label.textColor = .PrimaryText
         
         return label
     }()
@@ -54,6 +55,7 @@ class SearchResultTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        contentView.backgroundColor = .white
         contentView.addSubview(containerView)
     }
     

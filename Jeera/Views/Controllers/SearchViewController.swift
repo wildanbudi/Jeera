@@ -38,7 +38,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     lazy var lowerLabel: UILabel = {
         let label = SearchModalLabel()
-        label.text = "Facilitas Umum"
+        label.text = "Fasilitas Umum"
         
         return label
     }()
@@ -59,17 +59,20 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         recommendationsTableView.delegate = self
         recommendationsTableView.dataSource = self
         recommendationsTableView.separatorStyle = .none
+        recommendationsTableView.backgroundColor = .white
         
         facilitiesTableView.register(FacilitiesTableViewCell.self, forCellReuseIdentifier: FacilitiesTableViewCell.identifier)
         facilitiesTableView.delegate = self
         facilitiesTableView.dataSource = self
         facilitiesTableView.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        facilitiesTableView.backgroundColor = .white
         
         searchResultTableView.register(SearchResultTableViewCell.self, forCellReuseIdentifier: SearchResultTableViewCell.identifier)
         searchResultTableView.delegate = self
         searchResultTableView.dataSource = self
         searchResultTableView.separatorStyle = .none
         searchResultTableView.tag = 2
+        searchResultTableView.backgroundColor = .white
     }
     
     override func viewDidLayoutSubviews() {
@@ -229,25 +232,23 @@ extension SearchViewController: UISearchBarDelegate {
                 viewWithTag.removeFromSuperview()
             }
         }
-        if searchText.count > 2 {
-            let animalsResults = animalsData.filter({ (animal: AllData) -> Bool in
-                let idNameMatch = animal.idName.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
-                let cageMatch = animal.cage.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
-                return idNameMatch != nil || cageMatch != nil
-            })
-            let facilitiesResults = facilitiesData.filter({ (facilities: AllData) -> Bool in
-                let idNameMatch = facilities.idName.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
-                return idNameMatch != nil
-            })
-            if animalsResults.count > 0 || facilitiesResults.count > 0 {
-                let results = animalsResults.sorted { $0.distance < $1.distance } + facilitiesResults.sorted { $0.distance < $1.distance }
-                nonDuplicateNames.removeAll()
-                searchResults.removeAll()
-                for el in results {
-                    if !nonDuplicateNames.contains(el.idName) {
-                        nonDuplicateNames.append(el.idName)
-                        searchResults.append(el)
-                    }
+        let animalsResults = animalsData.filter({ (animal: AllData) -> Bool in
+            let idNameMatch = animal.idName.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+            let cageMatch = animal.cage.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+            return idNameMatch != nil || cageMatch != nil
+        })
+        let facilitiesResults = facilitiesData.filter({ (facilities: AllData) -> Bool in
+            let idNameMatch = facilities.idName.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+            return idNameMatch != nil
+        })
+        if animalsResults.count > 0 || facilitiesResults.count > 0 {
+            let results = animalsResults.sorted { $0.distance < $1.distance } + facilitiesResults.sorted { $0.distance < $1.distance }
+            nonDuplicateNames.removeAll()
+            searchResults.removeAll()
+            for el in results {
+                if !nonDuplicateNames.contains(el.idName) {
+                    nonDuplicateNames.append(el.idName)
+                    searchResults.append(el)
                 }
             }
         }

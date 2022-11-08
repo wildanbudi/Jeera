@@ -26,6 +26,7 @@ class FacilitiesTableViewCell: UITableViewCell {
     lazy var profileLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Baloo2-Medium", size: 17)
+        label.textColor = .PrimaryText
         
         return label
     }()
@@ -39,6 +40,7 @@ class FacilitiesTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        contentView.backgroundColor = .white
         contentView.addSubview(iconImageView)
         contentView.addSubview(profileLabel)
         contentView.addSubview(arrowImageView)
