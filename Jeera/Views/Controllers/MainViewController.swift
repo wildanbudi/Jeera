@@ -208,21 +208,26 @@ class MainViewController: UIViewController {
         self.pointAnnotationManager.annotations = [customPointAnnotation]
         self.removeSubview()
         self.showOverview()
-//        self.selectedSegmentIndex = 2
-//        switch self.selectedSegmentIndex {
-//        case 1:
-//            self.mapView.mapboxMap.style.uri = StyleURI(rawValue: mapKandangDisableStyleURI)
-//        case 2:
-//            self.mapView.mapboxMap.style.uri = StyleURI(rawValue: mapFasilitasStyleURI)
-//        default:
-            self.mapView.mapboxMap.style.uri = StyleURI(rawValue: mapAllDisableStyleURI)
-//        }
+        selectedSegmentIndex = 2
+        for (i, btn) in segmentedButtons.enumerated() {
+            if i == 2 {
+                let selectorStartPosition = (segmentedBase.frame.width / CGFloat(segmentedButtons.count) * CGFloat(i))
+                UIView.animate(withDuration: 0.3) {
+                    self.segmentedSelector.frame.origin.x = selectorStartPosition
+                }
+                btn.setTitleColor(.white, for: .normal)
+                btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+            } else {
+                btn.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+                segmentedButtons[i].setTitleColor(.SecondaryText, for: .normal)
+            }
+        }
+        self.mapView.mapboxMap.style.uri = StyleURI(rawValue: mapFasilitasStyleURI)
     }
     
     @objc private func onMapClick(_ sender: UITapGestureRecognizer) {
         guard sender.state == .ended else { return }
         let screenPoint = sender.location(in: mapView)
-        print(screenPoint, "<<<")
         let queryOptions = RenderedQueryOptions(layerIds: layerStyleIds, filter: nil)
         mapView.mapboxMap.queryRenderedFeatures(with: screenPoint, options: queryOptions, completion: { [weak self] result in
             switch result {
