@@ -102,7 +102,8 @@ class MainViewController: UIViewController {
     
     func setupUserLocation() {
         cameraLocationConsumer = CameraLocationConsumer(mapView: mapView)
-        mapView.location.options.puckType = .puck2D()
+        let configuration = Puck2DConfiguration(topImage: UIImage(named: "Current Location"))
+        mapView.location.options.puckType = .puck2D(configuration)
         
         mapView.mapboxMap.onNext(event: .mapLoaded) { _ in
             // Register the location consumer with the map
