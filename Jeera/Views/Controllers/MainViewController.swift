@@ -15,7 +15,7 @@ class MainViewController: UIViewController {
     internal var pointAnnotationManager: PointAnnotationManager!
     internal var targetCoordinate: CLLocationCoordinate2D!
     internal var annotationData: Dictionary<String, JSONValue>!
-    internal var userLocation: CLLocationCoordinate2D? = centerCoordinate
+    internal var userLocation: CLLocationCoordinate2D?
     internal var animalsData: [AllData] = []
     internal var facilitiesData: [AllData] = []
     internal var cagesData: [AllData] = []
@@ -48,6 +48,7 @@ class MainViewController: UIViewController {
         customSegmentedControl()
         setupSearchBtn()
         setupConstraint()
+        setupSplashScreen()
         MainViewController.instance = self
         
         // Check the User's Core Location Status Through the CLLocationDelegate Function
@@ -60,10 +61,9 @@ class MainViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if self.animalsData.count == 0 {
-            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(retrieveAnnotationData), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(retrieveAnnotationData), userInfo: nil, repeats: true)
         }
     }
-    
     
     func setupMapView() {
         let mapRetrieveInstance = Map()
@@ -76,6 +76,41 @@ class MainViewController: UIViewController {
         mapView = mapInstance.getMapView()
         mapView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onMapClick)))
         view.addSubview(mapView)
+    }
+    
+    func setupSplashScreen() {
+        let splashScreen = UIImageView(image: UIImage(named: "Logo 1"))
+        splashScreen.tag = 3
+        splashScreen.frame = view.frame
+        view.addSubview(splashScreen)
+    }
+    
+    func setupLoadingScreen() {
+        let loadingView = UIView()
+        loadingView.backgroundColor = UIColor(red: 0.435, green: 0.435, blue: 0.439, alpha: 0.4)
+        loadingView.tag = 4
+        loadingView.frame = view.frame
+        
+        let loadingImage = UIImageView(image: UIImage(named: "Loading Kosong"))
+        loadingView.addSubview(loadingImage)
+        
+        let loadingLabel = UILabel()
+        loadingLabel.font = UIFont(name: "Baloo2-Bold", size: 17)
+        loadingLabel.textColor = .white
+        loadingLabel.text = "Mencari lokasi saat ini"
+        loadingView.addSubview(loadingLabel)
+        
+        loadingImage.anchor(
+            width: 270,
+            height: 227
+        )
+        loadingImage.center(inView: loadingView)
+        
+        loadingLabel.anchor(
+            height: 22
+        )
+        loadingLabel.center(inView: loadingView, yConstant: 50)
+        view.addSubview(loadingView)
     }
     
     @objc func retrieveAnnotationData() {
@@ -98,6 +133,7 @@ class MainViewController: UIViewController {
                         }
                     }
                 }
+                self!.removeSubview(tag: 3)
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -297,7 +333,7 @@ class MainViewController: UIViewController {
                 bottom: oVview.bottomAnchor,
                 left: oVview.rightAnchor,
                 paddingBottom: -(type == "Kandang" ? 54 : 10),
-                paddingLeft: -(view.bounds.height * ((type == "Kandang" ? 132 : 85) / 844)),
+                paddingLeft: -(view.bounds.height * ((type == "Kandang" ? 115 : 85) / 844)),
                 width: view.bounds.height * ((type == "Kandang" ? 260 : 180) / 844),
                 height: view.bounds.height * ((type == "Kandang" ? 260 : 180) / 844)
             )
@@ -338,8 +374,12 @@ class MainViewController: UIViewController {
         startNavigation(targetName: annotationData["idName"]!.rawValue as? String, targetCoordinate: targetCoordinate, userLocation: userLocation)
     }
     
-    func removeSubview(){
-        if let viewWithTag = self.view.viewWithTag(1) {
+    @objc private func removeLoadingScreen() {
+        removeSubview(tag: 4)
+    }
+    
+    func removeSubview(tag: Int? = 1){
+        if let viewWithTag = self.view.viewWithTag(tag!) {
             viewWithTag.removeFromSuperview()
         }
     }
@@ -484,6 +524,8 @@ extension MainViewController: CLLocationManagerDelegate {
             userLocation = manager.location!.coordinate
             if self.animalsData.count == 0 || (self.animalsData.count != 0 && self.animalsData.first?.distance == 0) {
                 retrieveAnnotationData()
+                setupLoadingScreen()
+                timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(removeLoadingScreen), userInfo: nil, repeats: true)
             }
         }
         if status == .authorizedAlways {

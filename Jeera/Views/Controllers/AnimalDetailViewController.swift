@@ -15,6 +15,7 @@ class AnimalDetailViewController: UIViewController {
     var userLocation: CLLocationCoordinate2D!
     var distance: Int!
     var travelTime: Int!
+    var type: String!
     
     lazy var backButton: UIButton = {
         let button = BackButton()
@@ -24,7 +25,6 @@ class AnimalDetailViewController: UIViewController {
     }()
     
     lazy var animalImage: UIImageView = {
-        let type = animalData["type"]!.rawValue as? String
         let imageName = animalData[(type == "Kandang" || type == "Hewan" ? "idName" : "clusterName")]!.rawValue as? String
         let imageView = UIImageView(image: UIImage(named: imageName!))
         
@@ -38,23 +38,16 @@ class AnimalDetailViewController: UIViewController {
         return label
     }()
     
-    lazy var distanceLabel: UILabel = {
-        return labelWithIcon(imageName: "Distance", labelText: "\(distance ?? 0) meter", iconColor: .PrimaryGreen)
-    }()
+    lazy var distanceLabel = labelWithIcon(imageName: "Distance", labelText: "\(distance ?? 0) meter", iconColor: .PrimaryGreen)
     
-    lazy var etaLabel: UILabel = {
-        return labelWithIcon(imageName: "Time", labelText: "\(travelTime ?? 0) menit", iconColor: .PrimaryGreen)
-    }()
+    lazy var etaLabel = labelWithIcon(imageName: "Time", labelText: "\(travelTime ?? 0) menit", iconColor: .PrimaryGreen)
     
-    lazy var cageLabel: UILabel = {
-        return labelWithIcon(imageName: "Location", labelText: (animalData["cage"]!.rawValue as? String)!, iconColor: .PrimaryGreen)
-    }()
+    lazy var cageLabel = labelWithIcon(imageName: "Location", labelText: (animalData["cage"]!.rawValue as? String)!, iconColor: .PrimaryGreen)
     
     lazy var informationView: UIStackView = {
-        let stackView = DetailInformationStackView()
+        let stackView = DetailStackView(spacing: 20.0)
         stackView.addArrangedSubview(distanceLabel)
         stackView.addArrangedSubview(etaLabel)
-        let type = animalData["type"]!.rawValue as? String
         if type == "Hewan" {
             let idName = animalData["idName"]!.rawValue as? String
             let cage = animalData["cage"]!.rawValue as? String
@@ -66,11 +59,21 @@ class AnimalDetailViewController: UIViewController {
         return stackView
     }()
     
+    lazy var animalListButton = OutlinedButton(title: "Lihat Daftar Hewan", textWeight: .regular)
+    
     lazy var startJourneyButton: UIButton = {
         let button = StartJourneyButton()
         button.addTarget(self, action: #selector(onJourneyClick), for: .touchUpInside)
         
         return button
+    }()
+    
+    lazy var buttonsStack: UIStackView = {
+        let stackView = DetailStackView(spacing: 15.0)
+        stackView.addArrangedSubview(animalListButton)
+        stackView.addArrangedSubview(startJourneyButton)
+        
+        return stackView
     }()
     
     lazy var overviewMapView: MapView = {
@@ -107,13 +110,20 @@ class AnimalDetailViewController: UIViewController {
     }
     
     func setupView() {
+        type = animalData["type"]!.rawValue as? String
         let gradient = CAGradientLayer()
         gradient.frame = view.bounds
         gradient.colors = [UIColor.UpperGradient.cgColor, UIColor.LowerGradient.cgColor]
         view.layer.insertSublayer(gradient, at: 0)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-        [backButton, animalImage, detailNameLabel, startJourneyButton, overviewMapView, informationView].forEach {
-            view.addSubview($0)
+        if type != "Kandang" {
+            [backButton, animalImage, detailNameLabel, overviewMapView, informationView, buttonsStack].forEach {
+                view.addSubview($0)
+            }
+        } else {
+            [backButton, animalImage, detailNameLabel, overviewMapView, informationView, startJourneyButton].forEach {
+                view.addSubview($0)
+            }
         }
         setupConstraint()
     }
@@ -131,21 +141,31 @@ class AnimalDetailViewController: UIViewController {
         )
         
         animalImage.anchor(
-            top: view.topAnchor,
+            top: view.safeAreaLayoutGuide.topAnchor,
             left: view.leftAnchor,
             right: view.rightAnchor,
             height: view.bounds.height * (390 / 844)
         )
         
-        startJourneyButton.anchor(
-            bottom: safeArea.bottomAnchor,
-            left: view.leftAnchor,
-            paddingBottom: 14,
-            paddingLeft: 16,
-            height: view.bounds.height * (50 / 844)
-        )
-        
-        startJourneyButton.centerX(inView: view)
+        if type != "Kandang" {
+            buttonsStack.anchor(
+                bottom: safeArea.bottomAnchor,
+                left: view.leftAnchor,
+                paddingBottom: 14,
+                paddingLeft: 16,
+                height: view.bounds.height * (50 / 844)
+            )
+            buttonsStack.centerX(inView: view)
+        } else {
+            startJourneyButton.anchor(
+                bottom: safeArea.bottomAnchor,
+                left: view.leftAnchor,
+                paddingBottom: 14,
+                paddingLeft: 16,
+                height: view.bounds.height * (50 / 844)
+            )
+            startJourneyButton.centerX(inView: view)
+        }
         
         overviewMapView.anchor(
             bottom: startJourneyButton.topAnchor,

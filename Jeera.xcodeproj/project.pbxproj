@@ -58,12 +58,13 @@
 		437D008F2907A69A005EB501 /* MapsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437D008E2907A69A005EB501 /* MapsHelper.swift */; };
 		437D00912907A6B7005EB501 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437D00902907A6B7005EB501 /* Constants.swift */; };
 		439F90F3291A9D7A00320C17 /* MainViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439F90F2291A9D7A00320C17 /* MainViewControllerExtension.swift */; };
+		439F90F7291B567500320C17 /* OutlinedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439F90F6291B567500320C17 /* OutlinedButton.swift */; };
 		43FDF1742916C3A200DAD0DA /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF1732916C3A200DAD0DA /* SearchBar.swift */; };
 		43FDF1762916C56600DAD0DA /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF1752916C56600DAD0DA /* SearchResultTableViewCell.swift */; };
 		43FDF17A2917FE6E00DAD0DA /* ClusterName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF1792917FE6E00DAD0DA /* ClusterName.swift */; };
 		43FDF17F291800BA00DAD0DA /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF17E291800BA00DAD0DA /* BackButton.swift */; };
 		43FDF181291801E500DAD0DA /* DetailLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF180291801E500DAD0DA /* DetailLabel.swift */; };
-		43FDF1832918031B00DAD0DA /* DetailInformationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF1822918031B00DAD0DA /* DetailInformationStackView.swift */; };
+		43FDF1832918031B00DAD0DA /* DetailStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF1822918031B00DAD0DA /* DetailStackView.swift */; };
 		43FDF185291803DD00DAD0DA /* StartJourneyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF184291803DD00DAD0DA /* StartJourneyButton.swift */; };
 		43FDF187291804B700DAD0DA /* DetailInformationLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF186291804B700DAD0DA /* DetailInformationLabel.swift */; };
 		5712371F291027B900FB4F9E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5712371E291027B900FB4F9E /* Settings.bundle */; };
@@ -140,12 +141,13 @@
 		437D008E2907A69A005EB501 /* MapsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsHelper.swift; sourceTree = "<group>"; };
 		437D00902907A6B7005EB501 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		439F90F2291A9D7A00320C17 /* MainViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerExtension.swift; sourceTree = "<group>"; };
+		439F90F6291B567500320C17 /* OutlinedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinedButton.swift; sourceTree = "<group>"; };
 		43FDF1732916C3A200DAD0DA /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		43FDF1752916C56600DAD0DA /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		43FDF1792917FE6E00DAD0DA /* ClusterName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterName.swift; sourceTree = "<group>"; };
 		43FDF17E291800BA00DAD0DA /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		43FDF180291801E500DAD0DA /* DetailLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLabel.swift; sourceTree = "<group>"; };
-		43FDF1822918031B00DAD0DA /* DetailInformationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInformationStackView.swift; sourceTree = "<group>"; };
+		43FDF1822918031B00DAD0DA /* DetailStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStackView.swift; sourceTree = "<group>"; };
 		43FDF184291803DD00DAD0DA /* StartJourneyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartJourneyButton.swift; sourceTree = "<group>"; };
 		43FDF186291804B700DAD0DA /* DetailInformationLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInformationLabel.swift; sourceTree = "<group>"; };
 		5712371E291027B900FB4F9E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 				43FDF17C2918000200DAD0DA /* SearchModal */,
 				43FDF17B2917FFD700DAD0DA /* MainView */,
 				42836AE629116E7B00301DE5 /* PrimaryButton.swift */,
+				439F90F6291B567500320C17 /* OutlinedButton.swift */,
 				42836AEE29117D1900301DE5 /* HeadingLabel.swift */,
 				42836AF029117D3A00301DE5 /* CaptionLabel.swift */,
 			);
@@ -391,7 +394,7 @@
 			children = (
 				43FDF17E291800BA00DAD0DA /* BackButton.swift */,
 				43FDF180291801E500DAD0DA /* DetailLabel.swift */,
-				43FDF1822918031B00DAD0DA /* DetailInformationStackView.swift */,
+				43FDF1822918031B00DAD0DA /* DetailStackView.swift */,
 				43FDF184291803DD00DAD0DA /* StartJourneyButton.swift */,
 				43FDF186291804B700DAD0DA /* DetailInformationLabel.swift */,
 			);
@@ -545,7 +548,7 @@
 				4373E8E62910C4BB0016F810 /* UIButtonExtension.swift in Sources */,
 				439F90F3291A9D7A00320C17 /* MainViewControllerExtension.swift in Sources */,
 				437D00912907A6B7005EB501 /* Constants.swift in Sources */,
-				43FDF1832918031B00DAD0DA /* DetailInformationStackView.swift in Sources */,
+				43FDF1832918031B00DAD0DA /* DetailStackView.swift in Sources */,
 				42D12DC72901B8DF00857042 /* CustomDayStyle.swift in Sources */,
 				4246460A2913E095005EB12A /* Navigation.swift in Sources */,
 				4373E8EE2911534D0016F810 /* SearchButton.swift in Sources */,
@@ -587,6 +590,7 @@
 				4371E456291951E000F3C2C2 /* FacilitiesTableViewCell.swift in Sources */,
 				42D12DC92901B93400857042 /* CustomNightStyle.swift in Sources */,
 				42836AF529118B2200301DE5 /* TopBannerViewController.swift in Sources */,
+				439F90F7291B567500320C17 /* OutlinedButton.swift in Sources */,
 				42836AF129117D3A00301DE5 /* CaptionLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
