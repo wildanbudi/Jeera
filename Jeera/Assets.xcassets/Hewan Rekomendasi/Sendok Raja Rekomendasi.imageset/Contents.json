@@ -1,11 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "TrenggilingIcon.png",
+      "filename" : "Sendok Raja Rekomendasi@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "Sendok Raja Rekomendasi@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

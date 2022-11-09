@@ -39,6 +39,10 @@
 		42D2B3F429047A5A002818A9 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D2B3F329047A5A002818A9 /* UIViewExtension.swift */; };
 		42D2B3F6290595ED002818A9 /* BottomBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D2B3F5290595ED002818A9 /* BottomBannerViewController.swift */; };
 		4312457B290ABEF6003F7AB9 /* AnimalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4312457A290ABEF6003F7AB9 /* AnimalDetailViewController.swift */; };
+		4371E4512919440E00F3C2C2 /* RecommendationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4371E4502919440E00F3C2C2 /* RecommendationsTableViewCell.swift */; };
+		4371E456291951E000F3C2C2 /* FacilitiesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4371E455291951E000F3C2C2 /* FacilitiesTableViewCell.swift */; };
+		4371E45A291956FF00F3C2C2 /* SearchModalLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4371E459291956FF00F3C2C2 /* SearchModalLabel.swift */; };
+		4371E45C291957D000F3C2C2 /* HorizontalLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4371E45B291957D000F3C2C2 /* HorizontalLineView.swift */; };
 		4373E8E4291016000016F810 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373E8E3291016000016F810 /* UIImageExtension.swift */; };
 		4373E8E62910C4BB0016F810 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373E8E52910C4BB0016F810 /* UIButtonExtension.swift */; };
 		4373E8E82910CD7F0016F810 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373E8E72910CD7F0016F810 /* SegmentedControl.swift */; };
@@ -53,6 +57,7 @@
 		437D008C2907A66A005EB501 /* OverviewCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437D008B2907A66A005EB501 /* OverviewCardView.swift */; };
 		437D008F2907A69A005EB501 /* MapsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437D008E2907A69A005EB501 /* MapsHelper.swift */; };
 		437D00912907A6B7005EB501 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437D00902907A6B7005EB501 /* Constants.swift */; };
+		439F90F3291A9D7A00320C17 /* MainViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439F90F2291A9D7A00320C17 /* MainViewControllerExtension.swift */; };
 		43FDF1742916C3A200DAD0DA /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF1732916C3A200DAD0DA /* SearchBar.swift */; };
 		43FDF1762916C56600DAD0DA /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF1752916C56600DAD0DA /* SearchResultTableViewCell.swift */; };
 		43FDF17A2917FE6E00DAD0DA /* ClusterName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF1792917FE6E00DAD0DA /* ClusterName.swift */; };
@@ -116,6 +121,10 @@
 		42D2B3F329047A5A002818A9 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		42D2B3F5290595ED002818A9 /* BottomBannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBannerViewController.swift; sourceTree = "<group>"; };
 		4312457A290ABEF6003F7AB9 /* AnimalDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalDetailViewController.swift; sourceTree = "<group>"; };
+		4371E4502919440E00F3C2C2 /* RecommendationsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationsTableViewCell.swift; sourceTree = "<group>"; };
+		4371E455291951E000F3C2C2 /* FacilitiesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilitiesTableViewCell.swift; sourceTree = "<group>"; };
+		4371E459291956FF00F3C2C2 /* SearchModalLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModalLabel.swift; sourceTree = "<group>"; };
+		4371E45B291957D000F3C2C2 /* HorizontalLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalLineView.swift; sourceTree = "<group>"; };
 		4373E8E3291016000016F810 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		4373E8E52910C4BB0016F810 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		4373E8E72910CD7F0016F810 /* SegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
@@ -130,6 +139,7 @@
 		437D008B2907A66A005EB501 /* OverviewCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewCardView.swift; sourceTree = "<group>"; };
 		437D008E2907A69A005EB501 /* MapsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsHelper.swift; sourceTree = "<group>"; };
 		437D00902907A6B7005EB501 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		439F90F2291A9D7A00320C17 /* MainViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerExtension.swift; sourceTree = "<group>"; };
 		43FDF1732916C3A200DAD0DA /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		43FDF1752916C56600DAD0DA /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		43FDF1792917FE6E00DAD0DA /* ClusterName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterName.swift; sourceTree = "<group>"; };
@@ -329,6 +339,7 @@
 				425AD0CF29022D4700754114 /* UIColorScheme.swift */,
 				4373E8E3291016000016F810 /* UIImageExtension.swift */,
 				4373E8E52910C4BB0016F810 /* UIButtonExtension.swift */,
+				439F90F2291A9D7A00320C17 /* MainViewControllerExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -366,7 +377,11 @@
 			isa = PBXGroup;
 			children = (
 				43FDF1752916C56600DAD0DA /* SearchResultTableViewCell.swift */,
+				4371E4502919440E00F3C2C2 /* RecommendationsTableViewCell.swift */,
+				4371E459291956FF00F3C2C2 /* SearchModalLabel.swift */,
+				4371E455291951E000F3C2C2 /* FacilitiesTableViewCell.swift */,
 				43FDF1732916C3A200DAD0DA /* SearchBar.swift */,
+				4371E45B291957D000F3C2C2 /* HorizontalLineView.swift */,
 			);
 			path = SearchModal;
 			sourceTree = "<group>";
@@ -528,6 +543,7 @@
 			files = (
 				437D008C2907A66A005EB501 /* OverviewCardView.swift in Sources */,
 				4373E8E62910C4BB0016F810 /* UIButtonExtension.swift in Sources */,
+				439F90F3291A9D7A00320C17 /* MainViewControllerExtension.swift in Sources */,
 				437D00912907A6B7005EB501 /* Constants.swift in Sources */,
 				43FDF1832918031B00DAD0DA /* DetailInformationStackView.swift in Sources */,
 				42D12DC72901B8DF00857042 /* CustomDayStyle.swift in Sources */,
@@ -537,6 +553,7 @@
 				4373E8F9291363E40016F810 /* Map.swift in Sources */,
 				42D12D8429010F6C00857042 /* ViewController.swift in Sources */,
 				42D12D8A29010F6C00857042 /* Jeera.xcdatamodeld in Sources */,
+				4371E4512919440E00F3C2C2 /* RecommendationsTableViewCell.swift in Sources */,
 				4312457B290ABEF6003F7AB9 /* AnimalDetailViewController.swift in Sources */,
 				42D2B3F429047A5A002818A9 /* UIViewExtension.swift in Sources */,
 				4373E8FB29141DFA0016F810 /* AllDataTypes.swift in Sources */,
@@ -548,8 +565,6 @@
 				43FDF185291803DD00DAD0DA /* StartJourneyButton.swift in Sources */,
 				43FDF1742916C3A200DAD0DA /* SearchBar.swift in Sources */,
 				42836AF329118AF000301DE5 /* TopBarView.swift in Sources */,
-				437D008A2907A623005EB501 /* MainViewController.swift in Sources */,
-				42D12D8029010F6C00857042 /* AppDelegate.swift in Sources */,
 				42836AED29117C1900301DE5 /* BottomBarView.swift in Sources */,
 				42836AE929116EDC00301DE5 /* UIViewControllerExtension.swift in Sources */,
 				42D12DCB2901B9FB00857042 /* NavigateViewController.swift in Sources */,
@@ -564,9 +579,12 @@
 				43FDF1762916C56600DAD0DA /* SearchResultTableViewCell.swift in Sources */,
 				42836AE729116E7B00301DE5 /* PrimaryButton.swift in Sources */,
 				42836AEF29117D1900301DE5 /* HeadingLabel.swift in Sources */,
+				4371E45A291956FF00F3C2C2 /* SearchModalLabel.swift in Sources */,
 				4373E8EC291142390016F810 /* MonkeyLocationButton.swift in Sources */,
 				425AD0D029022D4700754114 /* UIColorScheme.swift in Sources */,
+				4371E45C291957D000F3C2C2 /* HorizontalLineView.swift in Sources */,
 				43FDF181291801E500DAD0DA /* DetailLabel.swift in Sources */,
+				4371E456291951E000F3C2C2 /* FacilitiesTableViewCell.swift in Sources */,
 				42D12DC92901B93400857042 /* CustomNightStyle.swift in Sources */,
 				42836AF529118B2200301DE5 /* TopBannerViewController.swift in Sources */,
 				42836AF129117D3A00301DE5 /* CaptionLabel.swift in Sources */,
@@ -727,7 +745,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KJUW4SG84H;
+				DEVELOPMENT_TEAM = 7PHRUAQA32;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Jeera/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Turn on location to get directions.";
@@ -756,7 +774,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KJUW4SG84H;
+				DEVELOPMENT_TEAM = 7PHRUAQA32;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Jeera/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Turn on location to get directions.";
