@@ -15,6 +15,7 @@ class BottomBannerViewController: ContainerViewController, BottomBarViewDelegate
     
     var animalName: String?
     weak var animalDetailViewController: AnimalDetailViewController?
+    weak var mainViewController: MainViewController?
     weak var navigationViewController: NavigationViewController?
     
     // Or you can implement your own UI elements
@@ -63,5 +64,6 @@ class BottomBannerViewController: ContainerViewController, BottomBarViewDelegate
     func customBottomBannerDidCancel(_ banner: BottomBarView) {
         navigationViewController?.dismiss(animated: true)
         animalDetailViewController?.dismiss(animated: true)
+        mainViewController?.dismiss(animated: true)
     }
 }

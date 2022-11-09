@@ -14,5 +14,7 @@ let mapAllDisableStyleURI = "mapbox://styles/anggidast/cl9ldvs6j001k14prjtv8su72
 let mapKandangDefaultStyleURI = "mapbox://styles/anggidast/cl9oh0p3z007b14o23ru8ra0s"
 let mapKandangDisableStyleURI = "mapbox://styles/anggidast/cl9oh1ahd000014n206h9imvs"
 let mapFasilitasStyleURI = "mapbox://styles/anggidast/cl9oh1tww000815ob6du3p0y0"
+let mapAllIconOverlap = "mapbox://styles/anggidast/cl9zow8lj001c14rud08y46gb"
 let layerStyleIds = ["ragunanzoocages", "ragunanzoofacilities"]
+let layerStyleOverlapIds = ["ragunanzoocages", "ragunanzoofacilities", "ragunanzooanimals"]
 let segmentedTitles = ["Semua", "Kandang", "Fasilitas"]

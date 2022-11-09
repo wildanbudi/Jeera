@@ -12,4 +12,7 @@ struct Animals: Equatable, Hashable, Encodable, Decodable {
     var idName: String
     var enName: String
     var latinName: String
+    var type: String
+    var lat: Double
+    var long: Double
 }
