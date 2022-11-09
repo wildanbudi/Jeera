@@ -335,7 +335,7 @@ class MainViewController: UIViewController {
     }
     
     @objc private func onJourneyClick(_ sender: UIButton) {
-        startNavigation(targetName: annotationData["idName"]!.rawValue as? String, targetCoordinate: targetCoordinate, userLocation: userLocation)
+        startNavigation()
     }
     
     func removeSubview(){
@@ -498,31 +498,6 @@ class MainViewController: UIViewController {
     }
     
 }
-
-// MARK: - CLLocationManagerDelegate Extension
-extension MainViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if ((manager.location?.coordinate) != nil) {
-            setupUserLocation()
-            userLocation = manager.location!.coordinate
-            if self.animalsData.count == 0 || (self.animalsData.count != 0 && self.animalsData.first?.distance == 0) {
-                retrieveAnnotationData()
-            }
-        }
-        if status == .authorizedAlways {
-            if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
-                if CLLocationManager.isRangingAvailable() {
-                    buttonLocationOFF.removeFromSuperview()
-                }
-            }
-        } else if status == .denied || status == .restricted || status == .notDetermined{
-            view.addSubview(buttonLocationOFF)
-        } else if status == .authorizedWhenInUse {
-            buttonLocationOFF.removeFromSuperview()
-        }
-    }
-}
-
 
 import SwiftUI
 

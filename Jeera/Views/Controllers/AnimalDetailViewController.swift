@@ -240,15 +240,6 @@ class AnimalDetailViewController: UIViewController {
 
 }
 
-extension AnimalDetailViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if ((manager.location?.coordinate) != nil) {
-            mapView.location.options.puckType = .puck2D()
-            userLocation = manager.location?.coordinate
-        }
-    }
-}
-
 
 import SwiftUI
 

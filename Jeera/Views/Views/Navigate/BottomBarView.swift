@@ -67,8 +67,6 @@ class BottomBarView: UIView {
     }
     
     private func setUpConstraints() {
-        let safeArea = safeAreaLayoutGuide
-        
         animalLabel.anchor(
          top: self.safeAreaLayoutGuide.topAnchor,
          bottom: etaLabel.topAnchor,

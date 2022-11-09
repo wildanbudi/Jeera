@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4246460A2913E095005EB12A /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424646092913E095005EB12A /* Navigation.swift */; };
+		4246460A2913E095005EB12A /* AnimalDetailViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424646092913E095005EB12A /* AnimalDetailViewControllerExt.swift */; };
 		425AD0D029022D4700754114 /* UIColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425AD0CF29022D4700754114 /* UIColorScheme.swift */; };
 		42836AE729116E7B00301DE5 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42836AE629116E7B00301DE5 /* PrimaryButton.swift */; };
 		42836AE929116EDC00301DE5 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42836AE829116EDC00301DE5 /* UIViewControllerExtension.swift */; };
@@ -55,7 +55,7 @@
 		437D008C2907A66A005EB501 /* OverviewCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437D008B2907A66A005EB501 /* OverviewCardView.swift */; };
 		437D008F2907A69A005EB501 /* MapsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437D008E2907A69A005EB501 /* MapsHelper.swift */; };
 		437D00912907A6B7005EB501 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437D00902907A6B7005EB501 /* Constants.swift */; };
-		439F90F3291A9D7A00320C17 /* MainViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439F90F2291A9D7A00320C17 /* MainViewControllerExtension.swift */; };
+		439F90F3291A9D7A00320C17 /* MainViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439F90F2291A9D7A00320C17 /* MainViewControllerExt.swift */; };
 		43FDF1742916C3A200DAD0DA /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF1732916C3A200DAD0DA /* SearchBar.swift */; };
 		43FDF1762916C56600DAD0DA /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF1752916C56600DAD0DA /* SearchResultTableViewCell.swift */; };
 		43FDF17A2917FE6E00DAD0DA /* ClusterName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF1792917FE6E00DAD0DA /* ClusterName.swift */; };
@@ -85,7 +85,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		424646092913E095005EB12A /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
+		424646092913E095005EB12A /* AnimalDetailViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalDetailViewControllerExt.swift; sourceTree = "<group>"; };
 		425AD0CF29022D4700754114 /* UIColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorScheme.swift; sourceTree = "<group>"; };
 		42836AE629116E7B00301DE5 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		42836AE829116EDC00301DE5 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -135,7 +135,7 @@
 		437D008B2907A66A005EB501 /* OverviewCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewCardView.swift; sourceTree = "<group>"; };
 		437D008E2907A69A005EB501 /* MapsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsHelper.swift; sourceTree = "<group>"; };
 		437D00902907A6B7005EB501 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		439F90F2291A9D7A00320C17 /* MainViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerExtension.swift; sourceTree = "<group>"; };
+		439F90F2291A9D7A00320C17 /* MainViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerExt.swift; sourceTree = "<group>"; };
 		43FDF1732916C3A200DAD0DA /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		43FDF1752916C56600DAD0DA /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		43FDF1792917FE6E00DAD0DA /* ClusterName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterName.swift; sourceTree = "<group>"; };
@@ -305,12 +305,12 @@
 		42D12DBD2901B11A00857042 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				42F3F05E291B5AD500606A25 /* Extension */,
 				42D2B3F5290595ED002818A9 /* BottomBannerViewController.swift */,
 				437D00892907A623005EB501 /* MainViewController.swift */,
 				4312457A290ABEF6003F7AB9 /* AnimalDetailViewController.swift */,
 				4373E8F1291175C40016F810 /* SearchViewController.swift */,
 				42836AF429118B2200301DE5 /* TopBannerViewController.swift */,
-				424646092913E095005EB12A /* Navigation.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -333,7 +333,15 @@
 				425AD0CF29022D4700754114 /* UIColorScheme.swift */,
 				4373E8E3291016000016F810 /* UIImageExtension.swift */,
 				4373E8E52910C4BB0016F810 /* UIButtonExtension.swift */,
-				439F90F2291A9D7A00320C17 /* MainViewControllerExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		42F3F05E291B5AD500606A25 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				439F90F2291A9D7A00320C17 /* MainViewControllerExt.swift */,
+				424646092913E095005EB12A /* AnimalDetailViewControllerExt.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -537,11 +545,11 @@
 			files = (
 				437D008C2907A66A005EB501 /* OverviewCardView.swift in Sources */,
 				4373E8E62910C4BB0016F810 /* UIButtonExtension.swift in Sources */,
-				439F90F3291A9D7A00320C17 /* MainViewControllerExtension.swift in Sources */,
+				439F90F3291A9D7A00320C17 /* MainViewControllerExt.swift in Sources */,
 				437D00912907A6B7005EB501 /* Constants.swift in Sources */,
 				43FDF1832918031B00DAD0DA /* DetailInformationStackView.swift in Sources */,
 				42D12DC72901B8DF00857042 /* CustomDayStyle.swift in Sources */,
-				4246460A2913E095005EB12A /* Navigation.swift in Sources */,
+				4246460A2913E095005EB12A /* AnimalDetailViewControllerExt.swift in Sources */,
 				4373E8EE2911534D0016F810 /* SearchButton.swift in Sources */,
 				42D12DBF2901B16300857042 /* Animals.swift in Sources */,
 				4373E8F9291363E40016F810 /* Map.swift in Sources */,
@@ -558,7 +566,6 @@
 				4373E8F2291175C40016F810 /* SearchViewController.swift in Sources */,
 				43FDF185291803DD00DAD0DA /* StartJourneyButton.swift in Sources */,
 				43FDF1742916C3A200DAD0DA /* SearchBar.swift in Sources */,
-				42836AF329118AF000301DE5 /* TopBarView.swift in Sources */,
 				42836AED29117C1900301DE5 /* BottomBarView.swift in Sources */,
 				42836AE929116EDC00301DE5 /* UIViewControllerExtension.swift in Sources */,
 				4373E8E4291016000016F810 /* UIImageExtension.swift in Sources */,

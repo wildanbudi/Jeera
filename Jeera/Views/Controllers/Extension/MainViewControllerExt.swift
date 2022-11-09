@@ -1,8 +1,8 @@
 //
-//  Navigation.swift
+//  MainViewControllerExtension.swift
 //  Jeera
 //
-//  Created by Wildan Budi on 03/11/22.
+//  Created by Anggi Dastariana on 08/11/22.
 //
 
 import Foundation
@@ -11,10 +11,10 @@ import MapboxCoreNavigation
 import MapboxNavigation
 import CoreLocation
 
-extension AnimalDetailViewController {
+extension MainViewController {
     func startNavigation() {
-        let origin = Waypoint(coordinate: userLocation, name: "Mapbox")
-        let destination = Waypoint(coordinate: targetCoordinate, name: animalData["idName"]!.rawValue as? String)
+        let origin = Waypoint(coordinate: userLocation!, name: "Mapbox")
+        let destination = Waypoint(coordinate: targetCoordinate, name: annotationData["idName"]!.rawValue as? String)
         
         // Set options
         let routeOptions = NavigationRouteOptions(waypoints: [origin, destination], profileIdentifier: ProfileIdentifier(rawValue: "mapbox/walking"))
@@ -44,7 +44,7 @@ extension AnimalDetailViewController {
                                                                         routeOptions: routeOptions,
                                                                         navigationOptions: navigationOptions)
                 
-                bottomBanner.animalDetailViewController = self
+                bottomBanner.mainViewController = self
                 bottomBanner.navigationViewController = navigationViewController
                 
                 let parentSafeArea = navigationViewController.view.safeAreaLayoutGuide
@@ -64,6 +64,30 @@ extension AnimalDetailViewController {
                                 bottomBanner.modalPresentationStyle = .popover
                 navigationViewController.routeLineTracksTraversal = true
             }
+        }
+    }
+}
+
+// MARK: - CLLocationManagerDelegate Extension
+extension MainViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if ((manager.location?.coordinate) != nil) {
+            setupUserLocation()
+            userLocation = manager.location!.coordinate
+            if self.animalsData.count == 0 || (self.animalsData.count != 0 && self.animalsData.first?.distance == 0) {
+                retrieveAnnotationData()
+            }
+        }
+        if status == .authorizedAlways {
+            if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
+                if CLLocationManager.isRangingAvailable() {
+                    buttonLocationOFF.removeFromSuperview()
+                }
+            }
+        } else if status == .denied || status == .restricted || status == .notDetermined{
+            view.addSubview(buttonLocationOFF)
+        } else if status == .authorizedWhenInUse {
+            buttonLocationOFF.removeFromSuperview()
         }
     }
 }
