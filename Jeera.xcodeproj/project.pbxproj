@@ -745,7 +745,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7PHRUAQA32;
+				DEVELOPMENT_TEAM = KJUW4SG84H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Jeera/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Turn on location to get directions.";
@@ -774,7 +774,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7PHRUAQA32;
+				DEVELOPMENT_TEAM = KJUW4SG84H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Jeera/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Turn on location to get directions.";

@@ -69,11 +69,9 @@ class BottomBarView: UIView {
     private func setUpConstraints() {
         animalLabel.anchor(
          top: self.safeAreaLayoutGuide.topAnchor,
-         bottom: etaLabel.topAnchor,
          left: self.leftAnchor,
          right: self.rightAnchor,
          paddingTop: 8,
-         paddingBottom: 9,
          paddingLeft: 16,
          paddingRight: 16
         )
@@ -83,7 +81,7 @@ class BottomBarView: UIView {
          bottom: endButton.topAnchor,
          left: self.leftAnchor,
          right: self.rightAnchor,
-         paddingBottom: 9,
+         paddingBottom: 18,
          paddingLeft: 16,
          paddingRight: 16
         )
