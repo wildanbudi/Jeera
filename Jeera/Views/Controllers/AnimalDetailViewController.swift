@@ -16,6 +16,7 @@ class AnimalDetailViewController: UIViewController {
     var distance: Int!
     var travelTime: Int!
     var type: String!
+    var name: String!
     
     lazy var backButton: UIButton = {
         let button = BackButton()
@@ -33,7 +34,7 @@ class AnimalDetailViewController: UIViewController {
     
     lazy var detailNameLabel: UILabel = {
         let label = DetailLabel()
-        label.text = animalData["idName"]!.rawValue as? String
+        label.text = name
         
         return label
     }()
@@ -49,7 +50,7 @@ class AnimalDetailViewController: UIViewController {
         stackView.addArrangedSubview(distanceLabel)
         stackView.addArrangedSubview(etaLabel)
         if type == "Hewan" {
-            let idName = animalData["idName"]!.rawValue as? String
+            let idName = name
             let cage = animalData["cage"]!.rawValue as? String
             if idName != cage {
                 stackView.addArrangedSubview(cageLabel)
@@ -111,12 +112,13 @@ class AnimalDetailViewController: UIViewController {
     
     func setupView() {
         type = animalData["type"]!.rawValue as? String
+        name = animalData["idName"]!.rawValue as? String
         let gradient = CAGradientLayer()
         gradient.frame = view.bounds
         gradient.colors = [UIColor.UpperGradient.cgColor, UIColor.LowerGradient.cgColor]
         view.layer.insertSublayer(gradient, at: 0)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-        if type != "Kandang" {
+        if cagesMultipleAnimals.contains(name) {
             [backButton, animalImage, detailNameLabel, overviewMapView, informationView, buttonsStack].forEach {
                 view.addSubview($0)
             }
@@ -147,7 +149,7 @@ class AnimalDetailViewController: UIViewController {
             height: view.bounds.height * (390 / 844)
         )
         
-        if type != "Kandang" {
+        if cagesMultipleAnimals.contains(name) {
             buttonsStack.anchor(
                 bottom: safeArea.bottomAnchor,
                 left: view.leftAnchor,

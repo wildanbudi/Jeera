@@ -18,3 +18,4 @@ let mapAllIconOverlap = "mapbox://styles/anggidast/cl9zow8lj001c14rud08y46gb"
 let layerStyleIds = ["ragunanzoocages", "ragunanzoofacilities"]
 let layerStyleOverlapIds = ["ragunanzoocages", "ragunanzoofacilities", "ragunanzooanimals"]
 let segmentedTitles = ["Semua", "Kandang", "Fasilitas"]
+let cagesMultipleAnimals = ["Primata 1", "Primata 2", "Primata 3", "Primata 4", "Unggas 1", "Unggas 2", "Terarium Reptil 1", "Terarium Reptil 2", "Unggas Kecil", "Binturong", "Aquarium", "Reptilia Terbuka", "Kura-kura", "Burung Merak", "Burung Jalak Bali", "Beruang Madu", "Macan", "Mamalia Kecil"]
