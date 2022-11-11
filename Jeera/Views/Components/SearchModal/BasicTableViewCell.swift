@@ -1,5 +1,5 @@
 //
-//  SearchResultTableViewCell.swift
+//  BasicTableViewCell.swift
 //  Jeera
 //
 //  Created by Anggi Dastariana on 05/11/22.
@@ -7,8 +7,9 @@
 
 import UIKit
 
-class SearchResultTableViewCell: UITableViewCell {
-    static let identifier = "SearchResultTableViewCell"
+class BasicTableViewCell: UITableViewCell {
+    static let identifier = "BasicTableViewCell"
+    var senderIdentifier: String!
     var cellName: String? {
         get { profileLabel.text }
         set {
@@ -27,7 +28,9 @@ class SearchResultTableViewCell: UITableViewCell {
         view.layer.shadowOffset = CGSize(width: 0, height: 0.1)
         view.addSubview(profileLabel)
         view.addSubview(profileImageView)
-        view.addSubview(arrowImageView)
+        if senderIdentifier == BasicTableViewCell.identifier {
+            view.addSubview(arrowImageView)
+        }
         
         return view
     }()
@@ -55,6 +58,7 @@ class SearchResultTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        senderIdentifier = reuseIdentifier
         contentView.backgroundColor = .white
         contentView.addSubview(containerView)
     }
@@ -83,14 +87,16 @@ class SearchResultTableViewCell: UITableViewCell {
             height: contentView.bounds.height * (60/112)
         )
         profileLabel.centerY(inView: containerView)
-
-        arrowImageView.anchor(
-            right: containerView.rightAnchor,
-            paddingRight: 16,
-            width: contentView.bounds.height * (20/112),
-            height: contentView.bounds.height * (20/112)
-        )
-        arrowImageView.centerY(inView: containerView)
+        
+        if senderIdentifier == BasicTableViewCell.identifier {
+            arrowImageView.anchor(
+                right: containerView.rightAnchor,
+                paddingRight: 16,
+                width: contentView.bounds.height * (20/112),
+                height: contentView.bounds.height * (20/112)
+            )
+            arrowImageView.centerY(inView: containerView)
+        }
     }
     
     required init?(coder: NSCoder) {

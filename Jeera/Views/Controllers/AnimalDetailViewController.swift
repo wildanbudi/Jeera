@@ -10,13 +10,15 @@ import MapboxMaps
 import MapboxDirections
 
 class AnimalDetailViewController: UIViewController {
-    var animalData: Dictionary<String, JSONValue>!
+    var detailData: Dictionary<String, JSONValue>!
     var targetCoordinate: CLLocationCoordinate2D!
     var userLocation: CLLocationCoordinate2D!
     var distance: Int!
     var travelTime: Int!
     var type: String!
     var name: String!
+    var animalsData: [AllData]!
+    var animalsList: [AllData]!
     
     lazy var backButton: UIButton = {
         let button = BackButton()
@@ -26,7 +28,7 @@ class AnimalDetailViewController: UIViewController {
     }()
     
     lazy var animalImage: UIImageView = {
-        let imageName = animalData[(type == "Kandang" || type == "Hewan" ? "idName" : "clusterName")]!.rawValue as? String
+        let imageName = detailData[(type == "Kandang" || type == "Hewan" ? "idName" : "clusterName")]!.rawValue as? String
         let imageView = UIImageView(image: UIImage(named: imageName!))
         
         return imageView
@@ -43,7 +45,7 @@ class AnimalDetailViewController: UIViewController {
     
     lazy var etaLabel = labelWithIcon(imageName: "Time", labelText: "\(travelTime ?? 0) menit", iconColor: .PrimaryGreen)
     
-    lazy var cageLabel = labelWithIcon(imageName: "Location", labelText: (animalData["cage"]!.rawValue as? String)!, iconColor: .PrimaryGreen)
+    lazy var cageLabel = labelWithIcon(imageName: "Location", labelText: (detailData["cage"]!.rawValue as? String)!, iconColor: .PrimaryGreen)
     
     lazy var informationView: UIStackView = {
         let stackView = DetailStackView(spacing: 20.0)
@@ -51,7 +53,7 @@ class AnimalDetailViewController: UIViewController {
         stackView.addArrangedSubview(etaLabel)
         if type == "Hewan" {
             let idName = name
-            let cage = animalData["cage"]!.rawValue as? String
+            let cage = detailData["cage"]!.rawValue as? String
             if idName != cage {
                 stackView.addArrangedSubview(cageLabel)
             }
@@ -60,7 +62,12 @@ class AnimalDetailViewController: UIViewController {
         return stackView
     }()
     
-    lazy var animalListButton = OutlinedButton(title: "Lihat Daftar Hewan", textWeight: .regular)
+    lazy var animalListButton: UIButton = {
+        let button = OutlinedButton(title: "Lihat Daftar Hewan", textWeight: .regular)
+        button.addTarget(self, action: #selector(animalsListClick), for: .touchUpInside)
+        
+        return button
+    }()
     
     lazy var startJourneyButton: UIButton = {
         let button = StartJourneyButton()
@@ -83,7 +90,7 @@ class AnimalDetailViewController: UIViewController {
         mapInstance.targetCoordinate = targetCoordinate
         let mapView = mapInstance.getMapView()
         
-        let clusterName = animalData["clusterName"]!.rawValue as? String
+        let clusterName = detailData["clusterName"]!.rawValue as? String
         let pointAnnotationManager = mapView.annotations.makePointAnnotationManager()
         var customPointAnnotation = PointAnnotation(coordinate: targetCoordinate)
         customPointAnnotation.image = .init(image: UIImage(named: "\(clusterName!) Active")!, name: "\(clusterName!) Active")
@@ -107,12 +114,19 @@ class AnimalDetailViewController: UIViewController {
     }
     
     @objc func onJourneyClick(_ sender: UIButton) {
-        startNavigation(animalName: animalData["idName"]!.rawValue as? String, targetCoordinate: targetCoordinate)
+        startNavigation(animalName: detailData["idName"]!.rawValue as? String, targetCoordinate: targetCoordinate)
+    }
+    
+    @objc func animalsListClick(_ sender: UIButton) {
+        let animalsListViewController = AnimalsListViewController()
+        animalsListViewController.modalPresentationStyle = .formSheet
+        animalsListViewController.animalsData = self.animalsList
+        self.present(animalsListViewController, animated: true, completion: nil)
     }
     
     func setupView() {
-        type = animalData["type"]!.rawValue as? String
-        name = animalData["idName"]!.rawValue as? String
+        type = detailData["type"]!.rawValue as? String
+        name = detailData["idName"]!.rawValue as? String
         let gradient = CAGradientLayer()
         gradient.frame = view.bounds
         gradient.colors = [UIColor.UpperGradient.cgColor, UIColor.LowerGradient.cgColor]
@@ -128,6 +142,7 @@ class AnimalDetailViewController: UIViewController {
             }
         }
         setupConstraint()
+        filterAnimalsList()
     }
     
     func setupConstraint() {
@@ -217,6 +232,14 @@ class AnimalDetailViewController: UIViewController {
                 
                 self.setupView()
             }
+        }
+    }
+    
+    func filterAnimalsList() {
+        if cagesMultipleAnimals.contains(name) {
+            animalsList = animalsData.filter({ (animal: AllData) -> Bool in
+                return animal.cage == name
+            })
         }
     }
     

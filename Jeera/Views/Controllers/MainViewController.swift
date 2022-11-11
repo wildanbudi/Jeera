@@ -364,9 +364,10 @@ class MainViewController: UIViewController {
     @objc private func onOverviewClick(_ sender: UIButton) {
         let animalDetailViewController = AnimalDetailViewController()
         animalDetailViewController.modalPresentationStyle = .fullScreen
-        animalDetailViewController.animalData = annotationData
+        animalDetailViewController.detailData = annotationData
         animalDetailViewController.targetCoordinate = targetCoordinate
         animalDetailViewController.userLocation = userLocation
+        animalDetailViewController.animalsData = animalsData
         self.present(animalDetailViewController, animated: true, completion: nil)
     }
     
