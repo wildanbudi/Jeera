@@ -40,6 +40,7 @@
 		42D2B3F6290595ED002818A9 /* BottomBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D2B3F5290595ED002818A9 /* BottomBannerViewController.swift */; };
 		4312457B290ABEF6003F7AB9 /* AnimalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4312457A290ABEF6003F7AB9 /* AnimalDetailViewController.swift */; };
 		43133068291EB23C0097A850 /* AnimalsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43133067291EB23C0097A850 /* AnimalsListViewController.swift */; };
+		4313306A291EC0910097A850 /* LoadingScreenUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43133069291EC0910097A850 /* LoadingScreenUIView.swift */; };
 		4371E4512919440E00F3C2C2 /* RecommendationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4371E4502919440E00F3C2C2 /* RecommendationsTableViewCell.swift */; };
 		4371E456291951E000F3C2C2 /* FacilitiesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4371E455291951E000F3C2C2 /* FacilitiesTableViewCell.swift */; };
 		4371E45A291956FF00F3C2C2 /* BasicModalLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4371E459291956FF00F3C2C2 /* BasicModalLabel.swift */; };
@@ -124,6 +125,7 @@
 		42D2B3F5290595ED002818A9 /* BottomBannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBannerViewController.swift; sourceTree = "<group>"; };
 		4312457A290ABEF6003F7AB9 /* AnimalDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalDetailViewController.swift; sourceTree = "<group>"; };
 		43133067291EB23C0097A850 /* AnimalsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalsListViewController.swift; sourceTree = "<group>"; };
+		43133069291EC0910097A850 /* LoadingScreenUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenUIView.swift; sourceTree = "<group>"; };
 		4371E4502919440E00F3C2C2 /* RecommendationsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationsTableViewCell.swift; sourceTree = "<group>"; };
 		4371E455291951E000F3C2C2 /* FacilitiesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilitiesTableViewCell.swift; sourceTree = "<group>"; };
 		4371E459291956FF00F3C2C2 /* BasicModalLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicModalLabel.swift; sourceTree = "<group>"; };
@@ -373,6 +375,7 @@
 			isa = PBXGroup;
 			children = (
 				4373E8ED2911534D0016F810 /* SearchButton.swift */,
+				43133069291EC0910097A850 /* LoadingScreenUIView.swift */,
 				437D008B2907A66A005EB501 /* OverviewCardView.swift */,
 				4373E8E72910CD7F0016F810 /* SegmentedControl.swift */,
 				4373E8EB291142390016F810 /* MonkeyLocationButton.swift */,
@@ -554,6 +557,7 @@
 				437D00912907A6B7005EB501 /* Constants.swift in Sources */,
 				43FDF1832918031B00DAD0DA /* DetailStackView.swift in Sources */,
 				42D12DC72901B8DF00857042 /* CustomDayStyle.swift in Sources */,
+				4313306A291EC0910097A850 /* LoadingScreenUIView.swift in Sources */,
 				4246460A2913E095005EB12A /* Navigation.swift in Sources */,
 				4373E8EE2911534D0016F810 /* SearchButton.swift in Sources */,
 				42D12DBF2901B16300857042 /* Animals.swift in Sources */,

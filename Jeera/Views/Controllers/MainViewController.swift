@@ -86,30 +86,10 @@ class MainViewController: UIViewController {
     }
     
     func setupLoadingScreen() {
-        let loadingView = UIView()
-        loadingView.backgroundColor = UIColor(red: 0.435, green: 0.435, blue: 0.439, alpha: 0.4)
+        let loadingView = LoadingScreenUIView()
         loadingView.tag = 4
         loadingView.frame = view.frame
         
-        let loadingImage = UIImageView(image: UIImage(named: "Loading Kosong"))
-        loadingView.addSubview(loadingImage)
-        
-        let loadingLabel = UILabel()
-        loadingLabel.font = UIFont(name: "Baloo2-Bold", size: 17)
-        loadingLabel.textColor = .white
-        loadingLabel.text = "Mencari lokasi saat ini"
-        loadingView.addSubview(loadingLabel)
-        
-        loadingImage.anchor(
-            width: 270,
-            height: 227
-        )
-        loadingImage.center(inView: loadingView)
-        
-        loadingLabel.anchor(
-            height: 22
-        )
-        loadingLabel.center(inView: loadingView, yConstant: 50)
         view.addSubview(loadingView)
     }
     
