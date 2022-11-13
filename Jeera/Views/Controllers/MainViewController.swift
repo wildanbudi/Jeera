@@ -15,7 +15,7 @@ class MainViewController: UIViewController {
     internal var pointAnnotationManager: PointAnnotationManager!
     internal var targetCoordinate: CLLocationCoordinate2D!
     internal var annotationData: Dictionary<String, JSONValue>!
-    internal var userLocation: CLLocationCoordinate2D?
+    internal var userLocation: CLLocationCoordinate2D? = centerCoordinate
     internal var animalsData: [AllData] = []
     internal var facilitiesData: [AllData] = []
     internal var cagesData: [AllData] = []
@@ -27,6 +27,12 @@ class MainViewController: UIViewController {
     lazy var selectedSegmentIndex = 0
     lazy var buttonLocationOFF = UIButton(type: .custom)
     lazy var searchButton = SearchButton()
+    lazy var centerLocationButton: UIButton = {
+        let button = CenterLocationButton()
+        button.addTarget(self, action: #selector(centerLocation), for: .touchUpInside)
+        
+        return button
+    }()
     
     var timer = Timer()
     
@@ -47,6 +53,7 @@ class MainViewController: UIViewController {
         locationOffButton()
         customSegmentedControl()
         setupSearchBtn()
+        view.addSubview(centerLocationButton)
         setupConstraint()
         setupSplashScreen()
         MainViewController.instance = self
@@ -89,7 +96,6 @@ class MainViewController: UIViewController {
         let loadingView = LoadingScreenUIView()
         loadingView.tag = 4
         loadingView.frame = view.frame
-        
         view.addSubview(loadingView)
     }
     
@@ -359,6 +365,12 @@ class MainViewController: UIViewController {
         removeSubview(tag: 4)
     }
     
+    @objc private func centerLocation() {
+         mapView?.camera.ease(
+             to: CameraOptions(center: userLocation, zoom: 16),
+             duration: 1.0)
+    }
+    
     func removeSubview(tag: Int? = 1){
         if let viewWithTag = self.view.viewWithTag(tag!) {
             viewWithTag.removeFromSuperview()
@@ -423,6 +435,10 @@ class MainViewController: UIViewController {
             searchButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
             searchButton.widthAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
             searchButton.heightAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
+            centerLocationButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
+            centerLocationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
+            centerLocationButton.widthAnchor.constraint(equalToConstant: view.bounds.height * (140 / 844)),
+            centerLocationButton.heightAnchor.constraint(equalToConstant: view.bounds.height * (50 / 844))
         ])
     }
     
@@ -509,6 +525,7 @@ extension MainViewController: CLLocationManagerDelegate {
                 timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(removeLoadingScreen), userInfo: nil, repeats: true)
             }
         }
+        setupUserLocation()
         if status == .authorizedAlways {
             if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
                 if CLLocationManager.isRangingAvailable() {
