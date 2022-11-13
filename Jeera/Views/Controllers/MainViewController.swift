@@ -36,6 +36,7 @@ class MainViewController: UIViewController {
     }()
     
     var timer = Timer()
+    var isButtonLocationOffClick = false
     
     private(set) static var instance: MainViewController!
     
@@ -173,7 +174,17 @@ class MainViewController: UIViewController {
                     }
                     self.appendAnnotationData(typeFeature: typeFeature, parsedFeature: parsedFeature, locationCoordinate: locationCoordinate, distance: route.distance, travelTime: (route.expectedTravelTime/60) + 1)
                     if isLastIndex {
+                        self.removeSubview(tag: 3)
                         self.removeSubview(tag: 4)
+                        self.view.addSubview(self.centerLocationButton)
+                        self.centerLocationButton.anchor(
+                            bottom: self.view.safeAreaLayoutGuide.bottomAnchor,
+                            left: self.view.leftAnchor,
+                            paddingBottom: 16,
+                            paddingLeft: 16,
+                            width: self.view.bounds.height * (140 / 844),
+                            height: self.view.bounds.height * (50 / 844)
+                        )
                     }
                 }
             }
@@ -435,7 +446,11 @@ class MainViewController: UIViewController {
             searchButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 11),
             searchButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
             searchButton.widthAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
-            searchButton.heightAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844))
+            searchButton.heightAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
+//            centerLocationButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
+//            centerLocationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
+//            centerLocationButton.widthAnchor.constraint(equalToConstant: view.bounds.height * (140 / 844)),
+//            centerLocationButton.heightAnchor.constraint(equalToConstant: view.bounds.height * (50 / 844))
         ])
     }
     
@@ -506,6 +521,7 @@ class MainViewController: UIViewController {
         // Give some conditions where the Monkey can be pressed and it will show the location permission
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestAlwaysAuthorization()
+        isButtonLocationOffClick.toggle()
     }
     
 }
@@ -518,19 +534,11 @@ extension MainViewController: CLLocationManagerDelegate {
             userLocation = manager.location!.coordinate
             if self.animalsData.count == 0 || (self.animalsData.count != 0 && self.animalsData.first?.distance == 0) {
                 retrieveAnnotationData()
-                setupLoadingScreen()
+                if isButtonLocationOffClick {
+                    setupLoadingScreen()
+                }
             }
-            view.addSubview(centerLocationButton)
-            centerLocationButton.anchor(
-                bottom: view.safeAreaLayoutGuide.bottomAnchor,
-                left: view.leftAnchor,
-                paddingBottom: 16,
-                paddingLeft: 16,
-                width: view.bounds.height * (140 / 844),
-                height: view.bounds.height * (50 / 844)
-            )
         }
-//        setupUserLocation()
         if status == .authorizedAlways {
             if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
                 if CLLocationManager.isRangingAvailable() {
@@ -541,6 +549,12 @@ extension MainViewController: CLLocationManagerDelegate {
             buttonLocationOFF.removeFromSuperview()
         } else if status == .notDetermined {
 //            print("User Has Not Determined The Location Permission")
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if userLocation != locations[0].coordinate {
+            userLocation = locations[0].coordinate
         }
     }
 }
