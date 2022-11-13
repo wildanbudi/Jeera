@@ -37,6 +37,7 @@ class MainViewController: UIViewController {
     
     var timer = Timer()
     var isButtonLocationOffClick = false
+    var isSearch = false
     
     private(set) static var instance: MainViewController!
     
@@ -102,14 +103,17 @@ class MainViewController: UIViewController {
     
     @objc func retrieveAnnotationData() {
         timer.invalidate()
-        let queryOptions = RenderedQueryOptions(layerIds: layerStyleOverlapIds, filter: nil)
+        let layerIds = isSearch ? ["ragunanzoofacilities"] : layerStyleOverlapIds
+        let queryOptions = RenderedQueryOptions(layerIds: layerIds, filter: nil)
         mapViewRetrieveData.mapboxMap.queryRenderedFeatures(with: mapView.safeAreaLayoutGuide.layoutFrame, options: queryOptions, completion: { [weak self] result in
             switch result {
             case .success(let queriedFeatures):
 //                print(queriedFeatures.count)
                 if queriedFeatures.count > 0 {
-                    self!.animalsData.removeAll()
-                    self!.cagesData.removeAll()
+                    if !self!.isSearch {
+                        self!.animalsData.removeAll()
+                        self!.cagesData.removeAll()
+                    }
                     self!.facilitiesData.removeAll()
                     for (i, data) in queriedFeatures.enumerated() {
                         let parsedFeature = data.feature.properties!.reduce(into: [:]) { $0[$1.0] = $1.1 }
@@ -146,13 +150,21 @@ class MainViewController: UIViewController {
     }
     
     @objc private func searchButtonClick(_ sender: UIButton) {
-        let searchViewController = SearchViewController()
-        searchViewController.modalPresentationStyle = .formSheet
-        searchViewController.animalsData = self.animalsData
-        searchViewController.facilitiesData = self.facilitiesData
-        searchViewController.userLocation = self.userLocation
-        self.present(searchViewController, animated: true, completion: nil)
-        
+        if userLocation != nil {
+            isSearch = true
+            for (i, data) in facilitiesData.enumerated() {
+                let dataCoordinate = CLLocationCoordinate2D(latitude: data.lat, longitude: data.long)
+                let isLastIndex = i+1 == facilitiesData.count
+                mappingAnnotationData(locationCoordinate: dataCoordinate, parsedFeature: data.dict, typeFeature: "Fasilitas", isLastIndex: isLastIndex)
+            }
+        } else {
+            let searchViewController = SearchViewController()
+            searchViewController.modalPresentationStyle = .formSheet
+            searchViewController.animalsData = self.animalsData
+            searchViewController.facilitiesData = self.facilitiesData
+            searchViewController.userLocation = self.userLocation
+            self.present(searchViewController, animated: true, completion: nil)
+        }
     }
     
     func mappingAnnotationData(locationCoordinate: CLLocationCoordinate2D, parsedFeature: Dictionary<String, JSONValue>, typeFeature: String, isLastIndex: Bool) {
@@ -174,17 +186,27 @@ class MainViewController: UIViewController {
                     }
                     self.appendAnnotationData(typeFeature: typeFeature, parsedFeature: parsedFeature, locationCoordinate: locationCoordinate, distance: route.distance, travelTime: (route.expectedTravelTime/60) + 1)
                     if isLastIndex {
-                        self.removeSubview(tag: 3)
-                        self.removeSubview(tag: 4)
-                        self.view.addSubview(self.centerLocationButton)
-                        self.centerLocationButton.anchor(
-                            bottom: self.view.safeAreaLayoutGuide.bottomAnchor,
-                            left: self.view.leftAnchor,
-                            paddingBottom: 16,
-                            paddingLeft: 16,
-                            width: self.view.bounds.height * (140 / 844),
-                            height: self.view.bounds.height * (50 / 844)
-                        )
+                        if self.isSearch {
+                            let searchViewController = SearchViewController()
+                            searchViewController.modalPresentationStyle = .formSheet
+                            searchViewController.animalsData = self.animalsData
+                            searchViewController.facilitiesData = self.facilitiesData
+                            searchViewController.userLocation = self.userLocation
+                            self.present(searchViewController, animated: true, completion: nil)
+                            self.isSearch = false
+                        } else {
+                            self.removeSubview(tag: 3)
+                            self.removeSubview(tag: 4)
+//                            self.view.addSubview(self.centerLocationButton)
+//                            self.centerLocationButton.anchor(
+//                                bottom: self.view.safeAreaLayoutGuide.bottomAnchor,
+//                                left: self.view.leftAnchor,
+//                                paddingBottom: 16,
+//                                paddingLeft: 16,
+//                                width: self.view.bounds.height * (140 / 844),
+//                                height: self.view.bounds.height * (50 / 844)
+//                            )
+                        }
                     }
                 }
             }
@@ -446,11 +468,7 @@ class MainViewController: UIViewController {
             searchButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 11),
             searchButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
             searchButton.widthAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
-            searchButton.heightAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
-//            centerLocationButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
-//            centerLocationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
-//            centerLocationButton.widthAnchor.constraint(equalToConstant: view.bounds.height * (140 / 844)),
-//            centerLocationButton.heightAnchor.constraint(equalToConstant: view.bounds.height * (50 / 844))
+            searchButton.heightAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844))
         ])
     }
     
@@ -532,12 +550,22 @@ extension MainViewController: CLLocationManagerDelegate {
         if ((manager.location?.coordinate) != nil) {
             setupUserLocation()
             userLocation = manager.location!.coordinate
-            if self.animalsData.count == 0 || (self.animalsData.count != 0 && self.animalsData.first?.distance == 0) {
-                retrieveAnnotationData()
+//            if self.animalsData.count == 0 || (self.animalsData.count != 0 && self.animalsData.first?.distance == 0) {
+//                retrieveAnnotationData()
                 if isButtonLocationOffClick {
-                    setupLoadingScreen()
+//                    setupLoadingScreen()
+                    
+                    view.addSubview(centerLocationButton)
+                    centerLocationButton.anchor(
+                        bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                        left: view.leftAnchor,
+                        paddingBottom: 16,
+                        paddingLeft: 16,
+                        width: view.bounds.height * (140 / 844),
+                        height: view.bounds.height * (50 / 844)
+                    )
                 }
-            }
+//            }
         }
         if status == .authorizedAlways {
             if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
