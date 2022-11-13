@@ -110,10 +110,8 @@ class MainViewController: UIViewController {
             case .success(let queriedFeatures):
 //                print(queriedFeatures.count)
                 if queriedFeatures.count > 0 {
-                    if !self!.isSearch {
-                        self!.animalsData.removeAll()
-                        self!.cagesData.removeAll()
-                    }
+                    self!.animalsData.removeAll()
+                    self!.cagesData.removeAll()
                     self!.facilitiesData.removeAll()
                     for (i, data) in queriedFeatures.enumerated() {
                         let parsedFeature = data.feature.properties!.reduce(into: [:]) { $0[$1.0] = $1.1 }
@@ -152,9 +150,11 @@ class MainViewController: UIViewController {
     @objc private func searchButtonClick(_ sender: UIButton) {
         if userLocation != nil {
             isSearch = true
-            for (i, data) in facilitiesData.enumerated() {
+            let facilities = facilitiesData
+            facilitiesData.removeAll()
+            for (i, data) in facilities.enumerated() {
                 let dataCoordinate = CLLocationCoordinate2D(latitude: data.lat, longitude: data.long)
-                let isLastIndex = i+1 == facilitiesData.count
+                let isLastIndex = i+1 == facilities.count
                 mappingAnnotationData(locationCoordinate: dataCoordinate, parsedFeature: data.dict, typeFeature: "Fasilitas", isLastIndex: isLastIndex)
             }
         } else {
