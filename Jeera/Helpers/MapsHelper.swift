@@ -16,6 +16,9 @@
      }
 
      public func locationUpdate(newLocation: Location) {
-//         
+//         mapView?.camera.ease(
+//             to: CameraOptions(center: newLocation.coordinate, zoom: 16),
+//             duration: 1.5)
+//         print(newLocation.coordinate, "<<<")
      }
  }

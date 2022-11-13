@@ -132,7 +132,7 @@ class AnimalDetailViewController: UIViewController {
         gradient.colors = [UIColor.UpperGradient.cgColor, UIColor.LowerGradient.cgColor]
         view.layer.insertSublayer(gradient, at: 0)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-        if cagesMultipleAnimals.contains(name) {
+        if cagesMultipleAnimals.contains(name) && detailData["type"] == "Kandang" {
             [backButton, animalImage, detailNameLabel, overviewMapView, informationView, buttonsStack].forEach {
                 view.addSubview($0)
             }
@@ -164,7 +164,7 @@ class AnimalDetailViewController: UIViewController {
             height: view.bounds.height * (390 / 844)
         )
         
-        if cagesMultipleAnimals.contains(name) {
+        if cagesMultipleAnimals.contains(name) && detailData["type"] == "Kandang" {
             buttonsStack.anchor(
                 bottom: safeArea.bottomAnchor,
                 left: view.leftAnchor,
@@ -236,7 +236,7 @@ class AnimalDetailViewController: UIViewController {
     }
     
     func filterAnimalsList() {
-        if cagesMultipleAnimals.contains(name) {
+        if cagesMultipleAnimals.contains(name) && detailData["type"] == "Kandang" {
             animalsList = animalsData.filter({ (animal: AllData) -> Bool in
                 return animal.cage == name
             })

@@ -176,7 +176,7 @@ class MainViewController: UIViewController {
                     }
                     self.appendAnnotationData(typeFeature: typeFeature, parsedFeature: parsedFeature, locationCoordinate: locationCoordinate, distance: route.distance, travelTime: (route.expectedTravelTime/60) + 1)
                     if isLastIndex {
-                        self.removeLoadingScreen()
+                        self.removeSubview(tag: 4)
                     }
                 }
             }
@@ -364,11 +364,6 @@ class MainViewController: UIViewController {
     
     @objc private func onJourneyClick(_ sender: UIButton) {
         startNavigation(targetName: annotationData["idName"]!.rawValue as? String, targetCoordinate: targetCoordinate, userLocation: userLocation)
-    }
-    
-    private func removeLoadingScreen() {
-        removeSubview(tag: 4)
-        print("remove loading screen")
     }
     
     @objc private func centerLocation() {
