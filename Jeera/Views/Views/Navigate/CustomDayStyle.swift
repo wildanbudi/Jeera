@@ -33,10 +33,11 @@ class CustomDayStyle: DayStyle {
         InstructionsBannerView.appearance(for: traitCollection).backgroundColor = .white
         
         PrimaryLabel.appearance(for: traitCollection, whenContainedInInstancesOf: [InstructionsBannerView.self]).normalTextColor = .black
-        PrimaryLabel.appearance(for: traitCollection, whenContainedInInstancesOf: [InstructionsBannerView.self]).font = UIFont(name: "Baloo2-Bold", size: 30)
+        PrimaryLabel.appearance(for: traitCollection, whenContainedInInstancesOf: [InstructionsBannerView.self]).font = UIFont(name: "Baloo2-Bold", size: 22)
         
         DistanceLabel.appearance(for: traitCollection, whenContainedInInstancesOf: [InstructionsBannerView.self]).unitTextColor = lightGrayColor
         DistanceLabel.appearance(for: traitCollection, whenContainedInInstancesOf: [InstructionsBannerView.self]).valueTextColor = lightGrayColor
+        DistanceLabel.appearance(for: traitCollection, whenContainedInInstancesOf: [InstructionsBannerView.self]).font = UIFont.systemFont(ofSize: 17)
         
         ManeuverView.appearance(for: traitCollection, whenContainedInInstancesOf: [InstructionsBannerView.self]).primaryColor = .PrimaryGreen
         

@@ -25,15 +25,26 @@ class TopBannerViewController: ContainerViewController {
     }()
     
     // You can Include one of the existing Views to display route-specific info
-    lazy var
-instructionsBannerView: InstructionsBannerView = {
-    let banner = InstructionsBannerView()
-    banner.translatesAutoresizingMaskIntoConstraints = false
-    banner.heightAnchor.constraint(equalToConstant: 100.0).isActive = true
-    banner.layer.cornerRadius = 50
-    banner.separatorView.isHidden = true
-    return banner
-}()
+    lazy var instructionsBannerView: InstructionsBannerView = {
+        let banner = InstructionsBannerView()
+        banner.translatesAutoresizingMaskIntoConstraints = false
+        banner.heightAnchor.constraint(equalToConstant: 87.0).isActive = true
+        banner.layer.cornerRadius = 45
+        banner.separatorView.isHidden = true
+        
+        banner.distanceLabel.leadingAnchor.constraint(equalTo: banner.dividerView.trailingAnchor).isActive = true
+        banner.distanceLabel.trailingAnchor.constraint(equalTo: banner.trailingAnchor, constant: -18).isActive = true
+        banner.distanceLabel.topAnchor.constraint(equalTo: banner.centerYAnchor, constant: 6).isActive = true
+        banner.distanceLabel.bottomAnchor.constraint(equalTo: banner.maneuverView.bottomAnchor, constant: 0).isActive = true
+        banner.distanceLabel.centerXAnchor.constraint(equalTo: banner.primaryLabel.centerXAnchor, constant: 0).isActive = true
+        banner.distanceLabel.centerYAnchor.constraint(equalTo: banner.centerYAnchor, constant: 16).isActive = true
+
+        banner.primaryLabel.topAnchor.constraint(equalTo: banner.topAnchor, constant: 0).isActive = true
+        banner.primaryLabel.centerYAnchor.constraint(equalTo: banner.centerYAnchor, constant: -16).isActive = true
+        
+        banner.maneuverView.centerYAnchor.constraint(equalTo: banner.centerYAnchor).isActive = true
+        return banner
+    }()
     
     override func viewDidLoad() {
         //        super.viewDidLoad()
@@ -100,3 +111,18 @@ instructionsBannerView: InstructionsBannerView = {
     }
     
 }
+
+#if DEBUG
+import SwiftUI
+
+@available(iOS 13, *)
+struct TopBannerViewController_Preview: PreviewProvider {
+    static var previews: some View {
+        // view controller using programmatic UI
+        Group {
+            TopBannerViewController().showPreview().previewInterfaceOrientation(.portrait)
+        }
+    }
+}
+#endif
+

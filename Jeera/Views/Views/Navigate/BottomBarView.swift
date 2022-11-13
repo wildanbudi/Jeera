@@ -19,7 +19,6 @@ class BottomBarView: UIView {
     lazy var endButton = PrimaryButton()
     
     weak var delegate: BottomBarViewDelegate?
-    weak var navigateViewController: NavigateViewController?
         
     var eta: String? {
         get {
@@ -68,15 +67,11 @@ class BottomBarView: UIView {
     }
     
     private func setUpConstraints() {
-        let safeArea = safeAreaLayoutGuide
-        
         animalLabel.anchor(
          top: self.safeAreaLayoutGuide.topAnchor,
-         bottom: etaLabel.topAnchor,
          left: self.leftAnchor,
          right: self.rightAnchor,
          paddingTop: 8,
-         paddingBottom: 9,
          paddingLeft: 16,
          paddingRight: 16
         )
@@ -86,7 +81,7 @@ class BottomBarView: UIView {
          bottom: endButton.topAnchor,
          left: self.leftAnchor,
          right: self.rightAnchor,
-         paddingBottom: 9,
+         paddingBottom: 18,
          paddingLeft: 16,
          paddingRight: 16
         )
