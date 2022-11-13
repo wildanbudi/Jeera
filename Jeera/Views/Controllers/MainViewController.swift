@@ -54,7 +54,6 @@ class MainViewController: UIViewController {
         locationOffButton()
         customSegmentedControl()
         setupSearchBtn()
-        view.addSubview(centerLocationButton)
         setupConstraint()
         setupSplashScreen()
         MainViewController.instance = self
@@ -121,7 +120,6 @@ class MainViewController: UIViewController {
                         }
                     }
                 }
-                self!.removeSubview(tag: 3)
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -137,7 +135,6 @@ class MainViewController: UIViewController {
             // Register the location consumer with the map
             // Note that the location manager holds weak references to consumers, which should be retained
             self.mapView.location.addLocationConsumer(newConsumer: self.cameraLocationConsumer)
-            print("location")
             //            self.finish() // Needed for internal testing purposes.
         }
     }
@@ -182,6 +179,9 @@ class MainViewController: UIViewController {
             }
         } else {
             appendAnnotationData(typeFeature: typeFeature, parsedFeature: parsedFeature, locationCoordinate: locationCoordinate)
+            if isLastIndex {
+                self.removeSubview(tag: 3)
+            }
         }
     }
     
@@ -435,11 +435,7 @@ class MainViewController: UIViewController {
             searchButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 11),
             searchButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
             searchButton.widthAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
-            searchButton.heightAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
-            centerLocationButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
-            centerLocationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
-            centerLocationButton.widthAnchor.constraint(equalToConstant: view.bounds.height * (140 / 844)),
-            centerLocationButton.heightAnchor.constraint(equalToConstant: view.bounds.height * (50 / 844))
+            searchButton.heightAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844))
         ])
     }
     
@@ -524,6 +520,15 @@ extension MainViewController: CLLocationManagerDelegate {
                 retrieveAnnotationData()
                 setupLoadingScreen()
             }
+            view.addSubview(centerLocationButton)
+            centerLocationButton.anchor(
+                bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                left: view.leftAnchor,
+                paddingBottom: 16,
+                paddingLeft: 16,
+                width: view.bounds.height * (140 / 844),
+                height: view.bounds.height * (50 / 844)
+            )
         }
 //        setupUserLocation()
         if status == .authorizedAlways {
