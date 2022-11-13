@@ -7,6 +7,7 @@
 import UIKit
 import MapboxMaps
 import MapboxDirections
+import CoreLocation
 
 class MainViewController: UIViewController {
     internal var mapView: MapView!
@@ -15,7 +16,7 @@ class MainViewController: UIViewController {
     internal var pointAnnotationManager: PointAnnotationManager!
     internal var targetCoordinate: CLLocationCoordinate2D!
     internal var annotationData: Dictionary<String, JSONValue>!
-    internal var userLocation: CLLocationCoordinate2D? = centerCoordinate
+    internal var userLocation: CLLocationCoordinate2D?
     internal var animalsData: [AllData] = []
     internal var facilitiesData: [AllData] = []
     internal var cagesData: [AllData] = []
@@ -110,12 +111,13 @@ class MainViewController: UIViewController {
                     self!.animalsData.removeAll()
                     self!.cagesData.removeAll()
                     self!.facilitiesData.removeAll()
-                    for data in queriedFeatures {
+                    for (i, data) in queriedFeatures.enumerated() {
                         let parsedFeature = data.feature.properties!.reduce(into: [:]) { $0[$1.0] = $1.1 }
                         let typeFeature = parsedFeature["type"]!.rawValue as! String
                         if let geometry = data.feature.geometry, case let Geometry.point(point) = geometry {
                             let coordinate = point.coordinates
-                            self!.mappingAnnotationData(locationCoordinate: coordinate, parsedFeature: parsedFeature, typeFeature: typeFeature)
+                            let isLastIndex = i+1 == queriedFeatures.count
+                            self!.mappingAnnotationData(locationCoordinate: coordinate, parsedFeature: parsedFeature, typeFeature: typeFeature, isLastIndex: isLastIndex)
                         }
                     }
                 }
@@ -135,7 +137,7 @@ class MainViewController: UIViewController {
             // Register the location consumer with the map
             // Note that the location manager holds weak references to consumers, which should be retained
             self.mapView.location.addLocationConsumer(newConsumer: self.cameraLocationConsumer)
-            
+            print("location")
             //            self.finish() // Needed for internal testing purposes.
         }
     }
@@ -155,7 +157,7 @@ class MainViewController: UIViewController {
         
     }
     
-    func mappingAnnotationData(locationCoordinate: CLLocationCoordinate2D, parsedFeature: Dictionary<String, JSONValue>, typeFeature: String) {
+    func mappingAnnotationData(locationCoordinate: CLLocationCoordinate2D, parsedFeature: Dictionary<String, JSONValue>, typeFeature: String, isLastIndex: Bool) {
         if userLocation != nil {
             let directions = Directions.shared
             let waypoints = [
@@ -173,6 +175,9 @@ class MainViewController: UIViewController {
                         return
                     }
                     self.appendAnnotationData(typeFeature: typeFeature, parsedFeature: parsedFeature, locationCoordinate: locationCoordinate, distance: route.distance, travelTime: (route.expectedTravelTime/60) + 1)
+                    if isLastIndex {
+                        self.removeLoadingScreen()
+                    }
                 }
             }
         } else {
@@ -361,8 +366,9 @@ class MainViewController: UIViewController {
         startNavigation(targetName: annotationData["idName"]!.rawValue as? String, targetCoordinate: targetCoordinate, userLocation: userLocation)
     }
     
-    @objc private func removeLoadingScreen() {
+    private func removeLoadingScreen() {
         removeSubview(tag: 4)
+        print("remove loading screen")
     }
     
     @objc private func centerLocation() {
@@ -522,10 +528,9 @@ extension MainViewController: CLLocationManagerDelegate {
             if self.animalsData.count == 0 || (self.animalsData.count != 0 && self.animalsData.first?.distance == 0) {
                 retrieveAnnotationData()
                 setupLoadingScreen()
-                timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(removeLoadingScreen), userInfo: nil, repeats: true)
             }
         }
-        setupUserLocation()
+//        setupUserLocation()
         if status == .authorizedAlways {
             if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
                 if CLLocationManager.isRangingAvailable() {
