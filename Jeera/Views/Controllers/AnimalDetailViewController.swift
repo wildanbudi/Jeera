@@ -10,6 +10,7 @@ import MapboxMaps
 import MapboxDirections
 
 class AnimalDetailViewController: UIViewController {
+    var mapView: MapView!
     var detailData: Dictionary<String, JSONValue>!
     var targetCoordinate: CLLocationCoordinate2D!
     var userLocation: CLLocationCoordinate2D!
@@ -114,9 +115,37 @@ class AnimalDetailViewController: UIViewController {
     }
     
     @objc func onJourneyClick(_ sender: UIButton) {
-        startNavigation(animalName: detailData["idName"]!.rawValue as? String, targetCoordinate: targetCoordinate)
+        let alertController = UIAlertController(title: "Izinkan Jeera untuk mengakses lokasi kamu?", message: "Nyalakan lokasimu untuk mendapat petunjuk jalan", preferredStyle: .alert)
+
+            let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                    return
+                }
+                if UIApplication.shared.canOpenURL(settingsUrl) {
+                    UIApplication.shared.open(settingsUrl, completionHandler: { (success) in })
+                 }
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+
+            alertController.addAction(cancelAction)
+            alertController.addAction(settingsAction)
+        
+        let locationManager = CLLocationManager()
+        
+        switch locationManager.authorizationStatus {
+            case .authorizedAlways, .authorizedWhenInUse:
+                startNavigation()
+            case .notDetermined:
+                locationManager.requestWhenInUseAuthorization()
+                locationManager.requestAlwaysAuthorization()
+            case .restricted, .denied:
+                self.present(alertController, animated: true, completion: nil)
+            default :
+                locationManager.requestWhenInUseAuthorization()
+                locationManager.requestAlwaysAuthorization()
+        }
     }
-    
+
     @objc func animalsListClick(_ sender: UIButton) {
         let animalsListViewController = AnimalsListViewController()
         animalsListViewController.modalPresentationStyle = .formSheet

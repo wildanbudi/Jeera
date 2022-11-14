@@ -7,14 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4246460A2913E095005EB12A /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424646092913E095005EB12A /* Navigation.swift */; };
+		4246460A2913E095005EB12A /* AnimalDetailViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424646092913E095005EB12A /* AnimalDetailViewControllerExt.swift */; };
 		425AD0D029022D4700754114 /* UIColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425AD0CF29022D4700754114 /* UIColorScheme.swift */; };
 		42836AE729116E7B00301DE5 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42836AE629116E7B00301DE5 /* PrimaryButton.swift */; };
 		42836AE929116EDC00301DE5 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42836AE829116EDC00301DE5 /* UIViewControllerExtension.swift */; };
 		42836AED29117C1900301DE5 /* BottomBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42836AEC29117C1900301DE5 /* BottomBarView.swift */; };
 		42836AEF29117D1900301DE5 /* HeadingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42836AEE29117D1900301DE5 /* HeadingLabel.swift */; };
 		42836AF129117D3A00301DE5 /* CaptionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42836AF029117D3A00301DE5 /* CaptionLabel.swift */; };
-		42836AF329118AF000301DE5 /* TopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42836AF229118AF000301DE5 /* TopBarView.swift */; };
 		42836AF529118B2200301DE5 /* TopBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42836AF429118B2200301DE5 /* TopBannerViewController.swift */; };
 		429C799529078D1700DF942A /* Baloo2-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 429C798F29078D1700DF942A /* Baloo2-ExtraBold.ttf */; };
 		429C799629078D1700DF942A /* Baloo2-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 429C799029078D1700DF942A /* Baloo2-Bold.ttf */; };
@@ -35,7 +34,6 @@
 		42D12DBF2901B16300857042 /* Animals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D12DBE2901B16300857042 /* Animals.swift */; };
 		42D12DC72901B8DF00857042 /* CustomDayStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D12DC62901B8DF00857042 /* CustomDayStyle.swift */; };
 		42D12DC92901B93400857042 /* CustomNightStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D12DC82901B93400857042 /* CustomNightStyle.swift */; };
-		42D12DCB2901B9FB00857042 /* NavigateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D12DCA2901B9FB00857042 /* NavigateViewController.swift */; };
 		42D2B3F429047A5A002818A9 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D2B3F329047A5A002818A9 /* UIViewExtension.swift */; };
 		42D2B3F6290595ED002818A9 /* BottomBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D2B3F5290595ED002818A9 /* BottomBannerViewController.swift */; };
 		4312457B290ABEF6003F7AB9 /* AnimalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4312457A290ABEF6003F7AB9 /* AnimalDetailViewController.swift */; };
@@ -60,8 +58,8 @@
 		437D008C2907A66A005EB501 /* OverviewCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437D008B2907A66A005EB501 /* OverviewCardView.swift */; };
 		437D008F2907A69A005EB501 /* MapsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437D008E2907A69A005EB501 /* MapsHelper.swift */; };
 		437D00912907A6B7005EB501 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437D00902907A6B7005EB501 /* Constants.swift */; };
-		439F90F3291A9D7A00320C17 /* MainViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439F90F2291A9D7A00320C17 /* MainViewControllerExtension.swift */; };
-		439F90F7291B567500320C17 /* OutlinedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439F90F6291B567500320C17 /* OutlinedButton.swift */; };
+		439F90F3291A9D7A00320C17 /* MainViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439F90F2291A9D7A00320C17 /* MainViewControllerExt.swift */; };
+        439F90F7291B567500320C17 /* OutlinedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439F90F6291B567500320C17 /* OutlinedButton.swift */; };
 		43FDF1742916C3A200DAD0DA /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF1732916C3A200DAD0DA /* SearchBar.swift */; };
 		43FDF1762916C56600DAD0DA /* BasicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF1752916C56600DAD0DA /* BasicTableViewCell.swift */; };
 		43FDF17A2917FE6E00DAD0DA /* ClusterName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF1792917FE6E00DAD0DA /* ClusterName.swift */; };
@@ -91,14 +89,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		424646092913E095005EB12A /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
+		424646092913E095005EB12A /* AnimalDetailViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalDetailViewControllerExt.swift; sourceTree = "<group>"; };
 		425AD0CF29022D4700754114 /* UIColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorScheme.swift; sourceTree = "<group>"; };
 		42836AE629116E7B00301DE5 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		42836AE829116EDC00301DE5 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		42836AEC29117C1900301DE5 /* BottomBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBarView.swift; sourceTree = "<group>"; };
 		42836AEE29117D1900301DE5 /* HeadingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingLabel.swift; sourceTree = "<group>"; };
 		42836AF029117D3A00301DE5 /* CaptionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionLabel.swift; sourceTree = "<group>"; };
-		42836AF229118AF000301DE5 /* TopBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarView.swift; sourceTree = "<group>"; };
 		42836AF429118B2200301DE5 /* TopBannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBannerViewController.swift; sourceTree = "<group>"; };
 		429C798F29078D1700DF942A /* Baloo2-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Baloo2-ExtraBold.ttf"; sourceTree = "<group>"; };
 		429C799029078D1700DF942A /* Baloo2-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Baloo2-Bold.ttf"; sourceTree = "<group>"; };
@@ -121,7 +118,6 @@
 		42D12DBE2901B16300857042 /* Animals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animals.swift; sourceTree = "<group>"; };
 		42D12DC62901B8DF00857042 /* CustomDayStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDayStyle.swift; sourceTree = "<group>"; };
 		42D12DC82901B93400857042 /* CustomNightStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNightStyle.swift; sourceTree = "<group>"; };
-		42D12DCA2901B9FB00857042 /* NavigateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigateViewController.swift; sourceTree = "<group>"; };
 		42D2B3F329047A5A002818A9 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		42D2B3F5290595ED002818A9 /* BottomBannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBannerViewController.swift; sourceTree = "<group>"; };
 		4312457A290ABEF6003F7AB9 /* AnimalDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalDetailViewController.swift; sourceTree = "<group>"; };
@@ -145,8 +141,8 @@
 		437D00892907A623005EB501 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		437D008B2907A66A005EB501 /* OverviewCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewCardView.swift; sourceTree = "<group>"; };
 		437D008E2907A69A005EB501 /* MapsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsHelper.swift; sourceTree = "<group>"; };
-		437D00902907A6B7005EB501 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		439F90F2291A9D7A00320C17 /* MainViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerExtension.swift; sourceTree = "<group>"; };
+        437D00902907A6B7005EB501 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		439F90F2291A9D7A00320C17 /* MainViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerExt.swift; sourceTree = "<group>"; };
 		439F90F6291B567500320C17 /* OutlinedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinedButton.swift; sourceTree = "<group>"; };
 		43FDF1732916C3A200DAD0DA /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		43FDF1752916C56600DAD0DA /* BasicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicTableViewCell.swift; sourceTree = "<group>"; };
@@ -319,14 +315,13 @@
 		42D12DBD2901B11A00857042 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				42D12DCA2901B9FB00857042 /* NavigateViewController.swift */,
+				42F3F05E291B5AD500606A25 /* Extension */,
 				42D2B3F5290595ED002818A9 /* BottomBannerViewController.swift */,
 				437D00892907A623005EB501 /* MainViewController.swift */,
 				43133067291EB23C0097A850 /* AnimalsListViewController.swift */,
 				4312457A290ABEF6003F7AB9 /* AnimalDetailViewController.swift */,
 				4373E8F1291175C40016F810 /* SearchViewController.swift */,
 				42836AF429118B2200301DE5 /* TopBannerViewController.swift */,
-				424646092913E095005EB12A /* Navigation.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -337,7 +332,6 @@
 				42D12DC62901B8DF00857042 /* CustomDayStyle.swift */,
 				42D12DC82901B93400857042 /* CustomNightStyle.swift */,
 				42836AEC29117C1900301DE5 /* BottomBarView.swift */,
-				42836AF229118AF000301DE5 /* TopBarView.swift */,
 			);
 			path = Navigate;
 			sourceTree = "<group>";
@@ -350,7 +344,15 @@
 				425AD0CF29022D4700754114 /* UIColorScheme.swift */,
 				4373E8E3291016000016F810 /* UIImageExtension.swift */,
 				4373E8E52910C4BB0016F810 /* UIButtonExtension.swift */,
-				439F90F2291A9D7A00320C17 /* MainViewControllerExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		42F3F05E291B5AD500606A25 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				439F90F2291A9D7A00320C17 /* MainViewControllerExt.swift */,
+				424646092913E095005EB12A /* AnimalDetailViewControllerExt.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -556,10 +558,11 @@
 				43133068291EB23C0097A850 /* AnimalsListViewController.swift in Sources */,
 				437D008C2907A66A005EB501 /* OverviewCardView.swift in Sources */,
 				4373E8E62910C4BB0016F810 /* UIButtonExtension.swift in Sources */,
-				439F90F3291A9D7A00320C17 /* MainViewControllerExtension.swift in Sources */,
+				439F90F3291A9D7A00320C17 /* MainViewControllerExt.swift in Sources */,
 				437D00912907A6B7005EB501 /* Constants.swift in Sources */,
-				43FDF1832918031B00DAD0DA /* DetailStackView.swift in Sources */,
-				42D12DC72901B8DF00857042 /* CustomDayStyle.swift in Sources */,
+				4246460A2913E095005EB12A /* AnimalDetailViewControllerExt.swift in Sources */,
+                43FDF1832918031B00DAD0DA /* DetailStackView.swift in Sources */,
+                42D12DC72901B8DF00857042 /* CustomDayStyle.swift in Sources */,
 				4313306A291EC0910097A850 /* LoadingScreenUIView.swift in Sources */,
 				4246460A2913E095005EB12A /* Navigation.swift in Sources */,
 				4373E8EE2911534D0016F810 /* SearchButton.swift in Sources */,
@@ -579,10 +582,8 @@
 				4373E8F2291175C40016F810 /* SearchViewController.swift in Sources */,
 				43FDF185291803DD00DAD0DA /* StartJourneyButton.swift in Sources */,
 				43FDF1742916C3A200DAD0DA /* SearchBar.swift in Sources */,
-				42836AF329118AF000301DE5 /* TopBarView.swift in Sources */,
 				42836AED29117C1900301DE5 /* BottomBarView.swift in Sources */,
 				42836AE929116EDC00301DE5 /* UIViewControllerExtension.swift in Sources */,
-				42D12DCB2901B9FB00857042 /* NavigateViewController.swift in Sources */,
 				4373E8E4291016000016F810 /* UIImageExtension.swift in Sources */,
 				42D2B3F6290595ED002818A9 /* BottomBannerViewController.swift in Sources */,
 				4373E8F62912C4A60016F810 /* Cages.swift in Sources */,
@@ -761,7 +762,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7PHRUAQA32;
+				DEVELOPMENT_TEAM = KJUW4SG84H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Jeera/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Turn on location to get directions.";
@@ -795,7 +796,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7PHRUAQA32;
+				DEVELOPMENT_TEAM = KJUW4SG84H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Jeera/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Turn on location to get directions.";
