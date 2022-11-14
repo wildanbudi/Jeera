@@ -53,7 +53,6 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         setupMapView()
         segmentedBackground()
-        locationOffButton()
         customSegmentedControl()
         setupSearchBtn()
         setupConstraint()
@@ -131,7 +130,7 @@ class MainViewController: UIViewController {
     
     func setupUserLocation() {
         cameraLocationConsumer = CameraLocationConsumer(mapView: mapView)
-        let configuration = Puck2DConfiguration(topImage: UIImage(named: "Current Location"))
+        let configuration = Puck2DConfiguration(topImage: UIImage(named: "Current location"))
         mapView.location.options.puckType = .puck2D(configuration)
         
         mapView.mapboxMap.onNext(event: .mapLoaded) { _ in
@@ -195,8 +194,8 @@ class MainViewController: UIViewController {
                             self.present(searchViewController, animated: true, completion: nil)
                             self.isSearch = false
                         } else {
-                            self.removeSubview(tag: 3)
-                            self.removeSubview(tag: 4)
+//                            self.removeSubview(tag: 3)
+//                            self.removeSubview(tag: 4)
 //                            self.view.addSubview(self.centerLocationButton)
 //                            self.centerLocationButton.anchor(
 //                                bottom: self.view.safeAreaLayoutGuide.bottomAnchor,
@@ -214,6 +213,7 @@ class MainViewController: UIViewController {
             appendAnnotationData(typeFeature: typeFeature, parsedFeature: parsedFeature, locationCoordinate: locationCoordinate)
             if isLastIndex {
                 self.removeSubview(tag: 3)
+                self.locationOffButton()
             }
         }
     }
@@ -537,6 +537,7 @@ class MainViewController: UIViewController {
     // MARK: - Show the Location Permission After The User Tapped the Monkey Button by Representing the CLLocationManagerDelegate
     @objc func buttonLocationOFFAction(_ button: UIButton) {
         // Give some conditions where the Monkey can be pressed and it will show the location permission
+        isButtonLocationOffClick.toggle()
         let alertController = UIAlertController(title: "Izinkan Jeera untuk mengakses lokasi kamu?", message: "Nyalakan lokasimu untuk mendapat petunjuk jalan", preferredStyle: .alert)
 
             let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
@@ -561,53 +562,9 @@ class MainViewController: UIViewController {
             default :
                 locationManager.requestWhenInUseAuthorization()
                 locationManager.requestAlwaysAuthorization()
-                isButtonLocationOffClick.toggle()
         }
     }
     
-}
-
-// MARK: - CLLocationManagerDelegate Extension
-extension MainViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if ((manager.location?.coordinate) != nil) {
-            setupUserLocation()
-            userLocation = manager.location!.coordinate
-//            if self.animalsData.count == 0 || (self.animalsData.count != 0 && self.animalsData.first?.distance == 0) {
-//                retrieveAnnotationData()
-                if isButtonLocationOffClick {
-//                    setupLoadingScreen()
-                    
-                    view.addSubview(centerLocationButton)
-                    centerLocationButton.anchor(
-                        bottom: view.safeAreaLayoutGuide.bottomAnchor,
-                        left: view.leftAnchor,
-                        paddingBottom: 16,
-                        paddingLeft: 16,
-                        width: view.bounds.height * (140 / 844),
-                        height: view.bounds.height * (50 / 844)
-                    )
-                }
-//            }
-        }
-        if status == .authorizedAlways {
-            if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
-                if CLLocationManager.isRangingAvailable() {
-//                    print("THE LOCATION IS ON")
-                }
-            }
-        } else if status == .denied || status == .restricted || status == .authorizedWhenInUse {
-            buttonLocationOFF.removeFromSuperview()
-        } else if status == .notDetermined {
-//            print("User Has Not Determined The Location Permission")
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if userLocation != locations[0].coordinate {
-            userLocation = locations[0].coordinate
-        }
-    }
 }
 
 

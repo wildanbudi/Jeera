@@ -102,7 +102,7 @@ class AnimalDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if (userLocation != nil) && (distance == nil) {
+        if (userLocation != nil) && (distance == nil || distance == 0) {
             getRouteInformation()
         } else {
             setupView()

@@ -59,7 +59,7 @@
 		437D008F2907A69A005EB501 /* MapsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437D008E2907A69A005EB501 /* MapsHelper.swift */; };
 		437D00912907A6B7005EB501 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437D00902907A6B7005EB501 /* Constants.swift */; };
 		439F90F3291A9D7A00320C17 /* MainViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439F90F2291A9D7A00320C17 /* MainViewControllerExt.swift */; };
-        439F90F7291B567500320C17 /* OutlinedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439F90F6291B567500320C17 /* OutlinedButton.swift */; };
+		439F90F7291B567500320C17 /* OutlinedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439F90F6291B567500320C17 /* OutlinedButton.swift */; };
 		43FDF1742916C3A200DAD0DA /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF1732916C3A200DAD0DA /* SearchBar.swift */; };
 		43FDF1762916C56600DAD0DA /* BasicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF1752916C56600DAD0DA /* BasicTableViewCell.swift */; };
 		43FDF17A2917FE6E00DAD0DA /* ClusterName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF1792917FE6E00DAD0DA /* ClusterName.swift */; };
@@ -141,7 +141,7 @@
 		437D00892907A623005EB501 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		437D008B2907A66A005EB501 /* OverviewCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewCardView.swift; sourceTree = "<group>"; };
 		437D008E2907A69A005EB501 /* MapsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsHelper.swift; sourceTree = "<group>"; };
-        437D00902907A6B7005EB501 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		437D00902907A6B7005EB501 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		439F90F2291A9D7A00320C17 /* MainViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerExt.swift; sourceTree = "<group>"; };
 		439F90F6291B567500320C17 /* OutlinedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinedButton.swift; sourceTree = "<group>"; };
 		43FDF1732916C3A200DAD0DA /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
@@ -561,10 +561,10 @@
 				439F90F3291A9D7A00320C17 /* MainViewControllerExt.swift in Sources */,
 				437D00912907A6B7005EB501 /* Constants.swift in Sources */,
 				4246460A2913E095005EB12A /* AnimalDetailViewControllerExt.swift in Sources */,
-                43FDF1832918031B00DAD0DA /* DetailStackView.swift in Sources */,
-                42D12DC72901B8DF00857042 /* CustomDayStyle.swift in Sources */,
+				43FDF1832918031B00DAD0DA /* DetailStackView.swift in Sources */,
+				42D12DC72901B8DF00857042 /* CustomDayStyle.swift in Sources */,
 				4313306A291EC0910097A850 /* LoadingScreenUIView.swift in Sources */,
-				4246460A2913E095005EB12A /* Navigation.swift in Sources */,
+				4246460A2913E095005EB12A /* AnimalDetailViewControllerExt.swift in Sources */,
 				4373E8EE2911534D0016F810 /* SearchButton.swift in Sources */,
 				42D12DBF2901B16300857042 /* Animals.swift in Sources */,
 				4373E8F9291363E40016F810 /* Map.swift in Sources */,
@@ -762,7 +762,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KJUW4SG84H;
+				DEVELOPMENT_TEAM = 7PHRUAQA32;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Jeera/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Turn on location to get directions.";
@@ -796,7 +796,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KJUW4SG84H;
+				DEVELOPMENT_TEAM = 7PHRUAQA32;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Jeera/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Turn on location to get directions.";

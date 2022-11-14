@@ -74,8 +74,16 @@ extension MainViewController: CLLocationManagerDelegate {
         if ((manager.location?.coordinate) != nil) {
             setupUserLocation()
             userLocation = manager.location!.coordinate
-            if self.animalsData.count == 0 || (self.animalsData.count != 0 && self.animalsData.first?.distance == 0) {
-                retrieveAnnotationData()
+            if isButtonLocationOffClick {
+                view.addSubview(centerLocationButton)
+                centerLocationButton.anchor(
+                    bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                    left: view.leftAnchor,
+                    paddingBottom: 16,
+                    paddingLeft: 16,
+                    width: view.bounds.height * (140 / 844),
+                    height: view.bounds.height * (50 / 844)
+                )
             }
         }
         if status == .authorizedAlways {
@@ -88,6 +96,12 @@ extension MainViewController: CLLocationManagerDelegate {
             view.addSubview(buttonLocationOFF)
         } else if status == .authorizedWhenInUse {
             buttonLocationOFF.removeFromSuperview()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if userLocation != locations[0].coordinate {
+            userLocation = locations[0].coordinate
         }
     }
 }
