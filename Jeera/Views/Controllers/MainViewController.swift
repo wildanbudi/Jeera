@@ -38,6 +38,8 @@ class MainViewController: UIViewController {
     var timer = Timer()
     var isButtonLocationOffClick = false
     var isSearch = false
+    var isOnJourneyClick = false
+    var animalDetailViewController: AnimalDetailViewController!
     
     private(set) static var instance: MainViewController!
     
@@ -193,18 +195,6 @@ class MainViewController: UIViewController {
                             searchViewController.userLocation = self.userLocation
                             self.present(searchViewController, animated: true, completion: nil)
                             self.isSearch = false
-                        } else {
-//                            self.removeSubview(tag: 3)
-//                            self.removeSubview(tag: 4)
-//                            self.view.addSubview(self.centerLocationButton)
-//                            self.centerLocationButton.anchor(
-//                                bottom: self.view.safeAreaLayoutGuide.bottomAnchor,
-//                                left: self.view.leftAnchor,
-//                                paddingBottom: 16,
-//                                paddingLeft: 16,
-//                                width: self.view.bounds.height * (140 / 844),
-//                                height: self.view.bounds.height * (50 / 844)
-//                            )
                         }
                     }
                 }
@@ -386,7 +376,7 @@ class MainViewController: UIViewController {
     }
     
     @objc private func onOverviewClick(_ sender: UIButton) {
-        let animalDetailViewController = AnimalDetailViewController()
+        animalDetailViewController = AnimalDetailViewController()
         animalDetailViewController.modalPresentationStyle = .fullScreen
         animalDetailViewController.detailData = annotationData
         animalDetailViewController.targetCoordinate = targetCoordinate
@@ -396,7 +386,34 @@ class MainViewController: UIViewController {
     }
     
     @objc private func onJourneyClick(_ sender: UIButton) {
-        startNavigation()
+        isOnJourneyClick = true
+        let alertController = UIAlertController(title: "Izinkan Jeera untuk mengakses lokasi kamu?", message: "Nyalakan lokasimu untuk mendapat petunjuk jalan", preferredStyle: .alert)
+        
+        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in })
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(settingsAction)
+        
+        switch locationManager.authorizationStatus {
+        case .authorizedAlways, .authorizedWhenInUse:
+            startNavigation()
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.requestAlwaysAuthorization()
+        case .restricted, .denied:
+            self.present(alertController, animated: true, completion: nil)
+        default :
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.requestAlwaysAuthorization()
+        }
     }
     
     @objc private func centerLocation() {

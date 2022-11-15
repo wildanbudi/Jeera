@@ -20,6 +20,8 @@ class AnimalDetailViewController: UIViewController {
     var name: String!
     var animalsData: [AllData]!
     var animalsList: [AllData]!
+    private (set) static var isOnJourneyClick = false
+    var timer = Timer()
     
     lazy var backButton: UIButton = {
         let button = BackButton()
@@ -115,34 +117,35 @@ class AnimalDetailViewController: UIViewController {
     }
     
     @objc func onJourneyClick(_ sender: UIButton) {
+        AnimalDetailViewController.isOnJourneyClick = true
         let alertController = UIAlertController(title: "Izinkan Jeera untuk mengakses lokasi kamu?", message: "Nyalakan lokasimu untuk mendapat petunjuk jalan", preferredStyle: .alert)
-
-            let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
-                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
-                    return
-                }
-                if UIApplication.shared.canOpenURL(settingsUrl) {
-                    UIApplication.shared.open(settingsUrl, completionHandler: { (success) in })
-                 }
+        
+        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                return
             }
-            let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
-
-            alertController.addAction(cancelAction)
-            alertController.addAction(settingsAction)
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in })
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(settingsAction)
         
         let locationManager = CLLocationManager()
-        
         switch locationManager.authorizationStatus {
-            case .authorizedAlways, .authorizedWhenInUse:
-                startNavigation()
-            case .notDetermined:
-                locationManager.requestWhenInUseAuthorization()
-                locationManager.requestAlwaysAuthorization()
-            case .restricted, .denied:
-                self.present(alertController, animated: true, completion: nil)
-            default :
-                locationManager.requestWhenInUseAuthorization()
-                locationManager.requestAlwaysAuthorization()
+        case .authorizedAlways, .authorizedWhenInUse:
+            startNavigation()
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.requestAlwaysAuthorization()
+            timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(startNavigation), userInfo: nil, repeats: true)
+        case .restricted, .denied:
+            self.present(alertController, animated: true, completion: nil)
+        default :
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.requestAlwaysAuthorization()
         }
     }
 
