@@ -27,6 +27,8 @@ class MainViewController: UIViewController {
     lazy var selectedSegmentIndex = 0
     lazy var buttonLocationOFF = UIButton(type: .custom)
     lazy var searchButton = SearchButton()
+    lazy var container = UIView()
+    lazy var buttonRoute = UIButton(type: .custom)
     
     var timer = Timer()
     
@@ -55,6 +57,9 @@ class MainViewController: UIViewController {
             locationManager.delegate = self
             locationManager.startUpdatingLocation()
         }
+        
+        popUpRute()
+        routeButton()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -402,6 +407,10 @@ class MainViewController: UIViewController {
             searchButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
             searchButton.widthAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
             searchButton.heightAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
+//            buttonRoute.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
+//            buttonRoute.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 146)
+//            buttonRoute.widthAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
+//            buttonRoute.heightAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
         ])
     }
     
@@ -497,6 +506,167 @@ class MainViewController: UIViewController {
         }
     }
     
+    // MARK: - POP-UP ROUTE FUNCTION
+    func popUpRute() {
+        // Add the White Containter with AutoLayout Constraints
+        // Source 1: www.developer.apple.com/forums/thread/656789
+        // Source 2: www.stackoverflow.com/questions/43550813/property-initializers-run-before-self-is-available
+        container.backgroundColor = .white
+        container.frame = CGRect(x: 16, y: 620, width: 358, height: 190) // CGRectMake(x, y, width, height)
+    //        container.frame = CGRect(x: 16, y: 620, width: self.frame.size.width*(358/375), height: self.frame.size.height*(190/844)) // CGRectMake(x, y, width, height)
+        container.layer.cornerRadius = 20
+        view.addSubview(container)
+        
+        // Set the Constraints of the container Programmatically (With an Array of NSLayoutConstraint)
+        container.translatesAutoresizingMaskIntoConstraints = false // Activate the Auto Layout
+        NSLayoutConstraint.activate([
+            container.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: view.frame.size.width*(16/375)),
+            container.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -(view.frame.size.width*(16/375))),
+            container.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -(view.safeAreaLayoutGuide.layoutFrame.height*(16/(844-81)))),
+            container.heightAnchor.constraint(equalToConstant: 190),
+            container.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+        
+        // Showing the Route Image
+        let routeIconImage = UIImage(named: "RouteIcon")
+        let routeIconImageView = UIImageView(image: routeIconImage)
+        routeIconImageView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        container.addSubview(routeIconImageView)
+        
+        // Set the Constraints of the routeIconImageView Programmatically (With an Array of NSLayoutConstraint)
+        routeIconImageView.translatesAutoresizingMaskIntoConstraints = false // Activate the Auto Layout
+        NSLayoutConstraint.activate([
+            routeIconImageView.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: container.frame.size.width*(16/358)),
+            routeIconImageView.topAnchor.constraint(equalTo: container.topAnchor, constant: container.frame.size.height*(16/190)),
+            routeIconImageView.heightAnchor.constraint(equalToConstant: 30),
+            routeIconImageView.widthAnchor.constraint(equalToConstant: 30),
+        ])
+        
+        // Showing the Title Label
+        let titleLabel = UILabel()
+        titleLabel.textColor = .black
+        titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .bold)
+        titleLabel.text = "Kamu belum memiliki rute"
+        container.addSubview(titleLabel)
+        
+        // Set the Constraints of the titleLabel Programmatically (With an Array of NSLayoutConstraint)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false // Activate the Auto Layout
+        NSLayoutConstraint.activate([
+            titleLabel.leadingAnchor.constraint(equalTo: routeIconImageView.trailingAnchor, constant: 6),
+            titleLabel.centerYAnchor.constraint(equalTo: routeIconImageView.centerYAnchor),
+            titleLabel.widthAnchor.constraint(equalToConstant: 222)
+        ])
+        
+        // Showing the Close Button Image & Customize the Button Color & Size
+        let closeButtonImage = UIImage(systemName: "xmark.circle.fill")?.withTintColor(.SecondaryBrown, renderingMode: .alwaysOriginal).resizeImageTo(size: CGSize(width: 26, height: 26))
+        
+        // Create a Button with an Image
+        let closeButton = UIButton(type: .custom)
+        closeButton.frame = CGRect(x: 0, y: 0, width: 26, height: 26)
+        closeButton.setImage(closeButtonImage, for: .normal)
+        closeButton.addTarget(self, action: #selector(buttonClosePopUpAction), for:.touchUpInside)
+        container.addSubview(closeButton)
+        
+        // Set the Constraints of the closeButton Programmatically (With an Array of NSLayoutConstraint)
+        closeButton.translatesAutoresizingMaskIntoConstraints = false // Activate the Auto Layout
+        NSLayoutConstraint.activate([
+            closeButton.centerYAnchor.constraint(equalTo: routeIconImageView.centerYAnchor),
+            closeButton.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -(container.frame.size.width*(16/358))),
+            closeButton.heightAnchor.constraint(equalToConstant: 26),
+            closeButton.widthAnchor.constraint(equalToConstant: 26)
+        ])
+        
+        // Showing the Subtitle Label
+        let subtitlelabel = UILabel()
+        subtitlelabel.textColor = .black
+        subtitlelabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        subtitlelabel.text = "Ayo! Pilih binatang yang ingin kamu lihat dan kunjungi!"
+        subtitlelabel.numberOfLines = 2
+        // Add Spacing between lines using the UILabel Extension (Thanks to Levina for Finding the Source)
+        subtitlelabel.addInterlineSpacing(spacingValue: 10)
+        container.addSubview(subtitlelabel)
+        
+        // Set the Constraints of the subtitlelabel Programmatically (With an Array of NSLayoutConstraint)
+        subtitlelabel.translatesAutoresizingMaskIntoConstraints = false // Activate the Auto Layout
+        NSLayoutConstraint.activate([
+            subtitlelabel.leadingAnchor.constraint(equalTo: routeIconImageView.leadingAnchor),
+            subtitlelabel.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -(container.frame.size.width*(41/358))),
+            subtitlelabel.topAnchor.constraint(equalTo: routeIconImageView.bottomAnchor, constant: 12),
+        ])
+        
+    
+        // Showing Jeera Custom Button: "Create Route Button"
+        let createRouteButton = UIButton(type: .custom)
+        createRouteButton.backgroundColor = .PrimaryGreen
+        createRouteButton.frame = CGRect(x: 0, y: 0, width: 326, height: 48)
+        createRouteButton.layer.cornerRadius = createRouteButton.frame.height / 2
+        createRouteButton.setTitle("Yuk! Buat Sekarang", for: .normal)
+        createRouteButton.setTitleColor(.white, for: .normal)
+        createRouteButton.addTarget(self, action: #selector(createRouteAction), for:.touchUpInside)
+        container.addSubview(createRouteButton)
+        
+        
+        // Set the Constraints of the closeButton Programmatically (With an Array of NSLayoutConstraint)
+        createRouteButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            createRouteButton.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: container.frame.size.width*(16/358)),
+            createRouteButton.centerXAnchor.constraint(equalTo: container.centerXAnchor),
+            createRouteButton.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -(container.frame.size.width*(16/358))),
+            createRouteButton.topAnchor.constraint(equalTo: subtitlelabel.bottomAnchor, constant: 12),
+            createRouteButton.heightAnchor.constraint(equalToConstant: 48),
+        ])
+    
+    }
+    
+    // Objective-C Function for the buttonClosePopUp Action
+    @objc func buttonClosePopUpAction(_ button: UIButton) {
+        print("THE USER CLOSE THE POP UP")
+        
+        // Animate Out the Pop-Up Route + Spring Animation
+        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
+            let minimizeRouteBtn = CGAffineTransform(translationX: 150, y: -490)
+            self.container.transform = CGAffineTransformScale(minimizeRouteBtn, (45/358), (45/190)) // Make the Container Small as the routeBtn
+            self.container.alpha = 0 // Change the Opacity or the Alpha to 0
+        }) { (complete) in
+            if complete {
+                self.container.removeFromSuperview() // Remove the Pop-Up Route View
+            }
+        }
+        
+        // Animate In the buttonRoute + Spring Animation
+        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
+            self.buttonRoute.transform = CGAffineTransform(scaleX: (45/358), y: (45/190)) // Make the Container Small as the routeBtn
+            self.buttonRoute.transform = .identity // Bringing Back the Initial State
+            self.buttonRoute.alpha = 1 // Change the Opacity or the Alpha to 1
+        })
+    }
+    
+    // Objective-C Function for the createRoute Action
+    @objc func createRouteAction(_ button: UIButton) {
+        print("THE USER WANT TO CREATE A ROUTE FOR THE JEERA TRIP!!!")
+    }
+    
+    // MARK: - Route Button Function
+    func routeButton() {
+        
+        // Create the Route Button with an Image from Assets
+        let imageRouteBtn = UIImage(named: "RouteBtn")
+        buttonRoute.frame = CGRectMake(329, 184, 45, 45) // CGRectMake(x, y, width, height)
+        buttonRoute.setImage(imageRouteBtn, for: .normal)
+        buttonRoute.addTarget(self, action: #selector(createRouteAction), for:.touchUpInside)
+        
+        buttonRoute.alpha = 0
+        view.addSubview(buttonRoute)
+        
+        // Set the Constraints of the buttonSearch Programmatically (With an Array of NSLayoutConstraint)
+        buttonRoute.translatesAutoresizingMaskIntoConstraints = false // Disable the Auto Resizing to Auto Layout
+        NSLayoutConstraint.activate([
+            buttonRoute.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
+            buttonRoute.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 146),
+            buttonRoute.widthAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
+            buttonRoute.heightAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
+        ])
+    }
 }
 
 import SwiftUI

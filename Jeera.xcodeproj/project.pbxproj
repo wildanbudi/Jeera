@@ -65,6 +65,7 @@
 		43FDF185291803DD00DAD0DA /* StartJourneyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF184291803DD00DAD0DA /* StartJourneyButton.swift */; };
 		43FDF187291804B700DAD0DA /* DetailInformationLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF186291804B700DAD0DA /* DetailInformationLabel.swift */; };
 		5712371F291027B900FB4F9E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5712371E291027B900FB4F9E /* Settings.bundle */; };
+		57675E5E29234EE7005CB18E /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57675E5D29234EE7005CB18E /* UILabelExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,6 +146,7 @@
 		43FDF184291803DD00DAD0DA /* StartJourneyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartJourneyButton.swift; sourceTree = "<group>"; };
 		43FDF186291804B700DAD0DA /* DetailInformationLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInformationLabel.swift; sourceTree = "<group>"; };
 		5712371E291027B900FB4F9E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		57675E5D29234EE7005CB18E /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -333,6 +335,7 @@
 				425AD0CF29022D4700754114 /* UIColorScheme.swift */,
 				4373E8E3291016000016F810 /* UIImageExtension.swift */,
 				4373E8E52910C4BB0016F810 /* UIButtonExtension.swift */,
+				57675E5D29234EE7005CB18E /* UILabelExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -569,6 +572,7 @@
 				42836AED29117C1900301DE5 /* BottomBarView.swift in Sources */,
 				42836AE929116EDC00301DE5 /* UIViewControllerExtension.swift in Sources */,
 				4373E8E4291016000016F810 /* UIImageExtension.swift in Sources */,
+				57675E5E29234EE7005CB18E /* UILabelExtension.swift in Sources */,
 				42D2B3F6290595ED002818A9 /* BottomBannerViewController.swift in Sources */,
 				4373E8F62912C4A60016F810 /* Cages.swift in Sources */,
 				43FDF17F291800BA00DAD0DA /* BackButton.swift in Sources */,
