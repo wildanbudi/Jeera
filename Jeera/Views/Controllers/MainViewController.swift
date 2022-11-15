@@ -482,7 +482,7 @@ class MainViewController: UIViewController {
             mapView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             mapView.topAnchor.constraint(equalTo: whiteBackground.bottomAnchor),
             mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            searchButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 11),
+            searchButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 16),
             searchButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
             searchButton.widthAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
             searchButton.heightAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844))
