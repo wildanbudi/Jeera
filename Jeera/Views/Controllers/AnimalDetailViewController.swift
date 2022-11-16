@@ -13,7 +13,11 @@ class AnimalDetailViewController: UIViewController {
     var mapView: MapView!
     var detailData: Dictionary<String, JSONValue>!
     var targetCoordinate: CLLocationCoordinate2D!
-    var userLocation: CLLocationCoordinate2D!
+    var userLocation: CLLocationCoordinate2D! {
+        didSet {
+            self.startNavigation()
+        }
+    }
     var distance: Int!
     var travelTime: Int!
     var type: String!
@@ -21,7 +25,7 @@ class AnimalDetailViewController: UIViewController {
     var animalsData: [AllData]!
     var animalsList: [AllData]!
     private (set) static var isOnJourneyClick = false
-    var timer = Timer()
+//    var timer = Timer()
     
     lazy var backButton: UIButton = {
         let button = BackButton()
@@ -113,10 +117,10 @@ class AnimalDetailViewController: UIViewController {
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        timer.invalidate()
-    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        timer.invalidate()
+//    }
     
     @objc func backButton(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
@@ -150,7 +154,7 @@ class AnimalDetailViewController: UIViewController {
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
             locationManager.requestAlwaysAuthorization()
-            timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(startNavigation), userInfo: nil, repeats: true)
+//            timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(startNavigation), userInfo: nil, repeats: true)
         case .restricted, .denied:
             self.present(alertController, animated: true, completion: nil)
         default :

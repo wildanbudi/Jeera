@@ -111,7 +111,6 @@ class MainViewController: UIViewController {
         mapViewRetrieveData.mapboxMap.queryRenderedFeatures(with: mapView.safeAreaLayoutGuide.layoutFrame, options: queryOptions, completion: { [weak self] result in
             switch result {
             case .success(let queriedFeatures):
-//                print(queriedFeatures.count)
                 if queriedFeatures.count > 0 {
                     self!.animalsData.removeAll()
                     self!.cagesData.removeAll()
@@ -528,7 +527,11 @@ class MainViewController: UIViewController {
                 let distance = Int(route.distance)
                 if distance > 1500 {
                     MainViewController.isOutsideArea = true
-                    self.present(self.outsideAreaAlert, animated: true)
+                    if AnimalDetailViewController.isOnJourneyClick {
+                        self.animalDetailViewController.userLocation = self.userLocation
+                    } else {
+                        self.present(self.outsideAreaAlert, animated: true)
+                    }
                 } else {
                     if AnimalDetailViewController.isOnJourneyClick {
                         self.animalDetailViewController.userLocation = self.userLocation

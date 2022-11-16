@@ -68,17 +68,7 @@ extension AnimalDetailViewController {
             }
         } else if MainViewController.isOutsideArea {
             self.present(outsideAreaAlert, animated: true)
-            timer.invalidate()
+//            timer.invalidate()
         }
     }
 }
-
-//extension AnimalDetailViewController: CLLocationManagerDelegate {
-//    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-//        print("masuk")
-//        if ((manager.location?.coordinate) != nil) {
-//            mapView.location.options.puckType = .puck2D()
-//            userLocation = manager.location?.coordinate
-//        }
-//    }
-//}
