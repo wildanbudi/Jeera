@@ -34,6 +34,7 @@ class MainViewController: UIViewController {
         
         return button
     }()
+    lazy var outsideAreaAlert = UIAlertController.outsideArea()
     
     var timer = Timer()
     var isButtonLocationOffClick = false
@@ -422,7 +423,7 @@ class MainViewController: UIViewController {
             if !MainViewController.isOutsideArea {
                 startNavigation()
             } else {
-                
+                self.present(outsideAreaAlert, animated: true)
             }
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
@@ -527,6 +528,7 @@ class MainViewController: UIViewController {
                 let distance = Int(route.distance)
                 if distance > 1500 {
                     MainViewController.isOutsideArea = true
+                    self.present(self.outsideAreaAlert, animated: true)
                 } else {
                     if AnimalDetailViewController.isOnJourneyClick {
                         self.animalDetailViewController.userLocation = self.userLocation

@@ -102,6 +102,8 @@ class AnimalDetailViewController: UIViewController {
         return mapView
     }()
     
+    lazy var outsideAreaAlert = UIAlertController.outsideArea()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if (userLocation != nil) && (distance == nil || distance == 0) {
@@ -143,7 +145,7 @@ class AnimalDetailViewController: UIViewController {
             if !MainViewController.isOutsideArea {
                 startNavigation()
             } else {
-                
+                self.present(outsideAreaAlert, animated: true)
             }
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()

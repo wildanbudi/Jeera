@@ -67,7 +67,8 @@ extension AnimalDetailViewController {
                 }
             }
         } else if MainViewController.isOutsideArea {
-            
+            self.present(outsideAreaAlert, animated: true)
+            timer.invalidate()
         }
     }
 }
