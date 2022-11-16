@@ -202,6 +202,15 @@ class MainViewController: UIViewController {
                 appendAnnotationData(typeFeature: typeFeature, parsedFeature: parsedFeature, locationCoordinate: locationCoordinate)
                 if isLastIndex {
                     self.removeSubview(tag: 3)
+                    view.addSubview(centerLocationButton)
+                    centerLocationButton.anchor(
+                        top: searchButton.bottomAnchor,
+                        right: view.rightAnchor,
+                        paddingTop: 10,
+                        paddingRight: 16,
+                        width: view.bounds.height * (45 / 844),
+                        height: view.bounds.height * (45 / 844)
+                    )
                 }
             }
         } else {

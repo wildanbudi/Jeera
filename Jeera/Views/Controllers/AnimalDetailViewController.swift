@@ -109,7 +109,11 @@ class AnimalDetailViewController: UIViewController {
         } else {
             setupView()
         }
-        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        timer.invalidate()
     }
     
     @objc func backButton(_ sender: UIButton) {
@@ -140,7 +144,7 @@ class AnimalDetailViewController: UIViewController {
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
             locationManager.requestAlwaysAuthorization()
-            timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(startNavigation), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(startNavigation), userInfo: nil, repeats: true)
         case .restricted, .denied:
             self.present(alertController, animated: true, completion: nil)
         default :
