@@ -12,9 +12,10 @@ import MapboxNavigation
 import CoreLocation
 
 extension AnimalDetailViewController {
-    func startNavigation() {
+    @objc func startNavigation() {
+        timer.invalidate()
         let origin = Waypoint(coordinate: userLocation, name: "Mapbox")
-        let destination = Waypoint(coordinate: targetCoordinate, name: animalData["idName"]!.rawValue as? String)
+        let destination = Waypoint(coordinate: targetCoordinate, name: detailData["idName"]!.rawValue as? String)
         
         // Set options
         let routeOptions = NavigationRouteOptions(waypoints: [origin, destination], profileIdentifier: ProfileIdentifier(rawValue: "mapbox/walking"))
@@ -68,11 +69,12 @@ extension AnimalDetailViewController {
     }
 }
 
-extension AnimalDetailViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if ((manager.location?.coordinate) != nil) {
-            mapView.location.options.puckType = .puck2D()
-            userLocation = manager.location?.coordinate
-        }
-    }
-}
+//extension AnimalDetailViewController: CLLocationManagerDelegate {
+//    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+//        print("masuk")
+//        if ((manager.location?.coordinate) != nil) {
+//            mapView.location.options.puckType = .puck2D()
+//            userLocation = manager.location?.coordinate
+//        }
+//    }
+//}

@@ -52,52 +52,9 @@ class OverviewCardView: UIView {
         return label
     }()
     
-    lazy var overviewButton: UIButton = {
-        let button = UIButton(type: .system)
-        var config = UIButton.Configuration.plain()
-        config.title = "Yuk! Lihat Aku"
-        config.baseForegroundColor = .PrimaryGreen
-        config.titleTextAttributesTransformer =
-          UIConfigurationTextAttributesTransformer { incoming in
-            var outgoing = incoming
-            outgoing.font = UIFont.systemFont(ofSize: 17, weight: .bold)
-            return outgoing
-          }
-        config.image = UIImage(systemName: "arrow.right.circle.fill")
-        config.imagePadding = 5
-        config.imagePlacement = .trailing
-        config.preferredSymbolConfigurationForImage
-        = UIImage.SymbolConfiguration(scale: .large)
-        button.configuration = config
-        button.layer.masksToBounds = true
-        button.layer.cornerRadius = 20
-        button.layer.borderWidth = 1
-        
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        return button
-    }()
+    lazy var overviewButton = OutlinedButton(title: "Yuk! Lihat Aku", iconName: "arrow.right.circle.fill")
     
-    lazy var startJourneyButton: UIButton = {
-        let button = UIButton(type: .system)
-        var config = UIButton.Configuration.plain()
-        config.title = "Mulai Perjalanan"
-        config.baseForegroundColor = .PrimaryGreen
-        config.titleTextAttributesTransformer =
-          UIConfigurationTextAttributesTransformer { incoming in
-            var outgoing = incoming
-            outgoing.font = UIFont.systemFont(ofSize: 17, weight: .bold)
-            return outgoing
-          }
-        button.configuration = config
-        button.layer.masksToBounds = true
-        button.layer.cornerRadius = 20
-        button.layer.borderWidth = 1
-        
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        return button
-    }()
+    lazy var startJourneyButton = OutlinedButton(title: "Mulai Perjalanan")
     
     init() {
         super.init(frame: .zero)    

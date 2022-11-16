@@ -29,7 +29,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }()
     
     lazy var upperLabel: UILabel = {
-        let label = SearchModalLabel()
+        let label = BasicModalLabel()
         label.text = "Rekomendasi Hewan"
         
         return label
@@ -38,7 +38,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     lazy var upperHorizontalLine = HorizontalLineView()
     
     lazy var lowerLabel: UILabel = {
-        let label = SearchModalLabel()
+        let label = BasicModalLabel()
         label.text = "Fasilitas Umum"
         
         return label
@@ -84,7 +84,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         facilitiesTableView.backgroundColor = .white
         facilitiesTableView.alwaysBounceVertical = false
         
-        searchResultTableView.register(SearchResultTableViewCell.self, forCellReuseIdentifier: SearchResultTableViewCell.identifier)
+        searchResultTableView.register(BasicTableViewCell.self, forCellReuseIdentifier: BasicTableViewCell.identifier)
         searchResultTableView.delegate = self
         searchResultTableView.dataSource = self
         searchResultTableView.separatorStyle = .none
@@ -214,7 +214,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             return cell
         }
-        let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultTableViewCell.identifier, for: indexPath) as! SearchResultTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: BasicTableViewCell.identifier, for: indexPath) as! BasicTableViewCell
         cell.cellName = searchResults[indexPath.row].idName
         
         return cell
@@ -234,7 +234,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if tableView == recommendationsTableView {
             let animalDetailViewController = AnimalDetailViewController()
             animalDetailViewController.modalPresentationStyle = .fullScreen
-            animalDetailViewController.animalData = animalsRecommendation[indexPath.row].dict
+            animalDetailViewController.detailData = animalsRecommendation[indexPath.row].dict
             animalDetailViewController.targetCoordinate = CLLocationCoordinate2D(latitude: animalsRecommendation[indexPath.row].lat, longitude: animalsRecommendation[indexPath.row].long)
             animalDetailViewController.userLocation = userLocation
             animalDetailViewController.distance = animalsRecommendation[indexPath.row].distance
@@ -248,7 +248,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } else {
             let animalDetailViewController = AnimalDetailViewController()
             animalDetailViewController.modalPresentationStyle = .fullScreen
-            animalDetailViewController.animalData = searchResults[indexPath.row].dict
+            animalDetailViewController.detailData = searchResults[indexPath.row].dict
             animalDetailViewController.targetCoordinate = CLLocationCoordinate2D(latitude: searchResults[indexPath.row].lat, longitude: searchResults[indexPath.row].long)
             animalDetailViewController.userLocation = userLocation
             animalDetailViewController.distance = searchResults[indexPath.row].distance

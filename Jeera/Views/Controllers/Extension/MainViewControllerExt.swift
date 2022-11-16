@@ -74,8 +74,22 @@ extension MainViewController: CLLocationManagerDelegate {
         if ((manager.location?.coordinate) != nil) {
             setupUserLocation()
             userLocation = manager.location!.coordinate
-            if self.animalsData.count == 0 || (self.animalsData.count != 0 && self.animalsData.first?.distance == 0) {
-                retrieveAnnotationData()
+            if AnimalDetailViewController.isOnJourneyClick {
+                animalDetailViewController.userLocation = manager.location!.coordinate
+            }
+            if isButtonLocationOffClick {
+                view.addSubview(centerLocationButton)
+                centerLocationButton.anchor(
+                    top: searchButton.bottomAnchor,
+                    right: view.rightAnchor,
+                    paddingTop: 10,
+                    paddingRight: 16,
+                    width: view.bounds.height * (45 / 844),
+                    height: view.bounds.height * (45 / 844)
+                )
+            }
+            if isOnJourneyClick {
+                startNavigation()
             }
         }
         if status == .authorizedAlways {
@@ -88,6 +102,12 @@ extension MainViewController: CLLocationManagerDelegate {
             view.addSubview(buttonLocationOFF)
         } else if status == .authorizedWhenInUse {
             buttonLocationOFF.removeFromSuperview()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if userLocation != locations[0].coordinate {
+            userLocation = locations[0].coordinate
         }
     }
 }

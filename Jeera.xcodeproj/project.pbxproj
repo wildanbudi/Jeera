@@ -37,9 +37,12 @@
 		42D2B3F429047A5A002818A9 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D2B3F329047A5A002818A9 /* UIViewExtension.swift */; };
 		42D2B3F6290595ED002818A9 /* BottomBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D2B3F5290595ED002818A9 /* BottomBannerViewController.swift */; };
 		4312457B290ABEF6003F7AB9 /* AnimalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4312457A290ABEF6003F7AB9 /* AnimalDetailViewController.swift */; };
+		43133068291EB23C0097A850 /* AnimalsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43133067291EB23C0097A850 /* AnimalsListViewController.swift */; };
+		4313306A291EC0910097A850 /* LoadingScreenUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43133069291EC0910097A850 /* LoadingScreenUIView.swift */; };
+		436A9AFF2920D8B0003A982B /* CenterLocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436A9AFE2920D8B0003A982B /* CenterLocationButton.swift */; };
 		4371E4512919440E00F3C2C2 /* RecommendationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4371E4502919440E00F3C2C2 /* RecommendationsTableViewCell.swift */; };
 		4371E456291951E000F3C2C2 /* FacilitiesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4371E455291951E000F3C2C2 /* FacilitiesTableViewCell.swift */; };
-		4371E45A291956FF00F3C2C2 /* SearchModalLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4371E459291956FF00F3C2C2 /* SearchModalLabel.swift */; };
+		4371E45A291956FF00F3C2C2 /* BasicModalLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4371E459291956FF00F3C2C2 /* BasicModalLabel.swift */; };
 		4371E45C291957D000F3C2C2 /* HorizontalLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4371E45B291957D000F3C2C2 /* HorizontalLineView.swift */; };
 		4373E8E4291016000016F810 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373E8E3291016000016F810 /* UIImageExtension.swift */; };
 		4373E8E62910C4BB0016F810 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373E8E52910C4BB0016F810 /* UIButtonExtension.swift */; };
@@ -56,12 +59,13 @@
 		437D008F2907A69A005EB501 /* MapsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437D008E2907A69A005EB501 /* MapsHelper.swift */; };
 		437D00912907A6B7005EB501 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437D00902907A6B7005EB501 /* Constants.swift */; };
 		439F90F3291A9D7A00320C17 /* MainViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439F90F2291A9D7A00320C17 /* MainViewControllerExt.swift */; };
+		439F90F7291B567500320C17 /* OutlinedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439F90F6291B567500320C17 /* OutlinedButton.swift */; };
 		43FDF1742916C3A200DAD0DA /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF1732916C3A200DAD0DA /* SearchBar.swift */; };
-		43FDF1762916C56600DAD0DA /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF1752916C56600DAD0DA /* SearchResultTableViewCell.swift */; };
+		43FDF1762916C56600DAD0DA /* BasicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF1752916C56600DAD0DA /* BasicTableViewCell.swift */; };
 		43FDF17A2917FE6E00DAD0DA /* ClusterName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF1792917FE6E00DAD0DA /* ClusterName.swift */; };
 		43FDF17F291800BA00DAD0DA /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF17E291800BA00DAD0DA /* BackButton.swift */; };
 		43FDF181291801E500DAD0DA /* DetailLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF180291801E500DAD0DA /* DetailLabel.swift */; };
-		43FDF1832918031B00DAD0DA /* DetailInformationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF1822918031B00DAD0DA /* DetailInformationStackView.swift */; };
+		43FDF1832918031B00DAD0DA /* DetailStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF1822918031B00DAD0DA /* DetailStackView.swift */; };
 		43FDF185291803DD00DAD0DA /* StartJourneyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF184291803DD00DAD0DA /* StartJourneyButton.swift */; };
 		43FDF187291804B700DAD0DA /* DetailInformationLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF186291804B700DAD0DA /* DetailInformationLabel.swift */; };
 		5712371F291027B900FB4F9E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5712371E291027B900FB4F9E /* Settings.bundle */; };
@@ -117,9 +121,12 @@
 		42D2B3F329047A5A002818A9 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		42D2B3F5290595ED002818A9 /* BottomBannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBannerViewController.swift; sourceTree = "<group>"; };
 		4312457A290ABEF6003F7AB9 /* AnimalDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalDetailViewController.swift; sourceTree = "<group>"; };
+		43133067291EB23C0097A850 /* AnimalsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalsListViewController.swift; sourceTree = "<group>"; };
+		43133069291EC0910097A850 /* LoadingScreenUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenUIView.swift; sourceTree = "<group>"; };
+		436A9AFE2920D8B0003A982B /* CenterLocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterLocationButton.swift; sourceTree = "<group>"; };
 		4371E4502919440E00F3C2C2 /* RecommendationsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationsTableViewCell.swift; sourceTree = "<group>"; };
 		4371E455291951E000F3C2C2 /* FacilitiesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilitiesTableViewCell.swift; sourceTree = "<group>"; };
-		4371E459291956FF00F3C2C2 /* SearchModalLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModalLabel.swift; sourceTree = "<group>"; };
+		4371E459291956FF00F3C2C2 /* BasicModalLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicModalLabel.swift; sourceTree = "<group>"; };
 		4371E45B291957D000F3C2C2 /* HorizontalLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalLineView.swift; sourceTree = "<group>"; };
 		4373E8E3291016000016F810 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		4373E8E52910C4BB0016F810 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
@@ -136,12 +143,13 @@
 		437D008E2907A69A005EB501 /* MapsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsHelper.swift; sourceTree = "<group>"; };
 		437D00902907A6B7005EB501 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		439F90F2291A9D7A00320C17 /* MainViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerExt.swift; sourceTree = "<group>"; };
+		439F90F6291B567500320C17 /* OutlinedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinedButton.swift; sourceTree = "<group>"; };
 		43FDF1732916C3A200DAD0DA /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
-		43FDF1752916C56600DAD0DA /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
+		43FDF1752916C56600DAD0DA /* BasicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicTableViewCell.swift; sourceTree = "<group>"; };
 		43FDF1792917FE6E00DAD0DA /* ClusterName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterName.swift; sourceTree = "<group>"; };
 		43FDF17E291800BA00DAD0DA /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		43FDF180291801E500DAD0DA /* DetailLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLabel.swift; sourceTree = "<group>"; };
-		43FDF1822918031B00DAD0DA /* DetailInformationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInformationStackView.swift; sourceTree = "<group>"; };
+		43FDF1822918031B00DAD0DA /* DetailStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStackView.swift; sourceTree = "<group>"; };
 		43FDF184291803DD00DAD0DA /* StartJourneyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartJourneyButton.swift; sourceTree = "<group>"; };
 		43FDF186291804B700DAD0DA /* DetailInformationLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInformationLabel.swift; sourceTree = "<group>"; };
 		5712371E291027B900FB4F9E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -287,6 +295,8 @@
 				43FDF17C2918000200DAD0DA /* SearchModal */,
 				43FDF17B2917FFD700DAD0DA /* MainView */,
 				42836AE629116E7B00301DE5 /* PrimaryButton.swift */,
+				43FDF17E291800BA00DAD0DA /* BackButton.swift */,
+				439F90F6291B567500320C17 /* OutlinedButton.swift */,
 				42836AEE29117D1900301DE5 /* HeadingLabel.swift */,
 				42836AF029117D3A00301DE5 /* CaptionLabel.swift */,
 			);
@@ -308,6 +318,7 @@
 				42F3F05E291B5AD500606A25 /* Extension */,
 				42D2B3F5290595ED002818A9 /* BottomBannerViewController.swift */,
 				437D00892907A623005EB501 /* MainViewController.swift */,
+				43133067291EB23C0097A850 /* AnimalsListViewController.swift */,
 				4312457A290ABEF6003F7AB9 /* AnimalDetailViewController.swift */,
 				4373E8F1291175C40016F810 /* SearchViewController.swift */,
 				42836AF429118B2200301DE5 /* TopBannerViewController.swift */,
@@ -368,6 +379,8 @@
 			isa = PBXGroup;
 			children = (
 				4373E8ED2911534D0016F810 /* SearchButton.swift */,
+				436A9AFE2920D8B0003A982B /* CenterLocationButton.swift */,
+				43133069291EC0910097A850 /* LoadingScreenUIView.swift */,
 				437D008B2907A66A005EB501 /* OverviewCardView.swift */,
 				4373E8E72910CD7F0016F810 /* SegmentedControl.swift */,
 				4373E8EB291142390016F810 /* MonkeyLocationButton.swift */,
@@ -378,9 +391,9 @@
 		43FDF17C2918000200DAD0DA /* SearchModal */ = {
 			isa = PBXGroup;
 			children = (
-				43FDF1752916C56600DAD0DA /* SearchResultTableViewCell.swift */,
+				43FDF1752916C56600DAD0DA /* BasicTableViewCell.swift */,
+				4371E459291956FF00F3C2C2 /* BasicModalLabel.swift */,
 				4371E4502919440E00F3C2C2 /* RecommendationsTableViewCell.swift */,
-				4371E459291956FF00F3C2C2 /* SearchModalLabel.swift */,
 				4371E455291951E000F3C2C2 /* FacilitiesTableViewCell.swift */,
 				43FDF1732916C3A200DAD0DA /* SearchBar.swift */,
 				4371E45B291957D000F3C2C2 /* HorizontalLineView.swift */,
@@ -391,9 +404,8 @@
 		43FDF17D2918002700DAD0DA /* AnimalDetailView */ = {
 			isa = PBXGroup;
 			children = (
-				43FDF17E291800BA00DAD0DA /* BackButton.swift */,
 				43FDF180291801E500DAD0DA /* DetailLabel.swift */,
-				43FDF1822918031B00DAD0DA /* DetailInformationStackView.swift */,
+				43FDF1822918031B00DAD0DA /* DetailStackView.swift */,
 				43FDF184291803DD00DAD0DA /* StartJourneyButton.swift */,
 				43FDF186291804B700DAD0DA /* DetailInformationLabel.swift */,
 			);
@@ -543,12 +555,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43133068291EB23C0097A850 /* AnimalsListViewController.swift in Sources */,
 				437D008C2907A66A005EB501 /* OverviewCardView.swift in Sources */,
 				4373E8E62910C4BB0016F810 /* UIButtonExtension.swift in Sources */,
 				439F90F3291A9D7A00320C17 /* MainViewControllerExt.swift in Sources */,
 				437D00912907A6B7005EB501 /* Constants.swift in Sources */,
-				43FDF1832918031B00DAD0DA /* DetailInformationStackView.swift in Sources */,
+				4246460A2913E095005EB12A /* AnimalDetailViewControllerExt.swift in Sources */,
+				43FDF1832918031B00DAD0DA /* DetailStackView.swift in Sources */,
 				42D12DC72901B8DF00857042 /* CustomDayStyle.swift in Sources */,
+				4313306A291EC0910097A850 /* LoadingScreenUIView.swift in Sources */,
 				4246460A2913E095005EB12A /* AnimalDetailViewControllerExt.swift in Sources */,
 				4373E8EE2911534D0016F810 /* SearchButton.swift in Sources */,
 				42D12DBF2901B16300857042 /* Animals.swift in Sources */,
@@ -562,6 +577,7 @@
 				437D008A2907A623005EB501 /* MainViewController.swift in Sources */,
 				42D12D8029010F6C00857042 /* AppDelegate.swift in Sources */,
 				43FDF17A2917FE6E00DAD0DA /* ClusterName.swift in Sources */,
+				436A9AFF2920D8B0003A982B /* CenterLocationButton.swift in Sources */,
 				4373E8F42912C3430016F810 /* Facilities.swift in Sources */,
 				4373E8F2291175C40016F810 /* SearchViewController.swift in Sources */,
 				43FDF185291803DD00DAD0DA /* StartJourneyButton.swift in Sources */,
@@ -576,10 +592,10 @@
 				43FDF187291804B700DAD0DA /* DetailInformationLabel.swift in Sources */,
 				437D008F2907A69A005EB501 /* MapsHelper.swift in Sources */,
 				42D12D8229010F6C00857042 /* SceneDelegate.swift in Sources */,
-				43FDF1762916C56600DAD0DA /* SearchResultTableViewCell.swift in Sources */,
+				43FDF1762916C56600DAD0DA /* BasicTableViewCell.swift in Sources */,
 				42836AE729116E7B00301DE5 /* PrimaryButton.swift in Sources */,
 				42836AEF29117D1900301DE5 /* HeadingLabel.swift in Sources */,
-				4371E45A291956FF00F3C2C2 /* SearchModalLabel.swift in Sources */,
+				4371E45A291956FF00F3C2C2 /* BasicModalLabel.swift in Sources */,
 				4373E8EC291142390016F810 /* MonkeyLocationButton.swift in Sources */,
 				425AD0D029022D4700754114 /* UIColorScheme.swift in Sources */,
 				4371E45C291957D000F3C2C2 /* HorizontalLineView.swift in Sources */,
@@ -587,6 +603,7 @@
 				4371E456291951E000F3C2C2 /* FacilitiesTableViewCell.swift in Sources */,
 				42D12DC92901B93400857042 /* CustomNightStyle.swift in Sources */,
 				42836AF529118B2200301DE5 /* TopBannerViewController.swift in Sources */,
+				439F90F7291B567500320C17 /* OutlinedButton.swift in Sources */,
 				42836AF129117D3A00301DE5 /* CaptionLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -745,15 +762,18 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KJUW4SG84H;
+				DEVELOPMENT_TEAM = 7PHRUAQA32;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Jeera/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Turn on location to get directions.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Turn on location to get directions.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -761,9 +781,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wildanbudi.Jeera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -774,15 +797,18 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KJUW4SG84H;
+				DEVELOPMENT_TEAM = 7PHRUAQA32;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Jeera/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Turn on location to get directions.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Turn on location to get directions.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -790,9 +816,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wildanbudi.Jeera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
