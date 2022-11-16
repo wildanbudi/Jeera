@@ -42,6 +42,7 @@ class MainViewController: UIViewController {
     var animalDetailViewController: AnimalDetailViewController!
     
     private(set) static var instance: MainViewController!
+    private(set) static var isOutsideArea = false
     
     // Initiate The Core Location Manager
     let locationManager = CLLocationManager()
@@ -418,7 +419,11 @@ class MainViewController: UIViewController {
         
         switch locationManager.authorizationStatus {
         case .authorizedAlways, .authorizedWhenInUse:
-            startNavigation()
+            if !MainViewController.isOutsideArea {
+                startNavigation()
+            } else {
+                
+            }
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
             locationManager.requestAlwaysAuthorization()
@@ -501,6 +506,57 @@ class MainViewController: UIViewController {
             searchButton.widthAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
             searchButton.heightAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844))
         ])
+    }
+    
+    func getRouteInformation() {
+        let directions = Directions.shared
+        let waypoints = [
+            Waypoint(coordinate: userLocation!, name: "origin"),
+            Waypoint(coordinate: ragunanCoordinate, name: "ragunan"),
+        ]
+        let options = RouteOptions(waypoints: waypoints, profileIdentifier: .walking)
+        let _ = directions.calculate(options) { (session, result) in
+            switch result {
+            case .failure(let error):
+                print("Error calculating directions: \(error)")
+            case .success(let response):
+                guard let route = response.routes?.first, let _ = route.legs.first else {
+                    return
+                }
+                
+                let distance = Int(route.distance)
+                if distance > 1500 {
+                    MainViewController.isOutsideArea = true
+                } else {
+                    if AnimalDetailViewController.isOnJourneyClick {
+                        self.animalDetailViewController.userLocation = self.userLocation
+                        self.view.addSubview(self.centerLocationButton)
+                        self.centerLocationButton.anchor(
+                            top: self.searchButton.bottomAnchor,
+                            right: self.view.rightAnchor,
+                            paddingTop: 10,
+                            paddingRight: 16,
+                            width: self.view.bounds.height * (45 / 844),
+                            height: self.view.bounds.height * (45 / 844)
+                        )
+                    }
+                    if self.isButtonLocationOffClick {
+                        self.view.addSubview(self.centerLocationButton)
+                        self.centerLocationButton.anchor(
+                            top: self.searchButton.bottomAnchor,
+                            right: self.view.rightAnchor,
+                            paddingTop: 10,
+                            paddingRight: 16,
+                            width: self.view.bounds.height * (45 / 844),
+                            height: self.view.bounds.height * (45 / 844)
+                        )
+                    }
+                    if self.isOnJourneyClick {
+                        self.startNavigation()
+                    }
+                }
+            }
+        }
     }
     
     // Objective-C Function for the segmentedSelector action

@@ -13,7 +13,7 @@ import CoreLocation
 
 extension AnimalDetailViewController {
     @objc func startNavigation() {
-        if userLocation != nil {
+        if userLocation != nil && !MainViewController.isOutsideArea {
             let origin = Waypoint(coordinate: userLocation, name: "Mapbox")
             let destination = Waypoint(coordinate: targetCoordinate, name: detailData["idName"]!.rawValue as? String)
             
@@ -66,6 +66,8 @@ extension AnimalDetailViewController {
                     navigationViewController.routeLineTracksTraversal = true
                 }
             }
+        } else if MainViewController.isOutsideArea {
+            
         }
     }
 }
