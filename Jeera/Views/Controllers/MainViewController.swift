@@ -176,18 +176,18 @@ class MainViewController: UIViewController {
                 Waypoint(coordinate: locationCoordinate, name: "destination"),
             ]
             let options = RouteOptions(waypoints: waypoints, profileIdentifier: .walking)
-            let _ = directions.calculate(options) { (session, result) in
-                switch result {
-                case .failure(let error):
-                    print("Error calculating directions: \(error)")
-                    return
-                case .success(let response):
-                    guard let route = response.routes?.first, let _ = route.legs.first else {
+            if self.isSearch {
+                let _ = directions.calculate(options) { (session, result) in
+                    switch result {
+                    case .failure(let error):
+                        print("Error calculating directions: \(error)")
                         return
-                    }
-                    self.appendAnnotationData(typeFeature: typeFeature, parsedFeature: parsedFeature, locationCoordinate: locationCoordinate, distance: route.distance, travelTime: (route.expectedTravelTime/60) + 1)
-                    if isLastIndex {
-                        if self.isSearch {
+                    case .success(let response):
+                        guard let route = response.routes?.first, let _ = route.legs.first else {
+                            return
+                        }
+                        self.appendAnnotationData(typeFeature: typeFeature, parsedFeature: parsedFeature, locationCoordinate: locationCoordinate, distance: route.distance, travelTime: (route.expectedTravelTime/60) + 1)
+                        if isLastIndex {
                             let searchViewController = SearchViewController()
                             searchViewController.modalPresentationStyle = .formSheet
                             searchViewController.animalsData = self.animalsData
@@ -197,6 +197,11 @@ class MainViewController: UIViewController {
                             self.isSearch = false
                         }
                     }
+                }
+            } else {
+                appendAnnotationData(typeFeature: typeFeature, parsedFeature: parsedFeature, locationCoordinate: locationCoordinate)
+                if isLastIndex {
+                    self.removeSubview(tag: 3)
                 }
             }
         } else {

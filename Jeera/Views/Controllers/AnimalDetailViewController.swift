@@ -165,12 +165,24 @@ class AnimalDetailViewController: UIViewController {
         view.layer.insertSublayer(gradient, at: 0)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
         if cagesMultipleAnimals.contains(name) && detailData["type"] == "Kandang" {
-            [backButton, animalImage, detailNameLabel, overviewMapView, informationView, buttonsStack].forEach {
-                view.addSubview($0)
+            if userLocation == nil {
+                [backButton, animalImage, detailNameLabel, overviewMapView, buttonsStack].forEach {
+                    view.addSubview($0)
+                }
+            } else {
+                [backButton, animalImage, detailNameLabel, overviewMapView, informationView, buttonsStack].forEach {
+                    view.addSubview($0)
+                }
             }
         } else {
-            [backButton, animalImage, detailNameLabel, overviewMapView, informationView, startJourneyButton].forEach {
-                view.addSubview($0)
+            if userLocation == nil {
+                [backButton, animalImage, detailNameLabel, overviewMapView, startJourneyButton].forEach {
+                    view.addSubview($0)
+                }
+            } else {
+                [backButton, animalImage, detailNameLabel, overviewMapView, informationView, startJourneyButton].forEach {
+                    view.addSubview($0)
+                }
             }
         }
         setupConstraint()
@@ -226,21 +238,32 @@ class AnimalDetailViewController: UIViewController {
         
         overviewMapView.centerX(inView: view)
         
-        informationView.anchor(
-            bottom: overviewMapView.topAnchor,
-            left: view.leftAnchor,
-            paddingBottom: 20,
-            paddingLeft: 16
-        )
-        
-        detailNameLabel.anchor(
-            bottom: informationView.topAnchor,
-            left: view.leftAnchor,
-            paddingBottom: 5,
-            paddingLeft: 16,
-            width: view.bounds.height * (332 / 844),
-            height: view.bounds.height * (48 / 844)
-        )
+        if userLocation == nil {
+            detailNameLabel.anchor(
+                bottom: overviewMapView.topAnchor,
+                left: view.leftAnchor,
+                paddingBottom: 5,
+                paddingLeft: 16,
+                width: view.bounds.height * (332 / 844),
+                height: view.bounds.height * (48 / 844)
+            )
+        } else {
+            informationView.anchor(
+                bottom: overviewMapView.topAnchor,
+                left: view.leftAnchor,
+                paddingBottom: 20,
+                paddingLeft: 16
+            )
+            
+            detailNameLabel.anchor(
+                bottom: informationView.topAnchor,
+                left: view.leftAnchor,
+                paddingBottom: 5,
+                paddingLeft: 16,
+                width: view.bounds.height * (332 / 844),
+                height: view.bounds.height * (48 / 844)
+            )
+        }
     }
     
     func getRouteInformation() {
