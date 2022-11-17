@@ -22,6 +22,7 @@ class BottomBannerViewController: ContainerViewController, BottomBarViewDelegate
     lazy var bannerView: BottomBarView = {
         let banner = BottomBarView()
         banner.translatesAutoresizingMaskIntoConstraints = false
+        banner.layer.cornerRadius = 20
         banner.delegate = self
         return banner
     }()
