@@ -13,7 +13,11 @@ class AnimalDetailViewController: UIViewController {
     var mapView: MapView!
     var detailData: Dictionary<String, JSONValue>!
     var targetCoordinate: CLLocationCoordinate2D!
-    var userLocation: CLLocationCoordinate2D!
+    var userLocation: CLLocationCoordinate2D! {
+        didSet {
+            self.startNavigation()
+        }
+    }
     var distance: Int!
     var travelTime: Int!
     var type: String!
@@ -21,7 +25,7 @@ class AnimalDetailViewController: UIViewController {
     var animalsData: [AllData]!
     var animalsList: [AllData]!
     private (set) static var isOnJourneyClick = false
-    var timer = Timer()
+//    var timer = Timer()
     
     lazy var backButton: UIButton = {
         let button = BackButton()
@@ -73,7 +77,8 @@ class AnimalDetailViewController: UIViewController {
     }()
     
     lazy var startJourneyButton: UIButton = {
-        let button = StartJourneyButton()
+        let button = PrimaryButton(frame: .zero)
+        button.setTitle("Mulai Perjalanan", for: .normal)
         button.addTarget(self, action: #selector(onJourneyClick), for: .touchUpInside)
         
         return button
@@ -102,6 +107,8 @@ class AnimalDetailViewController: UIViewController {
         return mapView
     }()
     
+    lazy var outsideAreaAlert = UIAlertController.outsideArea()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if (userLocation != nil) && (distance == nil || distance == 0) {
@@ -109,8 +116,12 @@ class AnimalDetailViewController: UIViewController {
         } else {
             setupView()
         }
-        
     }
+    
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        timer.invalidate()
+//    }
     
     @objc func backButton(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
@@ -136,11 +147,15 @@ class AnimalDetailViewController: UIViewController {
         let locationManager = CLLocationManager()
         switch locationManager.authorizationStatus {
         case .authorizedAlways, .authorizedWhenInUse:
-            startNavigation()
+            if !MainViewController.isOutsideArea {
+                startNavigation()
+            } else {
+                self.present(outsideAreaAlert, animated: true)
+            }
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
             locationManager.requestAlwaysAuthorization()
-            timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(startNavigation), userInfo: nil, repeats: true)
+//            timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(startNavigation), userInfo: nil, repeats: true)
         case .restricted, .denied:
             self.present(alertController, animated: true, completion: nil)
         default :
@@ -212,7 +227,6 @@ class AnimalDetailViewController: UIViewController {
             buttonsStack.anchor(
                 bottom: safeArea.bottomAnchor,
                 left: view.leftAnchor,
-                paddingBottom: 14,
                 paddingLeft: 16,
                 height: view.bounds.height * (50 / 844)
             )
@@ -221,7 +235,6 @@ class AnimalDetailViewController: UIViewController {
             startJourneyButton.anchor(
                 bottom: safeArea.bottomAnchor,
                 left: view.leftAnchor,
-                paddingBottom: 14,
                 paddingLeft: 16,
                 height: view.bounds.height * (50 / 844)
             )

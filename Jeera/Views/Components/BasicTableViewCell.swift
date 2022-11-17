@@ -17,6 +17,15 @@ class BasicTableViewCell: UITableViewCell {
             profileLabel.text = newValue
         }
     }
+    var isChecked: Bool! {
+        didSet {
+            if isChecked {
+                checkBox.image = UIImage(systemName: "checkmark.circle.fill")?.imageWithColor(newColor: .PrimaryGreen)
+            } else {
+                checkBox.image = UIImage(systemName: "circle")?.imageWithColor(newColor: .black)
+            }
+        }
+    }
     
     lazy var containerView: UIView = {
         let view = UIView()
@@ -26,13 +35,23 @@ class BasicTableViewCell: UITableViewCell {
         view.layer.shadowRadius = 5
         view.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor
         view.layer.shadowOffset = CGSize(width: 0, height: 0.1)
-        view.addSubview(profileLabel)
+        if senderIdentifier == "RoutePlanTableViewCell" {
+            view.addSubview(checkBox)
+        }
         view.addSubview(profileImageView)
+        view.addSubview(profileLabel)
         if senderIdentifier == BasicTableViewCell.identifier {
             view.addSubview(arrowImageView)
         }
         
         return view
+    }()
+    
+    lazy var checkBox: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "circle")?.imageWithColor(newColor: .black)
+        
+        return imageView
     }()
     
     lazy var profileImageView: UIImageView = {
@@ -63,18 +82,35 @@ class BasicTableViewCell: UITableViewCell {
         contentView.addSubview(containerView)
     }
     
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        if senderIdentifier == "RoutePlanTableViewCell" && selected {
+            isChecked.toggle()
+        }
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+        let isRoutePlanTableViewCell = senderIdentifier == "RoutePlanTableViewCell"
         containerView.anchor(
             width: contentView.bounds.width * (358/390),
             height: contentView.bounds.height * (92/112)
         )
         containerView.center(inView: contentView)
         
+        if isRoutePlanTableViewCell {
+            checkBox.anchor(
+                left: containerView.leftAnchor,
+                paddingLeft: 16,
+                width: contentView.bounds.height * (24/112),
+                height: contentView.bounds.height * (24/112)
+            )
+            checkBox.centerY(inView: containerView)
+        }
+        
         profileImageView.anchor(
-            left: containerView.leftAnchor,
-            paddingLeft: 16,
+            left: isRoutePlanTableViewCell ? checkBox.rightAnchor : containerView.leftAnchor,
+            paddingLeft: isRoutePlanTableViewCell ? 20 : 16,
             width: contentView.bounds.height * (60/112),
             height: contentView.bounds.height * (60/112)
         )

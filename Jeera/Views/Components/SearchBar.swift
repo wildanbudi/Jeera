@@ -14,7 +14,6 @@ class SearchBar: UISearchBar {
         self.tintColor = .PrimaryGreen
         self.setImage(UIImage(systemName: "magnifyingglass")?.imageWithColor(newColor: .PrimaryGreen), for: .search, state: .normal)
         self.placeholder = "Cari Hewan..."
-        self.becomeFirstResponder()
         self.searchTextField.textColor = UIColor(red: 0.235, green: 0.235, blue: 0.263, alpha: 1)
         self.searchTextField.font = UIFont(name: "Baloo2-Regular", size: 17)
         self.searchTextField.layer.cornerRadius = 18
@@ -23,6 +22,16 @@ class SearchBar: UISearchBar {
         self.searchTextField.layer.borderColor = UIColor.PrimaryGreen.cgColor
         self.searchTextField.layer.borderWidth = 1
         self.backgroundImage = UIImage()
+        self.resignFirstResponder()
+        
+        lazy var upperLabel: UILabel = {
+            let label = BasicModalLabel()
+            label.text = "Rekomendasi Hewan"
+            
+            return label
+        }()
+        
+        lazy var upperHorizontalLine = HorizontalLineView()
     }
     
     required init?(coder: NSCoder) {

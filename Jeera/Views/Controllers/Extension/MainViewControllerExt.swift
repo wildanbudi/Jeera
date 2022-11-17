@@ -74,22 +74,8 @@ extension MainViewController: CLLocationManagerDelegate {
         if ((manager.location?.coordinate) != nil) {
             setupUserLocation()
             userLocation = manager.location!.coordinate
-            if AnimalDetailViewController.isOnJourneyClick {
-                animalDetailViewController.userLocation = manager.location!.coordinate
-            }
-            if isButtonLocationOffClick {
-                view.addSubview(centerLocationButton)
-                centerLocationButton.anchor(
-                    top: searchButton.bottomAnchor,
-                    right: view.rightAnchor,
-                    paddingTop: 10,
-                    paddingRight: 16,
-                    width: view.bounds.height * (45 / 844),
-                    height: view.bounds.height * (45 / 844)
-                )
-            }
-            if isOnJourneyClick {
-                startNavigation()
+            if self.view.viewWithTag(3) == nil {
+                getRouteInformation()
             }
         }
         if status == .authorizedAlways {
