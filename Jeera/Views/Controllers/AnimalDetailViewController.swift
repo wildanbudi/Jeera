@@ -77,7 +77,8 @@ class AnimalDetailViewController: UIViewController {
     }()
     
     lazy var startJourneyButton: UIButton = {
-        let button = StartJourneyButton()
+        let button = PrimaryButton(frame: .zero)
+        button.setTitle("Mulai Perjalanan", for: .normal)
         button.addTarget(self, action: #selector(onJourneyClick), for: .touchUpInside)
         
         return button
@@ -226,7 +227,6 @@ class AnimalDetailViewController: UIViewController {
             buttonsStack.anchor(
                 bottom: safeArea.bottomAnchor,
                 left: view.leftAnchor,
-                paddingBottom: 14,
                 paddingLeft: 16,
                 height: view.bounds.height * (50 / 844)
             )
@@ -235,7 +235,6 @@ class AnimalDetailViewController: UIViewController {
             startJourneyButton.anchor(
                 bottom: safeArea.bottomAnchor,
                 left: view.leftAnchor,
-                paddingBottom: 14,
                 paddingLeft: 16,
                 height: view.bounds.height * (50 / 844)
             )

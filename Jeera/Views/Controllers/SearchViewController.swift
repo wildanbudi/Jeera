@@ -23,7 +23,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     lazy var searchBar: UISearchBar = {
         let searchBar = SearchBar()
         searchBar.delegate = self
-        searchBar.resignFirstResponder()
         
         return searchBar
     }()
@@ -298,7 +297,7 @@ extension SearchViewController: UISearchBarDelegate {
         })
         searchResults.removeAll()
         if animalsResults.count > 0 || facilitiesResults.count > 0 {
-            let results = animalsResults.sorted { $0.distance < $1.distance } + facilitiesResults.sorted { $0.distance < $1.distance }
+            let results = animalsResults.sorted { $0.idName < $1.idName } + facilitiesResults.sorted { $0.idName < $1.idName }
             nonDuplicateNames.removeAll()
             for el in results {
                 if !nonDuplicateNames.contains(el.idName) {

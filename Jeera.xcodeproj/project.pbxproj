@@ -40,6 +40,7 @@
 		43133068291EB23C0097A850 /* AnimalsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43133067291EB23C0097A850 /* AnimalsListViewController.swift */; };
 		4313306A291EC0910097A850 /* LoadingScreenUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43133069291EC0910097A850 /* LoadingScreenUIView.swift */; };
 		436A05CB29253A6A003B30BF /* UIAlertControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436A05CA29253A6A003B30BF /* UIAlertControllerExtension.swift */; };
+		436A05CD2925DC94003B30BF /* RoutePlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436A05CC2925DC94003B30BF /* RoutePlanViewController.swift */; };
 		436A9AFF2920D8B0003A982B /* CenterLocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436A9AFE2920D8B0003A982B /* CenterLocationButton.swift */; };
 		4371E4512919440E00F3C2C2 /* RecommendationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4371E4502919440E00F3C2C2 /* RecommendationsTableViewCell.swift */; };
 		4371E456291951E000F3C2C2 /* FacilitiesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4371E455291951E000F3C2C2 /* FacilitiesTableViewCell.swift */; };
@@ -67,7 +68,6 @@
 		43FDF17F291800BA00DAD0DA /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF17E291800BA00DAD0DA /* BackButton.swift */; };
 		43FDF181291801E500DAD0DA /* DetailLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF180291801E500DAD0DA /* DetailLabel.swift */; };
 		43FDF1832918031B00DAD0DA /* DetailStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF1822918031B00DAD0DA /* DetailStackView.swift */; };
-		43FDF185291803DD00DAD0DA /* StartJourneyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF184291803DD00DAD0DA /* StartJourneyButton.swift */; };
 		43FDF187291804B700DAD0DA /* DetailInformationLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF186291804B700DAD0DA /* DetailInformationLabel.swift */; };
 		5712371F291027B900FB4F9E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5712371E291027B900FB4F9E /* Settings.bundle */; };
 /* End PBXBuildFile section */
@@ -125,6 +125,7 @@
 		43133067291EB23C0097A850 /* AnimalsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalsListViewController.swift; sourceTree = "<group>"; };
 		43133069291EC0910097A850 /* LoadingScreenUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenUIView.swift; sourceTree = "<group>"; };
 		436A05CA29253A6A003B30BF /* UIAlertControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtension.swift; sourceTree = "<group>"; };
+		436A05CC2925DC94003B30BF /* RoutePlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePlanViewController.swift; sourceTree = "<group>"; };
 		436A9AFE2920D8B0003A982B /* CenterLocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterLocationButton.swift; sourceTree = "<group>"; };
 		4371E4502919440E00F3C2C2 /* RecommendationsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationsTableViewCell.swift; sourceTree = "<group>"; };
 		4371E455291951E000F3C2C2 /* FacilitiesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilitiesTableViewCell.swift; sourceTree = "<group>"; };
@@ -152,7 +153,6 @@
 		43FDF17E291800BA00DAD0DA /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		43FDF180291801E500DAD0DA /* DetailLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLabel.swift; sourceTree = "<group>"; };
 		43FDF1822918031B00DAD0DA /* DetailStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStackView.swift; sourceTree = "<group>"; };
-		43FDF184291803DD00DAD0DA /* StartJourneyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartJourneyButton.swift; sourceTree = "<group>"; };
 		43FDF186291804B700DAD0DA /* DetailInformationLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInformationLabel.swift; sourceTree = "<group>"; };
 		5712371E291027B900FB4F9E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -323,6 +323,7 @@
 				43133067291EB23C0097A850 /* AnimalsListViewController.swift */,
 				4312457A290ABEF6003F7AB9 /* AnimalDetailViewController.swift */,
 				4373E8F1291175C40016F810 /* SearchViewController.swift */,
+				436A05CC2925DC94003B30BF /* RoutePlanViewController.swift */,
 				42836AF429118B2200301DE5 /* TopBannerViewController.swift */,
 			);
 			path = Controllers;
@@ -409,7 +410,6 @@
 			children = (
 				43FDF180291801E500DAD0DA /* DetailLabel.swift */,
 				43FDF1822918031B00DAD0DA /* DetailStackView.swift */,
-				43FDF184291803DD00DAD0DA /* StartJourneyButton.swift */,
 				43FDF186291804B700DAD0DA /* DetailInformationLabel.swift */,
 			);
 			path = AnimalDetailView;
@@ -584,7 +584,6 @@
 				4373E8F42912C3430016F810 /* Facilities.swift in Sources */,
 				436A05CB29253A6A003B30BF /* UIAlertControllerExtension.swift in Sources */,
 				4373E8F2291175C40016F810 /* SearchViewController.swift in Sources */,
-				43FDF185291803DD00DAD0DA /* StartJourneyButton.swift in Sources */,
 				43FDF1742916C3A200DAD0DA /* SearchBar.swift in Sources */,
 				42836AED29117C1900301DE5 /* BottomBarView.swift in Sources */,
 				42836AE929116EDC00301DE5 /* UIViewControllerExtension.swift in Sources */,
@@ -599,6 +598,7 @@
 				43FDF1762916C56600DAD0DA /* BasicTableViewCell.swift in Sources */,
 				42836AE729116E7B00301DE5 /* PrimaryButton.swift in Sources */,
 				42836AEF29117D1900301DE5 /* HeadingLabel.swift in Sources */,
+				436A05CD2925DC94003B30BF /* RoutePlanViewController.swift in Sources */,
 				4371E45A291956FF00F3C2C2 /* BasicModalLabel.swift in Sources */,
 				4373E8EC291142390016F810 /* MonkeyLocationButton.swift in Sources */,
 				425AD0D029022D4700754114 /* UIColorScheme.swift in Sources */,

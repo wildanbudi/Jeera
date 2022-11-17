@@ -160,10 +160,17 @@ class MainViewController: UIViewController {
                 mappingAnnotationData(locationCoordinate: dataCoordinate, parsedFeature: data.dict, typeFeature: "Fasilitas", isLastIndex: isLastIndex)
             }
         } else {
-            let searchViewController = SearchViewController()
+//            let searchViewController = SearchViewController()
+//            searchViewController.modalPresentationStyle = .formSheet
+//            searchViewController.animalsData = self.animalsData
+//            searchViewController.facilitiesData = self.facilitiesData
+//            searchViewController.userLocation = self.userLocation
+//            self.present(searchViewController, animated: true, completion: nil)
+            
+            let searchViewController = RoutePlanViewController()
             searchViewController.modalPresentationStyle = .formSheet
             searchViewController.animalsData = self.animalsData
-            searchViewController.facilitiesData = self.facilitiesData
+//            searchViewController.cagesData = self.cagesData
             searchViewController.userLocation = self.userLocation
             self.present(searchViewController, animated: true, completion: nil)
         }
@@ -189,10 +196,15 @@ class MainViewController: UIViewController {
                         }
                         self.appendAnnotationData(typeFeature: typeFeature, parsedFeature: parsedFeature, locationCoordinate: locationCoordinate, distance: route.distance, travelTime: (route.expectedTravelTime/60) + 1)
                         if isLastIndex {
-                            let searchViewController = SearchViewController()
+//                            let searchViewController = SearchViewController()
+//                            searchViewController.modalPresentationStyle = .formSheet
+//                            searchViewController.animalsData = self.animalsData
+//                            searchViewController.facilitiesData = self.facilitiesData
+//                            searchViewController.userLocation = self.userLocation
+//                            self.present(searchViewController, animated: true, completion: nil)
+                            let searchViewController = RoutePlanViewController()
                             searchViewController.modalPresentationStyle = .formSheet
                             searchViewController.animalsData = self.animalsData
-                            searchViewController.facilitiesData = self.facilitiesData
                             searchViewController.userLocation = self.userLocation
                             self.present(searchViewController, animated: true, completion: nil)
                             self.isSearch = false
