@@ -41,6 +41,7 @@
 		4313306A291EC0910097A850 /* LoadingScreenUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43133069291EC0910097A850 /* LoadingScreenUIView.swift */; };
 		436A05CB29253A6A003B30BF /* UIAlertControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436A05CA29253A6A003B30BF /* UIAlertControllerExtension.swift */; };
 		436A05CD2925DC94003B30BF /* RoutePlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436A05CC2925DC94003B30BF /* RoutePlanViewController.swift */; };
+		436A05CF29269163003B30BF /* EmptySearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436A05CE29269163003B30BF /* EmptySearchResultView.swift */; };
 		436A9AFF2920D8B0003A982B /* CenterLocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436A9AFE2920D8B0003A982B /* CenterLocationButton.swift */; };
 		4371E4512919440E00F3C2C2 /* RecommendationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4371E4502919440E00F3C2C2 /* RecommendationsTableViewCell.swift */; };
 		4371E456291951E000F3C2C2 /* FacilitiesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4371E455291951E000F3C2C2 /* FacilitiesTableViewCell.swift */; };
@@ -126,6 +127,7 @@
 		43133069291EC0910097A850 /* LoadingScreenUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenUIView.swift; sourceTree = "<group>"; };
 		436A05CA29253A6A003B30BF /* UIAlertControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtension.swift; sourceTree = "<group>"; };
 		436A05CC2925DC94003B30BF /* RoutePlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePlanViewController.swift; sourceTree = "<group>"; };
+		436A05CE29269163003B30BF /* EmptySearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySearchResultView.swift; sourceTree = "<group>"; };
 		436A9AFE2920D8B0003A982B /* CenterLocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterLocationButton.swift; sourceTree = "<group>"; };
 		4371E4502919440E00F3C2C2 /* RecommendationsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationsTableViewCell.swift; sourceTree = "<group>"; };
 		4371E455291951E000F3C2C2 /* FacilitiesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilitiesTableViewCell.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 				43FDF17B2917FFD700DAD0DA /* MainView */,
 				42836AE629116E7B00301DE5 /* PrimaryButton.swift */,
 				43FDF17E291800BA00DAD0DA /* BackButton.swift */,
+				436A05CE29269163003B30BF /* EmptySearchResultView.swift */,
 				439F90F6291B567500320C17 /* OutlinedButton.swift */,
 				42836AEE29117D1900301DE5 /* HeadingLabel.swift */,
 				42836AF029117D3A00301DE5 /* CaptionLabel.swift */,
@@ -591,6 +594,7 @@
 				42D2B3F6290595ED002818A9 /* BottomBannerViewController.swift in Sources */,
 				4373E8F62912C4A60016F810 /* Cages.swift in Sources */,
 				43FDF17F291800BA00DAD0DA /* BackButton.swift in Sources */,
+				436A05CF29269163003B30BF /* EmptySearchResultView.swift in Sources */,
 				4373E8E82910CD7F0016F810 /* SegmentedControl.swift in Sources */,
 				43FDF187291804B700DAD0DA /* DetailInformationLabel.swift in Sources */,
 				437D008F2907A69A005EB501 /* MapsHelper.swift in Sources */,

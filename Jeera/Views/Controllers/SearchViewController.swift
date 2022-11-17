@@ -43,6 +43,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return label
     }()
     
+    lazy var emptyResultView = EmptySearchResultView(frame: CGRect(x: 0, y: 0, width: view.bounds.height * (250/787), height: view.bounds.height * (250/787)))
+    
     lazy var lowerHorizontalLine = HorizontalLineView()
     
     override func viewDidLoad() {
@@ -130,7 +132,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             left: view.leftAnchor,
             paddingTop: 20,
             paddingLeft: 24,
-            height: view.bounds.height * (22/844)
+            height: view.bounds.height * (22/787)
         )
         
         upperHorizontalLine.anchor(
@@ -157,7 +159,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             left: view.leftAnchor,
             paddingTop: 50,
             paddingLeft: 24,
-            height: view.bounds.height * (22/844)
+            height: view.bounds.height * (22/787)
         )
 
         lowerHorizontalLine.anchor(
@@ -221,11 +223,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if tableView == recommendationsTableView {
-            return view.bounds.height * (85/844)
+            return view.bounds.height * (85/787)
         } else if tableView == facilitiesTableView {
-            return view.bounds.height * (58/844)
+            return view.bounds.height * (58/787)
         }
-        return view.bounds.height * (112/844)
+        return view.bounds.height * (112/787)
         
     }
     
@@ -275,16 +277,9 @@ extension SearchViewController: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText != "" {
-            searchBar.searchTextField.font = UIFont(name: "Baloo2-SemiBold", size: 17)
-            showSearchResult()
-        } else {
-            searchBar.searchTextField.font = UIFont(name: "Baloo2-Regular", size: 17)
-            searchResults.removeAll()
-            upperLabel.text = "Rekomendasi Hewan"
-            if let viewWithTag = self.view.viewWithTag(2) {
-                viewWithTag.removeFromSuperview()
-            }
+        searchResults.removeAll()
+        if let viewWithTag = self.view.viewWithTag(6) {
+            viewWithTag.removeFromSuperview()
         }
         let animalsResults = animalsData.filter({ (animal: AllData) -> Bool in
             let idNameMatch = animal.idName.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
@@ -295,7 +290,6 @@ extension SearchViewController: UISearchBarDelegate {
             let idNameMatch = facilities.idName.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
             return idNameMatch != nil
         })
-        searchResults.removeAll()
         if animalsResults.count > 0 || facilitiesResults.count > 0 {
             let results = animalsResults.sorted { $0.idName < $1.idName } + facilitiesResults.sorted { $0.idName < $1.idName }
             nonDuplicateNames.removeAll()
@@ -307,5 +301,20 @@ extension SearchViewController: UISearchBarDelegate {
             }
         }
         searchResultTableView.reloadData()
+        if searchText != "" {
+            searchBar.searchTextField.font = UIFont(name: "Baloo2-SemiBold", size: 17)
+            showSearchResult()
+            if searchResults.count == 0 {
+                emptyResultView.tag = 6
+                view.addSubview(emptyResultView)
+                emptyResultView.center(inView: view, yConstant: view.bounds.height * (-100/787))
+            }
+        } else {
+            searchBar.searchTextField.font = UIFont(name: "Baloo2-Regular", size: 17)
+            upperLabel.text = "Rekomendasi Hewan"
+            if let viewWithTag = self.view.viewWithTag(2) {
+                viewWithTag.removeFromSuperview()
+            }
+        }
     }
 }

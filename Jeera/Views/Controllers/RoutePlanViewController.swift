@@ -58,6 +58,8 @@ class RoutePlanViewController: UIViewController, UITableViewDelegate {
         return containerView
     }()
     
+    lazy var emptyResultView = EmptySearchResultView(frame: CGRect(x: 0, y: 0, width: view.bounds.height * (250/787), height: view.bounds.height * (250/787)))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -87,6 +89,7 @@ class RoutePlanViewController: UIViewController, UITableViewDelegate {
                 searchResults.append(el)
             }
         }
+        initialDataTemp = searchResults
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -123,14 +126,14 @@ class RoutePlanViewController: UIViewController, UITableViewDelegate {
             left: view.leftAnchor,
             paddingTop: 20,
             paddingLeft: 24,
-            height: view.bounds.height * (22/844)
+            height: view.bounds.height * (22/787)
         )
         
         saveRouteButton.anchor(
             bottom: view.safeAreaLayoutGuide.bottomAnchor,
             left: view.leftAnchor,
             paddingLeft: 16,
-            height: view.bounds.height * (50 / 844)
+            height: view.bounds.height * (50/787)
         )
         saveRouteButton.centerX(inView: view)
         
@@ -168,7 +171,7 @@ extension RoutePlanViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return view.bounds.height * (112/844)
+        return view.bounds.height * (112/787)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -190,6 +193,9 @@ extension RoutePlanViewController: UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchResults.removeAll()
+        if let viewWithTag = self.view.viewWithTag(6) {
+            viewWithTag.removeFromSuperview()
+        }
         if searchText != "" {
             isSearching = true
             searchBar.searchTextField.font = UIFont(name: "Baloo2-SemiBold", size: 17)
@@ -206,9 +212,13 @@ extension RoutePlanViewController: UISearchBarDelegate {
                         searchResults.append(el)
                     }
                 }
+            } else {
+                emptyResultView.tag = 6
+                view.addSubview(emptyResultView)
+                emptyResultView.center(inView: view, yConstant: view.bounds.height * (-100/787))
             }
         } else {
-            isSearching = true
+            isSearching = false
             searchResults = initialDataTemp
         }
         searchResultTableView.reloadData()
