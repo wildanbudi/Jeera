@@ -74,7 +74,9 @@ extension MainViewController: CLLocationManagerDelegate {
         if ((manager.location?.coordinate) != nil) {
             setupUserLocation()
             userLocation = manager.location!.coordinate
-            getRouteInformation()
+            if self.view.viewWithTag(3) == nil {
+                getRouteInformation()
+            }
         }
         if status == .authorizedAlways {
             if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
