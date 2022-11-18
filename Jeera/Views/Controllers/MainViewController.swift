@@ -61,10 +61,10 @@ class MainViewController: UIViewController {
         segmentedBackground()
         locationOffButton()
         customSegmentedControl()
-        popUpRute()
-        routeButton()
         setupSearchBtn()
         setupConstraint()
+        popUpRute()
+        routeButton()
         setupSplashScreen()
         MainViewController.instance = self
         
@@ -215,6 +215,12 @@ class MainViewController: UIViewController {
             appendAnnotationData(typeFeature: typeFeature, parsedFeature: parsedFeature, locationCoordinate: locationCoordinate)
             if isLastIndex {
                 self.removeSubview(tag: 3)
+                NSLayoutConstraint.activate([
+                    self.buttonRoute.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
+                    self.buttonRoute.topAnchor.constraint(equalTo: self.searchButton.bottomAnchor, constant: 10),
+                    self.buttonRoute.widthAnchor.constraint(equalToConstant: self.view.bounds.height * (45 / 844)),
+                    self.buttonRoute.heightAnchor.constraint(equalToConstant: self.view.bounds.height * (45 / 844)),
+                ])
             }
         }
     }
@@ -338,6 +344,9 @@ class MainViewController: UIViewController {
     }
     
     func showOverview() {
+        if self.view.viewWithTag(8) != nil {
+            buttonClosePopUpAction()
+        }
         let type = annotationData["type"]!.rawValue as? String
         lazy var overviewCardView: OverviewCardView = {
             let oVview = OverviewCardView()
@@ -531,6 +540,7 @@ class MainViewController: UIViewController {
                 } else {
                     if AnimalDetailViewController.isOnJourneyClick {
                         self.animalDetailViewController.userLocation = self.userLocation
+                        self.removeSubview(tag: 7)
                         self.view.addSubview(self.centerLocationButton)
                         self.centerLocationButton.anchor(
                             top: self.searchButton.bottomAnchor,
@@ -540,11 +550,30 @@ class MainViewController: UIViewController {
                             width: self.view.bounds.height * (45 / 844),
                             height: self.view.bounds.height * (45 / 844)
                         )
+                        self.view.addSubview(self.buttonRoute)
+                        self.buttonRoute.anchor(
+                            top: self.centerLocationButton.bottomAnchor,
+                            right: self.view.rightAnchor,
+                            paddingTop: 10,
+                            paddingRight: 16,
+                            width: self.view.bounds.height * (45 / 844),
+                            height: self.view.bounds.height * (45 / 844)
+                        )
                     }
                     if self.isButtonLocationOffClick {
+                        self.removeSubview(tag: 7)
                         self.view.addSubview(self.centerLocationButton)
                         self.centerLocationButton.anchor(
                             top: self.searchButton.bottomAnchor,
+                            right: self.view.rightAnchor,
+                            paddingTop: 10,
+                            paddingRight: 16,
+                            width: self.view.bounds.height * (45 / 844),
+                            height: self.view.bounds.height * (45 / 844)
+                        )
+                        self.view.addSubview(self.buttonRoute)
+                        self.buttonRoute.anchor(
+                            top: self.centerLocationButton.bottomAnchor,
                             right: self.view.rightAnchor,
                             paddingTop: 10,
                             paddingRight: 16,
@@ -662,6 +691,7 @@ class MainViewController: UIViewController {
         container.frame = CGRect(x: 16, y: 620, width: 358, height: 190) // CGRectMake(x, y, width, height)
     //        container.frame = CGRect(x: 16, y: 620, width: self.frame.size.width*(358/375), height: self.frame.size.height*(190/844)) // CGRectMake(x, y, width, height)
         container.layer.cornerRadius = 20
+        container.tag = 8
         view.addSubview(container)
         
         // Set the Constraints of the container Programmatically (With an Array of NSLayoutConstraint)
@@ -766,8 +796,8 @@ class MainViewController: UIViewController {
     }
     
     // Objective-C Function for the buttonClosePopUp Action
-    @objc func buttonClosePopUpAction(_ button: UIButton) {
-        print("THE USER CLOSE THE POP UP")
+    @objc func buttonClosePopUpAction() {
+//        print("THE USER CLOSE THE POP UP")
         
         // Animate Out the Pop-Up Route + Spring Animation
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
@@ -790,7 +820,10 @@ class MainViewController: UIViewController {
     
     // Objective-C Function for the createRoute Action
     @objc func createRouteAction(_ button: UIButton) {
-        print("THE USER WANT TO CREATE A ROUTE FOR THE JEERA TRIP!!!")
+        let routePlanViewController = RoutePlanViewController()
+        routePlanViewController.modalPresentationStyle = .formSheet
+        routePlanViewController.animalsData = self.animalsData
+        self.present(routePlanViewController, animated: true, completion: nil)
     }
     
     // MARK: - Route Button Function
@@ -798,18 +831,19 @@ class MainViewController: UIViewController {
         
         // Create the Route Button with an Image from Assets
         let imageRouteBtn = UIImage(named: "RouteBtn")
-        buttonRoute.frame = CGRectMake(329, 184, 45, 45) // CGRectMake(x, y, width, height)
+//        buttonRoute.frame = CGRectMake(329, 184, 45, 45) // CGRectMake(x, y, width, height)
         buttonRoute.setImage(imageRouteBtn, for: .normal)
         buttonRoute.addTarget(self, action: #selector(createRouteAction), for:.touchUpInside)
         
         buttonRoute.alpha = 0
+        buttonRoute.tag = 7
         view.addSubview(buttonRoute)
         
         // Set the Constraints of the buttonSearch Programmatically (With an Array of NSLayoutConstraint)
         buttonRoute.translatesAutoresizingMaskIntoConstraints = false // Disable the Auto Resizing to Auto Layout
         NSLayoutConstraint.activate([
             buttonRoute.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
-            buttonRoute.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 146),
+            buttonRoute.topAnchor.constraint(equalTo: searchButton.bottomAnchor, constant: 10),
             buttonRoute.widthAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
             buttonRoute.heightAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
         ])
