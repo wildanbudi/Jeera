@@ -57,6 +57,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         setupMapView()
         segmentedBackground()
+        locationOffButton()
         customSegmentedControl()
         setupSearchBtn()
         setupConstraint()
@@ -204,22 +205,12 @@ class MainViewController: UIViewController {
                 if isLastIndex {
                     self.removeSubview(tag: 3)
                     getRouteInformation()
-//                    view.addSubview(centerLocationButton)
-//                    centerLocationButton.anchor(
-//                        top: searchButton.bottomAnchor,
-//                        right: view.rightAnchor,
-//                        paddingTop: 10,
-//                        paddingRight: 16,
-//                        width: view.bounds.height * (45 / 844),
-//                        height: view.bounds.height * (45 / 844)
-//                    )
                 }
             }
         } else {
             appendAnnotationData(typeFeature: typeFeature, parsedFeature: parsedFeature, locationCoordinate: locationCoordinate)
             if isLastIndex {
                 self.removeSubview(tag: 3)
-                self.locationOffButton()
             }
         }
     }

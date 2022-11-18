@@ -85,7 +85,7 @@ extension MainViewController: CLLocationManagerDelegate {
                 }
             }
         } else if status == .denied || status == .restricted || status == .notDetermined{
-            view.addSubview(buttonLocationOFF)
+//            view.addSubview(buttonLocationOFF)
         } else if status == .authorizedWhenInUse {
             buttonLocationOFF.removeFromSuperview()
         }
