@@ -60,6 +60,8 @@ class MainViewController: UIViewController {
         setupMapView()
         segmentedBackground()
         customSegmentedControl()
+        popUpRute()
+        routeButton()
         setupSearchBtn()
         setupConstraint()
         setupSplashScreen()
@@ -70,9 +72,6 @@ class MainViewController: UIViewController {
             locationManager.delegate = self
             locationManager.startUpdatingLocation()
         }
-        
-        popUpRute()
-        routeButton()
     }
     
     override func viewDidAppear(_ animated: Bool) {
