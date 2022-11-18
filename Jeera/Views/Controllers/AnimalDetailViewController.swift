@@ -11,11 +11,21 @@ import MapboxDirections
 
 class AnimalDetailViewController: UIViewController {
     var mapView: MapView!
-    var animalData: Dictionary<String, JSONValue>!
+    var detailData: Dictionary<String, JSONValue>!
     var targetCoordinate: CLLocationCoordinate2D!
-    var userLocation: CLLocationCoordinate2D!
+    var userLocation: CLLocationCoordinate2D! {
+        didSet {
+            self.startNavigation()
+        }
+    }
     var distance: Int!
     var travelTime: Int!
+    var type: String!
+    var name: String!
+    var animalsData: [AllData]!
+    var animalsList: [AllData]!
+    private (set) static var isOnJourneyClick = false
+//    var timer = Timer()
     
     lazy var backButton: UIButton = {
         let button = BackButton()
@@ -25,8 +35,7 @@ class AnimalDetailViewController: UIViewController {
     }()
     
     lazy var animalImage: UIImageView = {
-        let type = animalData["type"]!.rawValue as? String
-        let imageName = animalData[(type == "Kandang" || type == "Hewan" ? "idName" : "clusterName")]!.rawValue as? String
+        let imageName = detailData[(type == "Kandang" || type == "Hewan" ? "idName" : "clusterName")]!.rawValue as? String
         let imageView = UIImageView(image: UIImage(named: imageName!))
         
         return imageView
@@ -34,31 +43,24 @@ class AnimalDetailViewController: UIViewController {
     
     lazy var detailNameLabel: UILabel = {
         let label = DetailLabel()
-        label.text = animalData["idName"]!.rawValue as? String
+        label.text = name
         
         return label
     }()
     
-    lazy var distanceLabel: UILabel = {
-        return labelWithIcon(imageName: "Distance", labelText: "\(distance ?? 0) meter", iconColor: .PrimaryGreen)
-    }()
+    lazy var distanceLabel = labelWithIcon(imageName: "Distance", labelText: "\(distance ?? 0) meter", iconColor: .PrimaryGreen)
     
-    lazy var etaLabel: UILabel = {
-        return labelWithIcon(imageName: "Time", labelText: "\(travelTime ?? 0) menit", iconColor: .PrimaryGreen)
-    }()
+    lazy var etaLabel = labelWithIcon(imageName: "Time", labelText: "\(travelTime ?? 0) menit", iconColor: .PrimaryGreen)
     
-    lazy var cageLabel: UILabel = {
-        return labelWithIcon(imageName: "Location", labelText: (animalData["cage"]!.rawValue as? String)!, iconColor: .PrimaryGreen)
-    }()
+    lazy var cageLabel = labelWithIcon(imageName: "Location", labelText: (detailData["cage"]!.rawValue as? String)!, iconColor: .PrimaryGreen)
     
     lazy var informationView: UIStackView = {
-        let stackView = DetailInformationStackView()
+        let stackView = DetailStackView(spacing: 20.0)
         stackView.addArrangedSubview(distanceLabel)
         stackView.addArrangedSubview(etaLabel)
-        let type = animalData["type"]!.rawValue as? String
         if type == "Hewan" {
-            let idName = animalData["idName"]!.rawValue as? String
-            let cage = animalData["cage"]!.rawValue as? String
+            let idName = name
+            let cage = detailData["cage"]!.rawValue as? String
             if idName != cage {
                 stackView.addArrangedSubview(cageLabel)
             }
@@ -67,11 +69,27 @@ class AnimalDetailViewController: UIViewController {
         return stackView
     }()
     
+    lazy var animalListButton: UIButton = {
+        let button = OutlinedButton(title: "Lihat Daftar Hewan", textWeight: .regular)
+        button.addTarget(self, action: #selector(animalsListClick), for: .touchUpInside)
+        
+        return button
+    }()
+    
     lazy var startJourneyButton: UIButton = {
-        let button = StartJourneyButton()
+        let button = PrimaryButton(frame: .zero)
+        button.setTitle("Mulai Perjalanan", for: .normal)
         button.addTarget(self, action: #selector(onJourneyClick), for: .touchUpInside)
         
         return button
+    }()
+    
+    lazy var buttonsStack: UIStackView = {
+        let stackView = DetailStackView(spacing: 15.0)
+        stackView.addArrangedSubview(animalListButton)
+        stackView.addArrangedSubview(startJourneyButton)
+        
+        return stackView
     }()
     
     lazy var overviewMapView: MapView = {
@@ -80,7 +98,7 @@ class AnimalDetailViewController: UIViewController {
         mapInstance.targetCoordinate = targetCoordinate
         let mapView = mapInstance.getMapView()
         
-        let clusterName = animalData["clusterName"]!.rawValue as? String
+        let clusterName = detailData["clusterName"]!.rawValue as? String
         let pointAnnotationManager = mapView.annotations.makePointAnnotationManager()
         var customPointAnnotation = PointAnnotation(coordinate: targetCoordinate)
         customPointAnnotation.image = .init(image: UIImage(named: "\(clusterName!) Active")!, name: "\(clusterName!) Active")
@@ -89,62 +107,101 @@ class AnimalDetailViewController: UIViewController {
         return mapView
     }()
     
+    lazy var outsideAreaAlert = UIAlertController.outsideArea()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        if (userLocation != nil) && (distance == nil) {
+        if (userLocation != nil) && (distance == nil || distance == 0) {
             getRouteInformation()
         } else {
             setupView()
         }
-        
     }
+    
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        timer.invalidate()
+//    }
     
     @objc func backButton(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
     
     @objc func onJourneyClick(_ sender: UIButton) {
+        AnimalDetailViewController.isOnJourneyClick = true
         let alertController = UIAlertController(title: "Izinkan Jeera untuk mengakses lokasi kamu?", message: "Nyalakan lokasimu untuk mendapat petunjuk jalan", preferredStyle: .alert)
-
-            let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
-                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
-                    return
-                }
-                if UIApplication.shared.canOpenURL(settingsUrl) {
-                    UIApplication.shared.open(settingsUrl, completionHandler: { (success) in })
-                 }
+        
+        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                return
             }
-            let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
-
-            alertController.addAction(cancelAction)
-            alertController.addAction(settingsAction)
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in })
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(settingsAction)
         
         let locationManager = CLLocationManager()
-        
         switch locationManager.authorizationStatus {
-            case .authorizedAlways, .authorizedWhenInUse:
+        case .authorizedAlways, .authorizedWhenInUse:
+            if !MainViewController.isOutsideArea {
                 startNavigation()
-            case .notDetermined:
-                locationManager.requestWhenInUseAuthorization()
-                locationManager.requestAlwaysAuthorization()
-            case .restricted, .denied:
-                self.present(alertController, animated: true, completion: nil)
-            default :
-                locationManager.requestWhenInUseAuthorization()
-                locationManager.requestAlwaysAuthorization()
+            } else {
+                self.present(outsideAreaAlert, animated: true)
+            }
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.requestAlwaysAuthorization()
+//            timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(startNavigation), userInfo: nil, repeats: true)
+        case .restricted, .denied:
+            self.present(alertController, animated: true, completion: nil)
+        default :
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.requestAlwaysAuthorization()
         }
+    }
+
+    @objc func animalsListClick(_ sender: UIButton) {
+        let animalsListViewController = AnimalsListViewController()
+        animalsListViewController.modalPresentationStyle = .formSheet
+        animalsListViewController.animalsData = self.animalsList
+        self.present(animalsListViewController, animated: true, completion: nil)
     }
     
     func setupView() {
+        type = detailData["type"]!.rawValue as? String
+        name = detailData["idName"]!.rawValue as? String
         let gradient = CAGradientLayer()
         gradient.frame = view.bounds
         gradient.colors = [UIColor.UpperGradient.cgColor, UIColor.LowerGradient.cgColor]
         view.layer.insertSublayer(gradient, at: 0)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-        [backButton, animalImage, detailNameLabel, startJourneyButton, overviewMapView, informationView].forEach {
-            view.addSubview($0)
+        if cagesMultipleAnimals.contains(name) && detailData["type"] == "Kandang" {
+            if userLocation == nil {
+                [backButton, animalImage, detailNameLabel, overviewMapView, buttonsStack].forEach {
+                    view.addSubview($0)
+                }
+            } else {
+                [backButton, animalImage, detailNameLabel, overviewMapView, informationView, buttonsStack].forEach {
+                    view.addSubview($0)
+                }
+            }
+        } else {
+            if userLocation == nil {
+                [backButton, animalImage, detailNameLabel, overviewMapView, startJourneyButton].forEach {
+                    view.addSubview($0)
+                }
+            } else {
+                [backButton, animalImage, detailNameLabel, overviewMapView, informationView, startJourneyButton].forEach {
+                    view.addSubview($0)
+                }
+            }
         }
         setupConstraint()
+        filterAnimalsList()
     }
     
     func setupConstraint() {
@@ -160,21 +217,29 @@ class AnimalDetailViewController: UIViewController {
         )
         
         animalImage.anchor(
-            top: view.topAnchor,
+            top: view.safeAreaLayoutGuide.topAnchor,
             left: view.leftAnchor,
             right: view.rightAnchor,
             height: view.bounds.height * (390 / 844)
         )
         
-        startJourneyButton.anchor(
-            bottom: safeArea.bottomAnchor,
-            left: view.leftAnchor,
-            paddingBottom: 14,
-            paddingLeft: 16,
-            height: view.bounds.height * (50 / 844)
-        )
-        
-        startJourneyButton.centerX(inView: view)
+        if cagesMultipleAnimals.contains(name) && detailData["type"] == "Kandang" {
+            buttonsStack.anchor(
+                bottom: safeArea.bottomAnchor,
+                left: view.leftAnchor,
+                paddingLeft: 16,
+                height: view.bounds.height * (50 / 844)
+            )
+            buttonsStack.centerX(inView: view)
+        } else {
+            startJourneyButton.anchor(
+                bottom: safeArea.bottomAnchor,
+                left: view.leftAnchor,
+                paddingLeft: 16,
+                height: view.bounds.height * (50 / 844)
+            )
+            startJourneyButton.centerX(inView: view)
+        }
         
         overviewMapView.anchor(
             bottom: startJourneyButton.topAnchor,
@@ -186,21 +251,32 @@ class AnimalDetailViewController: UIViewController {
         
         overviewMapView.centerX(inView: view)
         
-        informationView.anchor(
-            bottom: overviewMapView.topAnchor,
-            left: view.leftAnchor,
-            paddingBottom: 20,
-            paddingLeft: 16
-        )
-        
-        detailNameLabel.anchor(
-            bottom: informationView.topAnchor,
-            left: view.leftAnchor,
-            paddingBottom: 5,
-            paddingLeft: 16,
-            width: view.bounds.height * (332 / 844),
-            height: view.bounds.height * (48 / 844)
-        )
+        if userLocation == nil {
+            detailNameLabel.anchor(
+                bottom: overviewMapView.topAnchor,
+                left: view.leftAnchor,
+                paddingBottom: 5,
+                paddingLeft: 16,
+                width: view.bounds.height * (332 / 844),
+                height: view.bounds.height * (48 / 844)
+            )
+        } else {
+            informationView.anchor(
+                bottom: overviewMapView.topAnchor,
+                left: view.leftAnchor,
+                paddingBottom: 20,
+                paddingLeft: 16
+            )
+            
+            detailNameLabel.anchor(
+                bottom: informationView.topAnchor,
+                left: view.leftAnchor,
+                paddingBottom: 5,
+                paddingLeft: 16,
+                width: view.bounds.height * (332 / 844),
+                height: view.bounds.height * (48 / 844)
+            )
+        }
     }
     
     func getRouteInformation() {
@@ -224,6 +300,14 @@ class AnimalDetailViewController: UIViewController {
                 
                 self.setupView()
             }
+        }
+    }
+    
+    func filterAnimalsList() {
+        if cagesMultipleAnimals.contains(name) && detailData["type"] == "Kandang" {
+            animalsList = animalsData.filter({ (animal: AllData) -> Bool in
+                return animal.cage == name
+            })
         }
     }
     

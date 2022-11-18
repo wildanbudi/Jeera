@@ -20,5 +20,6 @@ struct AllData: Equatable, Hashable, Encodable, Decodable {
     var distance: Int
     var travelTime: Int
     var dict: Dictionary<String, JSONValue>
+    var isChecked: Bool? = false
 }
 

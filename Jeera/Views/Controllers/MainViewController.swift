@@ -7,6 +7,7 @@
 import UIKit
 import MapboxMaps
 import MapboxDirections
+import CoreLocation
 
 class MainViewController: UIViewController {
     internal var mapView: MapView!
@@ -15,7 +16,7 @@ class MainViewController: UIViewController {
     internal var pointAnnotationManager: PointAnnotationManager!
     internal var targetCoordinate: CLLocationCoordinate2D!
     internal var annotationData: Dictionary<String, JSONValue>!
-    internal var userLocation: CLLocationCoordinate2D? = centerCoordinate
+    internal var userLocation: CLLocationCoordinate2D?
     internal var animalsData: [AllData] = []
     internal var facilitiesData: [AllData] = []
     internal var cagesData: [AllData] = []
@@ -27,12 +28,24 @@ class MainViewController: UIViewController {
     lazy var selectedSegmentIndex = 0
     lazy var buttonLocationOFF = UIButton(type: .custom)
     lazy var searchButton = SearchButton()
+    lazy var centerLocationButton: UIButton = {
+        let button = CenterLocationButton()
+        button.addTarget(self, action: #selector(centerLocation), for: .touchUpInside)
+        
+        return button
+    }()
+    lazy var outsideAreaAlert = UIAlertController.outsideArea()
     lazy var container = UIView()
     lazy var buttonRoute = UIButton(type: .custom)
     
     var timer = Timer()
+    var isButtonLocationOffClick = false
+    var isSearch = false
+    var isOnJourneyClick = false
+    var animalDetailViewController: AnimalDetailViewController!
     
     private(set) static var instance: MainViewController!
+    private(set) static var isOutsideArea = false
     
     // Initiate The Core Location Manager
     let locationManager = CLLocationManager()
@@ -46,10 +59,10 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         setupMapView()
         segmentedBackground()
-        locationOffButton()
         customSegmentedControl()
         setupSearchBtn()
         setupConstraint()
+        setupSplashScreen()
         MainViewController.instance = self
         
         // Check the User's Core Location Status Through the CLLocationDelegate Function
@@ -65,10 +78,9 @@ class MainViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if self.animalsData.count == 0 {
-            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(retrieveAnnotationData), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(retrieveAnnotationData), userInfo: nil, repeats: true)
         }
     }
-    
     
     func setupMapView() {
         let mapRetrieveInstance = Map()
@@ -83,23 +95,38 @@ class MainViewController: UIViewController {
         view.addSubview(mapView)
     }
     
+    func setupSplashScreen() {
+        let splashScreen = UIImageView(image: UIImage(named: "Logo 1"))
+        splashScreen.tag = 3
+        splashScreen.frame = view.frame
+        view.addSubview(splashScreen)
+    }
+    
+    func setupLoadingScreen() {
+        let loadingView = LoadingScreenUIView()
+        loadingView.tag = 4
+        loadingView.frame = view.frame
+        view.addSubview(loadingView)
+    }
+    
     @objc func retrieveAnnotationData() {
         timer.invalidate()
-        let queryOptions = RenderedQueryOptions(layerIds: layerStyleOverlapIds, filter: nil)
+        let layerIds = isSearch ? ["ragunanzoofacilities"] : layerStyleOverlapIds
+        let queryOptions = RenderedQueryOptions(layerIds: layerIds, filter: nil)
         mapViewRetrieveData.mapboxMap.queryRenderedFeatures(with: mapView.safeAreaLayoutGuide.layoutFrame, options: queryOptions, completion: { [weak self] result in
             switch result {
             case .success(let queriedFeatures):
-//                print(queriedFeatures.count)
                 if queriedFeatures.count > 0 {
                     self!.animalsData.removeAll()
                     self!.cagesData.removeAll()
                     self!.facilitiesData.removeAll()
-                    for data in queriedFeatures {
+                    for (i, data) in queriedFeatures.enumerated() {
                         let parsedFeature = data.feature.properties!.reduce(into: [:]) { $0[$1.0] = $1.1 }
                         let typeFeature = parsedFeature["type"]!.rawValue as! String
                         if let geometry = data.feature.geometry, case let Geometry.point(point) = geometry {
                             let coordinate = point.coordinates
-                            self!.mappingAnnotationData(locationCoordinate: coordinate, parsedFeature: parsedFeature, typeFeature: typeFeature)
+                            let isLastIndex = i+1 == queriedFeatures.count
+                            self!.mappingAnnotationData(locationCoordinate: coordinate, parsedFeature: parsedFeature, typeFeature: typeFeature, isLastIndex: isLastIndex)
                         }
                     }
                 }
@@ -111,14 +138,13 @@ class MainViewController: UIViewController {
     
     func setupUserLocation() {
         cameraLocationConsumer = CameraLocationConsumer(mapView: mapView)
-        let configuration = Puck2DConfiguration(topImage: UIImage(named: "Current Location"))
+        let configuration = Puck2DConfiguration(topImage: UIImage(named: "Current location"))
         mapView.location.options.puckType = .puck2D(configuration)
         
         mapView.mapboxMap.onNext(event: .mapLoaded) { _ in
             // Register the location consumer with the map
             // Note that the location manager holds weak references to consumers, which should be retained
             self.mapView.location.addLocationConsumer(newConsumer: self.cameraLocationConsumer)
-            
             //            self.finish() // Needed for internal testing purposes.
         }
     }
@@ -129,16 +155,26 @@ class MainViewController: UIViewController {
     }
     
     @objc private func searchButtonClick(_ sender: UIButton) {
-        let searchViewController = SearchViewController()
-        searchViewController.modalPresentationStyle = .formSheet
-        searchViewController.animalsData = self.animalsData
-        searchViewController.facilitiesData = self.facilitiesData
-        searchViewController.userLocation = self.userLocation
-        self.present(searchViewController, animated: true, completion: nil)
-        
+        if userLocation != nil {
+            isSearch = true
+            let facilities = facilitiesData
+            facilitiesData.removeAll()
+            for (i, data) in facilities.enumerated() {
+                let dataCoordinate = CLLocationCoordinate2D(latitude: data.lat, longitude: data.long)
+                let isLastIndex = i+1 == facilities.count
+                mappingAnnotationData(locationCoordinate: dataCoordinate, parsedFeature: data.dict, typeFeature: "Fasilitas", isLastIndex: isLastIndex)
+            }
+        } else {
+            let searchViewController = SearchViewController()
+            searchViewController.modalPresentationStyle = .formSheet
+            searchViewController.animalsData = self.animalsData
+            searchViewController.facilitiesData = self.facilitiesData
+            searchViewController.userLocation = self.userLocation
+            self.present(searchViewController, animated: true, completion: nil)
+        }
     }
     
-    func mappingAnnotationData(locationCoordinate: CLLocationCoordinate2D, parsedFeature: Dictionary<String, JSONValue>, typeFeature: String) {
+    func mappingAnnotationData(locationCoordinate: CLLocationCoordinate2D, parsedFeature: Dictionary<String, JSONValue>, typeFeature: String, isLastIndex: Bool) {
         if userLocation != nil {
             let directions = Directions.shared
             let waypoints = [
@@ -146,20 +182,50 @@ class MainViewController: UIViewController {
                 Waypoint(coordinate: locationCoordinate, name: "destination"),
             ]
             let options = RouteOptions(waypoints: waypoints, profileIdentifier: .walking)
-            let _ = directions.calculate(options) { (session, result) in
-                switch result {
-                case .failure(let error):
-                    print("Error calculating directions: \(error)")
-                    return
-                case .success(let response):
-                    guard let route = response.routes?.first, let _ = route.legs.first else {
+            if self.isSearch {
+                let _ = directions.calculate(options) { (session, result) in
+                    switch result {
+                    case .failure(let error):
+                        print("Error calculating directions: \(error)")
                         return
+                    case .success(let response):
+                        guard let route = response.routes?.first, let _ = route.legs.first else {
+                            return
+                        }
+                        self.appendAnnotationData(typeFeature: typeFeature, parsedFeature: parsedFeature, locationCoordinate: locationCoordinate, distance: route.distance, travelTime: (route.expectedTravelTime/60) + 1)
+                        if isLastIndex {
+                            let searchViewController = SearchViewController()
+                            searchViewController.modalPresentationStyle = .formSheet
+                            searchViewController.animalsData = self.animalsData
+                            searchViewController.facilitiesData = self.facilitiesData
+                            searchViewController.userLocation = self.userLocation
+                            self.present(searchViewController, animated: true, completion: nil)
+                            self.isSearch = false
+                        }
                     }
-                    self.appendAnnotationData(typeFeature: typeFeature, parsedFeature: parsedFeature, locationCoordinate: locationCoordinate, distance: route.distance, travelTime: (route.expectedTravelTime/60) + 1)
+                }
+            } else {
+                appendAnnotationData(typeFeature: typeFeature, parsedFeature: parsedFeature, locationCoordinate: locationCoordinate)
+                if isLastIndex {
+                    self.removeSubview(tag: 3)
+                    getRouteInformation()
+//                    view.addSubview(centerLocationButton)
+//                    centerLocationButton.anchor(
+//                        top: searchButton.bottomAnchor,
+//                        right: view.rightAnchor,
+//                        paddingTop: 10,
+//                        paddingRight: 16,
+//                        width: view.bounds.height * (45 / 844),
+//                        height: view.bounds.height * (45 / 844)
+//                    )
                 }
             }
         } else {
             appendAnnotationData(typeFeature: typeFeature, parsedFeature: parsedFeature, locationCoordinate: locationCoordinate)
+            if isLastIndex {
+                self.removeSubview(tag: 3)
+                self.locationOffButton()
+            }
         }
     }
     
@@ -302,7 +368,7 @@ class MainViewController: UIViewController {
                 bottom: oVview.bottomAnchor,
                 left: oVview.rightAnchor,
                 paddingBottom: -(type == "Kandang" ? 54 : 10),
-                paddingLeft: -(view.bounds.height * ((type == "Kandang" ? 132 : 85) / 844)),
+                paddingLeft: -(view.bounds.height * ((type == "Kandang" ? 115 : 85) / 844)),
                 width: view.bounds.height * ((type == "Kandang" ? 260 : 180) / 844),
                 height: view.bounds.height * ((type == "Kandang" ? 260 : 180) / 844)
             )
@@ -331,20 +397,58 @@ class MainViewController: UIViewController {
     }
     
     @objc private func onOverviewClick(_ sender: UIButton) {
-        let animalDetailViewController = AnimalDetailViewController()
+        animalDetailViewController = AnimalDetailViewController()
         animalDetailViewController.modalPresentationStyle = .fullScreen
-        animalDetailViewController.animalData = annotationData
+        animalDetailViewController.detailData = annotationData
         animalDetailViewController.targetCoordinate = targetCoordinate
         animalDetailViewController.userLocation = userLocation
+        animalDetailViewController.animalsData = animalsData
         self.present(animalDetailViewController, animated: true, completion: nil)
     }
     
     @objc private func onJourneyClick(_ sender: UIButton) {
-        startNavigation()
+        isOnJourneyClick = true
+        let alertController = UIAlertController(title: "Izinkan Jeera untuk mengakses lokasi kamu?", message: "Nyalakan lokasimu untuk mendapat petunjuk jalan", preferredStyle: .alert)
+        
+        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in })
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(settingsAction)
+        
+        switch locationManager.authorizationStatus {
+        case .authorizedAlways, .authorizedWhenInUse:
+            if !MainViewController.isOutsideArea {
+                startNavigation()
+            } else {
+                self.present(outsideAreaAlert, animated: true)
+            }
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.requestAlwaysAuthorization()
+        case .restricted, .denied:
+            self.present(alertController, animated: true, completion: nil)
+        default :
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.requestAlwaysAuthorization()
+        }
     }
     
-    func removeSubview(){
-        if let viewWithTag = self.view.viewWithTag(1) {
+    @objc private func centerLocation() {
+         mapView?.camera.ease(
+             to: CameraOptions(center: userLocation, zoom: 16),
+             duration: 1.0)
+    }
+    
+    func removeSubview(tag: Int? = 1){
+        if let viewWithTag = self.view.viewWithTag(tag!) {
             viewWithTag.removeFromSuperview()
         }
     }
@@ -403,15 +507,67 @@ class MainViewController: UIViewController {
             mapView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             mapView.topAnchor.constraint(equalTo: whiteBackground.bottomAnchor),
             mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            searchButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 11),
+            searchButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 16),
             searchButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
             searchButton.widthAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
-            searchButton.heightAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
-//            buttonRoute.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
-//            buttonRoute.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 146)
-//            buttonRoute.widthAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
-//            buttonRoute.heightAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
+            searchButton.heightAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844))
         ])
+    }
+    
+    func getRouteInformation() {
+        let directions = Directions.shared
+        let waypoints = [
+            Waypoint(coordinate: userLocation!, name: "origin"),
+            Waypoint(coordinate: ragunanCoordinate, name: "ragunan"),
+        ]
+        let options = RouteOptions(waypoints: waypoints, profileIdentifier: .walking)
+        let _ = directions.calculate(options) { (session, result) in
+            switch result {
+            case .failure(let error):
+                print("Error calculating directions: \(error)")
+            case .success(let response):
+                guard let route = response.routes?.first, let _ = route.legs.first else {
+                    return
+                }
+                
+                let distance = Int(route.distance)
+                if distance > 1500 {
+                    MainViewController.isOutsideArea = true
+                    if AnimalDetailViewController.isOnJourneyClick {
+                        self.animalDetailViewController.userLocation = self.userLocation
+                    } else {
+                        self.present(self.outsideAreaAlert, animated: true)
+                    }
+                } else {
+                    if AnimalDetailViewController.isOnJourneyClick {
+                        self.animalDetailViewController.userLocation = self.userLocation
+                        self.view.addSubview(self.centerLocationButton)
+                        self.centerLocationButton.anchor(
+                            top: self.searchButton.bottomAnchor,
+                            right: self.view.rightAnchor,
+                            paddingTop: 10,
+                            paddingRight: 16,
+                            width: self.view.bounds.height * (45 / 844),
+                            height: self.view.bounds.height * (45 / 844)
+                        )
+                    }
+                    if self.isButtonLocationOffClick {
+                        self.view.addSubview(self.centerLocationButton)
+                        self.centerLocationButton.anchor(
+                            top: self.searchButton.bottomAnchor,
+                            right: self.view.rightAnchor,
+                            paddingTop: 10,
+                            paddingRight: 16,
+                            width: self.view.bounds.height * (45 / 844),
+                            height: self.view.bounds.height * (45 / 844)
+                        )
+                    }
+                    if self.isOnJourneyClick {
+                        self.startNavigation()
+                    }
+                }
+            }
+        }
     }
     
     // Objective-C Function for the segmentedSelector action
@@ -479,6 +635,7 @@ class MainViewController: UIViewController {
     // MARK: - Show the Location Permission After The User Tapped the Monkey Button by Representing the CLLocationManagerDelegate
     @objc func buttonLocationOFFAction(_ button: UIButton) {
         // Give some conditions where the Monkey can be pressed and it will show the location permission
+        isButtonLocationOffClick.toggle()
         let alertController = UIAlertController(title: "Izinkan Jeera untuk mengakses lokasi kamu?", message: "Nyalakan lokasimu untuk mendapat petunjuk jalan", preferredStyle: .alert)
 
             let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
@@ -668,6 +825,7 @@ class MainViewController: UIViewController {
         ])
     }
 }
+
 
 import SwiftUI
 

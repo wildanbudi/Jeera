@@ -17,7 +17,7 @@ class FacilitiesTableViewCell: UITableViewCell {
             } else {
                 profileLabel.text = newValue
             }
-            iconImageView.image = UIImage(named: newValue!)
+            iconImageView.image = UIImage(named: "\(newValue!) Outline")
         }
     }
     

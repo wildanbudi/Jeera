@@ -1,11 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "Ikan Patin Icon@1x.png",
+      "filename" : "IkanPatin Icon@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "IkanPatin Icon@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
