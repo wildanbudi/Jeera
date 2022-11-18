@@ -98,7 +98,6 @@ class BottomBarView: UIView {
     }
     
     @objc func onCancelClick(_ sender: UIButton) {
-        print("tapped")
         delegate?.customBottomBannerDidCancel(self)
     }
 

@@ -15,7 +15,7 @@ class AnimalDetailViewController: UIViewController {
     var targetCoordinate: CLLocationCoordinate2D!
     var userLocation: CLLocationCoordinate2D! {
         didSet {
-            self.startNavigation()
+//            self.startNavigation()
         }
     }
     var distance: Int!

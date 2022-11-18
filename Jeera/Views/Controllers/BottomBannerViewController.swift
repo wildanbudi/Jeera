@@ -60,11 +60,31 @@ class BottomBannerViewController: ContainerViewController, BottomBarViewDelegate
         bannerView.animalName = progress.routeOptions.waypoints[1].name
     }
     
+    func navigationService(_ service: NavigationService, didArriveAt waypoint: Waypoint) -> Bool {
+        let endRouteVC = EndOfRouteViewController()
+        endRouteVC.modalPresentationStyle = .fullScreen
+        present(endRouteVC, animated: true)
+        
+        return false
+    }
+    
     // MARK: - CustomBottomBannerViewDelegate implementation
     
     func customBottomBannerDidCancel(_ banner: BottomBarView) {
-        navigationViewController?.dismiss(animated: true)
-        animalDetailViewController?.dismiss(animated: true)
-        mainViewController?.dismiss(animated: true)
+        self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
     }
 }
+
+#if DEBUG
+import SwiftUI
+
+@available(iOS 13, *)
+struct BottomBannerViewController_Preview: PreviewProvider {
+    static var previews: some View {
+        // view controller using programmatic UI
+        Group {
+            BottomBannerViewController().showPreview().previewInterfaceOrientation(.portrait)
+        }
+    }
+}
+#endif

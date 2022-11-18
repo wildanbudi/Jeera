@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		420D7A022926CDA5002E8911 /* EndOfRouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420D7A012926CDA5002E8911 /* EndOfRouteView.swift */; };
 		4246460A2913E095005EB12A /* AnimalDetailViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424646092913E095005EB12A /* AnimalDetailViewControllerExt.swift */; };
 		425AD0D029022D4700754114 /* UIColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425AD0CF29022D4700754114 /* UIColorScheme.swift */; };
+		42647C5E2926E030008FB07E /* EndOfRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42647C5D2926E030008FB07E /* EndOfRouteViewController.swift */; };
 		42836AE729116E7B00301DE5 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42836AE629116E7B00301DE5 /* PrimaryButton.swift */; };
 		42836AE929116EDC00301DE5 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42836AE829116EDC00301DE5 /* UIViewControllerExtension.swift */; };
 		42836AED29117C1900301DE5 /* BottomBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42836AEC29117C1900301DE5 /* BottomBarView.swift */; };
@@ -91,8 +93,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		420D7A012926CDA5002E8911 /* EndOfRouteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndOfRouteView.swift; sourceTree = "<group>"; };
 		424646092913E095005EB12A /* AnimalDetailViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalDetailViewControllerExt.swift; sourceTree = "<group>"; };
 		425AD0CF29022D4700754114 /* UIColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorScheme.swift; sourceTree = "<group>"; };
+		42647C5D2926E030008FB07E /* EndOfRouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndOfRouteViewController.swift; sourceTree = "<group>"; };
 		42836AE629116E7B00301DE5 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		42836AE829116EDC00301DE5 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		42836AEC29117C1900301DE5 /* BottomBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBarView.swift; sourceTree = "<group>"; };
@@ -274,10 +278,10 @@
 		42D12DB82901B0C400857042 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				42D12DBE2901B16300857042 /* Animals.swift */,
-				4373E8F32912C3430016F810 /* Facilities.swift */,
-				4373E8F52912C4A60016F810 /* Cages.swift */,
 				4373E8FA29141DFA0016F810 /* AllDataTypes.swift */,
+				42D12DBE2901B16300857042 /* Animals.swift */,
+				4373E8F52912C4A60016F810 /* Cages.swift */,
+				4373E8F32912C3430016F810 /* Facilities.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -324,12 +328,13 @@
 			isa = PBXGroup;
 			children = (
 				42F3F05E291B5AD500606A25 /* Extension */,
-				42D2B3F5290595ED002818A9 /* BottomBannerViewController.swift */,
-				437D00892907A623005EB501 /* MainViewController.swift */,
-				43133067291EB23C0097A850 /* AnimalsListViewController.swift */,
 				4312457A290ABEF6003F7AB9 /* AnimalDetailViewController.swift */,
-				4373E8F1291175C40016F810 /* SearchViewController.swift */,
+				43133067291EB23C0097A850 /* AnimalsListViewController.swift */,
+				42D2B3F5290595ED002818A9 /* BottomBannerViewController.swift */,
+				42647C5D2926E030008FB07E /* EndOfRouteViewController.swift */,
+				437D00892907A623005EB501 /* MainViewController.swift */,
 				436A05CC2925DC94003B30BF /* RoutePlanViewController.swift */,
+				4373E8F1291175C40016F810 /* SearchViewController.swift */,
 				42836AF429118B2200301DE5 /* TopBannerViewController.swift */,
 			);
 			path = Controllers;
@@ -338,9 +343,10 @@
 		42D12DCC2901BA7100857042 /* Navigate */ = {
 			isa = PBXGroup;
 			children = (
+				42836AEC29117C1900301DE5 /* BottomBarView.swift */,
 				42D12DC62901B8DF00857042 /* CustomDayStyle.swift */,
 				42D12DC82901B93400857042 /* CustomNightStyle.swift */,
-				42836AEC29117C1900301DE5 /* BottomBarView.swift */,
+				420D7A012926CDA5002E8911 /* EndOfRouteView.swift */,
 			);
 			path = Navigate;
 			sourceTree = "<group>";
@@ -603,10 +609,12 @@
 				42836AE729116E7B00301DE5 /* PrimaryButton.swift in Sources */,
 				42836AEF29117D1900301DE5 /* HeadingLabel.swift in Sources */,
 				436A05CD2925DC94003B30BF /* RoutePlanViewController.swift in Sources */,
+				420D7A022926CDA5002E8911 /* EndOfRouteView.swift in Sources */,
 				4371E45A291956FF00F3C2C2 /* BasicModalLabel.swift in Sources */,
 				4373E8EC291142390016F810 /* MonkeyLocationButton.swift in Sources */,
 				425AD0D029022D4700754114 /* UIColorScheme.swift in Sources */,
 				4371E45C291957D000F3C2C2 /* HorizontalLineView.swift in Sources */,
+				42647C5E2926E030008FB07E /* EndOfRouteViewController.swift in Sources */,
 				43FDF181291801E500DAD0DA /* DetailLabel.swift in Sources */,
 				4371E456291951E000F3C2C2 /* FacilitiesTableViewCell.swift in Sources */,
 				42D12DC92901B93400857042 /* CustomNightStyle.swift in Sources */,
@@ -770,7 +778,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7PHRUAQA32;
+				DEVELOPMENT_TEAM = KJUW4SG84H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Jeera/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
@@ -805,7 +813,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7PHRUAQA32;
+				DEVELOPMENT_TEAM = KJUW4SG84H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Jeera/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
