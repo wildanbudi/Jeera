@@ -13,7 +13,6 @@ class MonkeyLocationButton: UIButton {
     init() {
         super.init(frame: .zero)
         self.setImage(imageLocationOFF, for: .normal)
-        self.translatesAutoresizingMaskIntoConstraints = false
         self.rotate()
     }
     
