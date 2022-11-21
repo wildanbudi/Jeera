@@ -40,6 +40,7 @@
 		43133068291EB23C0097A850 /* AnimalsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43133067291EB23C0097A850 /* AnimalsListViewController.swift */; };
 		4313306A291EC0910097A850 /* LoadingScreenUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43133069291EC0910097A850 /* LoadingScreenUIView.swift */; };
 		435EBE6D292B297B007F174F /* GeoJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435EBE6C292B297B007F174F /* GeoJSON.swift */; };
+		435EBE6F292B2DAC007F174F /* MultiDestinationAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435EBE6E292B2DAC007F174F /* MultiDestinationAlgorithm.swift */; };
 		436A05CB29253A6A003B30BF /* UIAlertControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436A05CA29253A6A003B30BF /* UIAlertControllerExtension.swift */; };
 		436A05CD2925DC94003B30BF /* RoutePlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436A05CC2925DC94003B30BF /* RoutePlanViewController.swift */; };
 		436A05CF29269163003B30BF /* EmptySearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436A05CE29269163003B30BF /* EmptySearchResultView.swift */; };
@@ -132,6 +133,7 @@
 		43133067291EB23C0097A850 /* AnimalsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalsListViewController.swift; sourceTree = "<group>"; };
 		43133069291EC0910097A850 /* LoadingScreenUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenUIView.swift; sourceTree = "<group>"; };
 		435EBE6C292B297B007F174F /* GeoJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoJSON.swift; sourceTree = "<group>"; };
+		435EBE6E292B2DAC007F174F /* MultiDestinationAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiDestinationAlgorithm.swift; sourceTree = "<group>"; };
 		436A05CA29253A6A003B30BF /* UIAlertControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtension.swift; sourceTree = "<group>"; };
 		436A05CC2925DC94003B30BF /* RoutePlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePlanViewController.swift; sourceTree = "<group>"; };
 		436A05CE29269163003B30BF /* EmptySearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySearchResultView.swift; sourceTree = "<group>"; };
@@ -397,6 +399,7 @@
 				437D008E2907A69A005EB501 /* MapsHelper.swift */,
 				437D00902907A6B7005EB501 /* Constants.swift */,
 				43FDF1792917FE6E00DAD0DA /* ClusterName.swift */,
+				435EBE6E292B2DAC007F174F /* MultiDestinationAlgorithm.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -632,6 +635,7 @@
 				42D12D8229010F6C00857042 /* SceneDelegate.swift in Sources */,
 				43FDF1762916C56600DAD0DA /* BasicTableViewCell.swift in Sources */,
 				42836AE729116E7B00301DE5 /* PrimaryButton.swift in Sources */,
+				435EBE6F292B2DAC007F174F /* MultiDestinationAlgorithm.swift in Sources */,
 				42836AEF29117D1900301DE5 /* HeadingLabel.swift in Sources */,
 				436A05CD2925DC94003B30BF /* RoutePlanViewController.swift in Sources */,
 				4371E45A291956FF00F3C2C2 /* BasicModalLabel.swift in Sources */,

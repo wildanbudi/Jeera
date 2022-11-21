@@ -94,10 +94,15 @@ class RoutePlanViewController: UIViewController, UITableViewDelegate {
         animalsChoice = initialDataTemp.filter({ (animal: AllData) -> Bool in
             return animal.isChecked == true
         })
-        for (i, animal) in animalsChoice.enumerated() {
-            let isLastIndex = i+1 == animalsChoice.count
-            getRouteInformation(choiceIdx: i, targetCoordinate: CLLocationCoordinate2D(latitude: animal.lat, longitude: animal.long), isLastIndex: isLastIndex)
+        var pickAnimals: [String] = []
+        for (_, animal) in animalsChoice.enumerated() {
+            pickAnimals.append(animal.idName)
+//            let isLastIndex = i+1 == animalsChoice.count
+//            getRouteInformation(choiceIdx: i, targetCoordinate: CLLocationCoordinate2D(latitude: animal.lat, longitude: animal.long), isLastIndex: isLastIndex)
         }
+        var multiDestinationAlgorithm = MultiDestinationAlgorithm()
+        multiDestinationAlgorithm.pickAnimals = pickAnimals
+        multiDestinationAlgorithm.currentLocation = userLocation
     }
     
     lazy var buttonContainer: UIView = {
