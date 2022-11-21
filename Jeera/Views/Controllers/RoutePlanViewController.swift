@@ -73,11 +73,11 @@ class RoutePlanViewController: UIViewController, UITableViewDelegate {
         let locationManager = CLLocationManager()
         switch locationManager.authorizationStatus {
         case .authorizedAlways, .authorizedWhenInUse:
-            if !MainViewController.isOutsideArea {
+//            if !MainViewController.isOutsideArea {
                 mappingMultiRouteData()
-            } else {
-                self.present(self.outsideAreaAlert, animated: true)
-            }
+//            } else {
+//                self.present(self.outsideAreaAlert, animated: true)
+//            }
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
             locationManager.requestAlwaysAuthorization()
@@ -100,7 +100,7 @@ class RoutePlanViewController: UIViewController, UITableViewDelegate {
 //            let isLastIndex = i+1 == animalsChoice.count
 //            getRouteInformation(choiceIdx: i, targetCoordinate: CLLocationCoordinate2D(latitude: animal.lat, longitude: animal.long), isLastIndex: isLastIndex)
         }
-//        var multiDestinationAlgorithm = MultiDestinationAlgorithm()
+        var multiDestinationAlgorithm = MultiDestinationAlgorithm(currentLocation: userLocation, pickAnimals: pickAnimals)
 //        multiDestinationAlgorithm.pickAnimals = pickAnimals
 //        multiDestinationAlgorithm.currentLocation = userLocation
     }
