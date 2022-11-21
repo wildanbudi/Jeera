@@ -1,0 +1,328 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "clusterName": "Piknik",
+        "enName": "Picnic Area 3",
+        "idName": "Area Piknik 3",
+        "type": "Piknik"
+      },
+      "geometry": {
+        "coordinates": [
+          106.819602,
+          -6.310358
+        ],
+        "type": "Point"
+      },
+      "id": "1129a01bbf9e5e45d8fa36e5fd76403f"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "enName": "Mosque Toilet",
+        "idName": "Toilet Masjid",
+        "type": "Toilet",
+        "clusterName": "Toilet"
+      },
+      "geometry": {
+        "coordinates": [
+          106.820968,
+          -6.308935
+        ],
+        "type": "Point"
+      },
+      "id": "16a39e61773257879c816432e92f3beb"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "enName": "Bird Toilet",
+        "idName": "Toilet Unggas",
+        "type": "Toilet",
+        "clusterName": "Toilet"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821928,
+          -6.308851
+        ],
+        "type": "Point"
+      },
+      "id": "2a17b1c49350a869421ea015fccc5232"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "enName": "Pelican Toilet",
+        "idName": "Toilet Pelikan",
+        "type": "Toilet",
+        "clusterName": "Toilet"
+      },
+      "geometry": {
+        "coordinates": [
+          106.820856,
+          -6.306982
+        ],
+        "type": "Point"
+      },
+      "id": "351c39bba6273f7752bba6a585f8b10e"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "enName": "Bike Rental",
+        "idName": "Rental Sepeda",
+        "type": "Sepeda",
+        "clusterName": "Sepeda"
+      },
+      "geometry": {
+        "coordinates": [
+          106.819494,
+          -6.306386
+        ],
+        "type": "Point"
+      },
+      "id": "4632c993ed87dbfa8783cc034ace3efa"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "clusterName": "Piknik",
+        "enName": "Picnic Area 1",
+        "idName": "Area Piknik 1",
+        "type": "Piknik"
+      },
+      "geometry": {
+        "coordinates": [
+          106.81977,
+          -6.308872
+        ],
+        "type": "Point"
+      },
+      "id": "4fd2b6cf9dce42040d4ad8d1ebbf3c6e"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "clusterName": "Piknik",
+        "enName": "Picnic Area 2",
+        "idName": "Area Piknik 2",
+        "type": "Piknik"
+      },
+      "geometry": {
+        "coordinates": [
+          106.819592,
+          -6.309651
+        ],
+        "type": "Point"
+      },
+      "id": "648d177b245731ba991ab5e3e0d06749"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "enName": "Souvenir Kiosk",
+        "idName": "Kios Cinderamata",
+        "type": "Souvenir",
+        "clusterName": "Souvenir"
+      },
+      "geometry": {
+        "coordinates": [
+          106.820472,
+          -6.306874
+        ],
+        "type": "Point"
+      },
+      "id": "89a4187f4d60769fcd36b528e6072a54"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "enName": "Hippo Toilet",
+        "idName": "Toilet Kuda Nil",
+        "type": "Toilet",
+        "clusterName": "Toilet"
+      },
+      "geometry": {
+        "coordinates": [
+          106.823097,
+          -6.306503
+        ],
+        "type": "Point"
+      },
+      "id": "89f4b6dbcd608fb89c8e70bf528f7257"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "enName": "Souvenir Shop",
+        "idName": "Souvenir Shop",
+        "type": "Souvenir",
+        "clusterName": "Souvenir"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821086,
+          -6.309041
+        ],
+        "type": "Point"
+      },
+      "id": "9a22a12c365ddeb5a87aad5a55a04538"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "enName": "Orangutan Toilet",
+        "idName": "Toilet Orangutan",
+        "type": "Toilet",
+        "clusterName": "Toilet"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822776,
+          -6.310378
+        ],
+        "type": "Point"
+      },
+      "id": "9a4d1c0b8ac1f4990d8b1c3ca6ad2fc1"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "enName": "Bear Toilet",
+        "idName": "Toilet Beruang",
+        "type": "Toilet",
+        "clusterName": "Toilet"
+      },
+      "geometry": {
+        "coordinates": [
+          106.82076,
+          -6.310568
+        ],
+        "type": "Point"
+      },
+      "id": "9d9f36fb16fd0abc14a122b38ee8efb2"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "enName": "Mosque Canteen",
+        "idName": "Kantin Masjid",
+        "type": "Kantin",
+        "clusterName": "Kantin"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821281,
+          -6.309018
+        ],
+        "type": "Point"
+      },
+      "id": "a3403bd064e2c0a9b76372703702c23c"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "enName": "Elephant Toilet",
+        "idName": "Toilet Gajah",
+        "type": "Toilet",
+        "clusterName": "Toilet"
+      },
+      "geometry": {
+        "coordinates": [
+          106.819279,
+          -6.310542
+        ],
+        "type": "Point"
+      },
+      "id": "aa9135d8d04bc2e18e3880ef93de623e"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "enName": "Darussalam Mosque",
+        "idName": "Masjid Darussalam",
+        "type": "Masjid",
+        "clusterName": "Masjid"
+      },
+      "geometry": {
+        "coordinates": [
+          106.820999,
+          -6.309291
+        ],
+        "type": "Point"
+      },
+      "id": "bc7d9efefa70a2325f44331cf071203b"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "enName": "Primate Canteen",
+        "idName": "Kantin Primata",
+        "type": "Kantin",
+        "clusterName": "Kantin"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822284,
+          -6.307566
+        ],
+        "type": "Point"
+      },
+      "id": "d00d38e666a1117d9aa361e90b1904f5"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "enName": "information Center",
+        "idName": "Pusat Informasi",
+        "type": "Informasi",
+        "clusterName": "Informasi"
+      },
+      "geometry": {
+        "coordinates": [
+          106.820239,
+          -6.308028
+        ],
+        "type": "Point"
+      },
+      "id": "ed8b5d408b54c3470c91d95780ccbc5c"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "enName": "Primate Toilet",
+        "idName": "Toilet Primata",
+        "type": "Toilet",
+        "clusterName": "Toilet"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821991,
+          -6.307726
+        ],
+        "type": "Point"
+      },
+      "id": "f47bcaada4845857c761122bf715329a"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "Kantin",
+        "idName": "Kantin Pintu Utara II",
+        "enName": "North Gate II Canteen",
+        "clusterName": "Kantin"
+      },
+      "geometry": {
+        "coordinates": [
+          106.819656,
+          -6.306506
+        ],
+        "type": "Point"
+      },
+      "id": "fbf6baa76039cead87c95377738fe7e4"
+    }
+  ],
+  "type": "FeatureCollection"
+}

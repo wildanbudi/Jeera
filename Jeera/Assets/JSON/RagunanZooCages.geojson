@@ -1,0 +1,481 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "idName": "Primata 4",
+        "enName": "Primate 4",
+        "type": "Kandang",
+        "clusterName": "Primata"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822004,
+          -6.30838
+        ],
+        "type": "Point"
+      },
+      "id": "0ac553520dd5ecc7919624853fd08475"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "idName": "Unggas 2",
+        "enName": "Bird 2",
+        "type": "Kandang",
+        "clusterName": "Unggas"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822693,
+          -6.308344
+        ],
+        "type": "Point"
+      },
+      "id": "16634ae7ca336604b86f3521b1f50a66"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "idName": "Terarium Reptil 2",
+        "enName": "Reptile Terrarium 2",
+        "type": "Kandang",
+        "clusterName": "Terarium Reptil"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821784,
+          -6.307708
+        ],
+        "type": "Point"
+      },
+      "id": "25bebbd06fac4fc32530016b8abc77d1"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "idName": "Unggas Kecil",
+        "enName": "Small Birds",
+        "type": "Kandang",
+        "clusterName": "Unggas Kecil"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821226,
+          -6.310648
+        ],
+        "type": "Point"
+      },
+      "id": "2681d3cfc04efe072caa2cb0e068765e"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "idName": "Binturong",
+        "enName": "Binturong",
+        "type": "Kandang",
+        "clusterName": "Binturong"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821178,
+          -6.307233
+        ],
+        "type": "Point"
+      },
+      "id": "300ac8e711e20b199658cdd633ca4b13"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "idName": "Pelikan Timor",
+        "enName": "Australian Pelican",
+        "type": "Kandang",
+        "clusterName": "Pelikan Timor"
+      },
+      "geometry": {
+        "coordinates": [
+          106.82037,
+          -6.307248
+        ],
+        "type": "Point"
+      },
+      "id": "45c7c36fcd8f857ddec468588ba7a554"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "idName": "Aquarium",
+        "enName": "Aquarium",
+        "type": "Kandang",
+        "clusterName": "Aquarium"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821856,
+          -6.307222
+        ],
+        "type": "Point"
+      },
+      "id": "49afa8cc93c1220927eaa1f0c27cc30e"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "idName": "Reptilia Terbuka",
+        "enName": "Open Reptile",
+        "type": "Kandang",
+        "clusterName": "Reptilia Terbuka"
+      },
+      "geometry": {
+        "coordinates": [
+          106.82282,
+          -6.307618
+        ],
+        "type": "Point"
+      },
+      "id": "518dfd5f83e608683379d6a65e2553ea"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "idName": "Orangutan Kalimantan",
+        "enName": "Bornean Orangutan",
+        "type": "Kandang",
+        "clusterName": "Orangutan"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822192,
+          -6.312006
+        ],
+        "type": "Point"
+      },
+      "id": "595f9ea7f5a39b2c4b352c37f3caf13f"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "idName": "Burung Jalak Bali",
+        "enName": "Bali Myna",
+        "type": "Kandang",
+        "clusterName": "Burung Jalak Bali"
+      },
+      "geometry": {
+        "coordinates": [
+          106.820818,
+          -6.308861
+        ],
+        "type": "Point"
+      },
+      "id": "6a5e9af453d99aea0ed7dbfe44d0e1c3"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "idName": "Primata 2",
+        "enName": "Primate 2",
+        "type": "Kandang",
+        "clusterName": "Primata"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822155,
+          -6.30792
+        ],
+        "type": "Point"
+      },
+      "id": "73744583580ab9eb47a21b22b9711b0d"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "idName": "Kura-kura",
+        "enName": "Turtle",
+        "type": "Kandang",
+        "clusterName": "Kura-kura"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822565,
+          -6.309711
+        ],
+        "type": "Point"
+      },
+      "id": "7939be565b00babc604a222734956f97"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "idName": "Orangutan Sumatera",
+        "enName": "Sumatran Orangutan",
+        "type": "Kandang",
+        "clusterName": "Orangutan"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821634,
+          -6.311101
+        ],
+        "type": "Point"
+      },
+      "id": "a34a819baa2e85fed212f8cac4dfd52f"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "idName": "Orangutan Kalimantan",
+        "enName": "Bornean Orangutan",
+        "type": "Kandang",
+        "clusterName": "Orangutan"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821057,
+          -6.311421
+        ],
+        "type": "Point"
+      },
+      "id": "a36395ac7480c482517c9047183187d3"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "idName": "Primata 1",
+        "enName": "Primate 1",
+        "type": "Kandang",
+        "clusterName": "Primata"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822331,
+          -6.308142
+        ],
+        "type": "Point"
+      },
+      "id": "a47906863de77b8decf42d359b90ee9d"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "idName": "Terarium Reptil 1",
+        "enName": "Reptile Terrarium 1",
+        "type": "Kandang",
+        "clusterName": "Terarium Reptil"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821499,
+          -6.3081
+        ],
+        "type": "Point"
+      },
+      "id": "a644c9e19a75b11393e92dcb4f5161d0"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "idName": "Orangutan Kalimantan",
+        "enName": "Bornean Orangutan",
+        "type": "Kandang",
+        "clusterName": "Orangutan"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822475,
+          -6.31115
+        ],
+        "type": "Point"
+      },
+      "id": "a80bd4b0eb03850e8bfb0c073180b2a4"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "idName": "Orangutan Kalimantan",
+        "enName": "Bornean Orangutan",
+        "type": "Kandang",
+        "clusterName": "Orangutan"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822497,
+          -6.309258
+        ],
+        "type": "Point"
+      },
+      "id": "b2b7101e8fbdbbbbb957b44b21168d2c"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "idName": "Beruang Hitam Amerika",
+        "enName": "American Black Bear",
+        "type": "Kandang",
+        "clusterName": "Beruang"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821137,
+          -6.311
+        ],
+        "type": "Point"
+      },
+      "id": "b6538da7301ad056cafa0799fefa9a5b"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "idName": "Harimau Sumatera",
+        "enName": "Sumatran Tiger",
+        "type": "Kandang",
+        "clusterName": "Harimau"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821873,
+          -6.30922
+        ],
+        "type": "Point"
+      },
+      "id": "b8c9004e57e1018e77904599a98407b7"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "idName": "Singa Afrika",
+        "enName": "The Lion",
+        "type": "Kandang",
+        "clusterName": "Singa"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821914,
+          -6.309498
+        ],
+        "type": "Point"
+      },
+      "id": "bb3a58b3a5c3cdcc3fa125649a8f014d"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "idName": "Burung Merak",
+        "enName": "Peafowl",
+        "type": "Kandang",
+        "clusterName": "Burung Merak"
+      },
+      "geometry": {
+        "coordinates": [
+          106.820393,
+          -6.308817
+        ],
+        "type": "Point"
+      },
+      "id": "bddd2c253e3bdee2bc4c47cfab3e51d9"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "idName": "Beruang Madu",
+        "enName": "Sun Bear",
+        "type": "Kandang",
+        "clusterName": "Beruang"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822175,
+          -6.310485
+        ],
+        "type": "Point"
+      },
+      "id": "bf21e997ce0c96f758a0ad272e2612d8"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "idName": "Unggas 1",
+        "enName": "Bird 1",
+        "type": "Kandang",
+        "clusterName": "Unggas"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822004,
+          -6.308701
+        ],
+        "type": "Point"
+      },
+      "id": "c308f6a9cea745840f091d269c46c4e8"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "idName": "Kapibara",
+        "enName": "Capybara",
+        "type": "Kandang",
+        "clusterName": "Kapibara"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822131,
+          -6.310052
+        ],
+        "type": "Point"
+      },
+      "id": "d3ab913820720c3d2e4172d8d25de6fd"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "idName": "Primata 3",
+        "enName": "Primate 3",
+        "type": "Kandang",
+        "clusterName": "Primata"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821842,
+          -6.308104
+        ],
+        "type": "Point"
+      },
+      "id": "d6c1f2c7b0d5d65710ef91caf2287b06"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "idName": "Macan",
+        "enName": "Leopard",
+        "type": "Kandang",
+        "clusterName": "Macan"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821156,
+          -6.307904
+        ],
+        "type": "Point"
+      },
+      "id": "e4051d06678a8d7d69fd949ccfab6ebd"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "idName": "Mamalia Kecil",
+        "enName": "Small Mammals",
+        "type": "Kandang",
+        "clusterName": "Mamalia Kecil"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821684,
+          -6.310135
+        ],
+        "type": "Point"
+      },
+      "id": "f0e52c77bb8c98111c1831c232c2e422"
+    }
+  ],
+  "type": "FeatureCollection"
+}

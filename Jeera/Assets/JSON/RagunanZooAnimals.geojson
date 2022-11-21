@@ -1,0 +1,2436 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 1",
+        "enName": "Grey-Headed Fish Eagle",
+        "idName": "Elang Laut Kepala Abu",
+        "latinName": "Ichthyophaga ichthyaetus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822291,
+          -6.308706
+        ],
+        "type": "Point"
+      },
+      "id": "0412cf35a89b17329e1f56070b551a68"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 2",
+        "enName": "Palm Cockatoo",
+        "idName": "Kakatua Raja",
+        "latinName": "Probosciger aterrimus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822762,
+          -6.30814
+        ],
+        "type": "Point"
+      },
+      "id": "05e4b8533e61bb32aaff1ed860352dba"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 2",
+        "enName": "The New Guinea Bronze-Wing",
+        "idName": "Delimukan Tembaga",
+        "latinName": "Henicophaps albifrons"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822678,
+          -6.308284
+        ],
+        "type": "Point"
+      },
+      "id": "066c02149d39f1bc6d694e292adfd3b6"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Kura-kura",
+        "enName": "Bornean River Turtle ",
+        "idName": "Kura-kura Kalimantan",
+        "latinName": "Orlitia borneensis"
+      },
+      "geometry": {
+        "coordinates": [
+          106.82255,
+          -6.309727
+        ],
+        "type": "Point"
+      },
+      "id": "08a09a30029931acd0ffc85ab74d6e71"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "enName": "Binturong / Bearcat",
+        "idName": "Binturong Kalimantan",
+        "latinName": "Artictis binturong",
+        "cage": "Binturong"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821131,
+          -6.307233
+        ],
+        "type": "Point"
+      },
+      "id": "08ba017ad8b8dffa2b5591075887bb07"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 1",
+        "enName": "Brahminy Kite",
+        "idName": "Elang Bondol",
+        "latinName": "Haliastur indus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822086,
+          -6.308674
+        ],
+        "type": "Point"
+      },
+      "id": "117c04d3ee93b20adbb525912514eab2"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Primata 1",
+        "enName": "Tonkean Macaque",
+        "idName": "Monyet Boti",
+        "latinName": "Macaca tonkeana"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822373,
+          -6.308086
+        ],
+        "type": "Point"
+      },
+      "id": "18dc2b10fd386dfeb8086bd8ea3303c7"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Aquarium",
+        "enName": "San Francisco Piranha",
+        "idName": "Piranha",
+        "latinName": "Pygocentrus piraya"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821758,
+          -6.307262
+        ],
+        "type": "Point"
+      },
+      "id": "1a8d15169003ef159e43fe8e1ab97773"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Primata 3",
+        "enName": "Pig-Tailed Macaque",
+        "idName": "Beruk",
+        "latinName": "Macaca nemestrina"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821784,
+          -6.308125
+        ],
+        "type": "Point"
+      },
+      "id": "1ad6d5895077128bd326ccffaf374246"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Primata 1",
+        "enName": "Gorontalo Macaque",
+        "idName": "Monyet Gorontalo",
+        "latinName": "Macaca nigrescens"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822335,
+          -6.308205
+        ],
+        "type": "Point"
+      },
+      "id": "1bcfe865ab931df7880d5491dc8c9460"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Primata 4",
+        "enName": "Siamang Gibbon",
+        "idName": "Siamang",
+        "latinName": "Symphalangus syndactylus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822008,
+          -6.308462
+        ],
+        "type": "Point"
+      },
+      "id": "202d5e63d2dcc7c6d265f2587629b2e9"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Primata 4",
+        "enName": "Javan Langur",
+        "idName": "Lutung Jawa",
+        "latinName": "Trachypithecus auratus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821944,
+          -6.308348
+        ],
+        "type": "Point"
+      },
+      "id": "22cb2fe55e70fb9fd0cdcc70874b9f6a"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 2",
+        "enName": "The Electus Parrot",
+        "idName": "Burung Bayan",
+        "latinName": "Eclectus roratus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822729,
+          -6.308326
+        ],
+        "type": "Point"
+      },
+      "id": "231d52ed8b641c19a46108ee31487605"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Aquarium",
+        "enName": "Tinfoil Barb",
+        "idName": "Ikan Kapiat",
+        "latinName": "Barbonymus schwanenfeldii"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821824,
+          -6.307118
+        ],
+        "type": "Point"
+      },
+      "id": "24dbbf894f7854fc396a01ea7d57b6dc"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 1",
+        "enName": "Oriental Pied Hornbill",
+        "idName": "Kangkareng Perut Putih",
+        "latinName": "Anthracoceros albirostris"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821966,
+          -6.308735
+        ],
+        "type": "Point"
+      },
+      "id": "26561b4c72e91e42427580c83a0428e9"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas Kecil",
+        "enName": "Parrot",
+        "idName": "Burung Nuri",
+        "latinName": "Loriini"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821226,
+          -6.310648
+        ],
+        "type": "Point"
+      },
+      "id": "2681d3cfc04efe072caa2cb0e068765e"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Mamalia Kecil",
+        "enName": "Binturong / Bearcat",
+        "idName": "Binturong Kalimantan",
+        "latinName": "Artictis binturong"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821778,
+          -6.310011
+        ],
+        "type": "Point"
+      },
+      "id": "26d54d1f93a859373c5d55154e17efe6"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Terarium Reptil 1",
+        "enName": "Aldabra Giant Tortoise",
+        "idName": "Kura-kura Aldabara",
+        "latinName": "Aldabrachelys gigantea"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821472,
+          -6.308061
+        ],
+        "type": "Point"
+      },
+      "id": "28918216ce658577f4a205ae469adbfa"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Primata 4",
+        "enName": "Dark-Handed or Agile Gibbon",
+        "idName": "Owa Tangan Hitam / Owa Ungko",
+        "latinName": "Hylobates agilis"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821945,
+          -6.308416
+        ],
+        "type": "Point"
+      },
+      "id": "291777a94495368217a6b51e77217a7c"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Terarium Reptil 1",
+        "enName": "Bornean River Turtle ",
+        "idName": "Kura-kura Kalimantan",
+        "latinName": "Orlitia borneensis"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821425,
+          -6.308137
+        ],
+        "type": "Point"
+      },
+      "id": "29e2aa619a5490a9147f8f6ea9ec6ee1"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Reptilia Terbuka",
+        "enName": "Reticulated Python",
+        "idName": "Ular Sanca Kembang",
+        "latinName": "Python reticulatus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822809,
+          -6.307595
+        ],
+        "type": "Point"
+      },
+      "id": "2a543939f7745c42c94be8acc2d2fb21"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Mamalia Kecil",
+        "enName": "Sunda Pangolin",
+        "idName": "Trenggiling",
+        "latinName": "Manis javanica"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821677,
+          -6.310244
+        ],
+        "type": "Point"
+      },
+      "id": "2ca496cfcc9bcf78d989be7678a2ccad"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Primata 2",
+        "enName": "Grizzled Leaf Monkey",
+        "idName": "Surili",
+        "latinName": "Presbytis comata"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822198,
+          -6.307858
+        ],
+        "type": "Point"
+      },
+      "id": "30c9b2a005765f72b42f344c3097f818"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Mamalia Kecil",
+        "enName": "Large Flying Fox",
+        "idName": "Kalong",
+        "latinName": "Pteropus vampyrus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821779,
+          -6.310209
+        ],
+        "type": "Point"
+      },
+      "id": "3179be29e597ab696274f44c1aaf8606"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 1",
+        "enName": "Red and Green Macau",
+        "idName": "Ara Merah Sayap Hijau",
+        "latinName": "Ara chloropterus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821741,
+          -6.308701
+        ],
+        "type": "Point"
+      },
+      "id": "34e696200ab2ec49aa22e419255ba812"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Primata 2",
+        "enName": "Ebony Langur",
+        "idName": "Lutung Budeng",
+        "latinName": "Trachypithecus auratus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822178,
+          -6.30799
+        ],
+        "type": "Point"
+      },
+      "id": "363c3f039d3d4eb31422c14e49bab818"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 2",
+        "enName": "White Cockatoo",
+        "idName": "Kakatua Jambul Putih",
+        "latinName": "Cacatua alba"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822748,
+          -6.308234
+        ],
+        "type": "Point"
+      },
+      "id": "3a423e6ee80f6c0cb9dd0ebdb4b4066e"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 2",
+        "enName": "Salmon-Crested Cockatoo",
+        "idName": "Kakatua Maluku",
+        "latinName": "Cacatua moluccensis"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822742,
+          -6.308265
+        ],
+        "type": "Point"
+      },
+      "id": "3dcd6e6371047c3169babd577b53ba79"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Mamalia Kecil",
+        "enName": "Asian Palm Civet",
+        "idName": "Musang Luwak",
+        "latinName": "Paradoxurus hermaphroditus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821554,
+          -6.31021
+        ],
+        "type": "Point"
+      },
+      "id": "3dd9fc8f035398d0f870256b27e6ba6b"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Primata 3",
+        "enName": "Tonkean Macaque",
+        "idName": "Monyet Boti",
+        "latinName": "Macaca tonkeana"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821852,
+          -6.308038
+        ],
+        "type": "Point"
+      },
+      "id": "3de832e639788df13e31785aa59ce135"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Macan",
+        "enName": "Jaguar",
+        "idName": "Jaguar",
+        "latinName": "Panthera onca"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821154,
+          -6.307908
+        ],
+        "type": "Point"
+      },
+      "id": "3de8d664f2899b38ffa3ef994f367f73"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Primata 3",
+        "enName": "Ebony Langur",
+        "idName": "Lutung Budeng",
+        "latinName": "Trachypithecus auratus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821794,
+          -6.308058
+        ],
+        "type": "Point"
+      },
+      "id": "42ec30e4cc2837e2a8e77e9813d9fb01"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Primata 1",
+        "enName": "Pig-Tailed Macaque",
+        "idName": "Beruk",
+        "latinName": "Macaca nemestrina"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822266,
+          -6.308162
+        ],
+        "type": "Point"
+      },
+      "id": "431f229e53155acb6598683aff6faeea"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 2",
+        "enName": "The Maleo",
+        "idName": "Maleo Senkawor",
+        "latinName": "Macrocephalon maleo"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822711,
+          -6.30842
+        ],
+        "type": "Point"
+      },
+      "id": "4391843bf79a76d29cab3eec7aca26fa"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Burung Merak",
+        "enName": "Green Peafowl",
+        "idName": "Merak Hijau",
+        "latinName": "Pavo muticus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.820393,
+          -6.308806
+        ],
+        "type": "Point"
+      },
+      "id": "44402625bdb5d357940b9ca8a0db3945"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "idName": "Pelikan Timor",
+        "enName": "Australian Pelican",
+        "latinName": "Pelecanus conspicillatus",
+        "cage": "Pelikan Timor"
+      },
+      "geometry": {
+        "coordinates": [
+          106.82037,
+          -6.307248
+        ],
+        "type": "Point"
+      },
+      "id": "45c7c36fcd8f857ddec468588ba7a554"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Terarium Reptil 1",
+        "enName": "Amboina Box Turtle",
+        "idName": "Kura-kura Sawah",
+        "latinName": "Cuora amboinensis"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821501,
+          -6.308175
+        ],
+        "type": "Point"
+      },
+      "id": "47282600fa481519b7990abd4f7d8f5c"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Aquarium",
+        "enName": "Knifefish",
+        "idName": "Belida",
+        "latinName": "Notopterus chitala"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821799,
+          -6.30731
+        ],
+        "type": "Point"
+      },
+      "id": "4905dc9ead798f8a781edce2309e4707"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Terarium Reptil 1",
+        "enName": "Spiny Turtle",
+        "idName": "Kura-kura Spinosa",
+        "latinName": "Heosemys spinosa"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821439,
+          -6.308119
+        ],
+        "type": "Point"
+      },
+      "id": "4c04c2331f1b7e1752231d3579e09b51"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Burung Jalak Bali",
+        "enName": "Bali Myna",
+        "idName": "Jalak Bali / Curik Bali",
+        "latinName": "Leucopsar rothschildi"
+      },
+      "geometry": {
+        "coordinates": [
+          106.820809,
+          -6.308806
+        ],
+        "type": "Point"
+      },
+      "id": "4cdcab9a221f01ae51d7c7ace7bbe5a7"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 1",
+        "enName": "Lesser Adjutant",
+        "idName": "Bangau Tongtong",
+        "latinName": "Leptoptilos javanicus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821687,
+          -6.308613
+        ],
+        "type": "Point"
+      },
+      "id": "4d0986114d199cf8a0810a1f46c08c31"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Aquarium",
+        "enName": "Tiger Cat Fish",
+        "idName": "Ikan Macan",
+        "latinName": "Pseudoplatystoma fasciatum"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821937,
+          -6.307155
+        ],
+        "type": "Point"
+      },
+      "id": "51fcddbc07e80010b2648acba4214f3d"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Aquarium",
+        "enName": "Banjar Arowana / Silver Asian Arowana",
+        "idName": "Arwana Banjar",
+        "latinName": "Osteoglossum bicirrhosum"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821961,
+          -6.307205
+        ],
+        "type": "Point"
+      },
+      "id": "55b616c8d846aa1fe3598cbafec006fe"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Terarium Reptil 2",
+        "enName": "Saltwater Crocodile",
+        "idName": "Buaya Muara",
+        "latinName": "Crocodylus porosus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821833,
+          -6.307697
+        ],
+        "type": "Point"
+      },
+      "id": "55c992f1c4c49b99a8402c76c2e4ddba"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Terarium Reptil 2",
+        "enName": "Pig-Nosed Turtle",
+        "idName": "Bulus Moncong Babi",
+        "latinName": "Carettochelys insculpta"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821764,
+          -6.307787
+        ],
+        "type": "Point"
+      },
+      "id": "56ed6bc01187faa296cc769d80c4b583"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Terarium Reptil 1",
+        "enName": "Green Iguana",
+        "idName": "Iguana Hijau",
+        "latinName": "Iguana iguana"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821449,
+          -6.308103
+        ],
+        "type": "Point"
+      },
+      "id": "58ec35e63b684f84e9c1e419969656cd"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Orangutan Kalimantan",
+        "enName": "Bornean Orangutan",
+        "idName": "Orangutan Kalimantan",
+        "latinName": "Pongo pygmaeus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822192,
+          -6.312006
+        ],
+        "type": "Point"
+      },
+      "id": "595f9ea7f5a39b2c4b352c37f3caf13f"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 2",
+        "enName": "Victoria Crowned Pigeon",
+        "idName": "Dara Mahkota Viktoria",
+        "latinName": "Goura victoria"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822638,
+          -6.308495
+        ],
+        "type": "Point"
+      },
+      "id": "621f1bc71cd5f4fb04bfd8d546822b5f"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Mamalia Kecil",
+        "enName": "Small Asian Mongoose",
+        "idName": "Garangan Merah",
+        "latinName": "Herpestes javanicus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821642,
+          -6.310095
+        ],
+        "type": "Point"
+      },
+      "id": "6248a4f8081f85b3f4041703e5cc1f9e"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Terarium Reptil 1",
+        "enName": "Blue Iguana",
+        "idName": "Iguana Biru",
+        "latinName": "Cyclura lewisi"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821461,
+          -6.308083
+        ],
+        "type": "Point"
+      },
+      "id": "626361f7b15a9c380b3972788f09ea0d"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 2",
+        "enName": "Common Pheasant",
+        "idName": "Ring Necked Pheasant",
+        "latinName": "Phasianus colchicus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822655,
+          -6.308401
+        ],
+        "type": "Point"
+      },
+      "id": "62cf9dc3422294b67535272cdcd08c7c"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Terarium Reptil 1",
+        "enName": "African Spurred Tortoise",
+        "idName": "Kura-kura Sulcata",
+        "latinName": "Centrochelys sulcata"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821469,
+          -6.308066
+        ],
+        "type": "Point"
+      },
+      "id": "63b0cd471312fc4996755b617bb75adb"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 1",
+        "enName": "White-Bellied Sea Eagle",
+        "idName": "Elang Laut Perut Putih",
+        "latinName": "Haliaeetus leucogaster"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822215,
+          -6.308695
+        ],
+        "type": "Point"
+      },
+      "id": "63b647bbaceb5602e6a7c85d0bdb8ac4"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Terarium Reptil 2",
+        "enName": "False Gharial",
+        "idName": "Buaya Senyulong",
+        "latinName": "Tomistoma schlegelii"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821855,
+          -6.307666
+        ],
+        "type": "Point"
+      },
+      "id": "657827f612e0fbf890095d1ae00a207d"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Primata 3",
+        "enName": "Siamang Gibbon",
+        "idName": "Siamang",
+        "latinName": "Symphalangus syndactylus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821839,
+          -6.308167
+        ],
+        "type": "Point"
+      },
+      "id": "6640903ff88ce5174f27e2b8b2dddc20"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 1",
+        "enName": "Greater Flamingo",
+        "idName": "Flamingo Eropa",
+        "latinName": "Phoenicopterus ruber roseus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822307,
+          -6.308788
+        ],
+        "type": "Point"
+      },
+      "id": "66d09db7fcc43a7aef8edc9f1ce524ba"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Terarium Reptil 1",
+        "enName": "Indian Narrow Headed Softshell Turtle",
+        "idName": "Labi-labi",
+        "latinName": "Chitra indica"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821541,
+          -6.3081
+        ],
+        "type": "Point"
+      },
+      "id": "66ecf536aa8654baf4c7a9b8066fb2e7"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 2",
+        "enName": "Goffin's Cockatoo",
+        "idName": "Kakatua Popo Merah Goffini",
+        "latinName": "Cacatua goffiniana"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822671,
+          -6.308631
+        ],
+        "type": "Point"
+      },
+      "id": "6811a48e3a263c99efe0b7a1229ab1bd"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Burung Jalak Bali",
+        "enName": "Common Hill Myna",
+        "idName": "Beo Sedang",
+        "latinName": "Gracula religiosa"
+      },
+      "geometry": {
+        "coordinates": [
+          106.820807,
+          -6.308852
+        ],
+        "type": "Point"
+      },
+      "id": "6a5e9af453d99aea0ed7dbfe44d0e1c3"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 1",
+        "enName": "Barred Eagle Owl",
+        "idName": "Hingkik / Beluk Jampek",
+        "latinName": "Bubo sumatranus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822163,
+          -6.308766
+        ],
+        "type": "Point"
+      },
+      "id": "6e9075e80104d31704d010d35a07abd2"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Reptilia Terbuka",
+        "enName": "Keeled Rat Snake",
+        "idName": "Ular Koros",
+        "latinName": "Ptyas korros"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822826,
+          -6.307644
+        ],
+        "type": "Point"
+      },
+      "id": "6f82147320bd3b2ac4707feec438b6c9"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 2",
+        "enName": "Pesquet's Parrot",
+        "idName": "Kasutri Raja",
+        "latinName": "Psittrichas fulgidus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822649,
+          -6.308429
+        ],
+        "type": "Point"
+      },
+      "id": "70324aec3a5da601758a07082b8c5519"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Primata 2",
+        "enName": "Silvery Gibbon",
+        "idName": "Owa Jawa",
+        "latinName": "Hylobates moloch"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822087,
+          -6.307907
+        ],
+        "type": "Point"
+      },
+      "id": "709b1b175d2e4ee950e8a47f14508263"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 2",
+        "enName": "Yellow-Crested Cockatoo",
+        "idName": "Kakatua Sulphurea",
+        "latinName": "Cacatua sulphurea"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822694,
+          -6.308506
+        ],
+        "type": "Point"
+      },
+      "id": "72510684b78a52a35e5d83d0ba19605c"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Aquarium",
+        "enName": "Green Arowana",
+        "idName": "Arwana Hijau",
+        "latinName": "Scleropages formosus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821887,
+          -6.307117
+        ],
+        "type": "Point"
+      },
+      "id": "74964f3bdfa940df76c42382f2171c48"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Terarium Reptil 2",
+        "enName": "New Guinea Crocodile",
+        "idName": "Buaya Irian",
+        "latinName": "Crocodylus novaeguineae"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821796,
+          -6.307634
+        ],
+        "type": "Point"
+      },
+      "id": "754b58b4985e2ad5e54d0f3f3d8fe9ea"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Primata 2",
+        "enName": "Banded Leaf Monkey",
+        "idName": "Lutung Kokah",
+        "latinName": "Presbytis siamensis"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822113,
+          -6.307981
+        ],
+        "type": "Point"
+      },
+      "id": "75ffb67f3926f050d57b73746fd32169"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Aquarium",
+        "enName": "Super Red Arowana",
+        "idName": "Arwana Merah",
+        "latinName": "Scleropages formosus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821957,
+          -6.307263
+        ],
+        "type": "Point"
+      },
+      "id": "7678a1ecba4eca5c2799dd1428631b51"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Primata 2",
+        "enName": "Siamang",
+        "idName": "Siamang",
+        "latinName": "Symphalangus syndactylus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822129,
+          -6.307848
+        ],
+        "type": "Point"
+      },
+      "id": "76f79adad5f19887eebfb06a39d57f7d"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Primata 1",
+        "enName": "Heck's Macaque",
+        "idName": "Monyet Dige",
+        "latinName": "Macaca hecki"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822283,
+          -6.308087
+        ],
+        "type": "Point"
+      },
+      "id": "79bfd774eddf01fbd1848412e098cada"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 1",
+        "enName": "Wreated Hornbill",
+        "idName": "Julang Emas",
+        "latinName": "Aceros undulatus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821855,
+          -6.308719
+        ],
+        "type": "Point"
+      },
+      "id": "7a42b53ce7f60e10639bfd04c81c9347"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Mamalia Kecil",
+        "enName": "Dusky Wallaby / Dusky Pademelon",
+        "idName": "Kanguru Papua / Pelandu Aru",
+        "latinName": "Thylogale brunii"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821567,
+          -6.310101
+        ],
+        "type": "Point"
+      },
+      "id": "7b04de3787e487d65e566b21fca0c89c"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Aquarium",
+        "enName": "Pangasius",
+        "idName": "Ikan Patin",
+        "latinName": "Pangasius sp."
+      },
+      "geometry": {
+        "coordinates": [
+          106.821922,
+          -6.307309
+        ],
+        "type": "Point"
+      },
+      "id": "7b7dbd3fde6d2d75d173ce4f3e446d03"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 2",
+        "enName": "Sulphur-Crested Cockatoo",
+        "idName": "Kakatua Jambul Kuning",
+        "latinName": "Cacatua galerita"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822777,
+          -6.308066
+        ],
+        "type": "Point"
+      },
+      "id": "809065a019b91e3044842e13c53c4074"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 2",
+        "enName": "Citron-Crested Cockatoo",
+        "idName": "Kakatua Cempaka",
+        "latinName": "Cacatua sulphurea citrinocristata"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822683,
+          -6.308565
+        ],
+        "type": "Point"
+      },
+      "id": "80a74d4ecd455e83d0c21770b432ced7"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 2",
+        "enName": "The Galah",
+        "idName": "Kakatua Galah",
+        "latinName": "Eolophus roseicapilla"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822724,
+          -6.308356
+        ],
+        "type": "Point"
+      },
+      "id": "8174e169dadb224f41f2b873dc5e0320"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Mamalia Kecil",
+        "enName": "Racoon",
+        "idName": "Rakun",
+        "latinName": "Procyon lotor"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821766,
+          -6.310168
+        ],
+        "type": "Point"
+      },
+      "id": "82d797cb7160559d9512ded797e2e173"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Terarium Reptil 2",
+        "enName": "Indian Rock Python",
+        "idName": "Sanca Sawah",
+        "latinName": "Python molurus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821772,
+          -6.307663
+        ],
+        "type": "Point"
+      },
+      "id": "831a48ccbd2e1d55dffa36b5a46c8a52"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Terarium Reptil 1",
+        "enName": "Mangrove Monitor",
+        "idName": "Biawak Maluku",
+        "latinName": "Varanus indicus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821498,
+          -6.30802
+        ],
+        "type": "Point"
+      },
+      "id": "83e461349ee66bdbf684a0e9ee8160d3"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Terarium Reptil 1",
+        "enName": "Black Tree Monitor",
+        "idName": "Biawak Hitam",
+        "latinName": "Varanus beccarii"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821554,
+          -6.308077
+        ],
+        "type": "Point"
+      },
+      "id": "84a898ebecb671c6413f23df248f3bde"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 2",
+        "enName": "Nicobar Pigeon",
+        "idName": "Dara Minata",
+        "latinName": "Caloenas nicobarica"
+      },
+      "geometry": {
+        "coordinates": [
+          106.82266,
+          -6.308376
+        ],
+        "type": "Point"
+      },
+      "id": "8981591fad0c7f2de1ceef75a170a9bc"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Terarium Reptil 2",
+        "enName": "Gold-Ringed Catsnake",
+        "idName": "Ular Cincin Mas",
+        "latinName": "Boiga dendrophila"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821809,
+          -6.307727
+        ],
+        "type": "Point"
+      },
+      "id": "8a6f4c1a0e42acb5bd8e654e52f4b05f"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "enName": "Binturong Sumatera",
+        "idName": "Binturong Sumatera",
+        "latinName": "Artictis binturong",
+        "cage": "Binturong"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821233,
+          -6.307222
+        ],
+        "type": "Point"
+      },
+      "id": "8ba182f98691dbbbabff0b9d1c93759e"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Mamalia Kecil",
+        "enName": "Small Indian Civet",
+        "idName": "Musang Rase",
+        "latinName": "Viverricula malaccensis"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821498,
+          -6.310178
+        ],
+        "type": "Point"
+      },
+      "id": "9a84970ef7d582b9395dbd99643893f8"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 1",
+        "enName": "Malayan Black Hornbill",
+        "idName": "Kangkareng Hitam",
+        "latinName": "Anthracoceros malayanus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822075,
+          -6.308752
+        ],
+        "type": "Point"
+      },
+      "id": "9c0de2a218c0aed85647842967e65568"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Mamalia Kecil",
+        "enName": "Sunda Porcupine",
+        "idName": "Landak Jawa",
+        "latinName": "Hystrix javanica"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821736,
+          -6.310248
+        ],
+        "type": "Point"
+      },
+      "id": "a1b74990f83d98fb11567f56a90df5ee"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Burung Jalak Bali",
+        "enName": "Red-Breasted Parakeet",
+        "idName": "Betet Kalung",
+        "latinName": "Psittacula alexandri"
+      },
+      "geometry": {
+        "coordinates": [
+          106.820804,
+          -6.308894
+        ],
+        "type": "Point"
+      },
+      "id": "a3133547f58e7b0d0907131f30301101"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Orangutan Sumatera",
+        "enName": "Sumatran Orangutan",
+        "idName": "Orangutan Sumatera",
+        "latinName": "Pongo abelii"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821634,
+          -6.311101
+        ],
+        "type": "Point"
+      },
+      "id": "a34a819baa2e85fed212f8cac4dfd52f"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Orangutan Kalimantan",
+        "enName": "Bornean Orangutan",
+        "idName": "Orangutan Kalimantan",
+        "latinName": "Pongo pygmaeus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.820978,
+          -6.3115
+        ],
+        "type": "Point"
+      },
+      "id": "a36395ac7480c482517c9047183187d3"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Kura-kura",
+        "enName": "Red-Eared Slider",
+        "idName": "Kura-kura Pipi Merah",
+        "latinName": "Trachemys scripta elegans"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822579,
+          -6.309726
+        ],
+        "type": "Point"
+      },
+      "id": "a363bcfa097143b3ebdf3b268b3522fa"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Primata 4",
+        "enName": "Agile Gibbon",
+        "idName": "Owa Agilis",
+        "latinName": "Hylobates agilis"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822005,
+          -6.308301
+        ],
+        "type": "Point"
+      },
+      "id": "a3af8154facd2b828f5da238521fba77"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Terarium Reptil 2",
+        "enName": "King Kobra",
+        "idName": "Sendok Raja",
+        "latinName": "Ophiophagus hannah"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821748,
+          -6.307691
+        ],
+        "type": "Point"
+      },
+      "id": "a3d9bccbe2d4a150d825860ab0767547"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Primata 4",
+        "enName": "Silvery Javan Gibbon",
+        "idName": "Owa Jawa",
+        "latinName": "Hylobates moloch"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822071,
+          -6.308343
+        ],
+        "type": "Point"
+      },
+      "id": "a429743bcb04d4525f3858bf7d64ee29"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Primata 1",
+        "enName": "Long-Tailed Macaque",
+        "idName": "Monyet Ekor Panjang",
+        "latinName": "Macaca fascicularis"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822394,
+          -6.308159
+        ],
+        "type": "Point"
+      },
+      "id": "a5b17e608839ebbb167e8c5c0b5ac6b1"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Orangutan Kalimantan",
+        "enName": "Bornean Orangutan",
+        "idName": "Orangutan Kalimantan",
+        "latinName": "Pongo pygmaeus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822475,
+          -6.31115
+        ],
+        "type": "Point"
+      },
+      "id": "a80bd4b0eb03850e8bfb0c073180b2a4"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Terarium Reptil 2",
+        "enName": "Reticulated Python",
+        "idName": "Sanca Kembang",
+        "latinName": "Python reticulatus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821786,
+          -6.307758
+        ],
+        "type": "Point"
+      },
+      "id": "a923512c7cc1e7d0e8ddefe08b01416a"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 2",
+        "enName": "Pied Imperial Pigeon",
+        "idName": "Pergam Laut",
+        "latinName": "Ducula bicolor"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822672,
+          -6.308315
+        ],
+        "type": "Point"
+      },
+      "id": "aa460b8fa3c3c008849e963d3ebe989b"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Aquarium",
+        "enName": "Redtailed Catfish",
+        "idName": "Ikan Lele Ekor Merah",
+        "latinName": "Phractocephalus hemioliopterus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821856,
+          -6.307334
+        ],
+        "type": "Point"
+      },
+      "id": "abd5b8c8c8f516b5f3597bef3a7f41a6"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 1",
+        "enName": "Buffy Fish Owl",
+        "idName": "Burung Hantu Ikan",
+        "latinName": "Ketupa ketupu"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821754,
+          -6.308622
+        ],
+        "type": "Point"
+      },
+      "id": "b1bbebd096855d1117cd38c18e7d8ab9"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Orangutan Kalimantan",
+        "enName": "Bornean Orangutan",
+        "idName": "Orangutan Kalimantan",
+        "latinName": "Pongo pygmaeus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822497,
+          -6.309258
+        ],
+        "type": "Point"
+      },
+      "id": "b2b7101e8fbdbbbbb957b44b21168d2c"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Kura-kura",
+        "enName": "Giant Brown Tortoise",
+        "idName": "Kura-kura Darat",
+        "latinName": "Testudo emys"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822551,
+          -6.309699
+        ],
+        "type": "Point"
+      },
+      "id": "b2e726d5a79b7ddc67935a4f9dfead89"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Beruang Hitam Amerika",
+        "enName": "American Black Bear",
+        "idName": "Beruang Hitam Amerika",
+        "latinName": "Ursus americanus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821158,
+          -6.310999
+        ],
+        "type": "Point"
+      },
+      "id": "b6538da7301ad056cafa0799fefa9a5b"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Mamalia Kecil",
+        "enName": "Java Mouse-Deer",
+        "idName": "Kancil",
+        "latinName": "Tragulus javanicus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821798,
+          -6.310121
+        ],
+        "type": "Point"
+      },
+      "id": "b75e8a4b559b8dbff3c33c3100ef81b4"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Harimau Sumatera",
+        "enName": "Sumatran Tiger",
+        "idName": "Harimau Sumatera",
+        "latinName": "Panthera tigris sumatrae"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821883,
+          -6.309217
+        ],
+        "type": "Point"
+      },
+      "id": "b8c9004e57e1018e77904599a98407b7"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Singa Afrika",
+        "enName": "The Lion",
+        "idName": "Singa Afrika",
+        "latinName": "Panthera leo massaicus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821914,
+          -6.309498
+        ],
+        "type": "Point"
+      },
+      "id": "bb3a58b3a5c3cdcc3fa125649a8f014d"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 2",
+        "enName": "Red and Green Macau",
+        "idName": "Ara Merah Sayap Hijau",
+        "latinName": "Ara chloropterus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822735,
+          -6.308294
+        ],
+        "type": "Point"
+      },
+      "id": "bc039b001182ea1fe239c771a137a34b"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Mamalia Kecil",
+        "enName": "Masked Palm Civet",
+        "idName": "Musang Galing/Bulan",
+        "latinName": "Paguma larvata"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821736,
+          -6.310053
+        ],
+        "type": "Point"
+      },
+      "id": "bfb58ca3c1acc5ff25d38452f09dbc18"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 1",
+        "enName": "Javan Pond Heron",
+        "idName": "Blekok Sawah",
+        "latinName": "Ardeola speciosa"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822239,
+          -6.308777
+        ],
+        "type": "Point"
+      },
+      "id": "c1ff4732f00f317143940d1ee87e83cd"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Burung Merak",
+        "enName": "Spotted Dove",
+        "idName": "Tekukur",
+        "latinName": "Spilopelia chinensis"
+      },
+      "geometry": {
+        "coordinates": [
+          106.820393,
+          -6.308829
+        ],
+        "type": "Point"
+      },
+      "id": "c4b6874f7824f9f6134bb6d2c74f8828"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 2",
+        "enName": "Blue Peafowl Albino",
+        "idName": "Merak Biru Albino",
+        "latinName": "Pavo cristatus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822714,
+          -6.308093
+        ],
+        "type": "Point"
+      },
+      "id": "c4d003fa4f7424bfcf76ed3a5455a44d"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 2",
+        "enName": "Green Peafowl",
+        "idName": "Merak Hijau",
+        "latinName": "Pavo muticus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822727,
+          -6.308026
+        ],
+        "type": "Point"
+      },
+      "id": "c7649908d6409d91cdd53180a58e1d84"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Beruang Madu",
+        "enName": "Sun Bear",
+        "idName": "Beruang Madu",
+        "latinName": "Helarctos malayanus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.8221,
+          -6.310444
+        ],
+        "type": "Point"
+      },
+      "id": "c8ac2f87760824cebb4fba4518b15fd5"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Primata 4",
+        "enName": "Muller's Gibbon",
+        "idName": "Owa Kelawat",
+        "latinName": "Hylobates muelleri"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822071,
+          -6.308416
+        ],
+        "type": "Point"
+      },
+      "id": "cb4977b2ddec2192382a622233da0d1f"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Primata 3",
+        "enName": "Silvery Javan Gibbon",
+        "idName": "Owa Jawa",
+        "latinName": "Hylobates moloch"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821904,
+          -6.308079
+        ],
+        "type": "Point"
+      },
+      "id": "ce86b7aae2391c68fc4e550fcadd79e0"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 1",
+        "enName": "Crested Serpent-Eagle",
+        "idName": "Elang Ular Bido",
+        "latinName": "Spilornis cheela"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821867,
+          -6.308642
+        ],
+        "type": "Point"
+      },
+      "id": "cf1b440d276ad81fe03a490663fa6e0e"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Mamalia Kecil",
+        "enName": "Leopard Cat",
+        "idName": "Kucing Hutan",
+        "latinName": "Felis bengalensis"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821831,
+          -6.310052
+        ],
+        "type": "Point"
+      },
+      "id": "cf6b5238e6867d26756c781863621754"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 2",
+        "enName": "Blue Peafowl",
+        "idName": "Merak Biru",
+        "latinName": "Pavo cristatus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822699,
+          -6.308165
+        ],
+        "type": "Point"
+      },
+      "id": "cfb14d94fbeefaccc92349adecaf8c2b"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Mamalia Kecil",
+        "enName": "Small Clawed Otter",
+        "idName": "Linsang / Berang-berang",
+        "latinName": "Aonyx cinereus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821639,
+          -6.310175
+        ],
+        "type": "Point"
+      },
+      "id": "cff0363ba7cddf669fb544de6c1dc207"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Reptilia Terbuka",
+        "enName": "Radiated Snake",
+        "idName": "Ular Sapi",
+        "latinName": "Elaphe radiata"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822845,
+          -6.3077
+        ],
+        "type": "Point"
+      },
+      "id": "cffc240afd5be919628ec7425b677131"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 2",
+        "enName": "Lady Amherst",
+        "idName": "Kuao Lady Amherest",
+        "latinName": "Chrysolophus amherstiae"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822689,
+          -6.308225
+        ],
+        "type": "Point"
+      },
+      "id": "d061cc4c3734aa8711aa3f2b1b842005"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Primata 3",
+        "enName": "Silvered Langur",
+        "idName": "Lutung Perak Kalimantan",
+        "latinName": "Trachypithecus cristatus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821895,
+          -6.308147
+        ],
+        "type": "Point"
+      },
+      "id": "d091c40022afcefeafd6205a86c2417e"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Reptilia Terbuka",
+        "enName": "Gold-Ringed Catsnake",
+        "idName": "Ular Cincin Mas",
+        "latinName": "Boiga dendrophila"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822788,
+          -6.307542
+        ],
+        "type": "Point"
+      },
+      "id": "d25480602475bb2bfb88c021b13a3ef8"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 1",
+        "enName": "Crow",
+        "idName": "Gagak",
+        "latinName": "Corvus corax"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821978,
+          -6.308656
+        ],
+        "type": "Point"
+      },
+      "id": "d3321bb143f7ca2e5914cdbbd682eed4"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Kapibara",
+        "enName": "Capybara",
+        "idName": "Kapibara",
+        "latinName": "Hydrochoerus hydrochaeris"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822146,
+          -6.310032
+        ],
+        "type": "Point"
+      },
+      "id": "d3ab913820720c3d2e4172d8d25de6fd"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Kura-kura",
+        "enName": "Amboina Box Turtle",
+        "idName": "Kura-kura Sawah",
+        "latinName": "Cuora amboinensis"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822579,
+          -6.3097
+        ],
+        "type": "Point"
+      },
+      "id": "d3d086268b591ed172a90a6ec2d2e59d"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Terarium Reptil 1",
+        "enName": "Timor Snake-Necked Turtle",
+        "idName": "Kura-kura Leher Panjang",
+        "latinName": "Chelodina mccordi timorensis"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821485,
+          -6.308043
+        ],
+        "type": "Point"
+      },
+      "id": "d57eb3d1e2b4a4bc3438bfa65b8b116c"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Beruang Madu",
+        "enName": "Musang Luwak",
+        "idName": "Asian Palm Civet",
+        "latinName": "Paradoxurus hermaphroditus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822174,
+          -6.310568
+        ],
+        "type": "Point"
+      },
+      "id": "d5ba8cb2c9558168b7a9c59147a819af"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 1",
+        "enName": "Black Crowned Crane",
+        "idName": "Jenjang Mahkota",
+        "latinName": "Balearica pavonina"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821675,
+          -6.308691
+        ],
+        "type": "Point"
+      },
+      "id": "d612a02c19316bfb7f20d7250f85d647"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 2",
+        "enName": "Golden Pheasant",
+        "idName": "Kuao Emas",
+        "latinName": "Chrysolophus pictus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822666,
+          -6.308347
+        ],
+        "type": "Point"
+      },
+      "id": "d80c045bced1a77d40e143a01e0d29de"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Aquarium",
+        "enName": "Spotted Gar",
+        "idName": "Ikan Aligator",
+        "latinName": "Lepisosteus oculatus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821775,
+          -6.307156
+        ],
+        "type": "Point"
+      },
+      "id": "db31c9dca11961929608cc0a216f4dee"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Terarium Reptil 2",
+        "enName": "Reticulated Python",
+        "idName": "Sanca Kembang",
+        "latinName": "Python reticulatus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821725,
+          -6.307718
+        ],
+        "type": "Point"
+      },
+      "id": "df97762aeb93acd5dd494ecec6f9d21b"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Terarium Reptil 1",
+        "enName": "Alligator Snapping Turtle",
+        "idName": "Kura-kura Purba",
+        "latinName": "Macrochelys temminckii"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821568,
+          -6.308052
+        ],
+        "type": "Point"
+      },
+      "id": "e0e976503a496641cc9255befe0ca98f"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 2",
+        "enName": "Scheepmaker's Crowned Pigeon",
+        "idName": "Dara Mahkota Scheepmakeri",
+        "latinName": "Goura scheepmakeri"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822624,
+          -6.308554
+        ],
+        "type": "Point"
+      },
+      "id": "e8e6dbeb6eac6a2c6bbc4405b4fb4055"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Terarium Reptil 1",
+        "enName": "Amboina Sail-Finned Lizard",
+        "idName": "Soa-soa",
+        "latinName": "Hydrosaurus amboinensis"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821529,
+          -6.308122
+        ],
+        "type": "Point"
+      },
+      "id": "ea1eddaae517c061a8851ca0c1275c95"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Primata 2",
+        "enName": "Silvered Langur",
+        "idName": "Lutung Perak Kalimantan",
+        "latinName": "Trachypithecus cristatus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822225,
+          -6.307922
+        ],
+        "type": "Point"
+      },
+      "id": "eb1c1f29a0546be5dea9154a9b8b2264"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Terarium Reptil 1",
+        "enName": "Blue Tongue Skink",
+        "idName": "Kadal Lidah Biru",
+        "latinName": "Tiliqua gigas"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821515,
+          -6.308149
+        ],
+        "type": "Point"
+      },
+      "id": "ecf0585704bdbf0d530e2614d4741bb8"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 2",
+        "enName": "African Grey Parrot",
+        "idName": "Kakatua Abu Afrika",
+        "latinName": "Psittacus erithacus"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822717,
+          -6.308388
+        ],
+        "type": "Point"
+      },
+      "id": "ed93e0953bce77442a580b69d1a37f16"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Macan",
+        "enName": "Srilankan Leopard",
+        "idName": "Macan Tutul",
+        "latinName": "Panthera pardus kotiya"
+      },
+      "geometry": {
+        "coordinates": [
+          106.82118,
+          -6.30773
+        ],
+        "type": "Point"
+      },
+      "id": "edb9cb905f85e142aa180819d9d31714"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 2",
+        "enName": "Silver Pheasant",
+        "idName": "Kuao Perak",
+        "latinName": "Lophura nycthemera"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822685,
+          -6.308254
+        ],
+        "type": "Point"
+      },
+      "id": "f1538b58f86de8260eb83120938e8cdb"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Aquarium",
+        "enName": "Red Snakehead",
+        "idName": "Gabus Toman",
+        "latinName": "Channa micropeltes"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821749,
+          -6.307201
+        ],
+        "type": "Point"
+      },
+      "id": "f9f68e93ad6a8da5a80f8181c7950e8c"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Terarium Reptil 2",
+        "enName": "Indian Python",
+        "idName": "Sanca Sawah Albino",
+        "latinName": "Python molurus albino"
+      },
+      "geometry": {
+        "coordinates": [
+          106.821703,
+          -6.307748
+        ],
+        "type": "Point"
+      },
+      "id": "fbdd6856da80034ed93634c641f23eff"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Unggas 2",
+        "enName": "Western-Crowned Pigeon",
+        "idName": "Dara Mahkota Cristata",
+        "latinName": "Goura cristata"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822609,
+          -6.308619
+        ],
+        "type": "Point"
+      },
+      "id": "fcd48a7662617e6335c111c988165e45"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cage": "Beruang Madu",
+        "enName": "Binturong",
+        "idName": "Binturong",
+        "latinName": "Artictis binturong"
+      },
+      "geometry": {
+        "coordinates": [
+          106.822248,
+          -6.310439
+        ],
+        "type": "Point"
+      },
+      "id": "fe639c680cd3014edc42f0c1315c16e3"
+    }
+  ],
+  "type": "FeatureCollection"
+}

@@ -71,6 +71,10 @@
 		43FDF1832918031B00DAD0DA /* DetailStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF1822918031B00DAD0DA /* DetailStackView.swift */; };
 		43FDF187291804B700DAD0DA /* DetailInformationLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF186291804B700DAD0DA /* DetailInformationLabel.swift */; };
 		5712371F291027B900FB4F9E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5712371E291027B900FB4F9E /* Settings.bundle */; };
+		575CFD73292B221C002B5D81 /* RouteRecommendationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575CFD72292B221C002B5D81 /* RouteRecommendationViewController.swift */; };
+		575CFD7F292B270F002B5D81 /* RagunanZooFacilities.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 575CFD7C292B270F002B5D81 /* RagunanZooFacilities.geojson */; };
+		575CFD80292B270F002B5D81 /* RagunanZooCages.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 575CFD7D292B270F002B5D81 /* RagunanZooCages.geojson */; };
+		575CFD81292B270F002B5D81 /* RagunanZooAnimals.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 575CFD7E292B270F002B5D81 /* RagunanZooAnimals.geojson */; };
 		57675E5E29234EE7005CB18E /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57675E5D29234EE7005CB18E /* UILabelExtension.swift */; };
 /* End PBXBuildFile section */
 
@@ -158,6 +162,10 @@
 		43FDF1822918031B00DAD0DA /* DetailStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStackView.swift; sourceTree = "<group>"; };
 		43FDF186291804B700DAD0DA /* DetailInformationLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInformationLabel.swift; sourceTree = "<group>"; };
 		5712371E291027B900FB4F9E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		575CFD72292B221C002B5D81 /* RouteRecommendationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteRecommendationViewController.swift; sourceTree = "<group>"; };
+		575CFD7C292B270F002B5D81 /* RagunanZooFacilities.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RagunanZooFacilities.geojson; sourceTree = "<group>"; };
+		575CFD7D292B270F002B5D81 /* RagunanZooCages.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RagunanZooCages.geojson; sourceTree = "<group>"; };
+		575CFD7E292B270F002B5D81 /* RagunanZooAnimals.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RagunanZooAnimals.geojson; sourceTree = "<group>"; };
 		57675E5D29234EE7005CB18E /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -191,6 +199,7 @@
 		429C798D2907896800DF942A /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				575CFD75292B25D8002B5D81 /* JSON */,
 				429C798E29078A2A00DF942A /* Fonts */,
 			);
 			path = Assets;
@@ -333,6 +342,7 @@
 				4373E8F1291175C40016F810 /* SearchViewController.swift */,
 				436A05CC2925DC94003B30BF /* RoutePlanViewController.swift */,
 				42836AF429118B2200301DE5 /* TopBannerViewController.swift */,
+				575CFD72292B221C002B5D81 /* RouteRecommendationViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -419,6 +429,16 @@
 				43FDF186291804B700DAD0DA /* DetailInformationLabel.swift */,
 			);
 			path = AnimalDetailView;
+			sourceTree = "<group>";
+		};
+		575CFD75292B25D8002B5D81 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				575CFD7E292B270F002B5D81 /* RagunanZooAnimals.geojson */,
+				575CFD7D292B270F002B5D81 /* RagunanZooCages.geojson */,
+				575CFD7C292B270F002B5D81 /* RagunanZooFacilities.geojson */,
+			);
+			path = JSON;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -533,10 +553,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				5712371F291027B900FB4F9E /* Settings.bundle in Resources */,
+				575CFD80292B270F002B5D81 /* RagunanZooCages.geojson in Resources */,
 				429C799529078D1700DF942A /* Baloo2-ExtraBold.ttf in Resources */,
 				429C799929078D1700DF942A /* Baloo2-Medium.ttf in Resources */,
+				575CFD7F292B270F002B5D81 /* RagunanZooFacilities.geojson in Resources */,
 				429C799A29078D1700DF942A /* OFL.txt in Resources */,
 				42D12D8C29010F6D00857042 /* Assets.xcassets in Resources */,
+				575CFD81292B270F002B5D81 /* RagunanZooAnimals.geojson in Resources */,
 				429C799829078D1700DF942A /* Baloo2-Regular.ttf in Resources */,
 				429C799729078D1700DF942A /* Baloo2-SemiBold.ttf in Resources */,
 				429C799629078D1700DF942A /* Baloo2-Bold.ttf in Resources */,
@@ -577,6 +600,7 @@
 				4373E8EE2911534D0016F810 /* SearchButton.swift in Sources */,
 				42D12DBF2901B16300857042 /* Animals.swift in Sources */,
 				4373E8F9291363E40016F810 /* Map.swift in Sources */,
+				575CFD73292B221C002B5D81 /* RouteRecommendationViewController.swift in Sources */,
 				42D12D8429010F6C00857042 /* ViewController.swift in Sources */,
 				42D12D8A29010F6C00857042 /* Jeera.xcdatamodeld in Sources */,
 				4371E4512919440E00F3C2C2 /* RecommendationsTableViewCell.swift in Sources */,
