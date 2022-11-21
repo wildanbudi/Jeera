@@ -14,6 +14,14 @@ protocol EndOfRouteViewDelegate: AnyObject {
 class EndOfRouteView: UIView {
 
     lazy var endButton = PrimaryButton()
+    lazy var animalLabel = HeadingLabel()
+    lazy var finishLabel = UILabel()
+    
+    var animalImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
     
     weak var delegate: EndOfRouteViewDelegate?
     
@@ -30,7 +38,7 @@ class EndOfRouteView: UIView {
     }
     
     func addSubViews() {
-        [endButton]
+        [animalImage,finishLabel, animalLabel, endButton]
             .forEach {
                 addSubview($0)
                 $0.translatesAutoresizingMaskIntoConstraints = false
@@ -38,11 +46,25 @@ class EndOfRouteView: UIView {
     }
     
     func setUpViews() {
+        
+        finishLabel.text = "Sampai di"
+        
         endButton.setTitle("Oke!", for: .normal)
         endButton.addTarget(self, action: #selector(onCancelClick), for: .touchUpInside)
     }
     
     func setUpConstraints() {
+        
+        animalImage.centerX(inView: self)
+        animalImage.anchor(
+            top: safeAreaLayoutGuide.topAnchor,
+            paddingTop: 75,
+            width: 200,
+            height: 200)
+        
+        finishLabel.centerX(inView: animalImage, topAnchor: animalImage.bottomAnchor, paddingTop: 14)
+        
+        animalLabel.centerX(inView: animalImage, topAnchor: finishLabel.bottomAnchor, paddingTop: 16)
         
         endButton.anchor(
          bottom: safeAreaLayoutGuide.bottomAnchor,

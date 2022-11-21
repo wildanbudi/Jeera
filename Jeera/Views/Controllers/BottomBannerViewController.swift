@@ -58,11 +58,13 @@ class BottomBannerViewController: ContainerViewController, BottomBarViewDelegate
         // pass updated data to sub-views which also implement `NavigationServiceDelegate`
         bannerView.eta = "\(Int(round(progress.durationRemaining / 60))) menit"
         bannerView.animalName = progress.routeOptions.waypoints[1].name
+        animalName = bannerView.animalName
     }
     
     func navigationService(_ service: NavigationService, didArriveAt waypoint: Waypoint) -> Bool {
         let endRouteVC = EndOfRouteViewController()
-        endRouteVC.modalPresentationStyle = .fullScreen
+        endRouteVC.animalName = animalName!
+        endRouteVC.modalPresentationStyle = .popover
         present(endRouteVC, animated: true)
         
         return false

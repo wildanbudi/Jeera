@@ -9,10 +9,14 @@ import UIKit
 
 class EndOfRouteViewController: UIViewController, EndOfRouteViewDelegate {
     
+    var animalName: String?
+    
     lazy var endRouteView: EndOfRouteView = {
         let view = EndOfRouteView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
+        view.animalImage.image = UIImage(named: "\(animalName!) Icon")
+        view.animalLabel.text = animalName
         return view
     }()
 
@@ -31,7 +35,6 @@ class EndOfRouteViewController: UIViewController, EndOfRouteViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        setupConstraints()
     }
 
     /*
