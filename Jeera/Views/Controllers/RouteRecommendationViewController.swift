@@ -4,55 +4,54 @@
 //
 //  Created by Qhansa D. Bayu on 21/11/22.
 //
-
 import UIKit
 import CoreLocation
 
 class RouteRecommendationViewController: UIViewController {
-    
+
     // Initialize the Codable Result Model as the Global Property
     var cagesJSONResult: CagesJSONResult?
     var animalsJSONResult: AnimalsJSONResult?
-    
+
     // Initialized Global Variables for the RagunanZooAnimals JSON
     var totalAnimals: Int = 143
     let pickAnimals: [String] = ["Merak Hijau", "Siamang", "Flamingo Eropa", "Ular Koros", "Ular Sanca Kembang", "Merak Biru", "Gagak", "Orangutan Kalimantan"]
-    
+
     // Initialized Global Variables for Temporary Animals + Cages to Hold the GeoJSON Data
     var tempAnimalsIdName: [String] = []
     var tempAnimalsCage: [String] = []
     var tempAnimalsLong: [Double] = []
     var tempAnimalsLat: [Double] = []
-    
+
     // Initialized Global Variables for Sorting the Picked Animals
     var sortedAnimalsCage: [String] = []
     var sortedAnimalsIdName: [String] = []
     var sortedAnimalsLong: [Double] = []
     var sortedAnimalsLat: [Double] = []
-    
+
     // Initialized Global Variables for Picked Animals
     var pickAnimalsCage: [String] = []
     var pickAnimalsIdName: [String] = []
     var pickAnimalsLong: [Double] = []
     var pickAnimalsLat: [Double] = []
-    
+
     // Initiate The Core Location Manager
     let locationManager = CLLocationManager()
-    
+
     // Initialize the User's Current Location Longitude & Latitude
     var currentLocationLong: Double = 0.0
     var currentLocationLat: Double = 0.0
-    
+
     // Initialized Global Variables for Temporary Animal Cages to Hold the GeoJSON Data
     var tempCagesIdName: [String] = []
     var tempCagesLong: [Double] = []
     var tempCagesLat: [Double] = []
-    
+
     // Initialized Global Variables for New Animal Cages After The Nearest Orangutan Kalimantan Cage is Chosen
     var newCagesIdName: [String] = []
     var newCagesLong: [Double] = []
     var newCagesLat: [Double] = []
-    
+
     // Initialized Global Variables for Calculating the Distance
     var distanceResult: Double = 0.0
     var sortedCagesDistance: [Double] = []
@@ -74,18 +73,18 @@ class RouteRecommendationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         view.backgroundColor = .systemRed
-        
+
         // Pick the Chosen Animals to be Searched in the Multi Route Recommendation Feature
         chooseTheAnimals()
-        
+
         // Print the User's Current Location Longitude & Latitude
         locationManager.requestWhenInUseAuthorization()
         var currentLocation: CLLocation!
-        
+
         locationManager.startUpdatingLocation()
-        
+
         // Get the User's Current Location Longitude & Latitude if they have given the location permission before with Always
         if (CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
             CLLocationManager.authorizationStatus() == .authorizedAlways) {
@@ -95,33 +94,33 @@ class RouteRecommendationViewController: UIViewController {
             currentLocationLat = currentLocation.coordinate.latitude
             currentLocationDict.append(currentLocationLat)
         }
-        
+
         // Call the ParseJSON Function for the "RagunanZooCages.geojson"
         parseJSON()
-        
+
         // Create a Temporary Animal Cages Array
         createTempCagesPicked()
-        
+
         // Calculate the Nearest Cage Based on the User's Current Location (Based on pickAnimals & pickAnimalsCage)
         var newCurrentLocationDict: [Double] = []
-        
+
         // Check if the "Orangutan Kalimantan" Cage is in the pickAnimalsCage Array
         if pickAnimalsCage.contains("Orangutan Kalimantan") {
             // If yes, Find the Nearest "Orangutan Kalimantan" Cage and Remove the Rest of the Farther Cages
             chooseTheNearestOrangutanKalimantan()
-            
+
             // Use the findNearestCagePickedNew Function to Get the Multi Route Recommendations
             for _ in 0...(newCagesIdName.count - 1) {
                 newCurrentLocationDict = findNearestCagePickedNew(currentLocationDict: currentLocationDict)
             }
         } else {
-            
+
             // Use the findNearestCagePickedTemp Function to Get the Multi Route Recommendations
             for _ in 0...(tempCagesIdName.count - 1) {
                 newCurrentLocationDict = findNearestCagePickedTemp(currentLocationDict: currentLocationDict)
             }
         }
-        
+
         print("=======================================")
         print(" THE MULTI ROUTE RECOMMENDATION RESULT ")
         print("=======================================")
@@ -130,9 +129,9 @@ class RouteRecommendationViewController: UIViewController {
         print("Latitude: \(passedCageLat)")
         print("Jumlah Kandang: \(passedCageIdName.count)")
         print("")
-        
+
     }
-    
+
     // MARK: - PICK THE CHOSEN ANIMALS (DETAILED) AND CONVERT TO THE ANIMAL CAGES ARRAY
     func chooseTheAnimals() {
         // Parse the "RagunanZooAnimals" JSON
@@ -142,25 +141,25 @@ class RouteRecommendationViewController: UIViewController {
         }
         // Add the URL to the file
         let animalsURL = URL(fileURLWithPath: animalsPath)
-        
+
         // Create a Data Advert using Throw (Do-Catch)
         do {
             let animalsJSONData = try Data(contentsOf: animalsURL)
-            
+
             // Parse the jsonData with Codable Model "animalsJSONResult"
             animalsJSONResult = try JSONDecoder().decode(AnimalsJSONResult.self, from: animalsJSONData)
-            
+
         }
         catch {
             print("ERROR: \(error)")
         }
-        
+
         // Create a Temporary Animal Array from the Picked Animals by the User's
         print("")
         print("The Picked Animals: \(pickAnimals)")
         print("The Picked Animals.count: \(pickAnimals.count)")
         print("")
-        
+
         // Get the Data from the RagunanZooAnimals GeoJSON File and Add to the Temporary Animals Array
         for nPickedAnimals in pickAnimals {
             for ii in 0...(totalAnimals - 1){
@@ -169,7 +168,7 @@ class RouteRecommendationViewController: UIViewController {
                     tempAnimalsCage.append(animalsJSONResult?.features[ii].properties.cage ?? "animalsJSONResult?.features[\(ii)].properties.cage Gak Keluar")
                     tempAnimalsLong.append(animalsJSONResult?.features[ii].geometry.coordinates[0] ?? 0.0)
                     tempAnimalsLat.append(animalsJSONResult?.features[ii].geometry.coordinates[1] ?? 0.0)
-                    
+
                     // Sort the Temporary Animals that are in the Same Cage
                     if !sortedAnimalsIdName.contains(animalsJSONResult?.features[ii].properties.idName ?? "animalsJSONResult?.features[\(ii)].properties.idName Gak Keluar") {
                         sortedAnimalsCage.append(animalsJSONResult?.features[ii].properties.cage ?? "animalsJSONResult?.features[\(ii)].properties.cage Gak Keluar")
@@ -185,7 +184,7 @@ class RouteRecommendationViewController: UIViewController {
                 }
             }
         }
-        
+
         // DEBUGGING: PRINT THE TEMPORARY ANIMALS ARRAY
         print("-------------------------------------------------------")
         print("   FIND THE AVAILABLE CAGES FOR THE SPECIFIC ANIMALS   ")
@@ -196,7 +195,7 @@ class RouteRecommendationViewController: UIViewController {
         print("tempAnimalsLat: \(tempAnimalsLat)")
         print("tempAnimalsIdName.count: \(tempAnimalsIdName.count)")
         print("")
-        
+
         // DEBUGGING: PRINT THE SORTED ANIMALS ARRAY
         print("------------------------------------------------------------------------------")
         print("   SORT THE ANIMAL ARRAY BASED ON WHICH CAGES THAT HAS MORE DETAILED ANIMALS  ")
@@ -207,7 +206,7 @@ class RouteRecommendationViewController: UIViewController {
         print("sortedAnimalsLat: \(sortedAnimalsLat)")
         print("sortedAnimalsIdName.count: \(sortedAnimalsIdName.count)")
         print("")
-        
+
         // Merge the Picked Animals that are in the Same Cage to pickAnimalsCage
         for nAnimal in sortedAnimalsIdName {
             for ii in 0...(sortedAnimalsIdName.count - 1) {
@@ -225,7 +224,7 @@ class RouteRecommendationViewController: UIViewController {
                 }
             }
         }
-        
+
         // DEBUGGING: PRINT THE PICKED ANIMALS CAGE ARRAY BEFORE RUNNING IT ON THE GREEDY ALGORITHMS
         print("--------------------------------------------------------------")
         print("   THE FINAL CAGE LIST BEFORE RUNNING THE GREEDY ALGORITHMS   ")
@@ -233,9 +232,9 @@ class RouteRecommendationViewController: UIViewController {
         print("pickAnimalsCage: \(pickAnimalsCage)")
         print("pickAnimalsCage.count: \(pickAnimalsCage.count)")
         print("")
-        
+
     }
-    
+
     // MARK: - PARSE THE "RAGUNAN ZOO CAGES" JSON FUNCTION
     // Source: www.youtube.com/watch?v=g0kOJk4hTnY
     private func parseJSON() {
@@ -246,11 +245,11 @@ class RouteRecommendationViewController: UIViewController {
         }
         // Add the URL to the file
         let url = URL(fileURLWithPath: path)
-        
+
         // Create a Data Advert using Throw (Do-Catch)
         do {
             let jsonData = try Data(contentsOf: url)
-            
+
             // Parse the jsonData with Codable Model "Result"
             cagesJSONResult = try JSONDecoder().decode(CagesJSONResult.self, from: jsonData)
         }
@@ -258,7 +257,7 @@ class RouteRecommendationViewController: UIViewController {
             print("ERROR: \(error)")
         }
     }
-    
+
     // MARK: - CREATE A TEMPORARY ANIMAL CAGES ARRAY (PICKED ANIMALS)
     func createTempCagesPicked() {
         // Get the Data from the GeoJSON File and Add to the Temporary Cages Array with Picked Animals
@@ -272,7 +271,7 @@ class RouteRecommendationViewController: UIViewController {
             }
         }
     }
-    
+
     // MARK: - FIND THE NEAREST ORANGUTAN KALIMANTAN CAGE AND REMOVE THE REST
     func chooseTheNearestOrangutanKalimantan() {
         // Initialize the Local Variables
@@ -287,13 +286,13 @@ class RouteRecommendationViewController: UIViewController {
         var nearestOrangutanKalimantanCageIdName: String = ""
         var nearestOrangutanKalimantanCageLong: Double = 0.0
         var nearestOrangutanKalimantanCageLat: Double = 0.0
-        
+
         for ii in 0...(tempCagesIdName.count - 1){
             // Check if we find the Orangutan Kalimantan Cage in the Cages Array
             if tempCagesIdName[ii] == "Orangutan Kalimantan" {
                 // Calculate the Distance between the User's Current Location with the Orangutan Kalimantan Cage
                 tempOrangutanKalimantanDistance = sqrt(pow((currentLocationLong - tempCagesLong[ii]), 2) + pow((currentLocationLat - tempCagesLat[ii]), 2))*1000
-                
+
                 // Sort the Nearest Orangutan Kalimantan Cage with the User's Current Location
                 if tempOrangutanKalimantanDistance < sortedOrangutanKalimantanDistance.first ?? 0.0 {
                     sortedOrangutanKalimantanID.insert(ii, at: 0)
@@ -319,7 +318,7 @@ class RouteRecommendationViewController: UIViewController {
                         }
                     }
                 }
-                
+
                 // Save the Nearest Cage to some Variables
                 nearestOrangutanKalimantanCageID = sortedOrangutanKalimantanID[0]
                 nearestOrangutanKalimantanDistance = sortedOrangutanKalimantanDistance[0]
@@ -333,14 +332,14 @@ class RouteRecommendationViewController: UIViewController {
                 newCagesLat.append(tempCagesLat[ii])
             }
         }
-        
+
         // Add the Nearest Orangutan Kalimantan Cage to the New Animal Cages Array
         newCagesIdName.append(nearestOrangutanKalimantanCageIdName)
         newCagesLong.append(nearestOrangutanKalimantanCageLong)
         newCagesLat.append(nearestOrangutanKalimantanCageLat)
-        
+
     }
-    
+
     // MARK: - FIND NEARST CAGE FUNCTION USING THE NEW ANIMAL CAGES ARRAY (PICKED + TEMP)
     // Calculate the Distance Between the User's Current Location to the Picked Cages (No Orangutan Kalimantan Filter)
     func findNearestCagePickedTemp(currentLocationDict: [Double]) -> [Double] {
@@ -349,13 +348,13 @@ class RouteRecommendationViewController: UIViewController {
         sortedCagesDistance.removeAll()
         sortedCagesLong.removeAll()
         sortedCagesLat.removeAll()
-        
+
         for ii in 0...(tempCagesIdName.count - 1){
             // Make sure the newCagesIdName.count != 0
             if tempCagesIdName.count != 0 {
                 // Use the Temporary Cages Array
                 distanceResult = sqrt(pow((currentLocationLong - tempCagesLong[ii]), 2) + pow((currentLocationLat - tempCagesLat[ii]), 2))*1000
-                
+
                 // Sort the Distance from Nearest to Farthest from the User's Current Location in an Array
                 if distanceResult < sortedCagesDistance.first ?? 0.0 {
                     sortedCagesID.insert(ii, at: 0)
@@ -383,34 +382,34 @@ class RouteRecommendationViewController: UIViewController {
                 }
             }
         }
-        
+
         // Save the Nearest Cage to some Variables
         nearestCageID = sortedCagesID[0]
         nearestDistance = sortedCagesDistance[0]
         nearestCageIdName = sortedCagesIdName[0]
         nearestCageLong = sortedCagesLong[0]
         nearestCageLat = sortedCagesLat[0]
-        
+
         // Update the Current Location Longitude & Latitude with the Last Visited Cage
         currentLocationLong = tempCagesLong[nearestCageID]
         currentLocationLat = tempCagesLat[nearestCageID]
         self.currentLocationDict.removeAll()
         self.currentLocationDict.append(currentLocationLong)
         self.currentLocationDict.append(currentLocationLat)
-        
+
         // Save the Passed Cages ID, IdName, Longitude, and Latitude
         passedCageIdName.append(nearestCageIdName)
         passedCageLong.append(nearestCageLong)
         passedCageLat.append(nearestCageLat)
-        
+
         // Remove the Nearest Cage from the Temporary Cages Array (Old)
         tempCagesIdName.remove(at: nearestCageID)
         tempCagesLong.remove(at: nearestCageID)
         tempCagesLat.remove(at: nearestCageID)
-        
+
         return self.currentLocationDict
     }
-    
+
     // MARK: - FIND NEARST CAGE FUNCTION USING THE NEW ANIMAL CAGES ARRAY (PICKED + NEW)
     // Calculate the Distance Between the User's Current Location to the Picked Cages (After Orangutan Kalimantan Filter)
     func findNearestCagePickedNew(currentLocationDict: [Double]) -> [Double] {
@@ -419,13 +418,13 @@ class RouteRecommendationViewController: UIViewController {
         sortedCagesDistance.removeAll()
         sortedCagesLong.removeAll()
         sortedCagesLat.removeAll()
-        
+
         for ii in 0...(newCagesIdName.count - 1){
             // Make sure the newCagesIdName.count != 0
             if newCagesIdName.count != 0 {
                 // Use the New Temporary Cages Array
                 distanceResult = sqrt(pow((currentLocationLong - newCagesLong[ii]), 2) + pow((currentLocationLat - newCagesLat[ii]), 2))*1000
-                
+
                 // Sort the Distance from Nearest to Farthest from the User's Current Location in an Array
                 if distanceResult < sortedCagesDistance.first ?? 0.0 {
                     sortedCagesID.insert(ii, at: 0)
@@ -453,31 +452,80 @@ class RouteRecommendationViewController: UIViewController {
                 }
             }
         }
-        
+
         // Save the Nearest Cage to some Variables
         nearestCageID = sortedCagesID[0]
         nearestDistance = sortedCagesDistance[0]
         nearestCageIdName = sortedCagesIdName[0]
         nearestCageLong = sortedCagesLong[0]
         nearestCageLat = sortedCagesLat[0]
-        
+
         // Update the Current Location Longitude & Latitude with the Last Visited Cage
         currentLocationLong = newCagesLong[nearestCageID]
         currentLocationLat = newCagesLat[nearestCageID]
         self.currentLocationDict.removeAll()
         self.currentLocationDict.append(currentLocationLong)
         self.currentLocationDict.append(currentLocationLat)
-        
+
         // Save the Passed Cages ID, IdName, Longitude, and Latitude
         passedCageIdName.append(nearestCageIdName)
         passedCageLong.append(nearestCageLong)
         passedCageLat.append(nearestCageLat)
-        
+
         // Remove the Nearest Cage from the New Temporary Cages Array (New)
         newCagesIdName.remove(at: nearestCageID)
         newCagesLong.remove(at: nearestCageID)
         newCagesLat.remove(at: nearestCageID)
-        
+
         return self.currentLocationDict
     }
+}
+
+// MARK: - Create a Model that represents whatever the structure of the "RagunanZooAnimals" JSON File (Array of Objects)
+// RagunanZooAnimals JSON
+struct AnimalsJSONResult: Codable {
+    let features: [AnimalsJSONResultItem]
+    let type: String
+}
+
+// RagunanZooAnimals Feature
+struct AnimalsJSONResultItem: Codable {
+    let type: String
+    let properties: AnimalsProperties
+    let geometry: Geometry
+    let id: String
+}
+
+// RagunanZooAnimals Properties
+struct AnimalsProperties: Codable {
+    let enName, idName, latinName: String
+    let cage: String
+}
+
+// MARK: - Create a Model that represents whatever the structure of the "RagunanZooCages" JSON File (Array of Objects)
+// RagunanZooCages JSON
+struct CagesJSONResult: Codable {
+    let features: [CagesJSONResultItem]
+    let type: String
+}
+
+// RagunanZooCages Feature
+struct CagesJSONResultItem: Codable {
+    let type: String
+    let properties: CagesProperties
+    let geometry: Geometry
+    let id: String
+}
+
+// RagunanZooCages Properties
+struct CagesProperties: Codable {
+    let idName, enName: String
+    let type: String
+    let clusterName: String
+}
+
+// Geometry
+struct Geometry: Codable {
+    let coordinates: [Double]
+    let type: String
 }

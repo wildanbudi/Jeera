@@ -100,9 +100,9 @@ class RoutePlanViewController: UIViewController, UITableViewDelegate {
 //            let isLastIndex = i+1 == animalsChoice.count
 //            getRouteInformation(choiceIdx: i, targetCoordinate: CLLocationCoordinate2D(latitude: animal.lat, longitude: animal.long), isLastIndex: isLastIndex)
         }
-        var multiDestinationAlgorithm = MultiDestinationAlgorithm()
-        multiDestinationAlgorithm.pickAnimals = pickAnimals
-        multiDestinationAlgorithm.currentLocation = userLocation
+//        var multiDestinationAlgorithm = MultiDestinationAlgorithm()
+//        multiDestinationAlgorithm.pickAnimals = pickAnimals
+//        multiDestinationAlgorithm.currentLocation = userLocation
     }
     
     lazy var buttonContainer: UIView = {
