@@ -37,12 +37,14 @@ class MainViewController: UIViewController {
     lazy var outsideAreaAlert = UIAlertController.outsideArea()
     lazy var container = UIView()
     lazy var buttonRoute = UIButton(type: .custom)
+    lazy var invisibleLoadingView = InvisibleLoadingView(frame: view.frame)
     
     var timer = Timer()
     var isButtonLocationOffClick = false
     var isSearch = false
     var isOnJourneyClick = false
     var animalDetailViewController: AnimalDetailViewController!
+    var routePlanViewController: RoutePlanViewController!
     
     private(set) static var instance: MainViewController!
     private(set) static var isOutsideArea = false
@@ -155,6 +157,8 @@ class MainViewController: UIViewController {
     }
     
     @objc private func searchButtonClick(_ sender: UIButton) {
+        invisibleLoadingView.tag = 9
+        view.addSubview(invisibleLoadingView)
         if userLocation != nil {
             isSearch = true
             let facilities = facilitiesData
@@ -170,6 +174,7 @@ class MainViewController: UIViewController {
             searchViewController.animalsData = self.animalsData
             searchViewController.facilitiesData = self.facilitiesData
             searchViewController.userLocation = self.userLocation
+            self.removeSubview(tag: 9)
             self.present(searchViewController, animated: true, completion: nil)
         }
     }
@@ -199,6 +204,7 @@ class MainViewController: UIViewController {
                             searchViewController.animalsData = self.animalsData
                             searchViewController.facilitiesData = self.facilitiesData
                             searchViewController.userLocation = self.userLocation
+                            self.removeSubview(tag: 9)
                             self.present(searchViewController, animated: true, completion: nil)
                             self.isSearch = false
                         }
@@ -534,22 +540,54 @@ class MainViewController: UIViewController {
                     MainViewController.isOutsideArea = true
                     if AnimalDetailViewController.isOnJourneyClick {
                         self.animalDetailViewController.userLocation = self.userLocation
+                    } else if RoutePlanViewController.isOnMultiJourneyClick {
+                        self.routePlanViewController.userLocation = self.userLocation
                     } else {
                         self.present(self.outsideAreaAlert, animated: true)
                     }
                 } else {
+                    self.view.addSubview(self.centerLocationButton)
+                    self.centerLocationButton.anchor(
+                        top: self.searchButton.bottomAnchor,
+                        right: self.view.rightAnchor,
+                        paddingTop: 10,
+                        paddingRight: 16,
+                        width: self.view.bounds.height * (45 / 844),
+                        height: self.view.bounds.height * (45 / 844)
+                    )
                     if AnimalDetailViewController.isOnJourneyClick {
                         self.animalDetailViewController.userLocation = self.userLocation
                         self.removeSubview(tag: 7)
-                        self.view.addSubview(self.centerLocationButton)
-                        self.centerLocationButton.anchor(
-                            top: self.searchButton.bottomAnchor,
+//                        self.view.addSubview(self.centerLocationButton)
+//                        self.centerLocationButton.anchor(
+//                            top: self.searchButton.bottomAnchor,
+//                            right: self.view.rightAnchor,
+//                            paddingTop: 10,
+//                            paddingRight: 16,
+//                            width: self.view.bounds.height * (45 / 844),
+//                            height: self.view.bounds.height * (45 / 844)
+//                        )
+                        self.view.addSubview(self.buttonRoute)
+                        self.buttonRoute.anchor(
+                            top: self.centerLocationButton.bottomAnchor,
                             right: self.view.rightAnchor,
                             paddingTop: 10,
                             paddingRight: 16,
                             width: self.view.bounds.height * (45 / 844),
                             height: self.view.bounds.height * (45 / 844)
                         )
+                    } else if RoutePlanViewController.isOnMultiJourneyClick {
+                        self.routePlanViewController.userLocation = self.userLocation
+                        self.removeSubview(tag: 7)
+//                        self.view.addSubview(self.centerLocationButton)
+//                        self.centerLocationButton.anchor(
+//                            top: self.searchButton.bottomAnchor,
+//                            right: self.view.rightAnchor,
+//                            paddingTop: 10,
+//                            paddingRight: 16,
+//                            width: self.view.bounds.height * (45 / 844),
+//                            height: self.view.bounds.height * (45 / 844)
+//                        )
                         self.view.addSubview(self.buttonRoute)
                         self.buttonRoute.anchor(
                             top: self.centerLocationButton.bottomAnchor,
@@ -562,15 +600,15 @@ class MainViewController: UIViewController {
                     }
                     if self.isButtonLocationOffClick {
                         self.removeSubview(tag: 7)
-                        self.view.addSubview(self.centerLocationButton)
-                        self.centerLocationButton.anchor(
-                            top: self.searchButton.bottomAnchor,
-                            right: self.view.rightAnchor,
-                            paddingTop: 10,
-                            paddingRight: 16,
-                            width: self.view.bounds.height * (45 / 844),
-                            height: self.view.bounds.height * (45 / 844)
-                        )
+//                        self.view.addSubview(self.centerLocationButton)
+//                        self.centerLocationButton.anchor(
+//                            top: self.searchButton.bottomAnchor,
+//                            right: self.view.rightAnchor,
+//                            paddingTop: 10,
+//                            paddingRight: 16,
+//                            width: self.view.bounds.height * (45 / 844),
+//                            height: self.view.bounds.height * (45 / 844)
+//                        )
                         self.view.addSubview(self.buttonRoute)
                         self.buttonRoute.anchor(
                             top: self.centerLocationButton.bottomAnchor,
@@ -797,6 +835,16 @@ class MainViewController: UIViewController {
     
     // Objective-C Function for the buttonClosePopUp Action
     @objc func buttonClosePopUpAction() {
+        if !MainViewController.isOutsideArea && userLocation != nil {
+            self.removeSubview(tag: 7)
+            view.addSubview(buttonRoute)
+            NSLayoutConstraint.activate([
+                buttonRoute.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
+                buttonRoute.topAnchor.constraint(equalTo: centerLocationButton.bottomAnchor, constant: 10),
+                buttonRoute.widthAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
+                buttonRoute.heightAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
+            ])
+        }
 //        print("THE USER CLOSE THE POP UP")
         
         // Animate Out the Pop-Up Route + Spring Animation
@@ -820,8 +868,9 @@ class MainViewController: UIViewController {
     
     // Objective-C Function for the createRoute Action
     @objc func createRouteAction(_ button: UIButton) {
-        let routePlanViewController = RoutePlanViewController()
+        routePlanViewController = RoutePlanViewController()
         routePlanViewController.modalPresentationStyle = .formSheet
+        routePlanViewController.userLocation = self.userLocation
         routePlanViewController.animalsData = self.animalsData
         self.present(routePlanViewController, animated: true, completion: nil)
     }

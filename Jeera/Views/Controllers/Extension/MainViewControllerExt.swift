@@ -74,7 +74,7 @@ extension MainViewController: CLLocationManagerDelegate {
         if ((manager.location?.coordinate) != nil) {
             setupUserLocation()
             userLocation = manager.location!.coordinate
-            if self.view.viewWithTag(3) == nil || AnimalDetailViewController.isOnJourneyClick {
+            if self.view.viewWithTag(3) == nil || AnimalDetailViewController.isOnJourneyClick || RoutePlanViewController.isOnMultiJourneyClick {
                 getRouteInformation()
             }
         }
