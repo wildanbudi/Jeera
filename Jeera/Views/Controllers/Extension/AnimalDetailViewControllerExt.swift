@@ -9,6 +9,7 @@ import Foundation
 import MapboxDirections
 import MapboxCoreNavigation
 import MapboxNavigation
+import MapboxMaps
 import CoreLocation
 
 extension AnimalDetailViewController {
@@ -58,6 +59,7 @@ extension AnimalDetailViewController {
                     bottomBanner.view.heightAnchor.constraint(equalToConstant: bannerHeight).isActive = true
                     
                     navigationViewController.modalPresentationStyle = .fullScreen
+                    navigationViewController.delegate = self
                     
                     strongSelf.present(navigationViewController, animated: true, completion: nil)
                     navigationViewController.floatingButtons = []
@@ -70,5 +72,25 @@ extension AnimalDetailViewController {
             self.present(outsideAreaAlert, animated: true)
 //            timer.invalidate()
         }
+    }
+}
+
+extension AnimalDetailViewController: NavigationViewControllerDelegate {
+    func navigationViewController(_ navigationViewController: NavigationViewController,
+                                  didAdd finalDestinationAnnotation: PointAnnotation,
+                                  pointAnnotationManager: PointAnnotationManager) {
+        var finalDestinationAnnotation = finalDestinationAnnotation
+        if let image = UIImage(named: "\(detailData["clusterName"]!.rawValue) Active") {
+            finalDestinationAnnotation.image = .init(image: image, name: "\(detailData["clusterName"]!.rawValue) Active")
+        } else {
+            let image = UIImage(named: "default_marker", in: .mapboxNavigation, compatibleWith: nil)!
+            finalDestinationAnnotation.image = .init(image: image, name: "marker")
+        }
+        
+        pointAnnotationManager.annotations = [finalDestinationAnnotation]
+    }
+    
+    func navigationViewControllerDidDismiss(_ navigationViewController: NavigationViewController, byCanceling canceled: Bool) {
+        dismiss(animated: true)
     }
 }

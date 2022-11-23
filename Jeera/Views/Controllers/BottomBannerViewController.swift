@@ -23,6 +23,7 @@ class BottomBannerViewController: ContainerViewController, BottomBarViewDelegate
     lazy var bannerView: BottomBarView = {
         let banner = BottomBarView()
         banner.translatesAutoresizingMaskIntoConstraints = false
+        banner.layer.cornerRadius = 20
         banner.delegate = self
         return banner
     }()
@@ -58,14 +59,35 @@ class BottomBannerViewController: ContainerViewController, BottomBarViewDelegate
         // pass updated data to sub-views which also implement `NavigationServiceDelegate`
         bannerView.eta = "\(Int(round(progress.durationRemaining / 60))) menit"
         bannerView.animalName = progress.routeOptions.waypoints[1].name
+        animalName = bannerView.animalName
+    }
+    
+    func navigationService(_ service: NavigationService, didArriveAt waypoint: Waypoint) -> Bool {
+        let endRouteVC = EndOfRouteViewController()
+        endRouteVC.animalName = animalName!
+        endRouteVC.modalPresentationStyle = .popover
+        present(endRouteVC, animated: true)
+        
+        return false
     }
     
     // MARK: - CustomBottomBannerViewDelegate implementation
     
     func customBottomBannerDidCancel(_ banner: BottomBarView) {
-        navigationViewController?.dismiss(animated: true)
-        animalDetailViewController?.dismiss(animated: true)
-        mainViewController?.dismiss(animated: true)
-        routePlanViewController?.dismiss(animated: true)
+        self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
     }
 }
+
+#if DEBUG
+import SwiftUI
+
+@available(iOS 13, *)
+struct BottomBannerViewController_Preview: PreviewProvider {
+    static var previews: some View {
+        // view controller using programmatic UI
+        Group {
+            BottomBannerViewController().showPreview().previewInterfaceOrientation(.portrait)
+        }
+    }
+}
+#endif
