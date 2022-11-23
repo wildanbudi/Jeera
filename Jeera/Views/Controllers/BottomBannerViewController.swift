@@ -16,6 +16,7 @@ class BottomBannerViewController: ContainerViewController, BottomBarViewDelegate
     var animalName: String?
     weak var animalDetailViewController: AnimalDetailViewController?
     weak var mainViewController: MainViewController?
+    weak var routePlanViewController: RoutePlanViewController?
     weak var navigationViewController: NavigationViewController?
     
     // Or you can implement your own UI elements

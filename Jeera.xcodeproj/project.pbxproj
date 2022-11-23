@@ -41,6 +41,7 @@
 		4312457B290ABEF6003F7AB9 /* AnimalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4312457A290ABEF6003F7AB9 /* AnimalDetailViewController.swift */; };
 		43133068291EB23C0097A850 /* AnimalsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43133067291EB23C0097A850 /* AnimalsListViewController.swift */; };
 		4313306A291EC0910097A850 /* LoadingScreenUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43133069291EC0910097A850 /* LoadingScreenUIView.swift */; };
+		435EBE7E292BCA90007F174F /* InvisibleLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435EBE7D292BCA90007F174F /* InvisibleLoadingView.swift */; };
 		436A05CB29253A6A003B30BF /* UIAlertControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436A05CA29253A6A003B30BF /* UIAlertControllerExtension.swift */; };
 		436A05CD2925DC94003B30BF /* RoutePlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436A05CC2925DC94003B30BF /* RoutePlanViewController.swift */; };
 		436A05CF29269163003B30BF /* EmptySearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436A05CE29269163003B30BF /* EmptySearchResultView.swift */; };
@@ -73,6 +74,7 @@
 		43FDF1832918031B00DAD0DA /* DetailStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF1822918031B00DAD0DA /* DetailStackView.swift */; };
 		43FDF187291804B700DAD0DA /* DetailInformationLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FDF186291804B700DAD0DA /* DetailInformationLabel.swift */; };
 		5712371F291027B900FB4F9E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5712371E291027B900FB4F9E /* Settings.bundle */; };
+		57675E5E29234EE7005CB18E /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57675E5D29234EE7005CB18E /* UILabelExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +131,7 @@
 		4312457A290ABEF6003F7AB9 /* AnimalDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalDetailViewController.swift; sourceTree = "<group>"; };
 		43133067291EB23C0097A850 /* AnimalsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalsListViewController.swift; sourceTree = "<group>"; };
 		43133069291EC0910097A850 /* LoadingScreenUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenUIView.swift; sourceTree = "<group>"; };
+		435EBE7D292BCA90007F174F /* InvisibleLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvisibleLoadingView.swift; sourceTree = "<group>"; };
 		436A05CA29253A6A003B30BF /* UIAlertControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtension.swift; sourceTree = "<group>"; };
 		436A05CC2925DC94003B30BF /* RoutePlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePlanViewController.swift; sourceTree = "<group>"; };
 		436A05CE29269163003B30BF /* EmptySearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySearchResultView.swift; sourceTree = "<group>"; };
@@ -161,6 +164,7 @@
 		43FDF1822918031B00DAD0DA /* DetailStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStackView.swift; sourceTree = "<group>"; };
 		43FDF186291804B700DAD0DA /* DetailInformationLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInformationLabel.swift; sourceTree = "<group>"; };
 		5712371E291027B900FB4F9E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		57675E5D29234EE7005CB18E /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -311,6 +315,7 @@
 				439F90F6291B567500320C17 /* OutlinedButton.swift */,
 				42836AEE29117D1900301DE5 /* HeadingLabel.swift */,
 				42836AF029117D3A00301DE5 /* CaptionLabel.swift */,
+				435EBE7D292BCA90007F174F /* InvisibleLoadingView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -360,6 +365,7 @@
 				4373E8E3291016000016F810 /* UIImageExtension.swift */,
 				4373E8E52910C4BB0016F810 /* UIButtonExtension.swift */,
 				436A05CA29253A6A003B30BF /* UIAlertControllerExtension.swift */,
+				57675E5D29234EE7005CB18E /* UILabelExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -597,6 +603,8 @@
 				42836AED29117C1900301DE5 /* BottomBarView.swift in Sources */,
 				42836AE929116EDC00301DE5 /* UIViewControllerExtension.swift in Sources */,
 				4373E8E4291016000016F810 /* UIImageExtension.swift in Sources */,
+				57675E5E29234EE7005CB18E /* UILabelExtension.swift in Sources */,
+				435EBE7E292BCA90007F174F /* InvisibleLoadingView.swift in Sources */,
 				42D2B3F6290595ED002818A9 /* BottomBannerViewController.swift in Sources */,
 				4373E8F62912C4A60016F810 /* Cages.swift in Sources */,
 				43FDF17F291800BA00DAD0DA /* BackButton.swift in Sources */,

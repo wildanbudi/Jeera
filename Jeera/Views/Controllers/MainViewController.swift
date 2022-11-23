@@ -35,12 +35,16 @@ class MainViewController: UIViewController {
         return button
     }()
     lazy var outsideAreaAlert = UIAlertController.outsideArea()
+    lazy var container = UIView()
+    lazy var buttonRoute = UIButton(type: .custom)
+    lazy var invisibleLoadingView = InvisibleLoadingView(frame: view.frame)
     
     var timer = Timer()
     var isButtonLocationOffClick = false
     var isSearch = false
     var isOnJourneyClick = false
     var animalDetailViewController: AnimalDetailViewController!
+    var routePlanViewController: RoutePlanViewController!
     
     private(set) static var instance: MainViewController!
     private(set) static var isOutsideArea = false
@@ -57,9 +61,12 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         setupMapView()
         segmentedBackground()
+        locationOffButton()
         customSegmentedControl()
         setupSearchBtn()
         setupConstraint()
+        popUpRute()
+        routeButton()
         setupSplashScreen()
         MainViewController.instance = self
         
@@ -150,6 +157,8 @@ class MainViewController: UIViewController {
     }
     
     @objc private func searchButtonClick(_ sender: UIButton) {
+        invisibleLoadingView.tag = 9
+        view.addSubview(invisibleLoadingView)
         if userLocation != nil {
             isSearch = true
             let facilities = facilitiesData
@@ -165,6 +174,7 @@ class MainViewController: UIViewController {
             searchViewController.animalsData = self.animalsData
             searchViewController.facilitiesData = self.facilitiesData
             searchViewController.userLocation = self.userLocation
+            self.removeSubview(tag: 9)
             self.present(searchViewController, animated: true, completion: nil)
         }
     }
@@ -194,6 +204,7 @@ class MainViewController: UIViewController {
                             searchViewController.animalsData = self.animalsData
                             searchViewController.facilitiesData = self.facilitiesData
                             searchViewController.userLocation = self.userLocation
+                            self.removeSubview(tag: 9)
                             self.present(searchViewController, animated: true, completion: nil)
                             self.isSearch = false
                         }
@@ -204,22 +215,18 @@ class MainViewController: UIViewController {
                 if isLastIndex {
                     self.removeSubview(tag: 3)
                     getRouteInformation()
-//                    view.addSubview(centerLocationButton)
-//                    centerLocationButton.anchor(
-//                        top: searchButton.bottomAnchor,
-//                        right: view.rightAnchor,
-//                        paddingTop: 10,
-//                        paddingRight: 16,
-//                        width: view.bounds.height * (45 / 844),
-//                        height: view.bounds.height * (45 / 844)
-//                    )
                 }
             }
         } else {
             appendAnnotationData(typeFeature: typeFeature, parsedFeature: parsedFeature, locationCoordinate: locationCoordinate)
             if isLastIndex {
                 self.removeSubview(tag: 3)
-                self.locationOffButton()
+                NSLayoutConstraint.activate([
+                    self.buttonRoute.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
+                    self.buttonRoute.topAnchor.constraint(equalTo: self.searchButton.bottomAnchor, constant: 10),
+                    self.buttonRoute.widthAnchor.constraint(equalToConstant: self.view.bounds.height * (45 / 844)),
+                    self.buttonRoute.heightAnchor.constraint(equalToConstant: self.view.bounds.height * (45 / 844)),
+                ])
             }
         }
     }
@@ -343,6 +350,9 @@ class MainViewController: UIViewController {
     }
     
     func showOverview() {
+        if self.view.viewWithTag(8) != nil {
+            buttonClosePopUpAction()
+        }
         let type = annotationData["type"]!.rawValue as? String
         lazy var overviewCardView: OverviewCardView = {
             let oVview = OverviewCardView()
@@ -530,15 +540,57 @@ class MainViewController: UIViewController {
                     MainViewController.isOutsideArea = true
                     if AnimalDetailViewController.isOnJourneyClick {
                         self.animalDetailViewController.userLocation = self.userLocation
+                    } else if RoutePlanViewController.isOnMultiJourneyClick {
+                        self.routePlanViewController.userLocation = self.userLocation
                     } else {
                         self.present(self.outsideAreaAlert, animated: true)
                     }
                 } else {
+                    self.view.addSubview(self.centerLocationButton)
+                    self.centerLocationButton.anchor(
+                        top: self.searchButton.bottomAnchor,
+                        right: self.view.rightAnchor,
+                        paddingTop: 10,
+                        paddingRight: 16,
+                        width: self.view.bounds.height * (45 / 844),
+                        height: self.view.bounds.height * (45 / 844)
+                    )
                     if AnimalDetailViewController.isOnJourneyClick {
                         self.animalDetailViewController.userLocation = self.userLocation
-                        self.view.addSubview(self.centerLocationButton)
-                        self.centerLocationButton.anchor(
-                            top: self.searchButton.bottomAnchor,
+                        self.removeSubview(tag: 7)
+//                        self.view.addSubview(self.centerLocationButton)
+//                        self.centerLocationButton.anchor(
+//                            top: self.searchButton.bottomAnchor,
+//                            right: self.view.rightAnchor,
+//                            paddingTop: 10,
+//                            paddingRight: 16,
+//                            width: self.view.bounds.height * (45 / 844),
+//                            height: self.view.bounds.height * (45 / 844)
+//                        )
+                        self.view.addSubview(self.buttonRoute)
+                        self.buttonRoute.anchor(
+                            top: self.centerLocationButton.bottomAnchor,
+                            right: self.view.rightAnchor,
+                            paddingTop: 10,
+                            paddingRight: 16,
+                            width: self.view.bounds.height * (45 / 844),
+                            height: self.view.bounds.height * (45 / 844)
+                        )
+                    } else if RoutePlanViewController.isOnMultiJourneyClick {
+                        self.routePlanViewController.userLocation = self.userLocation
+                        self.removeSubview(tag: 7)
+//                        self.view.addSubview(self.centerLocationButton)
+//                        self.centerLocationButton.anchor(
+//                            top: self.searchButton.bottomAnchor,
+//                            right: self.view.rightAnchor,
+//                            paddingTop: 10,
+//                            paddingRight: 16,
+//                            width: self.view.bounds.height * (45 / 844),
+//                            height: self.view.bounds.height * (45 / 844)
+//                        )
+                        self.view.addSubview(self.buttonRoute)
+                        self.buttonRoute.anchor(
+                            top: self.centerLocationButton.bottomAnchor,
                             right: self.view.rightAnchor,
                             paddingTop: 10,
                             paddingRight: 16,
@@ -547,9 +599,19 @@ class MainViewController: UIViewController {
                         )
                     }
                     if self.isButtonLocationOffClick {
-                        self.view.addSubview(self.centerLocationButton)
-                        self.centerLocationButton.anchor(
-                            top: self.searchButton.bottomAnchor,
+                        self.removeSubview(tag: 7)
+//                        self.view.addSubview(self.centerLocationButton)
+//                        self.centerLocationButton.anchor(
+//                            top: self.searchButton.bottomAnchor,
+//                            right: self.view.rightAnchor,
+//                            paddingTop: 10,
+//                            paddingRight: 16,
+//                            width: self.view.bounds.height * (45 / 844),
+//                            height: self.view.bounds.height * (45 / 844)
+//                        )
+                        self.view.addSubview(self.buttonRoute)
+                        self.buttonRoute.anchor(
+                            top: self.centerLocationButton.bottomAnchor,
                             right: self.view.rightAnchor,
                             paddingTop: 10,
                             paddingRight: 16,
@@ -658,6 +720,183 @@ class MainViewController: UIViewController {
         }
     }
     
+    // MARK: - POP-UP ROUTE FUNCTION
+    func popUpRute() {
+        // Add the White Containter with AutoLayout Constraints
+        // Source 1: www.developer.apple.com/forums/thread/656789
+        // Source 2: www.stackoverflow.com/questions/43550813/property-initializers-run-before-self-is-available
+        container.backgroundColor = .white
+        container.frame = CGRect(x: 16, y: 620, width: 358, height: 190) // CGRectMake(x, y, width, height)
+    //        container.frame = CGRect(x: 16, y: 620, width: self.frame.size.width*(358/375), height: self.frame.size.height*(190/844)) // CGRectMake(x, y, width, height)
+        container.layer.cornerRadius = 20
+        container.tag = 8
+        view.addSubview(container)
+        
+        // Set the Constraints of the container Programmatically (With an Array of NSLayoutConstraint)
+        container.translatesAutoresizingMaskIntoConstraints = false // Activate the Auto Layout
+        NSLayoutConstraint.activate([
+            container.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: view.frame.size.width*(16/375)),
+            container.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -(view.frame.size.width*(16/375))),
+            container.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -(view.safeAreaLayoutGuide.layoutFrame.height*(16/(844-81)))),
+            container.heightAnchor.constraint(equalToConstant: 190),
+            container.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+        
+        // Showing the Route Image
+        let routeIconImage = UIImage(named: "RouteIcon")
+        let routeIconImageView = UIImageView(image: routeIconImage)
+        routeIconImageView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        container.addSubview(routeIconImageView)
+        
+        // Set the Constraints of the routeIconImageView Programmatically (With an Array of NSLayoutConstraint)
+        routeIconImageView.translatesAutoresizingMaskIntoConstraints = false // Activate the Auto Layout
+        NSLayoutConstraint.activate([
+            routeIconImageView.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: container.frame.size.width*(16/358)),
+            routeIconImageView.topAnchor.constraint(equalTo: container.topAnchor, constant: container.frame.size.height*(16/190)),
+            routeIconImageView.heightAnchor.constraint(equalToConstant: 30),
+            routeIconImageView.widthAnchor.constraint(equalToConstant: 30),
+        ])
+        
+        // Showing the Title Label
+        let titleLabel = UILabel()
+        titleLabel.textColor = .black
+        titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .bold)
+        titleLabel.text = "Kamu belum memiliki rute"
+        container.addSubview(titleLabel)
+        
+        // Set the Constraints of the titleLabel Programmatically (With an Array of NSLayoutConstraint)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false // Activate the Auto Layout
+        NSLayoutConstraint.activate([
+            titleLabel.leadingAnchor.constraint(equalTo: routeIconImageView.trailingAnchor, constant: 6),
+            titleLabel.centerYAnchor.constraint(equalTo: routeIconImageView.centerYAnchor),
+            titleLabel.widthAnchor.constraint(equalToConstant: 222)
+        ])
+        
+        // Showing the Close Button Image & Customize the Button Color & Size
+        let closeButtonImage = UIImage(systemName: "xmark.circle.fill")?.withTintColor(.SecondaryBrown, renderingMode: .alwaysOriginal).resizeImageTo(size: CGSize(width: 26, height: 26))
+        
+        // Create a Button with an Image
+        let closeButton = UIButton(type: .custom)
+        closeButton.frame = CGRect(x: 0, y: 0, width: 26, height: 26)
+        closeButton.setImage(closeButtonImage, for: .normal)
+        closeButton.addTarget(self, action: #selector(buttonClosePopUpAction), for:.touchUpInside)
+        container.addSubview(closeButton)
+        
+        // Set the Constraints of the closeButton Programmatically (With an Array of NSLayoutConstraint)
+        closeButton.translatesAutoresizingMaskIntoConstraints = false // Activate the Auto Layout
+        NSLayoutConstraint.activate([
+            closeButton.centerYAnchor.constraint(equalTo: routeIconImageView.centerYAnchor),
+            closeButton.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -(container.frame.size.width*(16/358))),
+            closeButton.heightAnchor.constraint(equalToConstant: 26),
+            closeButton.widthAnchor.constraint(equalToConstant: 26)
+        ])
+        
+        // Showing the Subtitle Label
+        let subtitlelabel = UILabel()
+        subtitlelabel.textColor = .black
+        subtitlelabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        subtitlelabel.text = "Ayo! Pilih binatang yang ingin kamu lihat dan kunjungi!"
+        subtitlelabel.numberOfLines = 2
+        // Add Spacing between lines using the UILabel Extension (Thanks to Levina for Finding the Source)
+        subtitlelabel.addInterlineSpacing(spacingValue: 10)
+        container.addSubview(subtitlelabel)
+        
+        // Set the Constraints of the subtitlelabel Programmatically (With an Array of NSLayoutConstraint)
+        subtitlelabel.translatesAutoresizingMaskIntoConstraints = false // Activate the Auto Layout
+        NSLayoutConstraint.activate([
+            subtitlelabel.leadingAnchor.constraint(equalTo: routeIconImageView.leadingAnchor),
+            subtitlelabel.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -(container.frame.size.width*(41/358))),
+            subtitlelabel.topAnchor.constraint(equalTo: routeIconImageView.bottomAnchor, constant: 12),
+        ])
+        
+    
+        // Showing Jeera Custom Button: "Create Route Button"
+        let createRouteButton = UIButton(type: .custom)
+        createRouteButton.backgroundColor = .PrimaryGreen
+        createRouteButton.frame = CGRect(x: 0, y: 0, width: 326, height: 48)
+        createRouteButton.layer.cornerRadius = createRouteButton.frame.height / 2
+        createRouteButton.setTitle("Yuk! Buat Sekarang", for: .normal)
+        createRouteButton.setTitleColor(.white, for: .normal)
+        createRouteButton.addTarget(self, action: #selector(createRouteAction), for:.touchUpInside)
+        container.addSubview(createRouteButton)
+        
+        
+        // Set the Constraints of the closeButton Programmatically (With an Array of NSLayoutConstraint)
+        createRouteButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            createRouteButton.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: container.frame.size.width*(16/358)),
+            createRouteButton.centerXAnchor.constraint(equalTo: container.centerXAnchor),
+            createRouteButton.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -(container.frame.size.width*(16/358))),
+            createRouteButton.topAnchor.constraint(equalTo: subtitlelabel.bottomAnchor, constant: 12),
+            createRouteButton.heightAnchor.constraint(equalToConstant: 48),
+        ])
+    
+    }
+    
+    // Objective-C Function for the buttonClosePopUp Action
+    @objc func buttonClosePopUpAction() {
+        if !MainViewController.isOutsideArea && userLocation != nil {
+            self.removeSubview(tag: 7)
+            view.addSubview(buttonRoute)
+            NSLayoutConstraint.activate([
+                buttonRoute.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
+                buttonRoute.topAnchor.constraint(equalTo: centerLocationButton.bottomAnchor, constant: 10),
+                buttonRoute.widthAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
+                buttonRoute.heightAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
+            ])
+        }
+//        print("THE USER CLOSE THE POP UP")
+        
+        // Animate Out the Pop-Up Route + Spring Animation
+        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
+            let minimizeRouteBtn = CGAffineTransform(translationX: 150, y: -490)
+            self.container.transform = CGAffineTransformScale(minimizeRouteBtn, (45/358), (45/190)) // Make the Container Small as the routeBtn
+            self.container.alpha = 0 // Change the Opacity or the Alpha to 0
+        }) { (complete) in
+            if complete {
+                self.container.removeFromSuperview() // Remove the Pop-Up Route View
+            }
+        }
+        
+        // Animate In the buttonRoute + Spring Animation
+        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
+            self.buttonRoute.transform = CGAffineTransform(scaleX: (45/358), y: (45/190)) // Make the Container Small as the routeBtn
+            self.buttonRoute.transform = .identity // Bringing Back the Initial State
+            self.buttonRoute.alpha = 1 // Change the Opacity or the Alpha to 1
+        })
+    }
+    
+    // Objective-C Function for the createRoute Action
+    @objc func createRouteAction(_ button: UIButton) {
+        routePlanViewController = RoutePlanViewController()
+        routePlanViewController.modalPresentationStyle = .formSheet
+        routePlanViewController.userLocation = self.userLocation
+        routePlanViewController.animalsData = self.animalsData
+        self.present(routePlanViewController, animated: true, completion: nil)
+    }
+    
+    // MARK: - Route Button Function
+    func routeButton() {
+        
+        // Create the Route Button with an Image from Assets
+        let imageRouteBtn = UIImage(named: "RouteBtn")
+//        buttonRoute.frame = CGRectMake(329, 184, 45, 45) // CGRectMake(x, y, width, height)
+        buttonRoute.setImage(imageRouteBtn, for: .normal)
+        buttonRoute.addTarget(self, action: #selector(createRouteAction), for:.touchUpInside)
+        
+        buttonRoute.alpha = 0
+        buttonRoute.tag = 7
+        view.addSubview(buttonRoute)
+        
+        // Set the Constraints of the buttonSearch Programmatically (With an Array of NSLayoutConstraint)
+        buttonRoute.translatesAutoresizingMaskIntoConstraints = false // Disable the Auto Resizing to Auto Layout
+        NSLayoutConstraint.activate([
+            buttonRoute.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
+            buttonRoute.topAnchor.constraint(equalTo: searchButton.bottomAnchor, constant: 10),
+            buttonRoute.widthAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
+            buttonRoute.heightAnchor.constraint(equalToConstant: view.bounds.height * (45 / 844)),
+        ])
+    }
 }
 
 

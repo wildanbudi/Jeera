@@ -74,7 +74,7 @@ extension MainViewController: CLLocationManagerDelegate {
         if ((manager.location?.coordinate) != nil) {
             setupUserLocation()
             userLocation = manager.location!.coordinate
-            if self.view.viewWithTag(3) == nil {
+            if self.view.viewWithTag(3) == nil || AnimalDetailViewController.isOnJourneyClick || RoutePlanViewController.isOnMultiJourneyClick {
                 getRouteInformation()
             }
         }
@@ -85,7 +85,7 @@ extension MainViewController: CLLocationManagerDelegate {
                 }
             }
         } else if status == .denied || status == .restricted || status == .notDetermined{
-            view.addSubview(buttonLocationOFF)
+//            view.addSubview(buttonLocationOFF)
         } else if status == .authorizedWhenInUse {
             buttonLocationOFF.removeFromSuperview()
         }
